@@ -40,6 +40,9 @@ function AboutAko() {
           </div>
         ))}
       </div>
+      <p>
+        <a href={`${import.meta.env.BASE_URL}pepeha/`}>Pepeha builder</a>
+      </p>
     </section>
   );
 }
