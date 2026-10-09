@@ -34,10 +34,11 @@ The project already exists (ref `zmdbimnvxpbmnctqefcu`, Asia-Pacific region).
 4. Copy the generated **Client ID** and **Client secret**.
 5. In Supabase: **Authentication -> Providers -> Google**, enable it, paste the Client ID and secret, save.
 
-## 3. Supabase CLI credentials (for CI)
+## 3. Database credentials (for CI)
 
-1. In the Supabase dashboard: **Account -> Access Tokens -> Generate new token**. This becomes
-   `SUPABASE_ACCESS_TOKEN`.
+1. The deploy pipeline connects through the Supabase **session pooler**. Its host for this project is
+   `aws-0-ap-northeast-1.pooler.supabase.com` (replace if you recreate the project). This becomes the
+   `SUPABASE_DB_HOST` variable. No Supabase access token is needed.
 2. The database password is the one you set when the project was created (or reset it under
    **Project Settings -> Database**). This becomes `SUPABASE_DB_PASSWORD`.
 
@@ -50,8 +51,8 @@ In `pattern-labs-foundation/language-learning-website` on GitHub:
    - `VITE_SUPABASE_URL` = `https://zmdbimnvxpbmnctqefcu.supabase.co`
    - `VITE_SUPABASE_ANON_KEY` = (the anon key from step 1)
    - `SUPABASE_PROJECT_REF` = `zmdbimnvxpbmnctqefcu`
+   - `SUPABASE_DB_HOST` = `aws-0-ap-northeast-1.pooler.supabase.com`
 3. **Settings -> Secrets and variables -> Actions -> Secrets**, add:
-   - `SUPABASE_ACCESS_TOKEN` = (from step 3)
    - `SUPABASE_DB_PASSWORD` = (from step 3)
 4. **Settings -> Branches**: add a branch protection rule for `main` requiring the `ci` status check to pass
    before merging, and requiring a pull request before merging.

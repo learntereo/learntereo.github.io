@@ -148,7 +148,7 @@ A learner can sign in (Google, or email and password), pick a level and a mode, 
 - FR12.1 All new work is on **feature branches**. Changes reach `main` only via PR.
 - FR12.2 **PR checks** (`.github/workflows/ci.yml`, on `pull_request` to `main`): `npm ci`, lint (ESLint), type-check (`tsc --noEmit`), unit tests (Vitest), production build. All must pass. Branch protection on `main` requires the `ci` check (configured by a repo admin; see O3).
 - FR12.3 **Deploy** (`.github/workflows/deploy.yml`, on `push` to `main`, i.e. a merged PR):
-  1. Job `migrate`: Supabase CLI `supabase link --project-ref $SUPABASE_PROJECT_REF` then `supabase db push`.
+  1. Job `migrate`: Supabase CLI `supabase db push --db-url` against the session pooler (`vars.SUPABASE_DB_HOST`, `vars.SUPABASE_PROJECT_REF`, `secrets.SUPABASE_DB_PASSWORD`). No access token.
   2. Job `deploy` (needs `migrate`): build with Vite and deploy to GitHub Pages using `actions/upload-pages-artifact` and `actions/deploy-pages`.
 - FR12.4 The site is served at `https://pattern-labs-foundation.github.io/language-learning-website/` (default Pages URL; no custom domain).
 
@@ -331,7 +331,7 @@ No custom backend. The browser uses supabase-js against the tables in §5.4 (pro
 ## 7. Security Considerations
 - RLS on every table. Each user can only read and write their own rows.
 - Only the **publishable/anon** key is in the frontend (as GitHub repo **variables** at build time). It is public by design.
-- CI secrets: `SUPABASE_ACCESS_TOKEN`, `SUPABASE_DB_PASSWORD` (repo **secrets**). `SUPABASE_PROJECT_REF` (variable).
+- CI secret: `SUPABASE_DB_PASSWORD` (repo **secret**). `SUPABASE_PROJECT_REF`, `SUPABASE_DB_HOST` (variables).
 - **Known PoC limitation**: game logic is client-side, so a determined user can inflate their own XP, streak or progress. This only affects their own account (no leaderboards). Accepted for the PoC.
 - OAuth redirect allow-list in Supabase: the Pages URL and `http://localhost:5173/`.
 - Security-definer functions pin `search_path = ''`.
@@ -511,7 +511,7 @@ Seeded RNG; small fixture content set in `src/game/__fixtures__/`.
 ### Manual setup by the user (documented in `docs/SETUP.md`)
 1. Supabase: copy the Project URL and publishable/anon key. Set Site URL + redirect URLs.
 2. Google Cloud: create the OAuth client and paste its ID and secret into Supabase → Auth → Providers → Google.
-3. GitHub: Settings → Pages → Source: GitHub Actions. Add variables `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` and `SUPABASE_PROJECT_REF`, and secrets `SUPABASE_ACCESS_TOKEN` and `SUPABASE_DB_PASSWORD`. Enable branch protection on `main` requiring the `ci` check.
+3. GitHub: Settings → Pages → Source: GitHub Actions. Add variables `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` `SUPABASE_PROJECT_REF` and `SUPABASE_DB_HOST`, and secret `SUPABASE_DB_PASSWORD`. Enable branch protection on `main` requiring the `ci` check.
 
 ## 18. Out of Scope
 Advanced level; audio/listening mode; English → Māori typing; native mobile apps; custom domain; component/integration/E2E tests; server-side validation or anti-cheat; leaderboards/social; content editing UI or content stored in Supabase; Supabase GitHub integration / preview branches; offline-first/PWA; topic-based navigation; UI translation into Māori; custom SMTP.
