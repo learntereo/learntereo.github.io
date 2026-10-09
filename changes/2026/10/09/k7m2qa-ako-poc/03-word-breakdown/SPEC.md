@@ -88,3 +88,5 @@ Audio, morphology beyond word level (e.g. splitting *whakarongo* into *whaka* + 
 | W3 | Where breakdowns show, data shape, particles dictionary | Learn, unit title, after-answer feedback, tap-a-word popover, Little words reference | Dev team (delegated) |
 | W4 | Unlocking | "Have 3 courses available at a time, rather than one by one; each completion opens a new one" | User |
 | W5 | Spelling | "To spell the words I'm only given vowels, there are no letters. I should be able to select from a list of letters" | User |
+| W6 | Naming | "Don't call it unit check, it sounds like code. Call it something friendly, a play on the word kiwi" (named Kiwiz) | User |
+| W7 | Naming | "We don't have XP, we have Kiwi XP" | User |

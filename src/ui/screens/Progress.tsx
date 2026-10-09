@@ -37,7 +37,7 @@ export function Progress() {
       <div className={styles.stats}>
         <div className={`${ui.card} ${styles.stat}`}>
           <span className={styles.value}>{profile?.xp ?? 0}</span>
-          <span className={ui.muted}>Total XP</span>
+          <span className={ui.muted}>Total Kiwi XP</span>
         </div>
         <div className={`${ui.card} ${styles.stat}`}>
           <span className={styles.value}>{streak}</span>
@@ -122,7 +122,7 @@ export function Progress() {
                   <strong>
                     {round.score ?? 0} / {round.total}
                   </strong>
-                  <div className={ui.muted}>+{round.xp_earned} XP</div>
+                  <div className={ui.muted}>+{round.xp_earned} Kiwi XP</div>
                 </div>
               </li>
             ))}

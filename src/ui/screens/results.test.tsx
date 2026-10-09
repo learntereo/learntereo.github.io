@@ -80,7 +80,7 @@ describe('Results for a unit check', () => {
     );
     expect(container.textContent).toContain('Unit complete');
     expect(container.textContent).toContain('11 / 12');
-    expect(container.textContent).toContain('is now open');
+    expect(container.textContent).toContain('The next unit is open');
     expect(hrefs()).toContain('/unit/b02-whanau');
     expect(container.textContent).toContain('Words to revisit (1)');
   });
@@ -94,7 +94,7 @@ describe('Results for a unit check', () => {
       [],
     );
     expect(container.textContent).not.toContain('Unit complete');
-    expect(container.textContent).toContain('Not quite yet');
+    expect(container.textContent).toContain('Not this time');
     expect(container.textContent).toContain('You need 10 out of 12');
     expect(container.textContent).toContain('Words to revisit (3)');
     expect(container.textContent).toContain('kia ora');

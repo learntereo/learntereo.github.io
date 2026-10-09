@@ -62,7 +62,7 @@ function UnitActions({ round, unit, summary }: { round: RoundRow; unit: Unit; su
       {!isCheck && (
         <>
           <Link className={ui.button} to={`/unit/${unit.id}/check`}>
-            Take the unit check
+            Take the Kiwiz
           </Link>
           <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}/practice`}>
             Practise again
@@ -71,7 +71,7 @@ function UnitActions({ round, unit, summary }: { round: RoundRow; unit: Unit; su
       )}
       {isCheck && !passed && (
         <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}/check`}>
-          Try the check again
+          Try the Kiwiz again
         </Link>
       )}
       <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}`}>
@@ -143,14 +143,14 @@ export function Results() {
         <section className={`${ui.card} ${styles.unlock}`} aria-labelledby="pass-title">
           <KoruFlourish />
           <h2 id="pass-title">
-            <span lang="mi">Ka rawe!</span> {check.firstCompletion ? 'Unit complete' : 'Check passed'}
+            <span lang="mi">Ka rawe!</span> {check.firstCompletion ? 'Unit complete' : 'Kiwiz passed'}
           </h2>
           <p>
-            You passed the <strong>{unit.title}</strong> check with {score} out of {round.total}.
+            You passed the <strong>{unit.title}</strong> Kiwiz with {score} out of {round.total}.
           </p>
           {opened ? (
             <p>
-              <strong>{opened.title}</strong> is now open.
+              The next unit is open: <strong>{opened.title}</strong>.
             </p>
           ) : next === undefined ? (
             <p>That is the last unit for now. More are on the way.</p>
@@ -167,7 +167,7 @@ export function Results() {
             check.passed ? (
               <span lang="mi">Ka pai!</span>
             ) : (
-              'Not quite yet'
+              'Not this time'
             )
           ) : (
             <span lang="mi">Ka pai!</span>
@@ -178,13 +178,13 @@ export function Results() {
         </p>
         {isCheck && check && !check.passed && (
           <p>
-            You need {passMark(round.total)} out of {round.total} to pass. Have another go at the practice, then try the
-            check again.
+            You need {passMark(round.total)} out of {round.total} to pass. Practise the words below and try the Kiwiz
+            again.
           </p>
         )}
         <dl className={styles.facts}>
           <div>
-            <dt>XP earned</dt>
+            <dt>Kiwi XP earned</dt>
             <dd>+{round.xp_earned}</dd>
           </div>
           <div>

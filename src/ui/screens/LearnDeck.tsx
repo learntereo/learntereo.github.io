@@ -145,7 +145,7 @@ function Deck({ unitId }: { unitId: string }) {
             <h1 lang="mi">Kua oti!</h1>
             <p>
               You have met all {wordCount} words in <strong>{unit.title}</strong>. Next, practise them, then take the
-              unit check.
+              Kiwiz.
             </p>
             <div className={ui.row}>
               <Link className={ui.button} to={`/unit/${unit.id}/practice`}>

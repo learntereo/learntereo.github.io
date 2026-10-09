@@ -49,6 +49,7 @@ describe('Breakdown', () => {
 
   it('opens a popover for a word with the particle explanation and marks the button expanded (AC4)', async () => {
     render(<Breakdown breakdown={itemsById.get('s-b-020')!.breakdown as BreakdownData} />);
+    await loadParticles();
     const nga = wordButtons().find((b) => b.textContent?.startsWith('ngā'))!;
     expect(nga.getAttribute('aria-expanded')).toBe('false');
     act(() => nga.click());

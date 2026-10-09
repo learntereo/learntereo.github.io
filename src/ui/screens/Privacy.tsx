@@ -10,7 +10,7 @@ export function Privacy() {
       <p>
         Ako stores the minimum needed to save your progress: your name and email address (from Google or from your
         email/password sign-up), your item progress (which words and sentences you have learned), your round history
-        (scores, modes and XP) and your streak.
+        (scores, modes and Kiwi XP) and your streak.
       </p>
       <p>
         This data is stored with Supabase in the Asia-Pacific region. It is never sold or shared with third parties,

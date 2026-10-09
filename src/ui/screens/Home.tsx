@@ -152,7 +152,7 @@ export function Home() {
           Kia ora, <span lang="mi">{displayName}</span>
         </h1>
         <p className={ui.muted}>
-          Learn new words, practise them, then pass the unit check ({passMark(CHECK_SIZE)} of {CHECK_SIZE}, or{' '}
+          Learn new words, practise them, then pass the Kiwiz ({passMark(CHECK_SIZE)} of {CHECK_SIZE}, or{' '}
           {PASS_PERCENT}%) to open another unit. Three units stay open at a time.
         </p>
       </div>

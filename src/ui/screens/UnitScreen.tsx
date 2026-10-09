@@ -49,7 +49,7 @@ export function UnitScreen() {
           {status.bestScore !== null && (
             <span className={ui.muted}>
               {' '}
-              &middot; Best check {status.bestScore} / {CHECK_SIZE}
+              &middot; Best Kiwiz {status.bestScore} / {CHECK_SIZE}
             </span>
           )}
         </p>
@@ -86,18 +86,18 @@ export function UnitScreen() {
           </Link>
         </li>
         <li className={`${ui.card} ${styles.step}`}>
-          <h2>3. Unit check</h2>
+          <h2>3. Kiwiz</h2>
           <p className={ui.muted}>
-            {CHECK_SIZE} questions. Get {passMark(CHECK_SIZE)} right to pass{complete ? '' : ' and open another unit'}.
+            {CHECK_SIZE} questions. Get {passMark(CHECK_SIZE)} right to pass{complete ? '' : ' and open the next unit'}.
           </p>
           {status.deckDone ? (
             <Link className={ui.button} to={`/unit/${unit.id}/check`}>
-              {status.attempts > 0 ? 'Take the check again' : 'Take the check'}
+              {status.attempts > 0 ? 'Take the Kiwiz again' : 'Take the Kiwiz'}
             </Link>
           ) : (
             <>
               <button type="button" className={ui.button} disabled aria-describedby={`${unit.id}-check-note`}>
-                Take the check
+                Take the Kiwiz
               </button>
               <p id={`${unit.id}-check-note`} className={styles.note}>
                 Finish Learn first. It only takes a few minutes.

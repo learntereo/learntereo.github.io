@@ -141,7 +141,7 @@ function Header() {
         </Link>
         <div className={styles.stats} aria-label="Your stats">
           <span className={styles.stat}>
-            <strong>{profile?.xp ?? 0}</strong> XP
+            <strong>{profile?.xp ?? 0}</strong> Kiwi XP
           </span>
           <span className={styles.stat}>
             <strong>{streak}</strong> day streak

@@ -144,9 +144,9 @@ describe('Unit screen', () => {
     expect(container.querySelector('h1')?.textContent).toContain('Aroha');
   });
 
-  it('keeps the unit check disabled until Learn is done', () => {
+  it('keeps the Kiwiz disabled until Learn is done', () => {
     renderAt('/unit/b01-greetings', appData());
-    expect(buttonNamed('Take the check').disabled).toBe(true);
+    expect(buttonNamed('Take the Kiwiz').disabled).toBe(true);
     expect(container.textContent).toContain('Finish Learn first');
     expect(container.querySelector('a[href="/unit/b01-greetings/learn"]')).not.toBeNull();
     expect(container.querySelector('a[href="/unit/b01-greetings/practice"]')).not.toBeNull();
@@ -156,7 +156,7 @@ describe('Unit screen', () => {
     const row: UnitProgressRow = { ...doneRow('b01-greetings'), completed_at: null, best_score: 9 };
     renderAt('/unit/b01-greetings', appData({ unitProgress: [row] }));
     expect(container.querySelector('a[href="/unit/b01-greetings/check"]')).not.toBeNull();
-    expect(container.textContent).toContain('Best check 9 / 12');
+    expect(container.textContent).toContain('Best Kiwiz 9 / 12');
   });
 
   it('shows the grammar note', () => {
