@@ -186,3 +186,22 @@ describe('real content', () => {
     for (const q of qs) expect(new Set(q.itemIds).size).toBe(5);
   });
 });
+
+describe('generateRound options', () => {
+  it('builds the requested number of questions', () => {
+    expect(generateRound(items, 'beginner', 'mixed', new Set(), createRng(1), { size: 12 })).toHaveLength(12);
+    expect(generateRound(items, 'beginner', 'translate', new Set(), createRng(1), { size: 7 })).toHaveLength(7);
+  });
+
+  it('can ignore learned status (neutral)', () => {
+    const learned = new Set(items.filter((i) => i.level === 'beginner' && i.kind === 'word').slice(0, 10).map((i) => i.id));
+    const qs = generateRound(items, 'beginner', 'translate', learned, createRng(2), { size: 12, neutral: true });
+    const primaries = new Set(qs.map((q) => q.itemIds[0]));
+    expect([...primaries].some((id) => learned.has(id))).toBe(true);
+  });
+
+  it('reuses items instead of failing when the pool is small', () => {
+    const few = items.filter((i) => i.kind === 'sentence' && i.level === 'beginner').slice(0, 3);
+    expect(generateRound(few, 'beginner', 'order', new Set(), createRng(3), { size: 12 })).toHaveLength(12);
+  });
+});

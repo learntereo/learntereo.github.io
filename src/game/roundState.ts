@@ -1,12 +1,13 @@
-import type { Item, Level, Mode, Outcome, Question, QuestionMode, Result, RoundState } from './types';
-import { LEVELS, MODES } from './types';
+import type { Item, Level, Outcome, Question, QuestionMode, Result, RoundMode, RoundState } from './types';
+import { LEVELS, ROUND_MODES } from './types';
 import { roundScore } from './xp';
 
-export function createRound(level: Level, mode: Mode, questions: Question[]): RoundState {
+export function createRound(level: Level, mode: RoundMode, questions: Question[], unitId?: string): RoundState {
   return {
     version: 1,
     level,
     mode,
+    ...(unitId ? { unitId } : {}),
     originalCount: questions.length,
     questions,
     index: 0,
@@ -43,10 +44,14 @@ export function recordAnswer(state: RoundState, outcome: Outcome): RoundState {
   let requeued = state.requeued;
 
   if (!requeued && index === state.originalCount) {
-    const retries = state.questions
-      .slice(0, state.originalCount)
-      .filter((_, i) => outcomes[i].result === 'missed')
-      .map((q): Question => ({ ...q, requeued: true }));
+    // A unit check is a fair test of the original questions, so nothing is replayed.
+    const retries =
+      state.mode === 'unit_check'
+        ? []
+        : state.questions
+            .slice(0, state.originalCount)
+            .filter((_, i) => outcomes[i].result === 'missed')
+            .map((q): Question => ({ ...q, requeued: true }));
     questions = [...state.questions, ...retries];
     requeued = true;
   }
@@ -100,14 +105,15 @@ function isStringArray(v: unknown): v is string[] {
   return Array.isArray(v) && v.every((s) => typeof s === 'string');
 }
 
-function validQuestion(q: unknown, itemsById: ReadonlyMap<string, Item>, level: Level): q is Question {
+function validQuestion(q: unknown, itemsById: ReadonlyMap<string, Item>, level: Level | null): q is Question {
   if (!isRecord(q)) return false;
   if (!QUESTION_MODES.includes(q.mode as QuestionMode)) return false;
   if (typeof q.requeued !== 'boolean') return false;
   if (!isStringArray(q.itemIds) || q.itemIds.length === 0) return false;
 
   const items = q.itemIds.map((id) => itemsById.get(id));
-  if (items.some((item) => item === undefined || item.level !== level)) return false;
+  // Unit rounds may revisit items from earlier levels, so they only need the items to exist.
+  if (items.some((item) => item === undefined || (level !== null && item.level !== level))) return false;
   if (new Set(q.itemIds).size !== q.itemIds.length) return false;
 
   switch (q.mode) {
@@ -142,7 +148,10 @@ export function validateRoundState(raw: unknown, itemsById: ReadonlyMap<string, 
   if (!isRecord(raw)) return null;
   if (raw.version !== 1) return null;
   if (!LEVELS.includes(raw.level as Level)) return null;
-  if (!MODES.includes(raw.mode as Mode)) return null;
+  if (!ROUND_MODES.includes(raw.mode as RoundMode)) return null;
+  if (raw.unitId !== undefined && typeof raw.unitId !== 'string') return null;
+  const isUnitRound = raw.mode === 'unit_practice' || raw.mode === 'unit_check';
+  if (isUnitRound !== (raw.unitId !== undefined)) return null;
   if (typeof raw.requeued !== 'boolean') return null;
   if (!Number.isInteger(raw.originalCount) || (raw.originalCount as number) < 1) return null;
   if (!Array.isArray(raw.questions) || !Array.isArray(raw.outcomes)) return null;
@@ -153,7 +162,7 @@ export function validateRoundState(raw: unknown, itemsById: ReadonlyMap<string, 
   const index = raw.index as number;
 
   if (raw.questions.length < originalCount) return null;
-  if (!raw.questions.every((q) => validQuestion(q, itemsById, level))) return null;
+  if (!raw.questions.every((q) => validQuestion(q, itemsById, isUnitRound ? null : level))) return null;
   if (!raw.outcomes.every(validOutcome)) return null;
   if (index < 0 || index > raw.questions.length) return null;
   if (raw.outcomes.length !== index) return null;
