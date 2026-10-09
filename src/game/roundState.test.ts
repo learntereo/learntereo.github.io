@@ -222,3 +222,26 @@ describe('unit rounds', () => {
     expect(validateRoundState(serialiseRound(createRound('beginner', 'unit_check', questions, 'u1')), byId)).not.toBeNull();
   });
 });
+
+describe('validating write and gap questions', () => {
+  const sentence = items.find((i) => i.kind === 'sentence' && i.level === 'beginner')!;
+  const word = items.find((i) => i.kind === 'word' && i.level === 'beginner')!;
+  const build = (q: Record<string, unknown>) => ({
+    ...serialiseRound(createRound('beginner', 'mixed', [{ mode: 'translate', itemIds: [word.id], requeued: false }])),
+    questions: [{ requeued: false, ...q }],
+  });
+
+  it('accepts a write question', () => {
+    expect(validateRoundState(build({ mode: 'write', itemIds: [word.id] }), byId)).not.toBeNull();
+  });
+
+  it('accepts a well-formed gap question and rejects a broken one', () => {
+    if (sentence.kind !== 'sentence') throw new Error('expected sentence');
+    const ok = { mode: 'gap', itemIds: [sentence.id], gapIndex: 1, options: [sentence.tiles[1], 'zz', 'yy'] };
+    expect(validateRoundState(build(ok), byId)).not.toBeNull();
+    expect(validateRoundState(build({ ...ok, gapIndex: 99 }), byId)).toBeNull();
+    expect(validateRoundState(build({ ...ok, options: ['zz', 'yy'] }), byId)).toBeNull();
+    expect(validateRoundState(build({ ...ok, options: undefined }), byId)).toBeNull();
+    expect(validateRoundState(build({ ...ok, itemIds: [word.id] }), byId)).toBeNull();
+  });
+});

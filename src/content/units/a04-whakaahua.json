@@ -1,0 +1,296 @@
+{
+  "unit": {
+    "id": "a04-whakaahua",
+    "level": "advanced",
+    "order": 4,
+    "title": "Describing people and places",
+    "titleMi": "Te Whakaahua",
+    "emoji": "🏔️",
+    "itemIds": [
+      "w-a-038",
+      "w-a-039",
+      "w-a-040",
+      "w-a-041",
+      "w-a-042",
+      "w-a-043",
+      "w-a-044",
+      "w-a-045",
+      "w-a-046",
+      "w-a-047",
+      "w-a-048",
+      "w-a-049",
+      "s-a-022",
+      "s-a-023",
+      "s-a-024",
+      "s-a-025",
+      "s-a-026",
+      "s-a-027",
+      "s-a-028"
+    ],
+    "grammar": "a04-whakaahua"
+  },
+  "items": [
+    {
+      "id": "w-a-038",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "roa",
+      "en": [
+        "long",
+        "tall"
+      ],
+      "image": {
+        "emoji": "📏"
+      }
+    },
+    {
+      "id": "w-a-039",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "poto",
+      "en": [
+        "short"
+      ]
+    },
+    {
+      "id": "w-a-040",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "teitei",
+      "en": [
+        "high"
+      ],
+      "image": {
+        "emoji": "🏔️"
+      }
+    },
+    {
+      "id": "w-a-041",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "hōhonu",
+      "en": [
+        "deep"
+      ]
+    },
+    {
+      "id": "w-a-042",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "ātaahua",
+      "en": [
+        "beautiful"
+      ],
+      "image": {
+        "emoji": "🌺"
+      }
+    },
+    {
+      "id": "w-a-043",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "kino",
+      "en": [
+        "bad"
+      ],
+      "image": {
+        "emoji": "👎"
+      }
+    },
+    {
+      "id": "w-a-044",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "hou",
+      "en": [
+        "new"
+      ],
+      "image": {
+        "emoji": "🆕"
+      }
+    },
+    {
+      "id": "w-a-045",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tawhito",
+      "en": [
+        "old",
+        "ancient"
+      ]
+    },
+    {
+      "id": "w-a-046",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "pākeke",
+      "en": [
+        "adult",
+        "grown up"
+      ]
+    },
+    {
+      "id": "w-a-047",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "rangatahi",
+      "en": [
+        "young person",
+        "youth"
+      ]
+    },
+    {
+      "id": "w-a-048",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "ngoikore",
+      "en": [
+        "weak"
+      ]
+    },
+    {
+      "id": "w-a-049",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "whakaahua",
+      "en": [
+        "describe",
+        "picture"
+      ]
+    },
+    {
+      "id": "s-a-022",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He wahine ātaahua tērā",
+      "en": [
+        "That is a beautiful woman"
+      ],
+      "tiles": [
+        "he",
+        "wahine",
+        "ātaahua",
+        "tērā"
+      ],
+      "decoys": [
+        "tēnei",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-023",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He tāne roa tēnei",
+      "en": [
+        "This is a tall man"
+      ],
+      "tiles": [
+        "he",
+        "tāne",
+        "roa",
+        "tēnei"
+      ],
+      "decoys": [
+        "tērā",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-024",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He maunga teitei tērā",
+      "en": [
+        "That is a high mountain",
+        "That is a tall mountain"
+      ],
+      "tiles": [
+        "he",
+        "maunga",
+        "teitei",
+        "tērā"
+      ],
+      "decoys": [
+        "tēnei",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-025",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He awa hōhonu tēnei",
+      "en": [
+        "This is a deep river"
+      ],
+      "tiles": [
+        "he",
+        "awa",
+        "hōhonu",
+        "tēnei"
+      ],
+      "decoys": [
+        "tērā",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-026",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He whare hou tēnei",
+      "en": [
+        "This is a new house"
+      ],
+      "tiles": [
+        "he",
+        "whare",
+        "hou",
+        "tēnei"
+      ],
+      "decoys": [
+        "tērā",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-027",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He rangatahi ia",
+      "en": [
+        "He is a young person",
+        "She is a young person"
+      ],
+      "tiles": [
+        "he",
+        "rangatahi",
+        "ia"
+      ],
+      "decoys": [
+        "rātou",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-028",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He ātaahua te whenua",
+      "en": [
+        "The land is beautiful"
+      ],
+      "tiles": [
+        "he",
+        "ātaahua",
+        "te",
+        "whenua"
+      ],
+      "decoys": [
+        "kei",
+        "ngā"
+      ]
+    }
+  ]
+}

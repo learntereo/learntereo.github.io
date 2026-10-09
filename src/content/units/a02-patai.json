@@ -1,0 +1,288 @@
+{
+  "unit": {
+    "id": "a02-patai",
+    "level": "advanced",
+    "order": 2,
+    "title": "Questions",
+    "titleMi": "Ngā Pātai",
+    "emoji": "❓",
+    "itemIds": [
+      "w-a-014",
+      "w-a-015",
+      "w-a-016",
+      "w-a-017",
+      "w-a-018",
+      "w-a-019",
+      "w-a-020",
+      "w-a-021",
+      "w-a-022",
+      "w-a-023",
+      "w-a-024",
+      "w-a-025",
+      "s-a-008",
+      "s-a-009",
+      "s-a-010",
+      "s-a-011",
+      "s-a-012",
+      "s-a-013",
+      "s-a-014"
+    ],
+    "grammar": "a02-patai"
+  },
+  "items": [
+    {
+      "id": "w-a-014",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "wai",
+      "en": [
+        "who"
+      ]
+    },
+    {
+      "id": "w-a-015",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "aha",
+      "en": [
+        "what"
+      ]
+    },
+    {
+      "id": "w-a-016",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "hea",
+      "en": [
+        "where"
+      ]
+    },
+    {
+      "id": "w-a-017",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "āhea",
+      "en": [
+        "when (in the future)",
+        "when"
+      ]
+    },
+    {
+      "id": "w-a-018",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "inahea",
+      "en": [
+        "when (in the past)",
+        "when"
+      ]
+    },
+    {
+      "id": "w-a-019",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "pēhea",
+      "en": [
+        "how"
+      ]
+    },
+    {
+      "id": "w-a-020",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tēhea",
+      "en": [
+        "which"
+      ]
+    },
+    {
+      "id": "w-a-021",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "nō hea",
+      "en": [
+        "from where",
+        "where from"
+      ]
+    },
+    {
+      "id": "w-a-022",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "he aha ai",
+      "en": [
+        "why"
+      ]
+    },
+    {
+      "id": "w-a-023",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "nā wai",
+      "en": [
+        "whose",
+        "by whom"
+      ]
+    },
+    {
+      "id": "w-a-024",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "pātai",
+      "en": [
+        "question",
+        "to ask"
+      ],
+      "image": {
+        "emoji": "❓"
+      }
+    },
+    {
+      "id": "w-a-025",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "whakautu",
+      "en": [
+        "answer",
+        "reply"
+      ]
+    },
+    {
+      "id": "s-a-008",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Ko wai tō ingoa",
+      "en": [
+        "What is your name",
+        "Who is your name"
+      ],
+      "tiles": [
+        "ko",
+        "wai",
+        "tō",
+        "ingoa"
+      ],
+      "decoys": [
+        "he",
+        "aha"
+      ]
+    },
+    {
+      "id": "s-a-009",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei hea ngā tamariki",
+      "en": [
+        "Where are the children"
+      ],
+      "tiles": [
+        "kei",
+        "hea",
+        "ngā",
+        "tamariki"
+      ],
+      "decoys": [
+        "he",
+        "wai"
+      ]
+    },
+    {
+      "id": "s-a-010",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He aha tēnei",
+      "en": [
+        "What is this"
+      ],
+      "tiles": [
+        "he",
+        "aha",
+        "tēnei"
+      ],
+      "decoys": [
+        "ko",
+        "wai"
+      ]
+    },
+    {
+      "id": "s-a-011",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Nō hea koe",
+      "en": [
+        "Where are you from"
+      ],
+      "tiles": [
+        "nō",
+        "hea",
+        "koe"
+      ],
+      "decoys": [
+        "ko",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-a-012",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Āhea koe haere ai",
+      "en": [
+        "When will you go",
+        "When are you going"
+      ],
+      "tiles": [
+        "āhea",
+        "koe",
+        "haere",
+        "ai"
+      ],
+      "decoys": [
+        "i",
+        "wai"
+      ]
+    },
+    {
+      "id": "s-a-013",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Inahea koe i haere ai",
+      "en": [
+        "When did you go"
+      ],
+      "tiles": [
+        "inahea",
+        "koe",
+        "i",
+        "haere",
+        "ai"
+      ],
+      "decoys": [
+        "ka",
+        "wai"
+      ]
+    },
+    {
+      "id": "s-a-014",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He aha te tae o te kurī",
+      "en": [
+        "What colour is the dog"
+      ],
+      "tiles": [
+        "he",
+        "aha",
+        "te",
+        "tae",
+        "o",
+        "te",
+        "kurī"
+      ],
+      "decoys": [
+        "ko",
+        "wai"
+      ]
+    }
+  ]
+}

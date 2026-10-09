@@ -94,7 +94,7 @@ export function serialiseRound(state: RoundState): RoundState {
 // Validation (resume safety)
 // ---------------------------------------------------------------------------
 
-const QUESTION_MODES: readonly QuestionMode[] = ['match', 'translate', 'order', 'picture'];
+const QUESTION_MODES: readonly QuestionMode[] = ['match', 'picture', 'translate', 'write', 'gap', 'order'];
 const RESULTS: readonly Result[] = ['first', 'retry', 'missed'];
 
 function isRecord(v: unknown): v is Record<string, unknown> {
@@ -124,7 +124,21 @@ function validQuestion(q: unknown, itemsById: ReadonlyMap<string, Item>, level: 
     case 'order':
       return q.itemIds.length === 1 && items[0]?.kind === 'sentence' && isStringArray(q.decoys);
     case 'translate':
+    case 'write':
       return q.itemIds.length === 1;
+    case 'gap': {
+      const sentence = items[0];
+      return (
+        q.itemIds.length === 1 &&
+        sentence?.kind === 'sentence' &&
+        Number.isInteger(q.gapIndex) &&
+        (q.gapIndex as number) >= 0 &&
+        (q.gapIndex as number) < sentence.tiles.length &&
+        isStringArray(q.options) &&
+        q.options.length >= 2 &&
+        q.options.includes(sentence.tiles[q.gapIndex as number])
+      );
+    }
   }
   return false;
 }
@@ -162,7 +176,7 @@ export function validateRoundState(raw: unknown, itemsById: ReadonlyMap<string, 
   const index = raw.index as number;
 
   if (raw.questions.length < originalCount) return null;
-  if (!raw.questions.every((q) => validQuestion(q, itemsById, isUnitRound ? null : level))) return null;
+  if (!raw.questions.every((q) => validQuestion(q, itemsById, isUnitRound || raw.mode === 'review' ? null : level))) return null;
   if (!raw.outcomes.every(validOutcome)) return null;
   if (index < 0 || index > raw.questions.length) return null;
   if (raw.outcomes.length !== index) return null;

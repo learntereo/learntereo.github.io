@@ -4,15 +4,16 @@
 
 A difficulty tier. Every [Item](item.md) and every [Round](round.md) belongs to exactly one level.
 
-| Level | Items | Availability |
+| Level | Units | Availability |
 |-------|-------|--------------|
-| Beginner | 60 words, 20 sentences (80 items) | Always playable |
-| Intermediate | 40 words, 20 sentences (60 items) | Locked until Beginner is complete |
+| Beginner | 8 | Always open |
+| Intermediate | 8 | Opens when every Beginner [Unit](unit.md) is complete |
+| Advanced | 6 | Opens when every Intermediate unit is complete |
 
 ## Rules
 
-- Beginner is **complete** when every Beginner item has been answered correctly at least once, in any mode.
-- Completing Beginner sets `profiles.beginner_completed_at` and shows an unlock celebration on the results screen.
-- Advanced is future work.
+- A level is **complete** when all of its units are complete.
+- Item ids carry the level: `w-b-001` (Beginner), `s-i-004` (Intermediate), `w-a-001` (Advanced).
+- The PoC flag `profiles.beginner_completed_at` is still read: it marks every Beginner unit complete. It is no longer written.
 
-Code: `src/game/unlock.ts`.
+Code: `src/game/unitUnlock.ts`.

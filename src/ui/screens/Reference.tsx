@@ -1,0 +1,37 @@
+import { Link } from 'react-router';
+import ui from '../components/ui.module.css';
+import styles from './Reference.module.css';
+
+const PAGES = [
+  { to: '/grammar', title: 'Grammar', text: 'The short grammar note from every unit you have opened.' },
+  { to: '/pronunciation', title: 'Pronunciation', text: 'Vowels, macrons, wh, ng and stress, with words from the course.' },
+  { to: '/glossary', title: 'Glossary', text: 'Look up any word you have met. Search works with or without macrons.' },
+] as const;
+
+/** The Reference tab: grammar, pronunciation and a glossary. */
+export function Reference() {
+  return (
+    <main className={ui.page}>
+      <div>
+        <h1>Reference</h1>
+        <p className={ui.muted}>Look things up whenever you need them.</p>
+      </div>
+      <ul className={styles.list}>
+        {PAGES.map((page) => (
+          <li key={page.to}>
+            <Link to={page.to} className={`${ui.card} ${styles.page}`}>
+              <span className={styles.title}>{page.title}</span>
+              <span className={ui.muted}>{page.text}</span>
+            </Link>
+          </li>
+        ))}
+        <li>
+          <Link to="/practice" className={`${ui.card} ${styles.page}`}>
+            <span className={styles.title}>Free practice</span>
+            <span className={ui.muted}>Pick a level and a game any time.</span>
+          </Link>
+        </li>
+      </ul>
+    </main>
+  );
+}

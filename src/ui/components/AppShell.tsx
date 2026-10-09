@@ -1,14 +1,17 @@
 import type { ReactNode } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
+import { isLevelLoaded } from '../../content/content';
+import { useContentLevels } from '../../content/useContent';
 import { AppDataProvider } from '../../data/AppDataProvider';
 import { useAppData } from '../../data/AppDataContext';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import { KoruMark, KowhaiwhaiBorder } from './Kowhaiwhai';
+import { RouteFocus, SkipLink } from './RouteFocus';
 import ui from './ui.module.css';
 import styles from './AppShell.module.css';
 
 /** Question screens use the whole screen, so the tab bar steps out of the way. */
-const ROUND_ROUTE = /^\/(play\/[^/]+\/[^/]+|unit\/[^/]+\/(practice|check|learn))\/?$/;
+const ROUND_ROUTE = /^\/(review|play\/[^/]+\/[^/]+|unit\/[^/]+\/(practice|check|learn))\/?$/;
 
 function Icon({ children }: { children: ReactNode }) {
   return (
@@ -42,7 +45,7 @@ const TABS: readonly Tab[] = [
   {
     to: '/home',
     label: 'Learn',
-    match: /^\/(home|unit\/)/,
+    match: /^\/(home|unit\/|practice|play\/)/,
     icon: (
       <Icon>
         <path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2V5Z" />
@@ -51,12 +54,24 @@ const TABS: readonly Tab[] = [
     ),
   },
   {
-    to: '/practice',
-    label: 'Practice',
-    match: /^\/(practice|play\/)/,
+    to: '/review',
+    label: 'Review',
+    match: /^\/review/,
     icon: (
       <Icon>
-        <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+        <path d="M21 12a9 9 0 1 1-3-6.7" />
+        <path d="M21 4v5h-5" />
+      </Icon>
+    ),
+  },
+  {
+    to: '/reference',
+    label: 'Reference',
+    match: /^\/(reference|grammar|pronunciation|glossary)/,
+    icon: (
+      <Icon>
+        <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" />
+        <path d="M9 9h6M9 13h6" />
       </Icon>
     ),
   },
@@ -85,6 +100,7 @@ const TABS: readonly Tab[] = [
 
 function TabBar() {
   const { pathname } = useLocation();
+  const { dueCount } = useAppData();
   return (
     <nav className={styles.nav} aria-label="Main">
       {TABS.map((tab) => {
@@ -97,7 +113,14 @@ function TabBar() {
             aria-current={active ? 'page' : undefined}
           >
             {tab.icon}
-            <span>{tab.label}</span>
+            <span>
+              {tab.label}
+              {tab.to === '/review' && dueCount > 0 && (
+                <span className={styles.badge} aria-label={`${dueCount} due`}>
+                  {dueCount}
+                </span>
+              )}
+            </span>
           </NavLink>
         );
       })}
@@ -131,7 +154,9 @@ function Header() {
 }
 
 function Gate() {
-  const { status, reload } = useAppData();
+  const { status, reload, openLevels } = useAppData();
+  // Only the levels the learner has reached are downloaded.
+  const content = useContentLevels(openLevels.length > 0 ? openLevels : ['beginner']);
 
   if (status === 'loading') {
     return (
@@ -153,6 +178,27 @@ function Gate() {
       </main>
     );
   }
+  if (content.failed) {
+    return (
+      <main className={ui.page}>
+        <div className={ui.card}>
+          <h1>Something went wrong</h1>
+          <p>We could not load your lessons. Check your connection and try again.</p>
+          <button type="button" className={ui.button} onClick={content.retry}>
+            Try again
+          </button>
+        </div>
+      </main>
+    );
+  }
+  // Once Beginner is in, a newly opened level fills in a moment later without blanking the screen.
+  if (!content.ready && !isLevelLoaded('beginner')) {
+    return (
+      <main className={ui.page}>
+        <p role="status">Loading your lessons...</p>
+      </main>
+    );
+  }
   return <Outlet />;
 }
 
@@ -162,6 +208,8 @@ function Shell() {
 
   return (
     <div className={showTabs ? styles.withTabs : styles.shell}>
+      <SkipLink className={styles.skip} />
+      <RouteFocus />
       <Header />
       {showTabs && <TabBar />}
       <Gate />

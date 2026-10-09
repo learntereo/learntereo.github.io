@@ -1,0 +1,284 @@
+{
+  "unit": {
+    "id": "a03-whakahau",
+    "level": "advanced",
+    "order": 3,
+    "title": "Commands and requests",
+    "titleMi": "Ngā Whakahau me ngā Tono",
+    "emoji": "📣",
+    "itemIds": [
+      "w-a-026",
+      "w-a-027",
+      "w-a-028",
+      "w-a-029",
+      "w-a-030",
+      "w-a-031",
+      "w-a-032",
+      "w-a-033",
+      "w-a-034",
+      "w-a-035",
+      "w-a-036",
+      "w-a-037",
+      "s-a-015",
+      "s-a-016",
+      "s-a-017",
+      "s-a-018",
+      "s-a-019",
+      "s-a-020",
+      "s-a-021"
+    ],
+    "grammar": "a03-whakahau"
+  },
+  "items": [
+    {
+      "id": "w-a-026",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "me",
+      "en": [
+        "should",
+        "must"
+      ]
+    },
+    {
+      "id": "w-a-027",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "kaua",
+      "en": [
+        "do not",
+        "don't"
+      ]
+    },
+    {
+      "id": "w-a-028",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "kia",
+      "en": [
+        "be",
+        "let",
+        "may"
+      ]
+    },
+    {
+      "id": "w-a-029",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "koa",
+      "en": [
+        "please"
+      ]
+    },
+    {
+      "id": "w-a-030",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tatari",
+      "en": [
+        "wait"
+      ]
+    },
+    {
+      "id": "w-a-031",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tīmata",
+      "en": [
+        "begin",
+        "start"
+      ]
+    },
+    {
+      "id": "w-a-032",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "mutu",
+      "en": [
+        "stop",
+        "finish",
+        "end"
+      ]
+    },
+    {
+      "id": "w-a-033",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "āwhina",
+      "en": [
+        "help"
+      ]
+    },
+    {
+      "id": "w-a-034",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tūwhera",
+      "en": [
+        "open"
+      ]
+    },
+    {
+      "id": "w-a-035",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tūpato",
+      "en": [
+        "careful",
+        "cautious"
+      ]
+    },
+    {
+      "id": "w-a-036",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tū",
+      "en": [
+        "stand"
+      ]
+    },
+    {
+      "id": "w-a-037",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "kaha",
+      "en": [
+        "strong"
+      ]
+    },
+    {
+      "id": "s-a-015",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Me haere koe ki te kura",
+      "en": [
+        "You should go to school",
+        "You should go to the school"
+      ],
+      "tiles": [
+        "me",
+        "haere",
+        "koe",
+        "ki",
+        "te",
+        "kura"
+      ],
+      "decoys": [
+        "kia",
+        "kaua"
+      ]
+    },
+    {
+      "id": "s-a-016",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kaua e kōrero",
+      "en": [
+        "Do not talk",
+        "Don't talk",
+        "Do not speak"
+      ],
+      "tiles": [
+        "kaua",
+        "e",
+        "kōrero"
+      ],
+      "decoys": [
+        "me",
+        "kia"
+      ]
+    },
+    {
+      "id": "s-a-017",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kaua e oma",
+      "en": [
+        "Do not run",
+        "Don't run"
+      ],
+      "tiles": [
+        "kaua",
+        "e",
+        "oma"
+      ],
+      "decoys": [
+        "me",
+        "kia"
+      ]
+    },
+    {
+      "id": "s-a-018",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kia tūpato",
+      "en": [
+        "Be careful"
+      ],
+      "tiles": [
+        "kia",
+        "tūpato"
+      ],
+      "decoys": [
+        "me",
+        "kaua"
+      ]
+    },
+    {
+      "id": "s-a-019",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kia kaha",
+      "en": [
+        "Be strong"
+      ],
+      "tiles": [
+        "kia",
+        "kaha"
+      ],
+      "decoys": [
+        "me",
+        "kaua"
+      ]
+    },
+    {
+      "id": "s-a-020",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Me whakarongo mai koe",
+      "en": [
+        "You should listen",
+        "You should listen to me"
+      ],
+      "tiles": [
+        "me",
+        "whakarongo",
+        "mai",
+        "koe"
+      ],
+      "decoys": [
+        "kia",
+        "kaua"
+      ]
+    },
+    {
+      "id": "s-a-021",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Tēnā koa tatari mai",
+      "en": [
+        "Please wait"
+      ],
+      "tiles": [
+        "tēnā",
+        "koa",
+        "tatari",
+        "mai"
+      ],
+      "decoys": [
+        "me",
+        "kaua"
+      ]
+    }
+  ]
+}

@@ -205,3 +205,38 @@ describe('generateRound options', () => {
     expect(generateRound(few, 'beginner', 'order', new Set(), createRng(3), { size: 12 })).toHaveLength(12);
   });
 });
+
+describe('Write and Fill the gap questions', () => {
+  it('Write asks about words and short sentences only', () => {
+    for (let seed = 1; seed <= 10; seed++) {
+      for (const q of generateRound(items, 'beginner', 'write', new Set(), createRng(seed))) {
+        expect(q.mode).toBe('write');
+        expect(q.itemIds).toHaveLength(1);
+        const item = byId.get(q.itemIds[0])!;
+        if (item.kind === 'sentence') expect(item.tiles.length).toBeLessThanOrEqual(6);
+      }
+    }
+  });
+
+  it('Fill the gap uses sentences and stores the gap and options', () => {
+    for (const q of generateRound(items, 'beginner', 'gap', new Set(), createRng(4))) {
+      expect(q.mode).toBe('gap');
+      const sentence = byId.get(q.itemIds[0])!;
+      expect(sentence.kind).toBe('sentence');
+      if (sentence.kind !== 'sentence') continue;
+      expect(q.gapIndex).toBeGreaterThanOrEqual(0);
+      expect(q.gapIndex).toBeLessThan(sentence.tiles.length);
+      expect(q.options).toContain(sentence.tiles[q.gapIndex!]);
+    }
+  });
+
+  it('both modes are eligible and part of Mixed', () => {
+    expect(eligibleModes(items, 'beginner')).toEqual(expect.arrayContaining(['write', 'gap']));
+    const seen = new Set<string>();
+    for (let seed = 1; seed <= 20; seed++) {
+      for (const q of generateRound(items, 'beginner', 'mixed', new Set(), createRng(seed))) seen.add(q.mode);
+    }
+    expect(seen.has('write')).toBe(true);
+    expect(seen.has('gap')).toBe(true);
+  });
+});

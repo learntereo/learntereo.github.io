@@ -125,6 +125,7 @@ function data(activeRound: RoundRow | null, unitProgress: UnitProgressRow[]): Ap
     unitProgress: progress,
     statuses,
     openLevels: unlockedLevels(units, statuses),
+    dueCount: 0,
     activeRound,
     reload: async () => {},
     setProfile: vi.fn(),

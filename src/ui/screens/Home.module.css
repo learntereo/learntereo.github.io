@@ -13,6 +13,16 @@
   border-width: 2px;
 }
 
+/* ---------- review ---------- */
+.reviewCard {
+  border-color: var(--color-karaka);
+  border-width: 2px;
+}
+
+.reviewCard h2 {
+  margin-bottom: var(--space-1);
+}
+
 /* ---------- next up ---------- */
 .nextCard {
   border-color: var(--color-pounamu);
@@ -183,7 +193,8 @@ a.unit:focus-visible {
   color: #7a4a05;
 }
 
+/* grey-600 on grey-200 is only 4.2:1, so the locked badge uses the darker grey. */
 .badge_locked {
   background: var(--color-grey-200);
-  color: var(--color-grey-600);
+  color: var(--color-grey-800);
 }

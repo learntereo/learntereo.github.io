@@ -157,7 +157,12 @@ export function BoardGame({ question, onDone, hints = true }: ModeProps) {
     onDone({
       result: boardResult(wrong, revealed),
       requeued: question.requeued,
-      items: words.map((w) => ({ itemId: w.id, correct: !revealed.includes(w.id) })),
+      items: words.map((w) => ({
+        itemId: w.id,
+        correct: !revealed.includes(w.id),
+        // Each word is scheduled on its own: missed if its spot was shown, retry after a wrong drop.
+        result: revealed.includes(w.id) ? ('missed' as const) : (wrong[w.id] ?? 0) > 0 ? ('retry' as const) : ('first' as const),
+      })),
     });
   }
 

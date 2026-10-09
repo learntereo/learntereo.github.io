@@ -129,7 +129,7 @@ function LevelSection({ level, nextUnitId }: { level: Level; nextUnitId: string 
 
 export function Home() {
   const { user } = useAuth();
-  const { profile, activeRound, statuses } = useAppData();
+  const { profile, activeRound, statuses, dueCount } = useAppData();
   const displayName = profile?.display_name ?? user?.email ?? 'learner';
 
   const next = units.find((u) => {
@@ -169,6 +169,16 @@ export function Home() {
           </p>
           <Link className={ui.button} to={roundPath(activeRound, true)}>
             Resume round
+          </Link>
+        </section>
+      )}
+
+      {dueCount > 0 && (
+        <section className={`${ui.card} ${styles.reviewCard}`} aria-labelledby="review-title">
+          <h2 id="review-title">Review ({dueCount} due)</h2>
+          <p className={ui.muted}>A quick round on words that are ready to be remembered again.</p>
+          <Link className={ui.button} to="/review">
+            Start review
           </Link>
         </section>
       )}

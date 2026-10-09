@@ -1,0 +1,150 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 72px;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color var(--motion-duration) var(--motion-ease);
+}
+
+.page:hover,
+.page:focus-visible {
+  border-color: var(--color-kokowai);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-kokowai);
+}
+
+.back {
+  display: inline-block;
+  min-height: var(--tap-target-min);
+  line-height: var(--tap-target-min);
+}
+
+.unitList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.summary {
+  cursor: pointer;
+  min-height: var(--tap-target-min);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.summaryTitle {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.summaryMeta {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+details[open] > .summary {
+  margin-bottom: var(--space-3);
+}
+
+/* ---------- glossary ---------- */
+.search {
+  width: 100%;
+  min-height: 52px;
+  padding: var(--space-3) var(--space-4);
+  font: inherit;
+  font-size: 1.1rem;
+  border: 2px solid var(--color-grey-400);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: var(--space-2);
+  align-items: baseline;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.entryMi {
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.entryUnit {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.tick {
+  color: var(--color-pounamu);
+  font-weight: 700;
+}
+
+/* ---------- pronunciation ---------- */
+.vowelGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-3);
+}
+
+.vowel {
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-grey-100);
+}
+
+.vowel h3 {
+  margin-bottom: var(--space-1);
+}
+
+.letters {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-kokowai);
+}
+
+.examples {
+  margin: var(--space-1) 0 0;
+  font-weight: 600;
+}
+
+.bullets {
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-5);
+}
+
+.bullets li {
+  margin-bottom: var(--space-2);
+}

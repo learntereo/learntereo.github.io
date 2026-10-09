@@ -1,4 +1,5 @@
 import type { Item, Level, Mode, Question, QuestionMode, SentenceItem, WordItem } from './types';
+import { buildGap } from './gapGenerator';
 import { pickDecoys } from './orderCheck';
 import { shuffle, type Rng } from './rng';
 
@@ -7,6 +8,8 @@ export const ROUND_SIZE = 10;
 export const MAX_NEW_QUESTIONS = 7;
 export const MATCH_BOARD_SIZE = 5;
 export const PICTURE_BOARD_SIZE = 4;
+/** Write asks for the whole Māori answer, so only short sentences are used. */
+export const WRITE_MAX_TILES = 6;
 
 interface Pools {
   words: WordItem[];
@@ -21,12 +24,18 @@ function buildPools(items: readonly Item[], level: Level): Pools {
   return { words, imageWords: words.filter((w) => w.image !== undefined), sentences };
 }
 
+function writePool(pools: Pools): Item[] {
+  return [...pools.words, ...pools.sentences.filter((s) => s.tiles.length <= WRITE_MAX_TILES)];
+}
+
 /** Question modes that have enough content at this level. */
 export function eligibleModes(items: readonly Item[], level: Level): QuestionMode[] {
   const pools = buildPools(items, level);
   const modes: QuestionMode[] = [];
   if (pools.words.length >= MATCH_BOARD_SIZE) modes.push('match');
   if (pools.words.length + pools.sentences.length > 0) modes.push('translate');
+  if (writePool(pools).length > 0) modes.push('write');
+  if (pools.sentences.length > 0) modes.push('gap');
   if (pools.sentences.length > 0) modes.push('order');
   if (pools.imageWords.length >= PICTURE_BOARD_SIZE) modes.push('picture');
   return modes;
@@ -39,7 +48,10 @@ function poolFor(mode: QuestionMode, pools: Pools): readonly Item[] {
     case 'picture':
       return pools.imageWords;
     case 'order':
+    case 'gap':
       return pools.sentences;
+    case 'write':
+      return writePool(pools);
     case 'translate':
       return [...pools.words, ...pools.sentences];
   }
@@ -123,6 +135,11 @@ export function generateRound(
     const question: Question = { mode: questionMode, itemIds: chosen.map((c) => c.id), requeued: false };
     if (questionMode === 'order') {
       question.decoys = pickDecoys(chosen[0] as SentenceItem, pools.sentences, rng);
+    }
+    if (questionMode === 'gap') {
+      const gap = buildGap(chosen[0] as SentenceItem, pools.sentences, rng);
+      question.gapIndex = gap.gapIndex;
+      question.options = gap.options;
     }
     questions.push(question);
   }

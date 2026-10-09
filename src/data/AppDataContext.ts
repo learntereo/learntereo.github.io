@@ -17,6 +17,8 @@ export interface AppData {
   statuses: ReadonlyMap<string, UnitStatus>;
   /** Levels whose first unit is open: these can be used in Free Practice. */
   openLevels: readonly Level[];
+  /** Learned items due for Review today or earlier. */
+  dueCount: number;
   activeRound: RoundRow | null;
   reload: () => Promise<void>;
   setProfile: (profile: Profile) => void;

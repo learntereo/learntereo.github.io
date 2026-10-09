@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useAppData } from '../../data/AppDataContext';
 import { getHistory, type RoundRow } from '../../data/roundRepo';
-import { allItems, getUnit, units } from '../../content/content';
+import { getUnit, totalItemCount, units, unitsForLevel } from '../../content/content';
+import { LEVELS } from '../../game/types';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, formatDate } from '../labels';
 import styles from './Progress.module.css';
 
 export function Progress() {
-  const { profile, learned, statuses } = useAppData();
+  const { profile, learned, statuses, dueCount } = useAppData();
   const unitsComplete = units.filter((u) => statuses.get(u.id)?.state === 'complete').length;
   const [history, setHistory] = useState<RoundRow[] | null>(null);
   const [failed, setFailed] = useState(false);
@@ -49,7 +50,7 @@ export function Progress() {
         <div className={`${ui.card} ${styles.stat}`}>
           <span className={styles.value}>
             {learned.size}
-            <span className={styles.of}> / {allItems.length}</span>
+            <span className={styles.of}> / {totalItemCount}</span>
           </span>
           <span className={ui.muted}>Items learned</span>
         </div>
@@ -60,7 +61,46 @@ export function Progress() {
           </span>
           <span className={ui.muted}>Units complete</span>
         </div>
+        <div className={`${ui.card} ${styles.stat}`}>
+          <span className={styles.value}>{dueCount}</span>
+          <span className={ui.muted}>Due for review</span>
+        </div>
       </div>
+
+      <section aria-labelledby="levels-title">
+        <h2 id="levels-title">By level</h2>
+        <ul className={styles.list}>
+          {LEVELS.map((level) => {
+            const levelUnits = unitsForLevel(level);
+            if (levelUnits.length === 0) return null;
+            const complete = levelUnits.filter((u) => statuses.get(u.id)?.state === 'complete').length;
+            const total = levelUnits.reduce((n, u) => n + u.itemIds.length, 0);
+            const known = levelUnits.reduce((n, u) => n + u.itemIds.filter((id) => learned.has(id)).length, 0);
+            return (
+              <li key={level} className={`${ui.card} ${styles.levelStat}`}>
+                <strong>{LEVEL_LABEL[level]}</strong>
+                <span className={ui.muted}>
+                  {complete} / {levelUnits.length} units complete
+                </span>
+                <span className={ui.muted}>
+                  {known} / {total} items learned
+                </span>
+                <div
+                  className={ui.bar}
+                  style={{ marginTop: 8 }}
+                  role="progressbar"
+                  aria-label={`${LEVEL_LABEL[level]} items learned`}
+                  aria-valuemin={0}
+                  aria-valuemax={total}
+                  aria-valuenow={known}
+                >
+                  <div className={ui.barFill} style={{ width: `${total === 0 ? 0 : Math.round((known / total) * 100)}%` }} />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
 
       <section aria-labelledby="history-title">
         <h2 id="history-title">Recent rounds</h2>
