@@ -104,12 +104,12 @@ const doneRow = (unitId: string): UnitProgressRow => ({
 });
 
 describe('Path home (AC1)', () => {
-  it('shows Beginner unit 1 open and every other unit locked for a new learner', () => {
+  it('shows the first three units open and every other unit locked for a new learner', () => {
     renderAt('/home', appData());
-    // The Next up card and the unit row both lead to unit 1.
+    // The Next up card and the unit rows lead to the same three units.
     const open = new Set([...container.querySelectorAll('a[href^="/unit/"]')].map((a) => a.getAttribute('href')));
-    expect([...open]).toEqual(['/unit/b01-greetings']);
-    expect(container.querySelectorAll('[aria-disabled="true"]')).toHaveLength(units.length - 1);
+    expect([...open]).toEqual(['/unit/b01-greetings', '/unit/b02-whanau', '/unit/b03-tatau']);
+    expect(container.querySelectorAll('[aria-disabled="true"]')).toHaveLength(units.length - 3);
     expect(container.textContent).toContain('Advanced');
     expect(container.textContent).not.toContain('Coming soon');
   });
@@ -120,26 +120,27 @@ describe('Path home (AC1)', () => {
     expect(container.textContent).toContain('Next up');
   });
 
-  it('opens Intermediate unit 1 for a learner who finished Beginner in the PoC (AC5)', () => {
+  it('opens the first three Intermediate units for a learner who finished Beginner in the PoC (AC5)', () => {
     renderAt('/home', appData({ beginnerCompleted: true }));
     const hrefs = [...container.querySelectorAll('a[href^="/unit/"]')].map((a) => a.getAttribute('href'));
     expect(hrefs).toContain('/unit/i01-mahi');
+    expect(hrefs).toContain('/unit/i03-wahi');
     expect(hrefs).toContain('/unit/b08-whare-kura');
-    expect(hrefs).not.toContain('/unit/i02-ra-wa');
+    expect(hrefs).not.toContain('/unit/i04-kare-a-roto');
     expect(container.textContent).toContain('Complete');
   });
 
   it('opens the next unit after a pass (AC3)', () => {
     renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings')] }));
     const hrefs = [...container.querySelectorAll('a[href^="/unit/"]')].map((a) => a.getAttribute('href'));
-    expect(hrefs).toContain('/unit/b02-whanau');
-    expect(hrefs).not.toContain('/unit/b03-tatau');
+    expect(hrefs).toContain('/unit/b04-taiao');
+    expect(hrefs).not.toContain('/unit/b05-kararehe');
   });
 });
 
 describe('Unit screen', () => {
   it('sends a locked unit back to the Path', () => {
-    renderAt('/unit/b02-whanau', appData());
+    renderAt('/unit/b04-taiao', appData());
     expect(container.querySelector('h1')?.textContent).toContain('Aroha');
   });
 

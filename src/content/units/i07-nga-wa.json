@@ -25,7 +25,22 @@
       "s-i-015",
       "s-i-020"
     ],
-    "grammar": "i07-nga-wa"
+    "grammar": "i07-nga-wa",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Wā",
+          "en": "times"
+        }
+      ],
+      "literal": "the times",
+      "note": "Ngā Wā is a heading about times: the past and the future."
+    }
   },
   "items": [
     {
@@ -96,7 +111,21 @@
       "en": [
         "every day",
         "each day"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "ia",
+            "en": "each, every"
+          },
+          {
+            "mi": "rā",
+            "en": "day"
+          }
+        ],
+        "literal": "each day",
+        "note": "Here ia means 'each' or 'every'. It is a different word from ia meaning 'he' or 'she'."
+      }
     },
     {
       "id": "w-i-086",
@@ -106,7 +135,21 @@
       "en": [
         "every week",
         "each week"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "ia",
+            "en": "each, every"
+          },
+          {
+            "mi": "wiki",
+            "en": "week"
+          }
+        ],
+        "literal": "each week",
+        "note": "Here ia means 'each' or 'every'. It is a different word from ia meaning 'he' or 'she'."
+      }
     },
     {
       "id": "w-i-087",
@@ -115,7 +158,21 @@
       "mi": "tēnei wiki",
       "en": [
         "this week"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          },
+          {
+            "mi": "wiki",
+            "en": "week"
+          }
+        ],
+        "literal": "this week |"
+      }
     },
     {
       "id": "w-i-088",
@@ -159,7 +216,40 @@
       "decoys": [
         "ka",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "I",
+            "en": "(did, past tense)",
+            "ref": "i"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "toa",
+            "en": "shop"
+          },
+          {
+            "mi": "inanahi",
+            "en": "yesterday"
+          }
+        ],
+        "literal": "went I to the shop yesterday",
+        "note": "I before the verb makes it past (did)."
+      }
     },
     {
       "id": "s-i-002",
@@ -193,7 +283,40 @@
       "decoys": [
         "i",
         "e"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "kura",
+            "en": "school"
+          },
+          {
+            "mi": "āpōpō",
+            "en": "tomorrow"
+          }
+        ],
+        "literal": "will go I to the school tomorrow",
+        "note": "Ka before the verb makes it future (will)."
+      }
     },
     {
       "id": "s-i-008",
@@ -214,7 +337,36 @@
       "decoys": [
         "ka",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "I",
+            "en": "was at",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kura",
+            "en": "school"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "inanahi",
+            "en": "yesterday"
+          }
+        ],
+        "literal": "was at the school I yesterday",
+        "note": "I can also mean 'was at'. It is the past of kei, which says where someone is now."
+      }
     },
     {
       "id": "s-i-010",
@@ -236,7 +388,41 @@
       "decoys": [
         "kei",
         "mātou"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "tātou",
+            "en": "we (including you)",
+            "ref": "matou"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is eaten)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "parāoa",
+            "en": "bread"
+          }
+        ],
+        "literal": "will eat we the bread",
+        "note": "Ka before the verb makes it future (will). The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     },
     {
       "id": "s-i-014",
@@ -258,7 +444,41 @@
       "decoys": [
         "ka",
         "e"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "I",
+            "en": "(did, past tense)",
+            "ref": "i"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is eaten)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "āporo",
+            "en": "apple"
+          }
+        ],
+        "literal": "ate I the apple",
+        "note": "The first i makes it past. The second i marks the thing that was eaten."
+      }
     },
     {
       "id": "s-i-015",
@@ -281,7 +501,36 @@
       "decoys": [
         "i",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "titiro",
+            "en": "look"
+          },
+          {
+            "mi": "ia",
+            "en": "he / she",
+            "ref": "ia"
+          },
+          {
+            "mi": "ki te",
+            "en": "at the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "whetū",
+            "en": "star"
+          }
+        ],
+        "literal": "will look he/she at the star",
+        "note": "Ki te here means 'at' (look at the star)."
+      }
     },
     {
       "id": "s-i-020",
@@ -303,7 +552,40 @@
       "decoys": [
         "ka",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "I",
+            "en": "(did, past tense)",
+            "ref": "i"
+          },
+          {
+            "mi": "oma",
+            "en": "run"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "awa",
+            "en": "river"
+          }
+        ],
+        "literal": "ran the dog to the river",
+        "note": "I before the verb makes it past (did)."
+      }
     }
   ]
 }

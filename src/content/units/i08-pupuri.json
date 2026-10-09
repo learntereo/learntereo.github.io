@@ -24,7 +24,28 @@
       "s-i-049",
       "s-i-050"
     ],
-    "grammar": "i08-pupuri"
+    "grammar": "i08-pupuri",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Tāku",
+          "en": "my (a-kind)",
+          "ref": "possessives"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "Tōku",
+          "en": "my (o-kind)",
+          "ref": "possessives"
+        }
+      ],
+      "literal": "my and my",
+      "note": "Tāku and tōku both mean 'my', but they belong to two different groups of things. The heading is about choosing between them."
+    }
   },
   "items": [
     {
@@ -147,7 +168,31 @@
       "decoys": [
         "taku",
         "ahau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "tō",
+            "en": "your",
+            "ref": "possessives"
+          },
+          {
+            "mi": "whare",
+            "en": "house"
+          }
+        ],
+        "literal": "at where your house",
+        "note": "Kei hea asks where something is: kei means 'at' and hea means 'where'."
+      }
     },
     {
       "id": "s-i-006",
@@ -166,7 +211,32 @@
       "decoys": [
         "taku",
         "tēnā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ko",
+            "en": "(says who or what it is)",
+            "ref": "ko"
+          },
+          {
+            "mi": "tōku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "whānau",
+            "en": "family"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "my family this",
+        "note": "Ko says who or what something is, so there is no word for 'is' either."
+      }
     },
     {
       "id": "s-i-019",
@@ -187,7 +257,32 @@
       "decoys": [
         "taku",
         "tēnei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ko",
+            "en": "(says who or what it is)",
+            "ref": "ko"
+          },
+          {
+            "mi": "tōku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "māmā",
+            "en": "mum"
+          },
+          {
+            "mi": "tērā",
+            "en": "that (over there)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "my mum that",
+        "note": "Ko says who or what something is, so there is no word for 'is' either."
+      }
     },
     {
       "id": "s-i-048",
@@ -206,7 +301,32 @@
       "decoys": [
         "tōku",
         "ahau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ko",
+            "en": "(says who or what it is)",
+            "ref": "ko"
+          },
+          {
+            "mi": "tāku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          },
+          {
+            "mi": "tēnā",
+            "en": "that (near you)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "my dog that",
+        "note": "Tāku and tōku both mean 'my'. Tāku is used for things like pets and things you have chosen or acquired."
+      }
     },
     {
       "id": "s-i-049",
@@ -225,7 +345,31 @@
       "decoys": [
         "tōku",
         "ahau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "tāku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "pukapuka",
+            "en": "book"
+          }
+        ],
+        "literal": "at where my book",
+        "note": "Kei hea asks where something is: kei means 'at' and hea means 'where'."
+      }
     },
     {
       "id": "s-i-050",
@@ -245,7 +389,31 @@
       "decoys": [
         "ōku",
         "ahau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "rua",
+            "en": "two"
+          },
+          {
+            "mi": "āku",
+            "en": "my (more than one thing)",
+            "ref": "possessives"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "two my children",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     }
   ]
 }

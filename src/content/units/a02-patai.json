@@ -27,7 +27,22 @@
       "s-a-013",
       "s-a-014"
     ],
-    "grammar": "a02-patai"
+    "grammar": "a02-patai",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Pātai",
+          "en": "questions"
+        }
+      ],
+      "literal": "the questions",
+      "note": "Ngā makes pātai plural, so Ngā Pātai is a heading meaning 'Questions'."
+    }
   },
   "items": [
     {
@@ -103,7 +118,22 @@
       "en": [
         "from where",
         "where from"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "nō",
+            "en": "from",
+            "ref": "no"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          }
+        ],
+        "literal": "from where",
+        "note": "Nō says where you come from. Hea is 'where'."
+      }
     },
     {
       "id": "w-a-022",
@@ -112,7 +142,23 @@
       "mi": "he aha ai",
       "en": [
         "why"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "he aha",
+            "en": "what",
+            "ref": "he"
+          },
+          {
+            "mi": "ai",
+            "en": "(no direct English)",
+            "ref": "ai"
+          }
+        ],
+        "literal": "what for",
+        "note": "He aha ai is a fixed question for 'why'. Ai has no direct English word here."
+      }
     },
     {
       "id": "w-a-023",
@@ -122,7 +168,22 @@
       "en": [
         "whose",
         "by whom"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "nā",
+            "en": "belonging to, by",
+            "ref": "na"
+          },
+          {
+            "mi": "wai",
+            "en": "who"
+          }
+        ],
+        "literal": "by who",
+        "note": "Nā wai asks whose something is, or who did it."
+      }
     },
     {
       "id": "w-a-024",
@@ -165,7 +226,31 @@
       "decoys": [
         "he",
         "aha"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ko",
+            "en": "(says who or what it is)",
+            "ref": "ko"
+          },
+          {
+            "mi": "wai",
+            "en": "who"
+          },
+          {
+            "mi": "tō",
+            "en": "your",
+            "ref": "possessives"
+          },
+          {
+            "mi": "ingoa",
+            "en": "name"
+          }
+        ],
+        "literal": "who your name",
+        "note": "Ko wai asks who someone is, so Ko wai tō ingoa is literally 'Who is your name?', which English says as 'What is your name?'"
+      }
     },
     {
       "id": "s-a-009",
@@ -184,7 +269,31 @@
       "decoys": [
         "he",
         "wai"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "at where the children",
+        "note": "Kei hea asks where something is: kei means 'at' and hea means 'where'."
+      }
     },
     {
       "id": "s-a-010",
@@ -202,7 +311,23 @@
       "decoys": [
         "ko",
         "wai"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He aha",
+            "en": "what",
+            "ref": "he"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "what this",
+        "note": "He aha means 'what'. There is no word for 'is'."
+      }
     },
     {
       "id": "s-a-011",
@@ -220,7 +345,27 @@
       "decoys": [
         "ko",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Nō",
+            "en": "from",
+            "ref": "no"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          }
+        ],
+        "literal": "from where you",
+        "note": "Nō hea asks where someone is from."
+      }
     },
     {
       "id": "s-a-012",
@@ -240,7 +385,31 @@
       "decoys": [
         "i",
         "wai"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Āhea",
+            "en": "when (in the future)"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ai",
+            "en": "(no direct English)",
+            "ref": "ai"
+          }
+        ],
+        "literal": "when you go",
+        "note": "Āhea asks about a time in the future. Ai follows the verb in this kind of question and has no English word."
+      }
     },
     {
       "id": "s-a-013",
@@ -260,7 +429,36 @@
       "decoys": [
         "ka",
         "wai"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Inahea",
+            "en": "when (in the past)"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          },
+          {
+            "mi": "i",
+            "en": "(did, past tense)",
+            "ref": "i"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ai",
+            "en": "(no direct English)",
+            "ref": "ai"
+          }
+        ],
+        "literal": "when you did go",
+        "note": "Inahea asks about a time in the past, so the verb gets i. Ai follows the verb and has no English word."
+      }
     },
     {
       "id": "s-a-014",
@@ -282,7 +480,41 @@
       "decoys": [
         "ko",
         "wai"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He aha",
+            "en": "what",
+            "ref": "he"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "tae",
+            "en": "colour"
+          },
+          {
+            "mi": "o",
+            "en": "of",
+            "ref": "possessives"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          }
+        ],
+        "literal": "what the colour of the dog",
+        "note": "O means 'of'. Tae is 'colour'."
+      }
     }
   ]
 }

@@ -121,6 +121,23 @@ describe('Order', () => {
     click(button('Continue'));
     expect(onDone.mock.calls[0][0]).toMatchObject({ result: 'first' });
   });
+
+  it('shows the word-by-word breakdown after answering, not before (AC3)', () => {
+    const question = questionOf('order');
+    const sentence = allItems.find((i) => i.id === question.itemIds[0])!;
+    if (sentence.kind !== 'sentence' || !sentence.breakdown) throw new Error('expected a sentence with a breakdown');
+    render(<Order question={question} level="beginner" onDone={vi.fn()} />);
+    expect(container.textContent).not.toContain('Word by word');
+
+    for (const tile of sentence.tiles) {
+      click([...container.querySelectorAll('[aria-label="Word bank"] button')].find((b) => b.textContent === tile)!);
+    }
+    click(button('Check'));
+    expect(container.querySelector('details summary')?.textContent).toBe('Word by word');
+    for (const token of sentence.breakdown.tokens) {
+      expect(container.textContent).toContain(token.en);
+    }
+  });
 });
 
 describe('Match board', () => {

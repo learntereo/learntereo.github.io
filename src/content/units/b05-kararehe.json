@@ -27,7 +27,22 @@
       "s-b-038",
       "s-b-039"
     ],
-    "grammar": "b05-kararehe"
+    "grammar": "b05-kararehe",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Kararehe",
+          "en": "animals"
+        }
+      ],
+      "literal": "the animals",
+      "note": "Ngā makes kararehe plural, so Ngā Kararehe is a heading meaning 'Animals'."
+    }
   },
   "items": [
     {
@@ -195,7 +210,27 @@
       ],
       "decoys": [
         "tēnei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          },
+          {
+            "mi": "tēnā",
+            "en": "that (near you)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a dog that",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-004",
@@ -212,7 +247,27 @@
       ],
       "decoys": [
         "tēnā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "ngeru",
+            "en": "cat"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a cat this",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-036",
@@ -229,7 +284,27 @@
       ],
       "decoys": [
         "tēnei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "kiwi",
+            "en": "kiwi"
+          },
+          {
+            "mi": "tērā",
+            "en": "that (over there)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a kiwi that",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-037",
@@ -246,7 +321,27 @@
       ],
       "decoys": [
         "tēnā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "hipi",
+            "en": "sheep"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a sheep this",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-038",
@@ -265,7 +360,31 @@
       ],
       "decoys": [
         "ngā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          }
+        ],
+        "literal": "is eating the dog",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-039",
@@ -284,7 +403,31 @@
       ],
       "decoys": [
         "e"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          }
+        ],
+        "literal": "is eating the dogs",
+        "note": "Ngā shows there is more than one dog."
+      }
     }
   ]
 }

@@ -222,7 +222,7 @@ describe('unit check round', () => {
       unitId: UNIT_ID,
       passed: true,
       firstCompletion: true,
-      nextUnitId: 'b02-whanau',
+      nextUnitId: 'b04-taiao',
     });
     expect(finalState.summary?.missedItemIds).toHaveLength(1);
   });
@@ -260,7 +260,7 @@ describe('unit check round', () => {
   });
 
   it('sends the learner home when the unit is locked', async () => {
-    renderCheck(data(null, []), '/unit/b02-whanau/check');
+    renderCheck(data(null, []), '/unit/b04-taiao/check');
     await flush();
     expect(container.querySelector('[data-testid="where"]')?.textContent).toBe('/home');
   });

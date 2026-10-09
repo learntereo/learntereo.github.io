@@ -28,7 +28,36 @@
       "s-i-027",
       "s-i-028"
     ],
-    "grammar": "i02-ra-wa"
+    "grammar": "i02-ra-wa",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Rā",
+          "en": "days"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Wā",
+          "en": "time"
+        }
+      ],
+      "literal": "the days and the time",
+      "note": "Rā means 'day', and ngā rā means 'the days'."
+    }
   },
   "items": [
     {
@@ -134,6 +163,20 @@
       ],
       "image": {
         "emoji": "🎂"
+      },
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "rā",
+            "en": "day"
+          },
+          {
+            "mi": "whānau",
+            "en": "born"
+          }
+        ],
+        "literal": "day born",
+        "note": "Whānau means 'family' and also 'to be born', so a rā whānau is a birth day."
       }
     },
     {
@@ -196,7 +239,50 @@
       "decoys": [
         "ka",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "I",
+            "en": "(did, past tense)",
+            "ref": "i"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "kura",
+            "en": "school"
+          },
+          {
+            "mi": "i",
+            "en": "on",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "Rāhina",
+            "en": "Monday"
+          }
+        ],
+        "literal": "went I to the school on the Monday",
+        "note": "I before the verb makes it past. Before a day name, i te means 'on' a day that has passed."
+      }
     },
     {
       "id": "s-i-024",
@@ -217,7 +303,41 @@
       "decoys": [
         "ka",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "I",
+            "en": "(did, past tense)",
+            "ref": "i"
+          },
+          {
+            "mi": "mahi",
+            "en": "work"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "i",
+            "en": "on",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "Rātū",
+            "en": "Tuesday"
+          }
+        ],
+        "literal": "worked I on the Tuesday",
+        "note": "I before the verb makes it past. Before a day name, i te means 'on' a day that has passed."
+      }
     },
     {
       "id": "s-i-025",
@@ -242,7 +362,50 @@
       "decoys": [
         "i",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "toa",
+            "en": "shop"
+          },
+          {
+            "mi": "ā",
+            "en": "on (a coming day)",
+            "ref": "a-on"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "Rāapa",
+            "en": "Wednesday"
+          }
+        ],
+        "literal": "will go I to the shop on the Wednesday",
+        "note": "Ka makes it future. Ā te before a day name means 'on' a day that is still to come."
+      }
     },
     {
       "id": "s-i-026",
@@ -269,7 +432,31 @@
       "decoys": [
         "i",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "mahi",
+            "en": "work"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "āpōpō",
+            "en": "tomorrow"
+          }
+        ],
+        "literal": "will work I tomorrow",
+        "note": "Ka before the verb makes it future (will)."
+      }
     },
     {
       "id": "s-i-027",
@@ -296,7 +483,31 @@
       "decoys": [
         "ka",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "I",
+            "en": "(did, past tense)",
+            "ref": "i"
+          },
+          {
+            "mi": "moe",
+            "en": "sleep"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "inanahi",
+            "en": "yesterday"
+          }
+        ],
+        "literal": "slept I yesterday",
+        "note": "I before the verb makes it past (did)."
+      }
     },
     {
       "id": "s-i-028",
@@ -317,7 +528,41 @@
       "decoys": [
         "i",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "tātou",
+            "en": "we (including you)",
+            "ref": "matou"
+          },
+          {
+            "mi": "ā",
+            "en": "on (a coming day)",
+            "ref": "a-on"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "Rātapu",
+            "en": "Sunday"
+          }
+        ],
+        "literal": "will go we on the Sunday",
+        "note": "Ā te before a day name means 'on' a day that is still to come."
+      }
     }
   ]
 }

@@ -28,7 +28,22 @@
       "s-b-023",
       "s-b-024"
     ],
-    "grammar": "b02-whanau"
+    "grammar": "b02-whanau",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Whānau",
+          "en": "family"
+        }
+      ],
+      "literal": "the family",
+      "note": "Whānau means extended family, not only parents and children."
+    }
   },
   "items": [
     {
@@ -195,7 +210,27 @@
       ],
       "decoys": [
         "tēnā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "pai",
+            "en": "good"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a good this",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-013",
@@ -212,7 +247,27 @@
       ],
       "decoys": [
         "ia"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          },
+          {
+            "mi": "rātou",
+            "en": "they (three or more)",
+            "ref": "matou"
+          }
+        ],
+        "literal": "children they",
+        "note": "There is no word for 'are'. Rātou means 'they' (three or more)."
+      }
     },
     {
       "id": "s-b-018",
@@ -230,7 +285,27 @@
       ],
       "decoys": [
         "tēnei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "kuia",
+            "en": "elderly woman"
+          },
+          {
+            "mi": "tērā",
+            "en": "that (over there)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "an elderly-woman that",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-021",
@@ -248,7 +323,27 @@
       ],
       "decoys": [
         "tēnei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "tāne",
+            "en": "man"
+          },
+          {
+            "mi": "tērā",
+            "en": "that (over there)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a man that",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-022",
@@ -265,7 +360,27 @@
       ],
       "decoys": [
         "tērā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "wahine",
+            "en": "woman"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a woman this",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-023",
@@ -282,7 +397,27 @@
       ],
       "decoys": [
         "tēnei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "tama",
+            "en": "boy"
+          },
+          {
+            "mi": "tēnā",
+            "en": "that (near you)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a boy that",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-b-024",
@@ -303,7 +438,31 @@
       ],
       "decoys": [
         "taku"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ko",
+            "en": "(says who or what it is)",
+            "ref": "ko"
+          },
+          {
+            "mi": "Hemi",
+            "en": "Hemi (a name)"
+          },
+          {
+            "mi": "tōku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "pāpā",
+            "en": "dad"
+          }
+        ],
+        "literal": "Hemi my dad",
+        "note": "Ko says who or what something is, so there is no word for 'is' either."
+      }
     }
   ]
 }

@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import {
   allItems,
+  getTitleBreakdown,
   grammarNotes,
   imageWordsForLevel,
   itemsById,
@@ -17,6 +18,8 @@ import {
 } from './content';
 import { hasRawHtml } from '../game/grammarMarkdown';
 import { icons } from './icons';
+import particles from './particles.json';
+import type { Breakdown } from '../game/types';
 
 const strip = (s: string) =>
   s
@@ -253,7 +256,11 @@ describe('unit index', () => {
   it('matches the unit headers in the unit files (run npm run content:index if this fails)', () => {
     const fromFiles = readdirSync(new URL('./units/', import.meta.url))
       .filter((f) => f.endsWith('.json'))
-      .map((f) => JSON.parse(readFileSync(new URL(`./units/${f}`, import.meta.url), 'utf8')).unit);
+      .map((f) => {
+        const header = JSON.parse(readFileSync(new URL(`./units/${f}`, import.meta.url), 'utf8')).unit;
+        delete header.titleBreakdown; // kept out of the bundled index
+        return header;
+      });
     expect([...units].map((u) => u.id).sort()).toEqual(fromFiles.map((u: { id: string }) => u.id).sort());
     for (const unit of units) {
       expect(fromFiles.find((u: { id: string }) => u.id === unit.id)).toEqual(unit);
@@ -264,5 +271,84 @@ describe('unit index', () => {
     for (const unit of units) {
       expect(itemsForUnit(unit).map((i) => i.id)).toEqual(unit.itemIds);
     }
+  });
+});
+
+describe('word-by-word breakdowns', () => {
+  const particleIds = new Set(particles.map((p) => p.id));
+
+  const check = (label: string, mi: string, breakdown: Breakdown | undefined) => {
+    expect(breakdown, `${label} has a breakdown`).toBeDefined();
+    if (!breakdown) return;
+    expect(breakdown.tokens.length, label).toBeGreaterThan(0);
+    expect(strip(breakdown.tokens.map((t) => t.mi).join(' ')), `${label} tokens join to the text`).toBe(strip(mi));
+    for (const token of breakdown.tokens) {
+      expect(token.en.trim().length, `${label} ${token.mi} gloss`).toBeGreaterThan(0);
+      if (token.ref !== undefined) expect(particleIds.has(token.ref), `${label} ref ${token.ref}`).toBe(true);
+    }
+    expect(JSON.stringify(breakdown)).not.toContain(EM_DASH);
+  };
+
+  it('gives every sentence and multi-word item a breakdown whose tokens join to the text', () => {
+    for (const item of allItems) {
+      if (item.mi.trim().includes(' ')) check(item.id, item.mi, item.breakdown);
+    }
+  });
+
+  it('gives every unit title a breakdown whose tokens join to the title', () => {
+    for (const unit of units) check(unit.id, unit.titleMi, getTitleBreakdown(unit.id));
+  });
+
+  it("keeps any breakdown on a single-word item consistent with its text", () => {
+    for (const item of allItems) {
+      if (!item.mi.includes(' ') && item.breakdown) check(item.id, item.mi, item.breakdown);
+    }
+  });
+
+  it('explains Ngā Mihi and kia ora as the spec describes', () => {
+    const mihi = getTitleBreakdown('b01-greetings');
+    expect(mihi?.tokens.map((t) => [t.mi, t.en])).toEqual([
+      ['Ngā', 'the (plural)'],
+      ['Mihi', 'greeting(s)'],
+    ]);
+    expect(mihi?.literal).toBe('the greetings');
+    const kiaOra = itemsById.get('w-b-057')?.breakdown;
+    expect(kiaOra?.tokens.map((t) => t.en)).toEqual(['be, may it be', 'well, healthy, alive']);
+    expect(kiaOra?.note).toMatch(/hello/);
+  });
+});
+
+describe('particles dictionary', () => {
+  it('has unique ids and the fields the Little words screen needs', () => {
+    expect(new Set(particles.map((p) => p.id)).size).toBe(particles.length);
+    for (const p of particles) {
+      expect(p.id).toMatch(/^[a-z-]+$/);
+      expect(p.forms.length, p.id).toBeGreaterThan(0);
+      expect(p.gloss.trim().length, p.id).toBeGreaterThan(0);
+      const sentences = p.explanation.split(/(?<=[.!?])\s+/).length;
+      expect(sentences, `${p.id} explanation`).toBeGreaterThanOrEqual(1);
+      expect(sentences, `${p.id} explanation`).toBeLessThanOrEqual(5);
+      expect(p.example.mi.trim().length).toBeGreaterThan(0);
+      expect(p.example.en.trim().length).toBeGreaterThan(0);
+      expect(JSON.stringify(p)).not.toContain(EM_DASH);
+    }
+  });
+
+  it('covers the required little words', () => {
+    const forms = new Set(particles.flatMap((p) => p.forms.map((f) => f.toLowerCase())));
+    for (const word of [
+      'te', 'ngā', 'he', 'ko', 'kei', 'kei te', 'i', 'ka', 'e ... ana', 'ki', 'ki te', 'mā', 'tēnei', 'tēnā', 'tērā',
+      'taku', 'tōku', 'tāku', 'tō', 'tāu', 'tōna', 'tāna', 'ahau', 'au', 'koe', 'ia', 'mātou', 'tātou', 'rātou',
+      'kua', 'kia', 'me', 'kaua e', 'nō', 'nā', 'hoki', 'engari', 'nō reira', 'ahakoa', 'rā', 'mai', 'atu', 'ai',
+    ]) {
+      expect(forms.has(word), word).toBe(true);
+    }
+  });
+
+  it('uses every particle id that a token refers to at least once or is a core word', () => {
+    const referenced = new Set(
+      allItems.flatMap((i) => i.breakdown?.tokens.map((t) => t.ref) ?? []).filter((r): r is string => r !== undefined),
+    );
+    expect(referenced.size).toBeGreaterThan(15);
   });
 });

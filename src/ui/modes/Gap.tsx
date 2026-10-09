@@ -6,6 +6,7 @@ import { capitaliseFirst } from '../../game/display';
 import type { SentenceItem } from '../../game/types';
 import ui from '../components/ui.module.css';
 import { useDragSensors } from './dnd';
+import { BreakdownDisclosure } from '../components/Breakdown';
 import { Feedback } from './Feedback';
 import { MSG_CORRECT, MSG_RETRY, type FeedbackMessage, type ModeProps } from './types';
 import styles from './modes.module.css';
@@ -140,6 +141,7 @@ export function Gap({ question, onDone }: ModeProps) {
       <p className={ui.muted}>Drag a word into the gap, or tap it.</p>
 
       <Feedback message={message} />
+      {!asking && <BreakdownDisclosure breakdown={sentence.breakdown} />}
 
       {!asking && (
         <button type="button" className={ui.button} onClick={handleContinue} autoFocus>

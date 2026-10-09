@@ -91,7 +91,8 @@ describe('Glossary (AC11)', () => {
     show(<Glossary />, data({ beginnerCompleted: true }));
     expect(container.textContent).toContain('kia ora');
     expect(container.textContent).toContain('haere'); // Intermediate unit 1 is open
-    expect(container.textContent).not.toContain('Monday'); // Intermediate unit 2 is still closed
+    expect(container.textContent).toContain('Monday'); // so are Intermediate units 2 and 3
+    expect(container.textContent).not.toContain('thirsty'); // Intermediate unit 4 is still closed
   });
 
   it('searches without macrons', () => {
@@ -115,14 +116,14 @@ describe('Glossary (AC11)', () => {
 describe('Grammar index', () => {
   it('shows notes for opened units only', () => {
     show(<Grammar />, data());
-    expect(container.querySelectorAll('details')).toHaveLength(1);
+    expect(container.querySelectorAll('details')).toHaveLength(3);
     expect(container.textContent).toContain('Hello to one, two or many');
-    expect(container.textContent).toContain('1 of 22 so far');
+    expect(container.textContent).toContain('3 of 22 so far');
   });
 
-  it('shows every Beginner note and the first Intermediate note after Beginner', () => {
+  it('shows every Beginner note and the first three Intermediate notes after Beginner', () => {
     show(<Grammar />, data({ beginnerCompleted: true }));
-    expect(container.querySelectorAll('details')).toHaveLength(9);
+    expect(container.querySelectorAll('details')).toHaveLength(11);
   });
 });
 

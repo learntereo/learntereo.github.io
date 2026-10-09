@@ -26,7 +26,22 @@
       "s-i-035",
       "s-i-036"
     ],
-    "grammar": "i04-kare-a-roto"
+    "grammar": "i04-kare-a-roto",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Kare-ā-roto",
+          "en": "feelings"
+        }
+      ],
+      "literal": "the feelings",
+      "note": "Kare-ā-roto is made of kare (ripple), ā (of) and roto (inside), so it is 'ripples of the inside'."
+    }
   },
   "items": [
     {
@@ -185,7 +200,31 @@
       "decoys": [
         "i",
         "e"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "makariri",
+            "en": "cold"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "wai",
+            "en": "water"
+          }
+        ],
+        "literal": "is cold the water",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-i-018",
@@ -205,7 +244,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "hiakai",
+            "en": "hungry"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "is hungry the children",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-i-033",
@@ -227,7 +290,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "tino",
+            "en": "very"
+          },
+          {
+            "mi": "pai",
+            "en": "good"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          }
+        ],
+        "literal": "is very good I",
+        "note": "Tino means 'very' and goes before the describing word."
+      }
     },
     {
       "id": "s-i-034",
@@ -248,7 +335,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "mataku",
+            "en": "afraid"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          }
+        ],
+        "literal": "is afraid the dog",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-i-035",
@@ -270,7 +381,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "māuiui",
+            "en": "sick"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kuia",
+            "en": "elderly woman"
+          }
+        ],
+        "literal": "is sick the elderly woman",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-i-036",
@@ -289,7 +424,27 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "hiainu",
+            "en": "thirsty"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          }
+        ],
+        "literal": "is thirsty I",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     }
   ]
 }

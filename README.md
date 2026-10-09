@@ -15,10 +15,10 @@ The specifications and implementation plans live in
 ## How it works
 
 - **The Path:** 22 units in three levels: Beginner (8), Intermediate (8) and Advanced (6). Each unit has 10-14 words,
-  5-7 sentences and a short grammar note. Unit 1 is open to everyone; a unit opens when the one before it is complete.
+  5-7 sentences and a short grammar note. The first three units are open to everyone; completing a unit opens the next one, so three are open at a time.
 - **Learn, practise, check:** each unit starts with a card deck of its new words (with pictures and examples) and the
-  grammar note. Then comes a 10-question practice round and a 12-question unit check. Get 10 of 12 to pass and open the
-  next unit.
+  grammar note. Then comes a 10-question practice round and a 12-question unit check. Get 10 of 12 to pass and open another
+  unit.
 - **Games:** Match, Picture, Translate, Write (English to Māori, with a macron key row), Fill the gap, Order and Mixed.
   Every drag can also be done by tap or keyboard.
 - **Review:** each word you have learned is rescheduled by a simplified SM-2 rule. "Review (N due)" gives you a round

@@ -27,7 +27,22 @@
       "s-b-010",
       "s-b-011"
     ],
-    "grammar": "b01-greetings"
+    "grammar": "b01-greetings",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Mihi",
+          "en": "greeting(s)"
+        }
+      ],
+      "literal": "the greetings",
+      "note": "Ngā makes mihi plural, so Ngā Mihi is a heading meaning 'Greetings'."
+    }
   },
   "items": [
     {
@@ -40,7 +55,22 @@
         "hi",
         "thank you",
         "thanks"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "kia",
+            "en": "be, may it be",
+            "ref": "kia"
+          },
+          {
+            "mi": "ora",
+            "en": "well, healthy, alive"
+          }
+        ],
+        "literal": "be well",
+        "note": "Kia ora is an idiom: it wishes someone good health and is used for hello and for thank you."
+      }
     },
     {
       "id": "w-b-059",
@@ -59,7 +89,22 @@
       "en": [
         "greetings",
         "thanks"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "mihi",
+            "en": "greetings"
+          }
+        ],
+        "literal": "the greetings",
+        "note": "Mihi is both 'greeting' and 'to thank', so ngā mihi is used for greetings and for thanks."
+      }
     },
     {
       "id": "w-b-062",
@@ -109,7 +154,22 @@
       "en": [
         "hello to two people",
         "hello to you two"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "tēnā",
+            "en": "greetings to"
+          },
+          {
+            "mi": "kōrua",
+            "en": "you two",
+            "ref": "koe"
+          }
+        ],
+        "literal": "greetings to you two",
+        "note": "Tēnā kōrua greets two people. Tēnā is a greeting word here."
+      }
     },
     {
       "id": "w-b-067",
@@ -120,7 +180,22 @@
         "hello to three or more people",
         "hello to you all",
         "hello everyone"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "tēnā",
+            "en": "greetings to"
+          },
+          {
+            "mi": "koutou",
+            "en": "you (three or more)",
+            "ref": "koe"
+          }
+        ],
+        "literal": "greetings to you all",
+        "note": "Tēnā koutou greets three or more people. Tēnā is a greeting word here."
+      }
     },
     {
       "id": "w-b-068",
@@ -131,7 +206,22 @@
         "goodbye to someone leaving",
         "goodbye",
         "farewell"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "rā",
+            "en": "there (away from the speaker)",
+            "ref": "ra"
+          }
+        ],
+        "literal": "go (away)",
+        "note": "Go (away), i.e. goodbye to someone leaving. Said by the person who is staying."
+      }
     },
     {
       "id": "w-b-069",
@@ -142,7 +232,26 @@
         "goodbye to someone staying",
         "goodbye",
         "farewell"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "e",
+            "en": "(starts a command)"
+          },
+          {
+            "mi": "noho",
+            "en": "stay"
+          },
+          {
+            "mi": "rā",
+            "en": "there (away from the speaker)",
+            "ref": "ra"
+          }
+        ],
+        "literal": "stay (there)",
+        "note": "Said by the person leaving: stay (there), i.e. goodbye to someone staying."
+      }
     },
     {
       "id": "w-b-070",
@@ -151,7 +260,21 @@
       "mi": "pō mārie",
       "en": [
         "good night"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "pō",
+            "en": "night"
+          },
+          {
+            "mi": "mārie",
+            "en": "peaceful, calm"
+          }
+        ],
+        "literal": "night peaceful",
+        "note": "Pō mārie wishes someone a peaceful night."
+      }
     },
     {
       "id": "s-b-001",
@@ -172,7 +295,27 @@
       ],
       "decoys": [
         "koe"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "pai",
+            "en": "good"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          }
+        ],
+        "literal": "is good I",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-002",
@@ -191,7 +334,31 @@
       ],
       "decoys": [
         "taku"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ko",
+            "en": "(says who or what it is)",
+            "ref": "ko"
+          },
+          {
+            "mi": "Mere",
+            "en": "Mere (a name)"
+          },
+          {
+            "mi": "tōku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "ingoa",
+            "en": "name"
+          }
+        ],
+        "literal": "Mere my name",
+        "note": "Ko says who or what something is, so there is no word for 'is' either."
+      }
     },
     {
       "id": "s-b-007",
@@ -209,7 +376,27 @@
       ],
       "decoys": [
         "ahau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "pēhea",
+            "en": "how"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          }
+        ],
+        "literal": "is how you",
+        "note": "Kei te pēhea asks how someone is feeling. Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-008",
@@ -227,7 +414,27 @@
       ],
       "decoys": [
         "koe"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "harikoa",
+            "en": "happy"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          }
+        ],
+        "literal": "is happy I",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-009",
@@ -244,7 +451,22 @@
       ],
       "decoys": [
         "koutou"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Tēnā",
+            "en": "greetings to"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          }
+        ],
+        "literal": "greetings to you",
+        "note": "Tēnā koe greets one person."
+      }
     },
     {
       "id": "s-b-010",
@@ -260,7 +482,21 @@
       ],
       "decoys": [
         "pō"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ata",
+            "en": "morning"
+          },
+          {
+            "mi": "mārie",
+            "en": "peaceful, calm"
+          }
+        ],
+        "literal": "morning peaceful",
+        "note": "Ata mārie wishes someone a peaceful morning."
+      }
     },
     {
       "id": "s-b-011",
@@ -277,7 +513,22 @@
       ],
       "decoys": [
         "atu"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Haere",
+            "en": "come"
+          },
+          {
+            "mi": "mai",
+            "en": "towards the speaker",
+            "ref": "mai-atu"
+          }
+        ],
+        "literal": "come towards-me",
+        "note": "Mai points the action towards the speaker. Haere means both 'go' and 'come'."
+      }
     }
   ]
 }

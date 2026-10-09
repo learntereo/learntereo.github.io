@@ -29,7 +29,22 @@
       "s-i-021",
       "s-i-022"
     ],
-    "grammar": "i01-mahi"
+    "grammar": "i01-mahi",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Mahi",
+          "en": "actions, work"
+        }
+      ],
+      "literal": "the actions",
+      "note": "Ngā Mahi is a heading meaning 'Everyday actions' or 'Work'."
+    }
   },
   "items": [
     {
@@ -213,7 +228,36 @@
       "decoys": [
         "kei",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          }
+        ],
+        "literal": "is eating the dog",
+        "note": "E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     },
     {
       "id": "s-i-004",
@@ -233,7 +277,36 @@
       "decoys": [
         "kei",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "moe",
+            "en": "sleep"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "pēpi",
+            "en": "baby"
+          }
+        ],
+        "literal": "is sleeping the baby",
+        "note": "E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     },
     {
       "id": "s-i-011",
@@ -254,7 +327,36 @@
       "decoys": [
         "taku",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "mahi",
+            "en": "work"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "tōku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "pāpā",
+            "en": "dad"
+          }
+        ],
+        "literal": "is working my dad",
+        "note": "E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     },
     {
       "id": "s-i-016",
@@ -277,7 +379,41 @@
       "decoys": [
         "ka",
         "e"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "pānui",
+            "en": "read"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is read)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "pukapuka",
+            "en": "book"
+          }
+        ],
+        "literal": "is reading I the book",
+        "note": "The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     },
     {
       "id": "s-i-017",
@@ -297,7 +433,36 @@
       "decoys": [
         "kei",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "waiata",
+            "en": "sing"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "is singing the children",
+        "note": "E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     },
     {
       "id": "s-i-021",
@@ -317,7 +482,36 @@
       "decoys": [
         "kei",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "tākaro",
+            "en": "play"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "is playing the children",
+        "note": "E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     },
     {
       "id": "s-i-022",
@@ -337,7 +531,36 @@
       "decoys": [
         "kei",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "whakarongo",
+            "en": "listen"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "ākonga",
+            "en": "students"
+          }
+        ],
+        "literal": "is listening the students",
+        "note": "E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     }
   ]
 }

@@ -27,7 +27,22 @@
       "s-a-027",
       "s-a-028"
     ],
-    "grammar": "a04-whakaahua"
+    "grammar": "a04-whakaahua",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Whakaahua",
+          "en": "description"
+        }
+      ],
+      "literal": "the description",
+      "note": "Te is the singular 'the', so Te Whakaahua is a heading meaning 'Describing' or 'Description'."
+    }
   },
   "items": [
     {
@@ -175,7 +190,31 @@
       "decoys": [
         "tēnei",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "wahine",
+            "en": "woman"
+          },
+          {
+            "mi": "ātaahua",
+            "en": "beautiful"
+          },
+          {
+            "mi": "tērā",
+            "en": "that (over there)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a woman beautiful that",
+        "note": "Describing words come after the noun they describe, so the English order is flipped."
+      }
     },
     {
       "id": "s-a-023",
@@ -194,7 +233,31 @@
       "decoys": [
         "tērā",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "tāne",
+            "en": "man"
+          },
+          {
+            "mi": "roa",
+            "en": "tall, long"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a man tall this",
+        "note": "Describing words come after the noun they describe, so the English order is flipped."
+      }
     },
     {
       "id": "s-a-024",
@@ -214,7 +277,31 @@
       "decoys": [
         "tēnei",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "maunga",
+            "en": "mountain"
+          },
+          {
+            "mi": "teitei",
+            "en": "high"
+          },
+          {
+            "mi": "tērā",
+            "en": "that (over there)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a mountain high that",
+        "note": "Describing words come after the noun they describe, so the English order is flipped."
+      }
     },
     {
       "id": "s-a-025",
@@ -233,7 +320,31 @@
       "decoys": [
         "tērā",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "awa",
+            "en": "river"
+          },
+          {
+            "mi": "hōhonu",
+            "en": "deep"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a river deep this",
+        "note": "Describing words come after the noun they describe, so the English order is flipped."
+      }
     },
     {
       "id": "s-a-026",
@@ -252,7 +363,31 @@
       "decoys": [
         "tērā",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "whare",
+            "en": "house"
+          },
+          {
+            "mi": "hou",
+            "en": "new"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a house new this",
+        "note": "Describing words come after the noun they describe, so the English order is flipped."
+      }
     },
     {
       "id": "s-a-027",
@@ -271,7 +406,27 @@
       "decoys": [
         "rātou",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "rangatahi",
+            "en": "young person"
+          },
+          {
+            "mi": "ia",
+            "en": "he / she",
+            "ref": "ia"
+          }
+        ],
+        "literal": "a young person he/she",
+        "note": "Ia means 'he' or 'she': Māori does not tell them apart."
+      }
     },
     {
       "id": "s-a-028",
@@ -290,7 +445,31 @@
       "decoys": [
         "kei",
         "ngā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "ātaahua",
+            "en": "beautiful"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "whenua",
+            "en": "land"
+          }
+        ],
+        "literal": "a beautiful the land",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     }
   ]
 }

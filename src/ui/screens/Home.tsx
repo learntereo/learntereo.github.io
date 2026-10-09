@@ -5,6 +5,7 @@ import { useAppData } from '../../data/AppDataContext';
 import { LEVELS, type Level } from '../../game/types';
 import { PASS_PERCENT, CHECK_SIZE, passMark } from '../../game/unitRound';
 import type { UnitStatus } from '../../game/unitUnlock';
+import { TitleBreakdown } from '../components/Breakdown';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel } from '../labels';
@@ -74,7 +75,7 @@ function UnitRow({ status, isNext }: { status: UnitStatus; isNext: boolean }) {
       {locked ? (
         <div className={`${styles.unit} ${styles.unitLocked}`} aria-disabled="true">
           {content}
-          <span className={ui.visuallyHidden}>Finish the unit before this one to unlock it.</span>
+          <span className={ui.visuallyHidden}>Complete another unit to open this one.</span>
         </div>
       ) : (
         <Link
@@ -89,7 +90,7 @@ function UnitRow({ status, isNext }: { status: UnitStatus; isNext: boolean }) {
   );
 }
 
-function LevelSection({ level, nextUnitId }: { level: Level; nextUnitId: string | undefined }) {
+function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<string> }) {
   const { statuses } = useAppData();
   const levelUnits = unitsForLevel(level);
 
@@ -104,8 +105,7 @@ function LevelSection({ level, nextUnitId }: { level: Level; nextUnitId: string 
 
   const rows = levelUnits.map((u) => statuses.get(u.id)).filter((s): s is UnitStatus => s !== undefined);
   const complete = rows.filter((s) => s.state === 'complete').length;
-  const levelLocked = rows[0]?.state === 'locked';
-  const previous = LEVELS[LEVELS.indexOf(level) - 1];
+  const levelLocked = rows.every((s) => s.state === 'locked');
 
   return (
     <section aria-labelledby={`level-${level}`} className={styles.level}>
@@ -115,12 +115,10 @@ function LevelSection({ level, nextUnitId }: { level: Level; nextUnitId: string 
           {complete} / {rows.length} units
         </span>
       </div>
-      {levelLocked && previous && (
-        <p className={ui.muted}>Complete every {LEVEL_LABEL[previous]} unit to unlock this level.</p>
-      )}
+      {levelLocked && <p className={ui.muted}>Complete units before this level to open it.</p>}
       <ol className={styles.path}>
         {rows.map((status) => (
-          <UnitRow key={status.unit.id} status={status} isNext={status.unit.id === nextUnitId} />
+          <UnitRow key={status.unit.id} status={status} isNext={openIds.has(status.unit.id)} />
         ))}
       </ol>
     </section>
@@ -132,10 +130,12 @@ export function Home() {
   const { profile, activeRound, statuses, dueCount } = useAppData();
   const displayName = profile?.display_name ?? user?.email ?? 'learner';
 
-  const next = units.find((u) => {
+  // The open units that are not complete yet (up to three, in course order).
+  const openUnits = units.filter((u) => {
     const state = statuses.get(u.id)?.state;
     return state === 'available' || state === 'in_progress';
   });
+  const openIds = new Set(openUnits.map((u) => u.id));
   const allDone = units.every((u) => statuses.get(u.id)?.state === 'complete');
 
   const resumeIndex =
@@ -153,7 +153,7 @@ export function Home() {
         </h1>
         <p className={ui.muted}>
           Learn new words, practise them, then pass the unit check ({passMark(CHECK_SIZE)} of {CHECK_SIZE}, or{' '}
-          {PASS_PERCENT}%) to open the next unit.
+          {PASS_PERCENT}%) to open another unit. Three units stay open at a time.
         </p>
       </div>
 
@@ -183,19 +183,30 @@ export function Home() {
         </section>
       )}
 
-      {next && (
+      {openUnits.length > 0 && (
         <section className={`${ui.card} ${styles.nextCard}`} aria-labelledby="next-title">
-          <p className={styles.nextLabel}>Next up</p>
-          <h2 id="next-title">
-            <span aria-hidden="true">{next.emoji} </span>
-            {next.title}
-          </h2>
-          <p className={styles.nextMi} lang="mi">
-            {next.titleMi}
+          <p className={styles.nextLabel} id="next-title">
+            Next up
           </p>
-          <Link className={`${ui.button} ${styles.play}`} to={`/unit/${next.id}`}>
-            {statuses.get(next.id)?.state === 'in_progress' ? 'Continue' : 'Start unit'}
-          </Link>
+          <ul className={styles.nextList}>
+            {openUnits.map((next) => (
+              <li key={next.id} className={styles.nextItem}>
+                <div className={styles.nextText}>
+                  <h2 className={styles.nextTitle}>
+                    <span aria-hidden="true">{next.emoji} </span>
+                    {next.title}
+                  </h2>
+                  <p className={styles.nextMi} lang="mi">
+                    {next.titleMi}
+                  </p>
+                  <TitleBreakdown unitId={next.id} />
+                </div>
+                <Link className={ui.button} to={`/unit/${next.id}`} aria-label={`${statuses.get(next.id)?.state === 'in_progress' ? 'Continue' : 'Start'} ${next.title}`}>
+                  {statuses.get(next.id)?.state === 'in_progress' ? 'Continue' : 'Start'}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </section>
       )}
 
@@ -209,7 +220,7 @@ export function Home() {
       )}
 
       {LEVELS.map((level) => (
-        <LevelSection key={level} level={level} nextUnitId={next?.id} />
+        <LevelSection key={level} level={level} openIds={openIds} />
       ))}
 
       <section className={ui.card} aria-labelledby="free-title">

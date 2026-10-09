@@ -13,7 +13,12 @@ const levelOrder = ['beginner', 'intermediate', 'advanced'];
 
 const headers = readdirSync(unitsDir)
   .filter((f) => f.endsWith('.json'))
-  .map((f) => JSON.parse(readFileSync(path.join(unitsDir, f), 'utf8')).unit)
+  .map((f) => {
+    // The title breakdown stays in the unit file (it loads with the level), not in the bundled index.
+    const header = JSON.parse(readFileSync(path.join(unitsDir, f), 'utf8')).unit;
+    delete header.titleBreakdown;
+    return header;
+  })
   .sort((a, b) => levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level) || a.order - b.order);
 
 writeFileSync(path.join(unitsDir, '..', 'unitIndex.json'), JSON.stringify(headers, null, 2) + '\n');

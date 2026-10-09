@@ -43,28 +43,25 @@ function isComplete(unit: Unit, input: UnlockInput): boolean {
   return unit.itemIds.length > 0 && unit.itemIds.every((id) => input.learned.has(id));
 }
 
+/** How many not-yet-complete units are open at once. */
+export const OPEN_WINDOW = 3;
+
 /**
- * State of every unit. `units` must be in path order. Unit 1 of the first
- * level is always open; any other unit opens when the unit before it is
- * complete, and the first unit of a level opens when every unit of the
- * previous level is complete.
+ * State of every unit. `units` must be in path order (Beginner, Intermediate,
+ * Advanced). The first OPEN_WINDOW units that are not complete are open, across
+ * level boundaries, and completed units stay open. Passing a unit check
+ * therefore opens exactly one more unit until the course runs out.
  */
 export function computeUnitStatuses(units: readonly Unit[], input: UnlockInput): Map<string, UnitStatus> {
   const complete = new Map(units.map((u) => [u.id, isComplete(u, input)]));
-  const levels = LEVEL_ORDER.filter((level) => units.some((u) => u.level === level));
   const result = new Map<string, UnitStatus>();
+  let windowLeft = OPEN_WINDOW;
 
   for (const unit of units) {
-    const sameLevel = units.filter((u) => u.level === unit.level);
-    const position = sameLevel.findIndex((u) => u.id === unit.id);
-    let open: boolean;
-    if (position > 0) {
-      open = complete.get(sameLevel[position - 1].id) === true;
-    } else {
-      const levelIndex = levels.indexOf(unit.level);
-      open =
-        levelIndex <= 0 ||
-        units.filter((u) => u.level === levels[levelIndex - 1]).every((u) => complete.get(u.id) === true);
+    let open = complete.get(unit.id) === true;
+    if (!open && windowLeft > 0) {
+      open = true;
+      windowLeft -= 1;
     }
 
     const progress = input.unitProgress.get(unit.id);
@@ -88,11 +85,9 @@ export function computeUnitStatuses(units: readonly Unit[], input: UnlockInput):
   return result;
 }
 
-/** A level is open to the learner once its first unit is not locked. */
+/** A level is open to the learner (for Free Practice) once any of its units is available or complete. */
 export function isLevelUnlocked(level: Level, units: readonly Unit[], statuses: ReadonlyMap<string, UnitStatus>): boolean {
-  const first = units.find((u) => u.level === level);
-  if (!first) return false;
-  return statuses.get(first.id)?.state !== 'locked';
+  return units.some((u) => u.level === level && statuses.get(u.id)?.state !== undefined && statuses.get(u.id)?.state !== 'locked');
 }
 
 export function unlockedLevels(units: readonly Unit[], statuses: ReadonlyMap<string, UnitStatus>): Level[] {

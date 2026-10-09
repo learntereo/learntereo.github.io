@@ -8,6 +8,7 @@ import type { WordItem } from '../../game/types';
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
 import { useDragSensors } from './dnd';
+import { BreakdownDisclosure } from '../components/Breakdown';
 import { Feedback } from './Feedback';
 import { MSG_CORRECT, MSG_RETRY, type FeedbackMessage, type ModeProps } from './types';
 import styles from './modes.module.css';
@@ -224,6 +225,8 @@ export function BoardGame({ question, onDone, hints = true }: ModeProps) {
       </DndContext>
 
       <Feedback message={message} />
+      {done &&
+        words.map((w) => <BreakdownDisclosure key={w.id} breakdown={w.breakdown} title={`Word by word: ${w.mi}`} />)}
 
       {done && (
         <button type="button" className={ui.button} onClick={handleContinue} autoFocus>

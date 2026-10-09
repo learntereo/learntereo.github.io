@@ -1,0 +1,417 @@
+[
+  {
+    "id": "te",
+    "forms": [
+      "te"
+    ],
+    "gloss": "the (singular)",
+    "explanation": "Te means 'the' before one thing: te kurī is 'the dog'. It goes before a singular noun. For more than one thing, use ngā.",
+    "example": {
+      "mi": "He pai te parāoa.",
+      "en": "The bread is good."
+    }
+  },
+  {
+    "id": "nga",
+    "forms": [
+      "ngā"
+    ],
+    "gloss": "the (plural)",
+    "explanation": "Ngā means 'the' before more than one thing: ngā kurī is 'the dogs'. Most nouns do not change in the plural, so ngā (or a number) is what shows there is more than one. The ng is one sound, like the end of 'singer'.",
+    "example": {
+      "mi": "Kei te kai ngā kurī.",
+      "en": "The dogs are eating."
+    }
+  },
+  {
+    "id": "he",
+    "forms": [
+      "he"
+    ],
+    "gloss": "a / some",
+    "explanation": "He means 'a' or 'some': he kurī is 'a dog'. It also starts sentences that say what something is or is like, and there is no word for 'is': He nui te whare is 'The house is big'. He aha means 'what'.",
+    "example": {
+      "mi": "He kurī tēnā.",
+      "en": "That is a dog."
+    }
+  },
+  {
+    "id": "ko",
+    "forms": [
+      "ko"
+    ],
+    "gloss": "says who or what it is",
+    "explanation": "Ko points out who or what something is, so it is used with names and with questions like Ko wai? ('Who is it?'). It is not used before describing words: for those use he or kei te.",
+    "example": {
+      "mi": "Ko Hemi tōku pāpā.",
+      "en": "Hemi is my dad."
+    }
+  },
+  {
+    "id": "kei",
+    "forms": [
+      "kei"
+    ],
+    "gloss": "at (a place)",
+    "explanation": "Kei says where something is right now: Kei hea te kaiako? is 'Where is the teacher?'. Kei followed by te ('the') before a place, as in Kei te whare te ngeru ('The cat is at the house'), is different from kei te meaning 'is ...ing'. For the past, use i.",
+    "example": {
+      "mi": "Kei hea te pahi?",
+      "en": "Where is the bus?"
+    }
+  },
+  {
+    "id": "kei-te",
+    "forms": [
+      "kei te"
+    ],
+    "gloss": "is / am ...ing (present tense)",
+    "explanation": "Kei te goes before a verb or describing word and says it is happening now: Kei te kai ahau is 'I am eating' and Kei te pai ahau is 'I am good'. The person or thing comes after.",
+    "example": {
+      "mi": "Kei te pai ahau.",
+      "en": "I am good."
+    }
+  },
+  {
+    "id": "i",
+    "forms": [
+      "i"
+    ],
+    "gloss": "past / object / at",
+    "explanation": "I has three jobs. Before a verb at the start of a sentence it makes it past: I kai ahau i te āporo, 'I ate the apple'. After a verb it marks the thing the action is done to, as in Kei te kai ia i te āporo. It can also mean 'at' or 'on' in the past: I te kura ahau inanahi, 'I was at school yesterday'.",
+    "example": {
+      "mi": "I haere ahau ki te toa inanahi.",
+      "en": "I went to the shop yesterday."
+    }
+  },
+  {
+    "id": "ka",
+    "forms": [
+      "ka"
+    ],
+    "gloss": "then / next action (often future)",
+    "explanation": "Ka marks a new or next action. It is often future: Ka haere ahau āpōpō is 'I will go tomorrow'. In a sequence, such as the steps of a welcome, it means 'then': Ka hongi ngā manuhiri, 'Then the visitors hongi'. It does not make the past: for that use i.",
+    "example": {
+      "mi": "Ka mahi ahau āpōpō.",
+      "en": "I will work tomorrow."
+    }
+  },
+  {
+    "id": "e-ana",
+    "forms": [
+      "e ... ana"
+    ],
+    "gloss": "is ...ing (continuous)",
+    "explanation": "E ... ana wraps around a verb to say it is going on now: E kai ana te kurī is 'The dog is eating'. It means much the same as kei te, but the verb sits between the two words. It is common for weather.",
+    "example": {
+      "mi": "E ua ana.",
+      "en": "It is raining."
+    }
+  },
+  {
+    "id": "ki",
+    "forms": [
+      "ki"
+    ],
+    "gloss": "to / at / towards",
+    "explanation": "Ki shows direction towards a place or person ('to'), and it also means 'at' with words like titiro (look): titiro ki te whetū is 'look at the star'. Before one thing it is ki te; before more than one it is ki ngā.",
+    "example": {
+      "mi": "Kei te haere ahau ki te marae.",
+      "en": "I am going to the marae."
+    }
+  },
+  {
+    "id": "ki-te",
+    "forms": [
+      "ki te"
+    ],
+    "gloss": "to the / at the",
+    "explanation": "Ki te is ki ('to') joined to te ('the'). It is used before a singular place or thing: ki te kura is 'to the school' and ki te tātahi is 'to the beach'.",
+    "example": {
+      "mi": "Kei te haere ahau ki te kura.",
+      "en": "I am going to school."
+    }
+  },
+  {
+    "id": "ma",
+    "forms": [
+      "mā"
+    ],
+    "gloss": "for / by; and (in numbers)",
+    "explanation": "Mā before a person means 'for' or 'will be done by': mā koe is 'for you'. In numbers it means 'and': tekau mā tahi is 'ten and one', 11. It is a different word from the colour mā (white).",
+    "example": {
+      "mi": "E tekau mā rima ngā tamariki.",
+      "en": "There are fifteen children."
+    }
+  },
+  {
+    "id": "tenei",
+    "forms": [
+      "tēnei",
+      "tēnā",
+      "tērā"
+    ],
+    "gloss": "this / that (near you) / that (over there)",
+    "explanation": "Tēnei is 'this' (near me), tēnā is 'that' (near you) and tērā is 'that' (away from both of us). In short sentences they come last: He kurī tēnā is 'That is a dog'. Tēnā is also the start of greetings such as Tēnā koe.",
+    "example": {
+      "mi": "He ngeru tēnei.",
+      "en": "This is a cat."
+    }
+  },
+  {
+    "id": "possessives",
+    "forms": [
+      "taku",
+      "tōku",
+      "tāku",
+      "tō",
+      "tōu",
+      "tāu",
+      "tōna",
+      "tāna",
+      "āku",
+      "ōku",
+      "ā",
+      "ō"
+    ],
+    "gloss": "my / your / his or her (a-kind and o-kind)",
+    "explanation": "Words for 'my', 'your' and 'his or her' come in two kinds. The o-kind (tōku, tō, tōna, ōku) is for things such as your body, your name, your family older than you, your home and your clothes. The a-kind (tāku, tāu, tāna, āku) is for things you choose, get or look after, such as pets, food, books and your children. The plural forms (āku, ōku) are used for more than one thing. The same two letters also mean 'of': te tae o te kurī is 'the colour of the dog'.",
+    "example": {
+      "mi": "Kei hea tāku pukapuka?",
+      "en": "Where is my book?"
+    }
+  },
+  {
+    "id": "ahau",
+    "forms": [
+      "ahau",
+      "au"
+    ],
+    "gloss": "I / me",
+    "explanation": "Ahau means 'I' or 'me'. It usually comes last in a short sentence: Kei te pai ahau is 'I am good'. Au is a shorter form of the same word that you will also hear.",
+    "example": {
+      "mi": "Kei te pai ahau.",
+      "en": "I am good."
+    }
+  },
+  {
+    "id": "koe",
+    "forms": [
+      "koe",
+      "kōrua",
+      "koutou"
+    ],
+    "gloss": "you (one person)",
+    "explanation": "Koe is 'you' for one person, kōrua is 'you two' and koutou is 'you' for three or more. They also finish greetings: tēnā koe, tēnā kōrua, tēnā koutou.",
+    "example": {
+      "mi": "Kei te pēhea koe?",
+      "en": "How are you?"
+    }
+  },
+  {
+    "id": "ia",
+    "forms": [
+      "ia"
+    ],
+    "gloss": "he / she",
+    "explanation": "Ia means 'he' or 'she': Māori does not tell them apart. Kei te kai ia can be 'He is eating' or 'She is eating'. In a few time words, ia means 'each' or 'every': ia rā is 'every day'.",
+    "example": {
+      "mi": "Kei te kai ia i te āporo.",
+      "en": "She is eating the apple."
+    }
+  },
+  {
+    "id": "matou",
+    "forms": [
+      "mātou",
+      "tātou",
+      "rātou"
+    ],
+    "gloss": "we (not you) / we (with you) / they",
+    "explanation": "Māori has two kinds of 'we'. Mātou means 'we' without the person you are talking to, and tātou means 'we' including them. Rātou is 'they' for three or more people. For two people the forms are māua, tāua and rāua.",
+    "example": {
+      "mi": "Kei te haere mātou ki te tātahi.",
+      "en": "We are going to the beach."
+    }
+  },
+  {
+    "id": "kua",
+    "forms": [
+      "kua"
+    ],
+    "gloss": "has / have (done)",
+    "explanation": "Kua shows that something has been done, or that a new state has begun: Kua kai ahau is 'I have eaten'. It is placed before the verb, like ka and i.",
+    "example": {
+      "mi": "Kua kai ahau.",
+      "en": "I have eaten."
+    }
+  },
+  {
+    "id": "kia",
+    "forms": [
+      "kia"
+    ],
+    "gloss": "be / may it be",
+    "explanation": "Kia before a describing word gives a wish or a gentle command: Kia kaha is 'Be strong' and Kia tūpato is 'Be careful'. In kia ora it wishes good health, which is why it works as a greeting and as thanks.",
+    "example": {
+      "mi": "Kia kaha.",
+      "en": "Be strong."
+    }
+  },
+  {
+    "id": "me",
+    "forms": [
+      "me"
+    ],
+    "gloss": "should / must; and (with)",
+    "explanation": "Before a verb, me says what should happen: Me haere koe ki te kura is 'You should go to school'. Between two nouns it means 'and' or 'with': te kai me te inu is 'the food and the drink'.",
+    "example": {
+      "mi": "Me whakarongo mai koe.",
+      "en": "You should listen."
+    }
+  },
+  {
+    "id": "kaua",
+    "forms": [
+      "kaua e"
+    ],
+    "gloss": "do not",
+    "explanation": "Kaua e goes before a verb to tell someone not to do something: Kaua e kōrero is 'Do not talk'.",
+    "example": {
+      "mi": "Kaua e oma.",
+      "en": "Do not run."
+    }
+  },
+  {
+    "id": "no",
+    "forms": [
+      "nō"
+    ],
+    "gloss": "from / belonging to",
+    "explanation": "Nō says where someone comes from or that something has belonged to someone for a while: Nō hea koe? is 'Where are you from?'. It is also the start of nō reira ('so').",
+    "example": {
+      "mi": "Nō hea koe?",
+      "en": "Where are you from?"
+    }
+  },
+  {
+    "id": "na",
+    "forms": [
+      "nā"
+    ],
+    "gloss": "by / belonging to; because",
+    "explanation": "Nā shows who did something or who owns it: Nā wai tēnei pukapuka? is 'Whose book is this?'. Nā te mea means 'because'.",
+    "example": {
+      "mi": "Nā wai tēnei pukapuka?",
+      "en": "Whose book is this?"
+    }
+  },
+  {
+    "id": "hoki",
+    "forms": [
+      "hoki"
+    ],
+    "gloss": "also / too",
+    "explanation": "Hoki means 'also' or 'too'. It goes after the word or phrase it adds to.",
+    "example": {
+      "mi": "Kei te inu hoki ia.",
+      "en": "He is drinking too."
+    }
+  },
+  {
+    "id": "engari",
+    "forms": [
+      "engari"
+    ],
+    "gloss": "but",
+    "explanation": "Engari joins two ideas that contrast, like 'but': it starts the second idea.",
+    "example": {
+      "mi": "Kei te pai ahau engari kei te ngenge ia.",
+      "en": "I am well but he is tired."
+    }
+  },
+  {
+    "id": "no-reira",
+    "forms": [
+      "nō reira"
+    ],
+    "gloss": "so / therefore",
+    "explanation": "Nō reira starts a sentence that follows from what came before: it means 'so' or 'therefore'. Speeches often end with nō reira, tēnā koutou, katoa.",
+    "example": {
+      "mi": "Kei te ua nō reira ka noho mātou ki te whare.",
+      "en": "It is raining so we will stay at home."
+    }
+  },
+  {
+    "id": "ahakoa",
+    "forms": [
+      "ahakoa"
+    ],
+    "gloss": "although / even though",
+    "explanation": "Ahakoa begins a part of the sentence that does not stop the main action: Ahakoa te ua... is 'Although it is raining...'.",
+    "example": {
+      "mi": "Ahakoa te ua kei te haere tātou ki te tātahi.",
+      "en": "Although it is raining we are going to the beach."
+    }
+  },
+  {
+    "id": "ra",
+    "forms": [
+      "rā"
+    ],
+    "gloss": "there (away from the speaker)",
+    "explanation": "In haere rā and e noho rā, rā means 'there', away from the speaker, and points the farewell at where the other person is going or staying. Haere rā is said to the person leaving and e noho rā by the person leaving to those staying. Rā is also a different word meaning 'day' or 'sun'.",
+    "example": {
+      "mi": "Haere rā.",
+      "en": "Goodbye (to someone leaving)."
+    }
+  },
+  {
+    "id": "mai-atu",
+    "forms": [
+      "mai",
+      "atu"
+    ],
+    "gloss": "towards the speaker / away from the speaker",
+    "explanation": "Mai points an action towards the speaker and atu points it away: haere mai is 'come here' and whakarongo mai is 'listen to me'. Haere atu would be 'go away'.",
+    "example": {
+      "mi": "Haere mai.",
+      "en": "Welcome."
+    }
+  },
+  {
+    "id": "ai",
+    "forms": [
+      "ai"
+    ],
+    "gloss": "(no direct English)",
+    "explanation": "Ai has no one-word English meaning. After a verb it often follows a question word such as āhea or inahea, as in Āhea koe haere ai? ('When will you go?').",
+    "example": {
+      "mi": "Āhea koe haere ai?",
+      "en": "When will you go?"
+    }
+  },
+  {
+    "id": "e",
+    "forms": [
+      "e"
+    ],
+    "gloss": "there are (goes before a number)",
+    "explanation": "E goes before a number to say how many there are: E rima ngā manu is 'There are five birds'. E is also the first half of e ... ana, and it can start a command, as in e noho rā.",
+    "example": {
+      "mi": "E rua ōku ringa.",
+      "en": "I have two hands."
+    }
+  },
+  {
+    "id": "a-on",
+    "forms": [
+      "ā"
+    ],
+    "gloss": "on (a coming day)",
+    "explanation": "Before a day name, ā te means 'on' a day that is still to come: ā te Rātapu is 'on Sunday'. For a day that has passed, use i te.",
+    "example": {
+      "mi": "Ka haere tātou ā te Rātapu.",
+      "en": "We will go on Sunday."
+    }
+  }
+]

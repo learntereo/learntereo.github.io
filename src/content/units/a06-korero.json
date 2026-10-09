@@ -24,7 +24,22 @@
       "s-a-040",
       "s-a-041"
     ],
-    "grammar": "a06-korero"
+    "grammar": "a06-korero",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Kōrero",
+          "en": "stories, talk"
+        }
+      ],
+      "literal": "the stories",
+      "note": "Ngā Kōrero is a heading meaning 'Talk' or 'Stories'."
+    }
   },
   "items": [
     {
@@ -34,7 +49,18 @@
       "mi": "nā te mea",
       "en": [
         "because"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "nā te mea",
+            "en": "because",
+            "ref": "na"
+          }
+        ],
+        "literal": "because",
+        "note": "Nā te mea joins two ideas: the first is the result and the second is the reason."
+      }
     },
     {
       "id": "w-a-065",
@@ -53,7 +79,18 @@
       "en": [
         "so",
         "therefore"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "nō reira",
+            "en": "so, therefore",
+            "ref": "no-reira"
+          }
+        ],
+        "literal": "so",
+        "note": "Nō reira is also how speeches finish, like 'and so'."
+      }
     },
     {
       "id": "w-a-067",
@@ -154,7 +191,41 @@
       "decoys": [
         "engari",
         "hoki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "makariri",
+            "en": "cold"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "nā te mea",
+            "en": "because",
+            "ref": "na"
+          },
+          {
+            "mi": "kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "ua",
+            "en": "rain"
+          }
+        ],
+        "literal": "is cold I because is raining",
+        "note": "Nā te mea gives the reason. The second part has no person: Kei te ua is 'It is raining'."
+      }
     },
     {
       "id": "s-a-037",
@@ -181,7 +252,46 @@
       "decoys": [
         "nā",
         "hoki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "pai",
+            "en": "good"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "engari",
+            "en": "but",
+            "ref": "engari"
+          },
+          {
+            "mi": "kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "ngenge",
+            "en": "tired"
+          },
+          {
+            "mi": "ia",
+            "en": "he / she",
+            "ref": "ia"
+          }
+        ],
+        "literal": "is good I but is tired he/she",
+        "note": "Engari joins two ideas that contrast."
+      }
     },
     {
       "id": "s-a-038",
@@ -208,7 +318,50 @@
       "decoys": [
         "engari",
         "hoki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "ua",
+            "en": "rain"
+          },
+          {
+            "mi": "nō reira",
+            "en": "so, therefore",
+            "ref": "no-reira"
+          },
+          {
+            "mi": "ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "noho",
+            "en": "stay"
+          },
+          {
+            "mi": "mātou",
+            "en": "we (not including you)",
+            "ref": "matou"
+          },
+          {
+            "mi": "ki te",
+            "en": "at the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "whare",
+            "en": "house"
+          }
+        ],
+        "literal": "is raining so will stay we at the house",
+        "note": "Nō reira means 'so', and ka makes the second part future. Ki te here means 'at the'."
+      }
     },
     {
       "id": "s-a-040",
@@ -234,7 +387,50 @@
       "decoys": [
         "engari",
         "nā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ahakoa",
+            "en": "although",
+            "ref": "ahakoa"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "ua",
+            "en": "rain"
+          },
+          {
+            "mi": "kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "tātou",
+            "en": "we (including you)",
+            "ref": "matou"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "tātahi",
+            "en": "beach"
+          }
+        ],
+        "literal": "although the rain is going we to the beach",
+        "note": "Ahakoa starts the part that does not stop the main action."
+      }
     },
     {
       "id": "s-a-041",
@@ -262,7 +458,60 @@
       "decoys": [
         "engari",
         "nā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "inu",
+            "en": "drink"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is drunk)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "wai",
+            "en": "water"
+          },
+          {
+            "mi": "kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "inu",
+            "en": "drink"
+          },
+          {
+            "mi": "hoki",
+            "en": "also, too",
+            "ref": "hoki"
+          },
+          {
+            "mi": "ia",
+            "en": "he / she",
+            "ref": "ia"
+          }
+        ],
+        "literal": "is drinking I the water is drinking also he/she",
+        "note": "Hoki means 'also' and goes after the word it adds to. The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     }
   ]
 }

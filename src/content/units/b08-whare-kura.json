@@ -28,7 +28,36 @@
       "s-b-050",
       "s-b-051"
     ],
-    "grammar": "b08-whare-kura"
+    "grammar": "b08-whare-kura",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Whare",
+          "en": "house"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Kura",
+          "en": "school"
+        }
+      ],
+      "literal": "the house and the school",
+      "note": "Me joins two nouns like 'and'."
+    }
   },
   "items": [
     {
@@ -211,7 +240,31 @@
       ],
       "decoys": [
         "ahau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "wharepaku",
+            "en": "toilet"
+          }
+        ],
+        "literal": "at where the toilet",
+        "note": "Kei hea asks where something is: kei means 'at' and hea means 'where'."
+      }
     },
     {
       "id": "s-b-016",
@@ -230,7 +283,31 @@
       ],
       "decoys": [
         "iti"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "nui",
+            "en": "big"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "whare",
+            "en": "house"
+          }
+        ],
+        "literal": "a big the house",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     },
     {
       "id": "s-b-017",
@@ -252,7 +329,36 @@
       ],
       "decoys": [
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "kura",
+            "en": "school"
+          }
+        ],
+        "literal": "is going I to the school",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-049",
@@ -270,7 +376,31 @@
       ],
       "decoys": [
         "ahau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kaiako",
+            "en": "teacher"
+          }
+        ],
+        "literal": "at where the teacher",
+        "note": "Kei hea asks where something is: kei means 'at' and hea means 'where'."
+      }
     },
     {
       "id": "s-b-050",
@@ -288,7 +418,31 @@
       ],
       "decoys": [
         "nui"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "iti",
+            "en": "small"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "tēpu",
+            "en": "table"
+          }
+        ],
+        "literal": "a small the table",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     },
     {
       "id": "s-b-051",
@@ -305,7 +459,27 @@
       ],
       "decoys": [
         "tērā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "pukapuka",
+            "en": "book"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a book this",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     }
   ]
 }

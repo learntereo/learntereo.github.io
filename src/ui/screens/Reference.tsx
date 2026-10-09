@@ -6,9 +6,10 @@ const PAGES = [
   { to: '/grammar', title: 'Grammar', text: 'The short grammar note from every unit you have opened.' },
   { to: '/pronunciation', title: 'Pronunciation', text: 'Vowels, macrons, wh, ng and stress, with words from the course.' },
   { to: '/glossary', title: 'Glossary', text: 'Look up any word you have met. Search works with or without macrons.' },
+  { to: '/little-words', title: 'Little words', text: 'What te, ngā, he, ko, kei te, ka and the other small words do.' },
 ] as const;
 
-/** The Reference tab: grammar, pronunciation and a glossary. */
+/** The Reference tab: grammar, pronunciation, little words and a glossary. */
 export function Reference() {
   return (
     <main className={ui.page}>

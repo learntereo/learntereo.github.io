@@ -67,7 +67,7 @@ const TABS: readonly Tab[] = [
   {
     to: '/reference',
     label: 'Reference',
-    match: /^\/(reference|grammar|pronunciation|glossary)/,
+    match: /^\/(reference|grammar|pronunciation|glossary|little-words)/,
     icon: (
       <Icon>
         <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" />
@@ -112,15 +112,15 @@ function TabBar() {
             className={active ? `${styles.navLink} ${styles.active}` : styles.navLink}
             aria-current={active ? 'page' : undefined}
           >
-            {tab.icon}
-            <span>
-              {tab.label}
+            <span className={styles.iconWrap}>
+              {tab.icon}
               {tab.to === '/review' && dueCount > 0 && (
                 <span className={styles.badge} aria-label={`${dueCount} due`}>
-                  {dueCount}
+                  {dueCount > 99 ? '99+' : dueCount}
                 </span>
               )}
             </span>
+            <span className={styles.label}>{tab.label}</span>
           </NavLink>
         );
       })}

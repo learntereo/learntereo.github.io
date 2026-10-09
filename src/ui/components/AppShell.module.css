@@ -97,15 +97,19 @@
 
   .nav {
     position: static;
-    max-width: 560px;
     width: 100%;
-    margin: 0 auto;
+    /* Tabs line up with the header and page content (a 560px container with 16px side padding; each tab adds 12px of its own). */
+    padding: 0 max(var(--space-1), calc((100% - 560px) / 2 + var(--space-1)));
+    justify-content: space-between;
     border-top: none;
+    border-bottom: 1px solid var(--color-border);
     box-shadow: none;
     background: var(--color-surface);
   }
 
   .navLink {
+    flex: 0 1 auto;
+    padding: 0 var(--space-3);
     flex-direction: row;
     gap: var(--space-2);
     min-height: var(--tap-target-min);
@@ -133,10 +137,22 @@
   flex: none;
 }
 
+.iconWrap {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+/* Sits on the icon's corner, so it never changes the tab's height. */
 .badge {
-  display: inline-block;
+  position: absolute;
+  top: -6px;
+  left: 60%;
   min-width: 1.3em;
-  margin-left: var(--space-1);
   padding: 0 5px;
   border-radius: 999px;
   background: var(--color-kokowai);
@@ -145,6 +161,7 @@
   font-weight: 700;
   line-height: 1.5;
   text-align: center;
+  box-shadow: 0 0 0 2px var(--color-surface);
 }
 
 /* Hidden until it gets keyboard focus. */

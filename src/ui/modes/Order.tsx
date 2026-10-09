@@ -17,6 +17,7 @@ import { createRng, randomSeed } from '../../game/rng';
 import type { SentenceItem } from '../../game/types';
 import ui from '../components/ui.module.css';
 import { useDragSensors } from './dnd';
+import { BreakdownDisclosure } from '../components/Breakdown';
 import { Feedback } from './Feedback';
 import { MSG_CORRECT, MSG_RETRY, type FeedbackMessage, type ModeProps } from './types';
 import styles from './modes.module.css';
@@ -183,6 +184,7 @@ export function Order({ question, onDone }: ModeProps) {
       </p>
 
       <Feedback message={message} />
+      {phase !== 'asking' && <BreakdownDisclosure breakdown={sentence.breakdown} />}
 
       {phase === 'asking' ? (
         <button type="button" className={ui.button} onClick={handleCheck} disabled={rowIds.length === 0}>

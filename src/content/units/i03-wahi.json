@@ -28,7 +28,36 @@
       "s-i-031",
       "s-i-032"
     ],
-    "grammar": "i03-wahi"
+    "grammar": "i03-wahi",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Wāhi",
+          "en": "places"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Waka",
+          "en": "vehicles"
+        }
+      ],
+      "literal": "the places and the vehicles",
+      "note": "Waka is a canoe, and today it also means vehicles."
+    }
   },
   "items": [
     {
@@ -221,7 +250,36 @@
       "decoys": [
         "i",
         "ki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "whare",
+            "en": "house"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "ngeru",
+            "en": "cat"
+          }
+        ],
+        "literal": "at the house the cat",
+        "note": "Here kei means 'at' and te means 'the', so this is not the 'kei te' that means 'is ...ing'. Kei says where something is."
+      }
     },
     {
       "id": "s-i-009",
@@ -243,7 +301,36 @@
       "decoys": [
         "tātou",
         "ana"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "mātou",
+            "en": "we (not including you)",
+            "ref": "matou"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "tātahi",
+            "en": "beach"
+          }
+        ],
+        "literal": "is going we to the beach",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-i-029",
@@ -262,7 +349,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "pahi",
+            "en": "bus"
+          }
+        ],
+        "literal": "at where the bus",
+        "note": "Kei hea asks where something is: kei means 'at' and hea means 'where'."
+      }
     },
     {
       "id": "s-i-030",
@@ -284,7 +395,36 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "hōhipera",
+            "en": "hospital"
+          }
+        ],
+        "literal": "is going I to the hospital",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-i-031",
@@ -306,7 +446,36 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "taone",
+            "en": "town"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "toa",
+            "en": "shop"
+          }
+        ],
+        "literal": "at the town the shop",
+        "note": "Kei says where something is. This is not the 'kei te' that means 'is ...ing'."
+      }
     },
     {
       "id": "s-i-032",
@@ -329,7 +498,40 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "marae",
+            "en": "marae"
+          }
+        ],
+        "literal": "is going the children to the marae",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     }
   ]
 }

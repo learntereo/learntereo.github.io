@@ -1,10 +1,10 @@
 import { Link } from 'react-router';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
-import styles from './Home.module.css';
+import ui from '../components/ui.module.css';
 
 export function Privacy() {
   return (
-    <main className={styles.page}>
+    <main className={ui.page}>
       <h1>Privacy</h1>
       <KowhaiwhaiBorder height={20} />
       <p>

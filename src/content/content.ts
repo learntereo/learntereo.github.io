@@ -1,5 +1,5 @@
 import unitIndex from './unitIndex.json';
-import type { Item, Level, SentenceItem, Unit, UnitFile, WordItem } from '../game/types';
+import type { Breakdown, Item, Level, SentenceItem, Unit, UnitFile, WordItem } from '../game/types';
 
 /*
  * Unit headers (title, order, item ids) live in unitIndex.json, built from the
@@ -44,6 +44,7 @@ export const totalItemCount = unitByItemId.size;
 const loadedItems: Item[] = [];
 const loadedById = new Map<string, Item>();
 const loadedGrammar = new Map<string, string>();
+const loadedTitleBreakdowns = new Map<string, Breakdown>();
 const loadedLevels = new Set<Level>();
 const inflight = new Map<Level, Promise<void>>();
 
@@ -62,6 +63,7 @@ async function fetchLevel(level: Level): Promise<void> {
   ]);
   if (loadedLevels.has(level)) return;
   for (const file of files.sort((a, b) => a.unit.order - b.unit.order)) {
+    if (file.unit.titleBreakdown) loadedTitleBreakdowns.set(file.unit.id, file.unit.titleBreakdown);
     for (const item of file.items) {
       loadedItems.push(item);
       loadedById.set(item.id, item);
@@ -116,6 +118,11 @@ export function imageWordsForLevel(level: Level, items: readonly Item[] = allIte
 
 export function getItem(id: string): Item | undefined {
   return itemsById.get(id);
+}
+
+/** Word-by-word breakdown of a unit's Māori title (its level must be loaded). */
+export function getTitleBreakdown(unitId: string): Breakdown | undefined {
+  return loadedTitleBreakdowns.get(unitId);
 }
 
 export function getUnit(id: string | undefined): Unit | undefined {

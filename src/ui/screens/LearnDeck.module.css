@@ -57,6 +57,12 @@
   color: var(--color-text-muted);
 }
 
+.breakdown {
+  margin-top: var(--space-3);
+  width: 100%;
+  text-align: left;
+}
+
 .example {
   margin-top: var(--space-4);
   width: 100%;

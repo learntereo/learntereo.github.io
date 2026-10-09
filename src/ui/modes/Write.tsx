@@ -3,6 +3,7 @@ import { getItem } from '../../content/content';
 import { insertAtCursor, isWriteCorrect, markWrite, writeNote } from '../../game/macronMarking';
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
+import { BreakdownDisclosure } from '../components/Breakdown';
 import { Feedback } from './Feedback';
 import { MacronRow } from './MacronRow';
 import { MSG_CORRECT, MSG_RETRY, type FeedbackMessage, type ModeProps } from './types';
@@ -106,6 +107,7 @@ export function Write({ question, onDone }: ModeProps) {
       </form>
 
       <Feedback message={message} />
+      {phase !== 'asking' && <BreakdownDisclosure breakdown={item.breakdown} />}
 
       {phase !== 'asking' && (
         <button type="button" ref={continueRef} className={ui.button} onClick={handleContinue}>
