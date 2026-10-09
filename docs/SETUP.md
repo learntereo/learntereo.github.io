@@ -13,10 +13,10 @@ The project already exists (ref `zmdbimnvxpbmnctqefcu`, Asia-Pacific region).
    - **Project URL** (this is `VITE_SUPABASE_URL`, already `https://zmdbimnvxpbmnctqefcu.supabase.co`)
    - **anon / publishable key** (this is `VITE_SUPABASE_ANON_KEY`)
 3. Go to **Authentication -> URL Configuration**:
-   - **Site URL**: `https://pattern-labs-foundation.github.io/language-learning-website/`
+   - **Site URL**: `https://learntereo.github.io/`
    - **Redirect URLs**: add both
-     - `https://pattern-labs-foundation.github.io/language-learning-website/`
-     - `http://127.0.0.1:5173/language-learning-website/`
+     - `https://learntereo.github.io/`
+     - `http://127.0.0.1:5173/`
 4. Go to **Authentication -> Providers -> Email**. Leave it enabled (email confirmation stays on).
 
 ## 2. Google OAuth
@@ -26,10 +26,10 @@ The project already exists (ref `zmdbimnvxpbmnctqefcu`, Asia-Pacific region).
    - User type: External
    - App name: Ako
    - Scopes: `email`, `profile`, `openid`
-   - Privacy policy link: `https://pattern-labs-foundation.github.io/language-learning-website/#/privacy`
+   - Privacy policy link: `https://learntereo.github.io/#/privacy`
 3. **APIs & Services -> Credentials -> Create credentials -> OAuth client ID**:
    - Application type: Web application
-   - Authorised JavaScript origins: `https://pattern-labs-foundation.github.io` and `http://localhost:5173`
+   - Authorised JavaScript origins: `https://learntereo.github.io` and `http://localhost:5173`
    - Authorised redirect URI: `https://zmdbimnvxpbmnctqefcu.supabase.co/auth/v1/callback`
 4. Copy the generated **Client ID** and **Client secret**.
 5. In Supabase: **Authentication -> Providers -> Google**, enable it, paste the Client ID and secret, save.
@@ -53,7 +53,7 @@ Guests use Supabase anonymous sign-ins, and can save their progress later by lin
 
 ## 4. GitHub repository configuration
 
-In `pattern-labs-foundation/language-learning-website` on GitHub:
+In `learntereo/learntereo.github.io` on GitHub:
 
 1. **Settings -> Pages**: set Source to **GitHub Actions**.
 2. **Settings -> Secrets and variables -> Actions -> Variables**, add:

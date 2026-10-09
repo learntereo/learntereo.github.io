@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pattern-labs-foundation/language-learning-website.git"
+    "url": "git+https://github.com/learntereo/learntereo.github.io.git"
   },
   "license": "ISC",
   "dependencies": {
