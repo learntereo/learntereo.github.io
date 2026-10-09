@@ -7,7 +7,7 @@ import type { Item, RoundSummary, Unit } from '../../game/types';
 import { TREASURES, TREASURE_COUNT } from '../../game/treasures';
 import { passMark } from '../../game/unitRound';
 import { KoruFlourish } from '../components/Kowhaiwhai';
-import { TreasureIcon } from '../components/Treasure';
+import { TreasureButton } from '../components/TreasureButton';
 import { TreasureDialog } from '../components/TreasureDialog';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
@@ -38,7 +38,7 @@ function TreasureUnlocked({ id, fresh, newRank }: { id: string; fresh: boolean; 
       aria-labelledby="treasure-title"
     >
       {last && <KoruFlourish />}
-      <TreasureIcon id={treasure.id} size={last ? 96 : 56} />
+      <TreasureButton treasure={treasure} size={last ? 96 : 56} className={styles.treasureIconButton} />
       <div>
         <h2 id="treasure-title">New kiwiana: {treasure.name}!</h2>
         <p className={ui.muted}>{treasure.caption}</p>

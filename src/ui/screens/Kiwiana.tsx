@@ -62,12 +62,28 @@ export function Kiwiana() {
               className={`${ui.card} ${styles.item} ${isNext ? styles.next : ''}`}
               aria-current={isNext ? 'step' : undefined}
             >
-              <TreasureIcon id={treasure.id} size={64} locked={!got} />
+              {got ? (
+                <button
+                  type="button"
+                  className={styles.iconButton}
+                  aria-label={`Read about ${treasure.name}`}
+                  onClick={() => setOpenId(treasure.id)}
+                >
+                  <TreasureIcon id={treasure.id} size={64} />
+                </button>
+              ) : (
+                <TreasureIcon id={treasure.id} size={64} locked />
+              )}
               <div className={styles.text}>
                 {got ? (
                   <>
                     <h2 className={styles.name}>
-                      <button type="button" className={styles.nameButton} onClick={() => setOpenId(treasure.id)}>
+                      <button
+                        type="button"
+                        className={styles.nameButton}
+                        aria-label={`Read about ${treasure.name}`}
+                        onClick={() => setOpenId(treasure.id)}
+                      >
                         {treasure.name}
                       </button>
                     </h2>

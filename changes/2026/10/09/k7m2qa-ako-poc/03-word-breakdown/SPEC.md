@@ -4,6 +4,8 @@
 | W11 | Naming | "Only call it New Zealand" | User |
 | W12 | Rewards | "On Progress make kiwiana the big thing to collect, it's too hidden away, needs gamification" | User |
 | W13 | Practice | "Why is ata mārie part of numbers? It shouldn't be" (unit practice now uses only the unit's own items) | User |
+| W14 | Marking | "I put 'e hia' for how many but it only accepts 'hia'; this should be close enough" | User |
+| W15 | Rewards | "Clicking on the kiwiana box should also open the history box" | User |
 ---
 title: Ako v2.1: Word-by-word breakdowns and layout polish
 type: feature
@@ -74,6 +76,8 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 - FR6.8 When a Kiwiz pass unlocks a treasure, an accessible modal dialog (focus kept inside, Escape or "Ka pai!" closes it, labelled by its heading) plays the reveal: the padlock tile shakes, fades away and the treasure appears with a soft glow, then "You unlocked: {name}!" and the story. With reduced motion it shows the revealed state with a simple fade. The Golden kiwi version is bigger, with sparkles. Tapping an unlocked treasure on the Kiwiana page or the Progress shelf opens the same dialog without the animation.
 - FR6.9 Collector ranks: 0 Ready to start, 1 to 4 Kiwiana rookie, 5 to 9 Explorer, 10 to 14 Collector, 15 to 19 Treasure hunter, 20 Kiwiana legend. An unlock that crosses a threshold also shows "New rank: {rank}!" in the dialog. The rank shows on the Kiwiana page and as a chip on Home's Kiwiana card.
 - FR6.10 The top of Progress is the "Your Kiwiana" hero: a ring with N / 20, the rank and what the next rank needs, a progress bar for the next treasure's unit ("{unit}: X of Y items learned, pass the Kiwiz to unlock"), a scrollable shelf of all 20, the last three unlocked with dates, and a "See all Kiwiana" button. The other stats and the history come below it.
+
+- FR6.11 Every unlocked treasure, wherever it is drawn (Home card, Path nodes, Unit screen, Results card, Kiwiana page, Progress shelf and recent list), is a button "Read about {name}" that opens the story dialog (finished state, no replay). The header N/20 links to the Kiwiana page. A locked tile opens nothing; tapping it shows "Finish {unit} to unlock".
 
 ## 3. Acceptance Criteria
 | # | Given | When | Then |

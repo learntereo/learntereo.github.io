@@ -4,17 +4,51 @@ import styles from './Treasure.module.css';
 /** Original flat illustrations on a 48 x 48 grid, one consistent style: soft colours and a dark brown outline. */
 const INK = '#4a3328';
 
-function leaflets(): ReactNode[] {
-  // A fern frond: a curved stem with paired leaflets that shrink towards the tip.
+/**
+ * A silver fern frond: one curved stem from the bottom left to the top right, with
+ * alternating pointed pinnae on both sides. They angle towards the tip and shrink
+ * towards it. Each pinna is silver-white with a grey-green shade on one side.
+ */
+function fern(): ReactNode[] {
+  const P0 = [9, 41];
+  const C = [13, 14];
+  const P2 = [38, 9];
+  const at = (t: number) => {
+    const u = 1 - t;
+    return [u * u * P0[0] + 2 * u * t * C[0] + t * t * P2[0], u * u * P0[1] + 2 * u * t * C[1] + t * t * P2[1]];
+  };
+  const tangent = (t: number) => {
+    const dx = 2 * (1 - t) * (C[0] - P0[0]) + 2 * t * (P2[0] - C[0]);
+    const dy = 2 * (1 - t) * (C[1] - P0[1]) + 2 * t * (P2[1] - C[1]);
+    const n = Math.hypot(dx, dy);
+    return [dx / n, dy / n];
+  };
   const out: ReactNode[] = [];
-  for (let i = 0; i < 8; i++) {
-    const t = i / 8;
-    const x = 14 + 18 * t;
-    const y = 42 - 34 * t;
-    const len = 9 - 6 * t;
+  const PER_SIDE = 14;
+  const ANGLE = (52 * Math.PI) / 180;
+  for (let i = 0; i < PER_SIDE * 2; i++) {
+    const side = i % 2 === 0 ? -1 : 1; // alternate left and right
+    const k = Math.floor(i / 2) + (side === 1 ? 0.5 : 0);
+    const t = 0.1 + (0.8 * k) / PER_SIDE;
+    const [x, y] = at(t);
+    const [tx, ty] = tangent(t);
+    const len = 12.5 - 9.5 * ((t - 0.1) / 0.8); // long at the base, short at the tip
+    const cos = Math.cos(side * ANGLE);
+    const sin = Math.sin(side * ANGLE);
+    const dx = tx * cos - ty * sin;
+    const dy = tx * sin + ty * cos;
+    const ex = x + dx * len;
+    const ey = y + dy * len;
+    const nx = -dy;
+    const ny = dx;
+    const w = 1.5 + len * 0.1; // half width at the widest point
+    const mx = x + dx * len * 0.45;
+    const my = y + dy * len * 0.45;
+    const lens = `M${x.toFixed(2)} ${y.toFixed(2)} Q${(mx + nx * w).toFixed(2)} ${(my + ny * w).toFixed(2)} ${ex.toFixed(2)} ${ey.toFixed(2)} Q${(mx - nx * w).toFixed(2)} ${(my - ny * w).toFixed(2)} ${x.toFixed(2)} ${y.toFixed(2)} Z`;
+    const shade = `M${x.toFixed(2)} ${y.toFixed(2)} Q${(mx + nx * w * 0.9).toFixed(2)} ${(my + ny * w * 0.9).toFixed(2)} ${ex.toFixed(2)} ${ey.toFixed(2)} L${x.toFixed(2)} ${y.toFixed(2)} Z`;
     out.push(
-      <path key={`l${i}`} d={`M${x} ${y} l${-len} ${-len * 0.45}`} stroke="#8aa89a" strokeWidth="3" strokeLinecap="round" />,
-      <path key={`r${i}`} d={`M${x} ${y} l${len} ${-len * 0.45}`} stroke="#8aa89a" strokeWidth="3" strokeLinecap="round" />,
+      <path key={`p${i}`} d={lens} fill="#EEF1EE" />,
+      <path key={`s${i}`} d={shade} fill="#B9C4BC" />,
     );
   }
   return out;
@@ -58,8 +92,9 @@ const ART: Record<string, ReactNode> = {
   ),
   'silver-fern': (
     <>
-      <path d="M14 42 Q16 20 32 8" fill="none" stroke="#6f8c80" strokeWidth="2.4" strokeLinecap="round" />
-      {leaflets()}
+      <rect x="1" y="1" width="46" height="46" rx="11" fill="#1F2A24" />
+      {fern()}
+      <path d="M9 41 Q13 14 38 9 Q43 8.5 43.5 12.5 Q43.8 16 40.5 15.6" fill="none" stroke="#EEF1EE" strokeWidth="1.6" strokeLinecap="round" />
     </>
   ),
   pohutukawa: (

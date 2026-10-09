@@ -207,9 +207,17 @@ describe('Progress: Your Kiwiana hero', () => {
     expect(container.querySelectorAll('[aria-label="All 20 kiwiana"] svg[data-locked="true"]')).toHaveLength(12);
     const lockedText = [...tiles].slice(8).map((t) => t.textContent).join(' ');
     expect(lockedText).not.toMatch(/Tūī|Pūkeko|Kūmara|Golden/);
-    const paua = container.querySelector('button[aria-label="Pāua. Open its story."]') as HTMLButtonElement;
+    const paua = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void paua.click());
     expect(container.querySelector('[role="dialog"]')?.textContent).toContain('eyes of carved figures');
+  });
+
+  it('shows the Finish hint when a locked shelf tile is tapped, and opens nothing', async () => {
+    await renderProgress();
+    const locked = [...container.querySelectorAll('[aria-label="All 20 kiwiana"] button')][0] as HTMLButtonElement;
+    act(() => void locked.click());
+    expect(container.querySelector('[role="status"]')?.textContent).toBe('Finish Greetings and introductions to unlock');
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
   });
 
   it('lists the last three unlocked with dates where the unit has one', async () => {

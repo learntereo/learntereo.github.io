@@ -12,6 +12,7 @@ import {
   unlockedTreasureIds,
 } from '../../game/treasures';
 import { TreasureIcon } from '../components/Treasure';
+import { TreasureButton } from '../components/TreasureButton';
 import { TreasureDialog } from '../components/TreasureDialog';
 import ui from '../components/ui.module.css';
 import { formatDate } from '../labels';
@@ -57,6 +58,7 @@ export function KiwianaHero() {
   const { statuses, unitProgress } = useAppData();
   const [openId, setOpenId] = useState<string | null>(null);
   const close = useCallback(() => setOpenId(null), []);
+  const [hint, setHint] = useState<string | null>(null);
 
   const unlocked = unlockedTreasureIds(SLOTS, statuses);
   const count = unlocked.size;
@@ -119,15 +121,19 @@ export function KiwianaHero() {
                     type="button"
                     className={styles.tileButton}
                     onClick={() => setOpenId(treasure.id)}
-                    aria-label={`${treasure.name}. Open its story.`}
+                    aria-label={`Read about ${treasure.name}`}
                   >
                     <TreasureIcon id={treasure.id} size={52} />
                   </button>
                 ) : (
-                  <span className={styles.tileButton}>
+                  <button
+                    type="button"
+                    className={styles.tileButton}
+                    onClick={() => setHint(`Finish ${unit.title} to unlock`)}
+                  >
                     <TreasureIcon id={treasure.id} size={52} locked />
                     <span className={ui.visuallyHidden}>Locked treasure. Finish {unit.title} to unlock.</span>
-                  </span>
+                  </button>
                 )}
               </li>
             );
@@ -135,17 +141,24 @@ export function KiwianaHero() {
         </ul>
       </div>
 
+      {hint && (
+        <p className={styles.hint} role="status">
+          {hint}
+        </p>
+      )}
+
       {recent.length > 0 && (
         <div className={styles.recent}>
           <h3 className={styles.recentTitle}>Recently unlocked</h3>
           <ul className={styles.recentList}>
             {recent.map(({ slot, date }) => (
-              <li key={slot.treasure.id} className={styles.recentItem}>
-                <TreasureIcon id={slot.treasure.id} size={36} />
-                <span className={styles.recentText}>
-                  <strong>{slot.treasure.name}</strong>
-                  {date && <span className={ui.muted}>{formatDate(date)}</span>}
-                </span>
+              <li key={slot.treasure.id}>
+                <TreasureButton treasure={slot.treasure} size={36} className={styles.recentItem}>
+                  <span className={styles.recentText}>
+                    <strong>{slot.treasure.name}</strong>
+                    {date && <span className={ui.muted}>{formatDate(date)}</span>}
+                  </span>
+                </TreasureButton>
               </li>
             ))}
           </ul>

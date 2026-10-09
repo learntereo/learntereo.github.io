@@ -9,6 +9,7 @@ import type { UnitStatus } from '../../game/unitUnlock';
 import { TREASURE_COUNT, nextTreasure, rankFor, treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
 import { TitleBreakdown } from '../components/Breakdown';
 import { TreasureIcon } from '../components/Treasure';
+import { TreasureButton } from '../components/TreasureButton';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
@@ -48,40 +49,24 @@ function statusText(status: UnitStatus): string {
 }
 
 const SLOTS = treasureSlots(units);
+const GOLDEN = SLOTS[SLOTS.length - 1].treasure;
 
 /** A small, quiet node between unit rows: a grey silhouette until its unit is complete, then the treasure in colour. */
 function TreasureNode({ slot, unlocked }: { slot: TreasureSlot; unlocked: boolean }) {
-  const [open, setOpen] = useState(false);
+  const [hint, setHint] = useState(false);
   const { treasure, unit } = slot;
-  const captionId = `treasure-${treasure.id}`;
   return (
     <li className={styles.treasure}>
       {unlocked ? (
-        <>
-          <button
-            type="button"
-            className={styles.treasureButton}
-            aria-expanded={open}
-            aria-controls={captionId}
-            onClick={() => setOpen(!open)}
-          >
-            <TreasureIcon id={treasure.id} size={36} />
-            <span className={styles.treasureName}>{treasure.name}</span>
-          </button>
-          {open && (
-            <p id={captionId} className={styles.treasureCaption}>
-              {treasure.caption}
-            </p>
-          )}
-        </>
+        <TreasureButton treasure={treasure} size={36} className={styles.treasureButton}>
+          <span className={styles.treasureName}>{treasure.name}</span>
+        </TreasureButton>
       ) : (
-        <div className={styles.treasureButton} title="Keep going to unlock">
+        <button type="button" className={styles.treasureButton} onClick={() => setHint(!hint)} aria-expanded={hint}>
           <TreasureIcon id={treasure.id} size={36} locked />
-          <span className={styles.treasureName}>Keep going to unlock</span>
-          <span className={ui.visuallyHidden}>
-            Locked treasure. Finish {unit.title} to unlock.
-          </span>
-        </div>
+          <span className={styles.treasureName}>{hint ? `Finish ${unit.title} to unlock` : 'Keep going to unlock'}</span>
+          <span className={ui.visuallyHidden}>Locked treasure. Finish {unit.title} to unlock.</span>
+        </button>
       )}
     </li>
   );
@@ -180,7 +165,11 @@ function KiwianaCard() {
   const next = nextTreasure(SLOTS, statuses);
   return (
     <section className={`${ui.card} ${styles.kiwianaCard}`} aria-labelledby="kiwiana-title">
-      {next ? <TreasureIcon id={next.treasure.id} size={56} locked /> : <TreasureIcon id="golden-kiwi" size={56} />}
+      {next ? (
+        <TreasureIcon id={next.treasure.id} size={56} locked />
+      ) : (
+        <TreasureButton treasure={GOLDEN} size={56} className={styles.treasureButton} />
+      )}
       <div className={styles.kiwianaText}>
         <h2 id="kiwiana-title">Collect all {TREASURE_COUNT} kiwiana</h2>
         <p className={styles.kiwianaCount}>

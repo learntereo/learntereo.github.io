@@ -40,6 +40,8 @@ export type WriteVerdict =
   | { kind: 'macron' }
   /** A small slip in a longer answer. Counts as correct. */
   | { kind: 'typo' }
+  /** Another accepted form (see miAlt), not the one taught. Counts as correct. */
+  | { kind: 'alt' }
   | { kind: 'wrong' };
 
 export function markWrite(input: string, target: string): WriteVerdict {
@@ -54,6 +56,20 @@ export function markWrite(input: string, target: string): WriteVerdict {
   return { kind: 'wrong' };
 }
 
+/**
+ * Mark a written answer against a word or sentence: its canonical Māori (mi) or any
+ * of its accepted alternatives (miAlt), with the same macron and spelling rules.
+ * The canonical form wins when both would match.
+ */
+export function markWriteItem(input: string, item: { mi: string; miAlt?: readonly string[] }): WriteVerdict {
+  const main = markWrite(input, item.mi);
+  if (main.kind !== 'wrong') return main;
+  for (const alt of item.miAlt ?? []) {
+    if (markWrite(input, alt).kind !== 'wrong') return { kind: 'alt' };
+  }
+  return { kind: 'wrong' };
+}
+
 export function isWriteCorrect(verdict: WriteVerdict): boolean {
   return verdict.kind !== 'wrong';
 }
@@ -62,6 +78,7 @@ export function isWriteCorrect(verdict: WriteVerdict): boolean {
 export function writeNote(verdict: WriteVerdict, target: string): string | null {
   if (verdict.kind === 'macron') return `Correct, watch the macron: ${target}`;
   if (verdict.kind === 'typo') return `Correct, watch the spelling: ${target}`;
+  if (verdict.kind === 'alt') return `Correct. It is usually written: ${target}`;
   return null;
 }
 

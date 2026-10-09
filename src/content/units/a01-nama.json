@@ -55,6 +55,9 @@
       "kind": "word",
       "level": "advanced",
       "mi": "tekau mā tahi",
+      "miAlt": [
+        "e tekau mā tahi"
+      ],
       "en": [
         "eleven"
       ],
@@ -83,6 +86,9 @@
       "kind": "word",
       "level": "advanced",
       "mi": "tekau mā rima",
+      "miAlt": [
+        "e tekau mā rima"
+      ],
       "en": [
         "fifteen"
       ],
@@ -111,6 +117,9 @@
       "kind": "word",
       "level": "advanced",
       "mi": "rua tekau",
+      "miAlt": [
+        "e rua tekau"
+      ],
       "en": [
         "twenty"
       ],
@@ -134,6 +143,9 @@
       "kind": "word",
       "level": "advanced",
       "mi": "toru tekau",
+      "miAlt": [
+        "e toru tekau"
+      ],
       "en": [
         "thirty"
       ],
@@ -157,6 +169,9 @@
       "kind": "word",
       "level": "advanced",
       "mi": "whā tekau",
+      "miAlt": [
+        "e whā tekau"
+      ],
       "en": [
         "forty"
       ],
@@ -180,6 +195,9 @@
       "kind": "word",
       "level": "advanced",
       "mi": "rima tekau",
+      "miAlt": [
+        "e rima tekau"
+      ],
       "en": [
         "fifty"
       ],

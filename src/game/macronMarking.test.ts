@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { insertAtCursor, isWriteCorrect, markWrite, normaliseMaori, stripMacrons, writeNote } from './macronMarking';
+import { insertAtCursor, isWriteCorrect, markWrite, markWriteItem, normaliseMaori, stripMacrons, writeNote } from './macronMarking';
 
 describe('stripMacrons', () => {
   it('replaces every macron vowel, in both cases', () => {
@@ -75,5 +75,41 @@ describe('insertAtCursor (AC7)', () => {
 
   it('appends when there is no selection info', () => {
     expect(insertAtCursor('ma', null, null, 'ā')).toEqual({ value: 'maā', cursor: 3 });
+  });
+});
+
+describe('markWriteItem with alternatives', () => {
+  const hia = { mi: 'e hia', miAlt: ['hia'] };
+  const two = { mi: 'rua', miAlt: ['e rua'] };
+
+  it('accepts both "e hia" and "hia" for how many, and shows the canonical form for the alternative', () => {
+    expect(markWriteItem('e hia', hia).kind).toBe('exact');
+    expect(markWriteItem('E hia', hia).kind).toBe('exact');
+    const alt = markWriteItem('hia', hia);
+    expect(alt.kind).toBe('alt');
+    expect(isWriteCorrect(alt)).toBe(true);
+    expect(writeNote(alt, hia.mi)).toBe('Correct. It is usually written: e hia');
+  });
+
+  it('accepts "e rua" for two as well as "rua"', () => {
+    expect(markWriteItem('rua', two).kind).toBe('exact');
+    expect(isWriteCorrect(markWriteItem('e rua', two))).toBe(true);
+  });
+
+  it('applies the macron rule to alternatives', () => {
+    expect(isWriteCorrect(markWriteItem('e wha', { mi: 'whā', miAlt: ['e whā'] }))).toBe(true);
+    expect(isWriteCorrect(markWriteItem('E whā', { mi: 'whā', miAlt: ['e whā'] }))).toBe(true);
+  });
+
+  it('still rejects a wrong alternative or a different number', () => {
+    expect(isWriteCorrect(markWriteItem('e toru', two))).toBe(false);
+    expect(isWriteCorrect(markWriteItem('toru', two))).toBe(false);
+    expect(isWriteCorrect(markWriteItem('e aha', hia))).toBe(false);
+    expect(isWriteCorrect(markWriteItem('', hia))).toBe(false);
+  });
+
+  it('behaves like markWrite when there are no alternatives', () => {
+    expect(markWriteItem('kuri', { mi: 'kurī' }).kind).toBe('macron');
+    expect(markWriteItem('poaka', { mi: 'kurī' }).kind).toBe('wrong');
   });
 });

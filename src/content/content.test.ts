@@ -366,3 +366,49 @@ describe('breakdown text hygiene', () => {
     }
   });
 });
+
+describe('accepted alternatives (miAlt)', () => {
+  const withAlt = allItems.filter((i) => i.miAlt !== undefined);
+
+  it('are non-empty, differ from the canonical form and use only Māori letters', () => {
+    expect(withAlt.length).toBeGreaterThan(10);
+    for (const item of withAlt) {
+      expect(item.miAlt!.length, item.id).toBeGreaterThan(0);
+      for (const alt of item.miAlt!) {
+        expect(alt, item.id).toMatch(/^[A-Za-zāēīōūĀĒĪŌŪ ]+$/);
+        expect(strip(alt), item.id).not.toBe(strip(item.mi));
+      }
+    }
+  });
+
+  it('never clash with another word of the same level, so Write stays unambiguous', () => {
+    for (const level of LEVELS) {
+      const owner = new Map<string, string>();
+      for (const item of allItems.filter((i) => i.level === level && i.kind === 'word')) {
+        for (const form of [item.mi, ...(item.miAlt ?? [])]) {
+          const key = strip(form).normalize('NFD').replace(/[̀-ͯ]/g, '');
+          const other = owner.get(key);
+          expect(other === undefined || other === item.id, `${form} is used by ${other} and ${item.id}`).toBe(true);
+          owner.set(key, item.id);
+        }
+      }
+    }
+  });
+
+  it('gives how many as "e hia", with "hia" also accepted', () => {
+    const hia = itemsById.get('w-b-077')!;
+    expect(hia.mi).toBe('e hia');
+    expect(hia.miAlt).toEqual(['hia']);
+    expect(hia.breakdown?.tokens.map((t) => t.en)).toEqual(['(number marker)', 'how many']);
+    expect(hia.breakdown?.tokens[0].ref).toBe('e');
+    expect(hia.breakdown?.literal).toBe('how many');
+  });
+
+  it('lets the counting numbers be written with or without e', () => {
+    for (const id of ['w-b-031', 'w-b-032', 'w-b-033', 'w-b-034', 'w-b-035', 'w-b-036', 'w-b-037', 'w-b-038', 'w-b-039']) {
+      const item = itemsById.get(id)!;
+      expect(item.miAlt).toEqual([`e ${item.mi}`]);
+    }
+    expect(itemsById.get('w-b-030')!.miAlt).toEqual(['kotahi']);
+  });
+});
