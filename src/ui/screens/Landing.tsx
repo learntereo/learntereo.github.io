@@ -1,8 +1,11 @@
 import { useState, type FormEvent } from 'react';
 import { Link, Navigate } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
+import { unitsForLevel } from '../../content/content';
+import { LEVELS } from '../../game/types';
 import { isSupabaseConfigured } from '../../data/supabaseClient';
 import { KoruMark, KowhaiwhaiBorder } from '../components/Kowhaiwhai';
+import { LEVEL_LABEL } from '../labels';
 import styles from './Landing.module.css';
 
 type Mode = 'signin' | 'signup' | 'forgot';
@@ -10,6 +13,35 @@ type Mode = 'signin' | 'signup' | 'forgot';
 function errorMessage(err: unknown): string {
   if (err instanceof Error) return err.message;
   return 'Something went wrong. Please try again.';
+}
+
+/** Plain words about the course, in the page itself so search engines and screen readers get them. Mirrored in vite.config.ts for the pre-render. */
+function AboutAko() {
+  return (
+    <section className={styles.about} aria-labelledby="about-title">
+      <h2 id="about-title">
+        Learn te reo <span lang="mi">Māori</span>, free
+      </h2>
+      <p>
+        Ako is a free way to learn te reo <span lang="mi">Māori</span>. Short lessons that work on your phone, from beginner to advanced. Vocabulary,
+        sentences and pronunciation, made in New Zealand.
+      </p>
+      <div className={styles.levels}>
+        {LEVELS.map((level) => (
+          <div key={level}>
+            <h3>{LEVEL_LABEL[level]}</h3>
+            <ul className={styles.unitList}>
+              {unitsForLevel(level).map((u) => (
+                <li key={u.id}>
+                  {u.title} (<span lang="mi">{u.titleMi}</span>)
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export function Landing() {
@@ -144,6 +176,8 @@ export function Landing() {
           )}
         </form>
       </div>
+
+      <AboutAko />
 
       <p className={styles.footer}>
         <Link to="/privacy">Privacy</Link>
