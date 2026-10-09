@@ -1,0 +1,21 @@
+sdd:
+  initialized_by_plugin_version: "7.3.0"
+  updated_by_plugin_version: "7.3.0"
+  initialized_at: "2026-10-09 00:00:00Z"
+  updated_at: "2026-10-09 00:00:00Z"
+project:
+  name: language-learning-website
+  description: Ako: a public, mobile-friendly te reo Māori learning web app (React + Vite on GitHub Pages, Supabase auth/state)
+components:
+  - name: ako-webapp
+    type: webapp
+    path: "."
+    settings: { framework: react-vite-ts, router: hash, base: /language-learning-website/ }
+  - name: ako-database
+    type: database
+    path: supabase
+    settings: { provider: supabase, project_ref: zmdbimnvxpbmnctqefcu, migrations: supabase/migrations }
+  - name: ako-cicd
+    type: cicd
+    path: .github/workflows
+    settings: { ci: pull_request-to-main, deploy: push-to-main, target: github-pages }

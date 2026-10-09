@@ -1,0 +1,42 @@
+# Minimal Supabase CLI config for Ako. The linked project is selected at
+# deploy time via `supabase link --project-ref`, not by this file.
+# See https://supabase.com/docs/guides/local-development/cli/config
+project_id = "language-learning-website"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+major_version = 17
+
+[db.migrations]
+enabled = true
+
+[studio]
+enabled = true
+port = 54323
+
+[auth]
+enabled = true
+site_url = "http://127.0.0.1:5173"
+additional_redirect_urls = [
+  "http://127.0.0.1:5173/language-learning-website/",
+  "https://pattern-labs-foundation.github.io/language-learning-website/",
+]
+jwt_expiry = 3600
+enable_signup = true
+minimum_password_length = 6
+
+[auth.email]
+enable_signup = true
+enable_confirmations = true
+
+[auth.external.google]
+enabled = true
+client_id = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID)"
+secret = "env(SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET)"
