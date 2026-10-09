@@ -222,12 +222,46 @@ describe('GrammarNote', () => {
 describe('Kiwiana on the Path', () => {
   const nodes = () => [...container.querySelectorAll('li')].filter((li) => li.textContent?.includes('Keep going to unlock'));
 
-  it('sells the collection on Home: count, the next silhouette, what unlocks it and a link', () => {
+  const homeCard = () => container.querySelector('section[aria-labelledby="kiwiana-title"]')!;
+  const homeTiles = () => homeCard().querySelectorAll('ul li');
+
+  it('with nothing collected, the Home card shows the count, one padlock tile, the hint and the link', () => {
     renderAt('/home', appData());
-    expect(container.textContent).toContain('Collect all 20 kiwiana');
-    expect(container.textContent).toContain('0 / 20 collected');
-    expect(container.textContent).toContain('Finish Greetings and introductions to unlock it.');
-    expect(container.querySelector('a[href="/kiwiana"]')?.textContent).toBe('See your Kiwiana');
+    expect(homeCard().querySelector('h2')?.textContent).toBe('Your kiwiana');
+    expect(homeCard().textContent).toContain('0 / 20 collected');
+    expect(homeTiles()).toHaveLength(1);
+    expect(homeCard().querySelectorAll('svg[data-locked="true"]')).toHaveLength(1);
+    expect(homeCard().querySelector('button')).toBeNull();
+    expect(homeCard().textContent).toContain('Finish Greetings and introductions to unlock it.');
+    expect(homeCard().querySelector('a[href="/kiwiana"]')?.textContent).toBe('See your Kiwiana');
+  });
+
+  it('with three collected, the Home card lists them in order and then one padlock for the next', () => {
+    renderAt(
+      '/home',
+      appData({ unitProgress: [doneRow('b01-greetings'), doneRow('b02-whanau'), doneRow('b03-tatau')] }),
+    );
+    expect(homeCard().textContent).toContain('3 / 20 collected');
+    expect(homeTiles()).toHaveLength(4);
+    const names = [...homeCard().querySelectorAll('button')].map((b) => b.getAttribute('aria-label'));
+    expect(names).toEqual(['Read about Pāua', 'Read about Jandals', 'Read about Silver fern']);
+    expect(homeCard().querySelectorAll('svg[data-locked="true"]')).toHaveLength(1);
+    expect(homeCard().textContent).toContain('Finish Nature and colours to unlock it.');
+  });
+
+  it('with all 20 collected, the Home card lists every treasure and says all collected, with no padlock', () => {
+    renderAt('/home', appData({ unitProgress: units.map((u) => doneRow(u.id)) }));
+    expect(homeCard().textContent).toContain('20 / 20 collected');
+    expect(homeCard().querySelectorAll('button')).toHaveLength(20);
+    expect(homeCard().querySelectorAll('svg[data-locked="true"]')).toHaveLength(0);
+    expect(homeCard().textContent).toContain('All collected.');
+  });
+
+  it('opens the story from a collected icon on the Home card', () => {
+    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    act(() => void (homeCard().querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement).click());
+    const dialog = document.querySelector('[role="dialog"]')!;
+    expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
   });
 
   it('shows quiet locked nodes between unit rows for a new learner', () => {
@@ -357,7 +391,7 @@ describe('Every unlocked kiwiana opens its story', () => {
     expect(document.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
   });
 
-  it('opens from the Home card when everything is collected (the Golden kiwi)', () => {
+  it('opens the Golden kiwi from the Home card when everything is collected', () => {
     const all = units.map((u) => doneRow(u.id));
     renderAt('/home', appData({ unitProgress: all }));
     const button = container
