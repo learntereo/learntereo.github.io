@@ -46,14 +46,14 @@ Commit after each phase with a conventional message (`feat:`, `ci:`, `chore:`, `
    - `#/account`: sign out + Delete account (FR10.2), already wired to the RPC.
 3. **CI** `.github/workflows/ci.yml`: on `pull_request` to `main` (and `workflow_dispatch`). Job id **`ci`**: checkout, setup-node 22 with npm cache, `sh scripts/check-no-em-dash.sh` (no em dashes anywhere), `npm ci`, lint, typecheck, test, build (with the `VITE_*` vars from `vars.` context; the build must succeed even if they are empty).
 4. **Deploy** `.github/workflows/deploy.yml`: on `push` to `main` + `workflow_dispatch`. `permissions: contents: read, pages: write, id-token: write`. `concurrency: group: pages, cancel-in-progress: false`.
-   - Job `migrate`: `supabase/setup-cli@v1`, then `supabase link --project-ref ${{ vars.SUPABASE_PROJECT_REF }} -p "$SUPABASE_DB_PASSWORD"` and `supabase db push -p "$SUPABASE_DB_PASSWORD"`, with env `SUPABASE_ACCESS_TOKEN` and `SUPABASE_DB_PASSWORD` from secrets.
+   - Job `migrate`: `supabase/setup-cli@v1`, then `supabase db push --db-url postgresql://postgres.<ref>:<urlencoded pw>@<SUPABASE_DB_HOST>:5432/postgres` (session pooler, IPv4; no access token).
    - Job `build`: (needs migrate) checks + `npm run build` with `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` from `vars`, copy `dist/index.html` → `dist/404.html`, `actions/configure-pages@v5`, `actions/upload-pages-artifact@v3` (path `dist`).
    - Job `deploy`: (needs build) `environment: github-pages`, `actions/deploy-pages@v4`.
 5. **`docs/SETUP.md`**: exact click-by-click guide (§17 manual setup):
    - Supabase: API keys location; Auth → URL Configuration: Site URL `https://pattern-labs-foundation.github.io/language-learning-website/`, Redirect URLs that URL plus `http://localhost:5173/language-learning-website/`; Email provider on.
    - Google Cloud: OAuth consent screen (External, app name Ako, scopes email/profile/openid, privacy link to `…/#/privacy`), OAuth client type Web, Authorised JS origins `https://pattern-labs-foundation.github.io` and `http://localhost:5173`, redirect URI `https://zmdbimnvxpbmnctqefcu.supabase.co/auth/v1/callback`, then paste the ID and secret into Supabase → Auth → Providers → Google.
    - Supabase access token (Account → Access Tokens) and DB password for CI.
-   - GitHub: Pages source = GitHub Actions; repo variables `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `SUPABASE_PROJECT_REF=zmdbimnvxpbmnctqefcu`; secrets `SUPABASE_ACCESS_TOKEN`, `SUPABASE_DB_PASSWORD`; branch protection on `main` requiring PR + the `ci` check.
+   - GitHub: Pages source = GitHub Actions; repo variables `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `SUPABASE_PROJECT_REF=zmdbimnvxpbmnctqefcu`, `SUPABASE_DB_HOST`; secret `SUPABASE_DB_PASSWORD`; branch protection on `main` requiring PR + the `ci` check.
    - Local dev: copy `.env.example` → `.env.local`, `npm run dev`.
    - Manual verification checklist (AC2, AC3, AC20–AC23, AC25) and rollback SQL.
 6. Update `README.md`: what Ako is, stack, scripts, link to SETUP.md and the spec.
