@@ -36,8 +36,54 @@
 }
 
 .name {
+  display: block;
   margin: 0 0 var(--space-1);
+  font-family: var(--font-heading);
   font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.caption {
+  display: block;
+}
+
+/* An unlocked card is one big button. */
+.itemOpen {
+  padding: 0;
+  overflow: hidden;
+  transition: border-color var(--motion-duration) var(--motion-ease);
+}
+
+.itemOpen:hover,
+.itemOpen:focus-within {
+  border-color: var(--color-kokowai);
+}
+
+.cardButton {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+  min-height: var(--tap-target-min);
+  padding: var(--space-4);
+  border: none;
+  border-radius: inherit;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cardButton:hover {
+  background: var(--color-grey-100);
+}
+
+.cardButton:focus-visible {
+  outline: 3px solid var(--color-karaka);
+  outline-offset: -3px;
 }
 
 .text p {
@@ -50,19 +96,6 @@
   }
 }
 
-.nameButton {
-  display: inline;
-  min-height: var(--tap-target-min);
-  padding: 0;
-  border: none;
-  background: none;
-  color: var(--color-kokowai);
-  font: inherit;
-  font-weight: 700;
-  text-align: left;
-  text-decoration: underline;
-  cursor: pointer;
-}
 
 .rankLine {
   margin: 0;
@@ -77,10 +110,3 @@
   font-weight: 700;
 }
 
-.iconButton {
-  flex: none;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-}

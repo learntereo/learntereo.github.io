@@ -401,12 +401,22 @@ describe('Every unlocked kiwiana opens its story', () => {
     expect(document.querySelector('[role="dialog"]')?.textContent).toContain('kahu kiwi');
   });
 
-  it('opens from the icon on the Kiwiana page as well as the name', () => {
+  it('opens when the caption, name or icon of an unlocked Kiwiana card is clicked', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
-    const buttons = container.querySelectorAll('button[aria-label="Read about Pāua"]');
-    expect(buttons).toHaveLength(2);
-    act(() => void (buttons[0] as HTMLButtonElement).click());
-    expect(document.querySelector('[role="dialog"]')).not.toBeNull();
+    const card = container.querySelector('button[aria-label="Read about Pāua"]')!;
+    const caption = [...card.querySelectorAll('span')].find((s) => s.textContent?.startsWith('Pāua: the shell that shimmers'))!;
+    act(() => void caption.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+    expect(document.querySelector('[role="dialog"]')?.querySelector('h2')?.textContent).toBe('Pāua');
+  });
+
+  it('has one tab stop per unlocked Kiwiana card, and none for locked ones', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings'), doneRow('b02-whanau')] }));
+    const items = [...container.querySelectorAll('ul > li')];
+    expect(items).toHaveLength(20);
+    const focusables = (li: Element) => li.querySelectorAll('button, a[href], input, [tabindex]');
+    expect(focusables(items[0])).toHaveLength(1);
+    expect(focusables(items[1])).toHaveLength(1);
+    for (const li of items.slice(2)) expect(focusables(li)).toHaveLength(0);
   });
 });
 
@@ -432,7 +442,7 @@ describe('Kiwiana stories', () => {
   it('opens an unlocked treasure in a dialog, without the unlock heading', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
     expect(document.querySelector('[role="dialog"]')).toBeNull();
-    const open = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Pāua')!;
+    const open = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void open.click());
     const dialog = document.querySelector('[role="dialog"]')!;
     expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
