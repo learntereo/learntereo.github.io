@@ -21,7 +21,7 @@ describe('withRetry', () => {
       .mockRejectedValueOnce(new Error('b'))
       .mockRejectedValueOnce(new Error('c'))
       .mockResolvedValue('ok');
-    const sleep = vi.fn(noSleep);
+    const sleep = vi.fn((_ms: number) => noSleep());
     await expect(withRetry(fn, { sleep })).resolves.toBe('ok');
     expect(fn).toHaveBeenCalledTimes(4);
     expect(sleep.mock.calls.map((c) => c[0])).toEqual([500, 1000, 2000]);
