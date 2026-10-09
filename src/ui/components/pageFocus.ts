@@ -15,5 +15,6 @@ export function focusMain(): void {
   const main = mainElement();
   if (!main) return;
   main.setAttribute('tabindex', '-1');
-  main.focus();
+  main.focus({ preventScroll: true });
+  main.scrollIntoView?.({ block: 'start' });
 }

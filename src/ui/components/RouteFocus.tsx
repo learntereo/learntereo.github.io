@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router';
 import { focusMain, mainElement, pageTitle } from './pageFocus';
+import { scrollToTop } from './useScrollTop';
 
 /**
  * After each navigation, set the tab title from the page heading and move
@@ -9,6 +10,11 @@ import { focusMain, mainElement, pageTitle } from './pageFocus';
  */
 export function RouteFocus() {
   const { pathname } = useLocation();
+
+  // A new page starts at the top. Query-only changes (such as ?resume=1) keep the same pathname, so they do not scroll.
+  useLayoutEffect(() => {
+    scrollToTop();
+  }, [pathname]);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {

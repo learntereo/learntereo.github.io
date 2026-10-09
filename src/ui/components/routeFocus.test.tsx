@@ -2,7 +2,7 @@
 import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { MemoryRouter, Route, Routes, useNavigate } from 'react-router';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { pageTitle } from './pageFocus';
 import { RouteFocus, SkipLink } from './RouteFocus';
 
@@ -89,5 +89,53 @@ describe('RouteFocus and SkipLink', () => {
       );
     });
     expect(document.activeElement?.tagName).toBe('MAIN');
+  });
+});
+
+describe('scrolling to the top', () => {
+  it('scrolls to the top (instantly) when the page changes, not when only the query changes', async () => {
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+    act(() =>
+      root.render(
+        <MemoryRouter initialEntries={['/home']}>
+          <RouteFocus />
+          <Go to="/unit/b01" />
+          <Routes>
+            <Route path="/home" element={<main><h1>Home</h1></main>} />
+            <Route path="/unit/:id" element={<main><h1>Unit</h1></main>} />
+          </Routes>
+        </MemoryRouter>,
+      ),
+    );
+    scrollTo.mockClear();
+    act(() => {
+      [...container.querySelectorAll('button')].find((b) => b.textContent === 'go')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    expect(scrollTo).toHaveBeenCalledTimes(1);
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'instant' });
+    vi.unstubAllGlobals();
+  });
+
+  it('does not scroll for a query-only change on the same page', () => {
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+    act(() =>
+      root.render(
+        <MemoryRouter initialEntries={['/play']}>
+          <RouteFocus />
+          <Go to="/play?resume=1" />
+          <Routes>
+            <Route path="/play" element={<main><h1>Play</h1></main>} />
+          </Routes>
+        </MemoryRouter>,
+      ),
+    );
+    scrollTo.mockClear();
+    act(() => {
+      [...container.querySelectorAll('button')].find((b) => b.textContent === 'go')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    expect(scrollTo).not.toHaveBeenCalled();
+    vi.unstubAllGlobals();
   });
 });

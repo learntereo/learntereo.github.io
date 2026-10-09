@@ -463,3 +463,16 @@ describe('Kiwiana stories', () => {
     expect(new Set(itemButtons.map((b) => b.getAttribute('aria-label')))).toEqual(new Set(['Read about Pāua']));
   });
 });
+
+describe('Learn deck scrolling', () => {
+  it('scrolls to the top when moving to the next card', () => {
+    const scrollTo = vi.fn();
+    vi.stubGlobal('scrollTo', scrollTo);
+    renderAt('/unit/b01-greetings/learn', appData());
+    scrollTo.mockClear();
+    const next = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Next') as HTMLButtonElement;
+    act(() => void next.click());
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'instant' });
+    vi.unstubAllGlobals();
+  });
+});

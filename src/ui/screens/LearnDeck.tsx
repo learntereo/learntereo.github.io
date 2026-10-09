@@ -8,6 +8,7 @@ import { emptyUnitProgress, markLearned, saveUnitProgress } from '../../data/uni
 import { buildLearnCards, type LearnCard } from '../../game/learnDeck';
 import { Breakdown } from '../components/Breakdown';
 import { LiteralLine } from '../components/LiteralLine';
+import { useScrollTopOn } from '../components/useScrollTop';
 import { GrammarNote } from '../components/GrammarNote';
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
@@ -67,6 +68,7 @@ function Deck({ unitId }: { unitId: string }) {
   const [index, setIndex] = useState(0);
   const touchStart = useRef<number | null>(null);
   const savedRef = useRef(false);
+  useScrollTopOn(index);
   const card = cards[index];
   const last = cards.length - 1;
 
