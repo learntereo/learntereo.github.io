@@ -4,6 +4,7 @@ import { deleteBeforeCursor, insertAtCursor, isWriteCorrect, markWrite, writeNot
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
 import { BreakdownDisclosure } from '../components/Breakdown';
+import { LiteralLine } from '../components/LiteralLine';
 import { Feedback } from './Feedback';
 import { useKeyboardChoice } from './keyboardChoice';
 import { MaoriKeyboard } from './MaoriKeyboard';
@@ -89,6 +90,7 @@ export function Write({ question, onDone }: ModeProps) {
       <p className={ui.muted}>Write this in Māori:</p>
       {item.kind === 'word' && item.image && <ItemImageView item={item} size="large" />}
       <p className={styles.prompt}>{item.en[0]}</p>
+      <LiteralLine item={item} />
 
       <form className={styles.form} onSubmit={handleCheck}>
         <label className={ui.visuallyHidden} htmlFor="write-input">

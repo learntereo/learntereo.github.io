@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router';
 import { getItem, getUnit, nextUnit } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
@@ -8,6 +8,7 @@ import { TREASURES, TREASURE_COUNT } from '../../game/treasures';
 import { passMark } from '../../game/unitRound';
 import { KoruFlourish } from '../components/Kowhaiwhai';
 import { TreasureIcon } from '../components/Treasure';
+import { TreasureDialog } from '../components/TreasureDialog';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
 import styles from './Results.module.css';
@@ -23,11 +24,15 @@ function summaryOf(round: RoundRow): RoundSummary {
 }
 
 /** A small inline card for a newly unlocked treasure; the last one gets a bigger moment. */
-function TreasureUnlocked({ id }: { id: string }) {
+function TreasureUnlocked({ id, fresh, newRank }: { id: string; fresh: boolean; newRank?: string }) {
   const treasure = TREASURES.find((t) => t.id === id);
+  const [dialog, setDialog] = useState(fresh);
+  const close = useCallback(() => setDialog(false), []);
   if (!treasure) return null;
   const last = treasure.id === TREASURES[TREASURE_COUNT - 1].id;
   return (
+    <>
+      {dialog && <TreasureDialog treasure={treasure} mode="unlock" newRank={newRank} onClose={close} />}
     <section
       className={`${ui.card} ${styles.treasure} ${last ? styles.treasureBig : ''}`}
       aria-labelledby="treasure-title"
@@ -47,6 +52,7 @@ function TreasureUnlocked({ id }: { id: string }) {
         </Link>
       </div>
     </section>
+    </>
   );
 }
 
@@ -188,7 +194,7 @@ export function Results() {
         </section>
       )}
 
-      {isCheck && check?.passed && check.treasureId && <TreasureUnlocked id={check.treasureId} />}
+      {isCheck && check?.passed && check.treasureId && <TreasureUnlocked id={check.treasureId} fresh={passedRound !== undefined} newRank={check.newRank} />}
 
       <section className={`${ui.card} ${styles.score}`} aria-labelledby="results-title">
         <p className={ui.muted}>

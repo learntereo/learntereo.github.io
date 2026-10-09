@@ -21,6 +21,9 @@ import { roundPath } from '../paths';
 import { Home } from './Home';
 import { ReviewScreen, RoundScreen, UnitRoundScreen } from './RoundScreen';
 
+const toasts = vi.hoisted(() => [] as string[]);
+vi.mock('../../lib/toastBus', () => ({ showToast: (text: string) => void toasts.push(text) }));
+
 const mocks = vi.hoisted(() => ({
   completeRound: vi.fn(async () => {}),
   saveRoundState: vi.fn(async () => {}),
@@ -63,6 +66,7 @@ beforeEach(() => {
   document.body.appendChild(container);
   root = createRoot(container);
   Object.values(mocks).forEach((m) => m.mockClear());
+  toasts.length = 0;
   mocks.startRound.mockImplementation(async (_u: string, level: Level, mode: RoundMode, state: RoundState, unitId: string | null) =>
     row({ id: 'fresh', level, mode, unit_id: unitId, state, total: state.originalCount }),
   );
@@ -114,7 +118,7 @@ function freeRow(mode: Mode, level: Level = 'beginner'): RoundRow {
 function unitRow(kind: 'unit_practice' | 'unit_check'): RoundRow {
   const questions =
     kind === 'unit_practice'
-      ? generateUnitPractice(UNIT, units, allItems, new Set(), rng())
+      ? generateUnitPractice(UNIT, allItems, new Set(), rng())
       : generateUnitCheck(UNIT, allItems, rng());
   return row({ level: UNIT.level, mode: kind, unit_id: UNIT.id, state: serialiseRound(createRound(UNIT.level, kind, questions, UNIT.id)), total: questions.length });
 }
@@ -295,13 +299,12 @@ describe('Resume never silently does nothing', () => {
     }
   });
 
-  it('offers no dead Resume button for a round whose unit no longer exists', async () => {
+  it('closes a stale round whose unit no longer exists and starts the screen the learner opened', async () => {
     const gone = { ...unitRow('unit_practice'), unit_id: 'zz99-missing' };
     mount(data(gone), '/play/beginner/translate');
     await flush();
-    expect(container.textContent).toContain('Round in progress');
-    expect(buttonNamed('Resume round')).toBeUndefined();
-    expect(buttonNamed('Start a new round')).toBeDefined();
+    expect(mocks.abandonRound).toHaveBeenCalledWith('r1');
+    expect(playing()).toBe(true);
   });
 
   it('keeps the shared round current after each answer, so Resume on Home continues from there', async () => {
@@ -319,5 +322,109 @@ describe('Resume never silently does nothing', () => {
     click(buttonNamed('Continue'));
     await flush();
     expect(appData.setActiveRound).toHaveBeenCalledWith(expect.objectContaining({ id: 'r1', state: expect.objectContaining({ index: 1 }) }));
+  });
+});
+
+describe('Starting a round on purpose always starts that round', () => {
+  const b03 = 'b03-tatau';
+  const headerOf = () => container.querySelector('main')?.textContent ?? '';
+
+  it('closes an unfinished round of another unit and starts a fresh one, with a toast', async () => {
+    const other = { ...unitRow('unit_practice'), unit_id: 'b05-kararehe' };
+    mount(data(other), `/unit/${b03}/practice`);
+    await flush();
+    expect(mocks.abandonRound).toHaveBeenCalledWith('r1');
+    expect(mocks.startRound).toHaveBeenCalledTimes(1);
+    expect(mocks.startRound.mock.calls[0][4]).toBe(b03);
+    expect(toasts).toEqual(['Your unfinished Animals unit practice round was closed.']);
+    expect(playing()).toBe(true);
+    expect(headerOf()).toContain('Numbers 1 to 10 · Unit practice');
+    expect(headerOf()).not.toContain('Animals');
+  });
+
+  it('closes an unfinished free round when a unit practice is started', async () => {
+    mount(data(freeRow('write')), `/unit/${b03}/practice`);
+    await flush();
+    expect(toasts).toEqual(['Your unfinished Beginner Write round was closed.']);
+    expect(mocks.startRound.mock.calls[0][2]).toBe('unit_practice');
+    expect(headerOf()).toContain('Numbers 1 to 10 · Unit practice');
+  });
+
+  it('closes another round when the Kiwiz, a free round or a review is started', async () => {
+    const cases: [string, ReturnType<typeof data>][] = [
+      [`/unit/${b03}/check`, data(freeRow('mixed'), { unitProgress: [{ ...deckDone, unit_id: b03 }] })],
+      ['/play/beginner/gap', data(unitRow('unit_practice'))],
+      ['/review', data(freeRow('order'), { dueCount: 3 })],
+    ];
+    for (const [path, appData] of cases) {
+      mocks.startRound.mockClear();
+      mocks.abandonRound.mockClear();
+      toasts.length = 0;
+      mount(appData, path);
+      await flush();
+      expect(mocks.abandonRound, path).toHaveBeenCalledWith('r1');
+      expect(toasts.length, path).toBe(1);
+      if (path !== '/review') expect(mocks.startRound, path).toHaveBeenCalledTimes(1);
+      act(() => root.unmount());
+      root = createRoot(container);
+    }
+  });
+
+  it('never closes anything when nothing else is in progress', async () => {
+    mount(data(null), `/unit/${b03}/practice`);
+    await flush();
+    expect(mocks.abandonRound).not.toHaveBeenCalled();
+    expect(toasts).toEqual([]);
+    expect(mocks.startRound).toHaveBeenCalledTimes(1);
+  });
+
+  it('asks before replacing the very same round, and Start a new round closes it', async () => {
+    const same = unitRow('unit_practice');
+    mount(data({ ...same, unit_id: UNIT.id }), `/unit/${UNIT.id}/practice`);
+    await flush();
+    expect(container.textContent).toContain('Round in progress');
+    click(buttonNamed('Start a new round'));
+    await flush();
+    expect(mocks.abandonRound).toHaveBeenCalledWith('r1');
+    expect(playing()).toBe(true);
+  });
+
+  it('sends a resume link for a different round to the own screen of that round', async () => {
+    const b05 = unitsById.get('b05-kararehe')!;
+    const questions = generateUnitPractice(b05, allItems, new Set(), rng());
+    const other = row({
+      level: 'beginner',
+      mode: 'unit_practice',
+      unit_id: b05.id,
+      state: serialiseRound(createRound('beginner', 'unit_practice', questions, b05.id)),
+      total: questions.length,
+    });
+    mount(data(other), `/unit/${b03}/practice?resume=1`);
+    await flush();
+    // The round moves to its own route and plays under its own header. Nothing is closed.
+    expect(mocks.abandonRound).not.toHaveBeenCalled();
+    expect(mocks.startRound).not.toHaveBeenCalled();
+    expect(toasts).toEqual([]);
+    expect(playing()).toBe(true);
+    expect(container.querySelector('main')?.textContent).toContain('Animals · Unit practice');
+  });
+
+  it('refuses to show a stored round under the wrong unit even when its row says otherwise', async () => {
+    const row = unitRow('unit_practice'); // state is for i01-mahi
+    mount(data({ ...row, unit_id: UNIT.id, state: { ...(row.state as RoundState), unitId: 'b05-kararehe' } }), `/unit/${UNIT.id}/practice?resume=1`);
+    await flush();
+    expect(headerOf()).not.toContain('Animals');
+  });
+});
+
+describe('Resuming from Home lands on the right route', () => {
+  it('opens a unit practice round on its own unit, with that unit in the header', async () => {
+    await resumeFromHome(data(unitRow('unit_practice')));
+    expect(container.querySelector('main')?.textContent).toContain('Everyday actions · Unit practice');
+  });
+
+  it('opens a free round on its own level and game', async () => {
+    await resumeFromHome(data(freeRow('write')));
+    expect(container.querySelector('main')?.textContent).toContain('Beginner · Write');
   });
 });

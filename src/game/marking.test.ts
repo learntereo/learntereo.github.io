@@ -85,3 +85,63 @@ describe('isAnswerCorrect', () => {
     expect(isAnswerCorrect('  THE   Dgo?? ', dog)).toBe(true);
   });
 });
+
+describe('number words and digits', () => {
+  it('treats digits and number words as the same answer', () => {
+    expect(isAnswerCorrect('there are 10 fish', ['There are ten fish'])).toBe(true);
+    expect(isAnswerCorrect('There are ten fish', ['there are 10 fish'])).toBe(true);
+    expect(isAnswerCorrect('21 children', ['twenty-one children'])).toBe(true);
+    expect(isAnswerCorrect('twenty one children', ['21 children'])).toBe(true);
+    expect(isAnswerCorrect('a hundred birds', ['100 birds'])).toBe(true);
+    expect(isAnswerCorrect('100 birds', ['one hundred birds'])).toBe(true);
+    expect(isAnswerCorrect('1000', ['one thousand'])).toBe(true);
+    expect(isAnswerCorrect('a thousand', ['1000'])).toBe(true);
+    expect(isAnswerCorrect('15', ['fifteen'])).toBe(true);
+    expect(isAnswerCorrect('0', ['zero'])).toBe(true);
+  });
+
+  it('converts compounds and combinations', () => {
+    const n = (text: string) => normaliseAnswer(text);
+    expect(n('twenty-one')).toBe('21');
+    expect(n('ninety nine')).toBe('99');
+    expect(n('one hundred and five')).toBe('105');
+    expect(n('two hundred and fifty')).toBe('250');
+    expect(n('a hundred')).toBe('100');
+    expect(n('three thousand four hundred and twelve')).toBe('3412');
+    expect(n('eleven')).toBe('11');
+    expect(n('forty')).toBe('40');
+  });
+
+  it('keeps separate numbers separate', () => {
+    expect(normaliseAnswer('five six')).toBe('5 6');
+    expect(normaliseAnswer('ten ten')).toBe('10 10');
+    expect(normaliseAnswer('twenty twenty')).toBe('20 20');
+  });
+
+  it('keeps digits exact: a different number never passes', () => {
+    expect(isAnswerCorrect('there are 9 fish', ['there are ten fish'])).toBe(false);
+    expect(isAnswerCorrect('2', ['1'])).toBe(false);
+    expect(isAnswerCorrect('11', ['1'])).toBe(false);
+    expect(isAnswerCorrect('1', ['11'])).toBe(false);
+    expect(isAnswerCorrect('twenty', ['21'])).toBe(false);
+    expect(isAnswerCorrect('eleven', ['1'])).toBe(false);
+    expect(isAnswerCorrect('twenty', ['two'])).toBe(false);
+  });
+
+  it('still forgives a typo in the other words when the numbers match', () => {
+    expect(isAnswerCorrect('there are 10 fsh', ['There are ten fish'])).toBe(true);
+  });
+
+  it('leaves words that only contain a number word alone', () => {
+    expect(normaliseAnswer('someone')).toBe('someone');
+    expect(normaliseAnswer('tension')).toBe('tension');
+    expect(normaliseAnswer('the weight')).toBe('weight');
+  });
+
+  it('accepts the course answers for the big numbers', () => {
+    expect(isAnswerCorrect('11', ['eleven'])).toBe(true);
+    expect(isAnswerCorrect('50', ['fifty'])).toBe(true);
+    expect(isAnswerCorrect('1000', ['one thousand', 'a thousand'])).toBe(true);
+    expect(isAnswerCorrect('There are 15 children', ['There are fifteen children', 'Fifteen children'])).toBe(true);
+  });
+});

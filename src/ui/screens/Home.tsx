@@ -6,7 +6,7 @@ import { useAppData } from '../../data/AppDataContext';
 import { LEVELS, type Level } from '../../game/types';
 import { PASS_PERCENT, CHECK_SIZE, passMark } from '../../game/unitRound';
 import type { UnitStatus } from '../../game/unitUnlock';
-import { TREASURE_COUNT, nextTreasure, treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
+import { TREASURE_COUNT, nextTreasure, rankFor, treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
 import { TitleBreakdown } from '../components/Breakdown';
 import { TreasureIcon } from '../components/Treasure';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
@@ -79,7 +79,7 @@ function TreasureNode({ slot, unlocked }: { slot: TreasureSlot; unlocked: boolea
           <TreasureIcon id={treasure.id} size={36} locked />
           <span className={styles.treasureName}>Keep going to unlock</span>
           <span className={ui.visuallyHidden}>
-            Kiwiana treasure, locked. Pass the Kiwiz in {unit.title} to unlock.
+            Locked treasure. Finish {unit.title} to unlock.
           </span>
         </div>
       )}
@@ -184,7 +184,7 @@ function KiwianaCard() {
       <div className={styles.kiwianaText}>
         <h2 id="kiwiana-title">Collect all {TREASURE_COUNT} kiwiana</h2>
         <p className={styles.kiwianaCount}>
-          {count} / {TREASURE_COUNT} collected
+          {count} / {TREASURE_COUNT} collected <span className={styles.rankChip}>{rankFor(count).name}</span>
         </p>
         <p className={ui.muted}>{next ? `Finish ${next.unit.title} to unlock it.` : 'You have collected them all.'}</p>
         <Link to="/kiwiana">See your Kiwiana</Link>

@@ -154,4 +154,6 @@ export interface UnitCheckSummary {
   nextUnitId?: string;
   /** The kiwiana treasure this pass unlocked, when there is one. */
   treasureId?: string;
+  /** Set when that treasure took the learner to a new collector rank. */
+  newRank?: string;
 }

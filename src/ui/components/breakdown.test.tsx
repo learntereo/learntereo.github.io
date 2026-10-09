@@ -8,7 +8,9 @@ import { loadParticles } from '../../content/particles';
 import { searchParticles } from '../../game/glossarySearch';
 import type { Breakdown as BreakdownData } from '../../game/types';
 import { LittleWords } from '../screens/LittleWords';
+import { literalFor } from '../../game/display';
 import { Breakdown, BreakdownDisclosure, TitleBreakdown } from './Breakdown';
+import { LiteralLine } from './LiteralLine';
 
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -160,5 +162,38 @@ describe('Little words (AC5)', () => {
     const titles = [...container.querySelectorAll('li h2')].map((h) => h.textContent);
     expect(titles).toContain('ngā');
     expect(container.textContent).toContain('the (plural)');
+  });
+});
+
+describe('Literal meaning line', () => {
+  it('shows what kia ora literally means under its meaning', () => {
+    render(<LiteralLine item={itemsById.get('w-b-057')!} />);
+    expect(container.textContent).toBe('Literally: “be healthy, be well”');
+  });
+
+  it('shows the Tēnā koe family literally as "that (is) you"', () => {
+    expect(literalFor(itemsById.get('w-b-066')!)).toBe('that (is) you two');
+    expect(literalFor(itemsById.get('w-b-067')!)).toBe('that (is) you all');
+    const tena = itemsById.get('s-b-009')!.breakdown!;
+    expect(tena.tokens[0]).toMatchObject({ en: 'that (near you)', ref: 'tenei' });
+    expect(tena.literal).toBe('that (is) you');
+    expect(tena.note).toContain('respectful hello to one person');
+  });
+
+  it('shows nothing when the literal is the same as the meaning', () => {
+    const thousand = itemsById.get('w-a-008')!;
+    expect(thousand.breakdown?.literal?.toLowerCase()).toBe(thousand.en[0].toLowerCase());
+    render(<LiteralLine item={thousand} />);
+    expect(container.textContent).toBe('');
+  });
+
+  it('shows nothing for single words and for sentences (they have the Word by word panel)', () => {
+    expect(literalFor(itemsById.get('w-b-059')!)).toBeUndefined();
+    expect(literalFor(itemsById.get('s-b-001')!)).toBeUndefined();
+  });
+
+  it('ignores case and punctuation when comparing', () => {
+    expect(literalFor({ kind: 'word', en: ['Hello!'], breakdown: { literal: 'hello' } })).toBeUndefined();
+    expect(literalFor({ kind: 'word', en: ['hello'], breakdown: { literal: 'be well' } })).toBe('be well');
   });
 });

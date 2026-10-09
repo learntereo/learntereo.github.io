@@ -26,7 +26,7 @@ import { REVIEW_LIMIT, applySrs, selectDue } from '../../game/srs';
 import { displayStreak, nextStreak, toLocalDateString } from '../../game/streak';
 import type { Level, Mode, Outcome, Question, RoundMode, RoundState, RoundSummary, Unit, UnitCheckSummary } from '../../game/types';
 import { generateUnitCheck, generateUnitPractice, isPass, missedItemIds } from '../../game/unitRound';
-import { newlyUnlockedTreasureIds, treasureSlots } from '../../game/treasures';
+import { newlyUnlockedTreasureIds, rankUp, treasureSlots, unlockedTreasureIds } from '../../game/treasures';
 import { computeUnitStatuses, newlyUnlockedUnitIds } from '../../game/unitUnlock';
 import { xpForRound } from '../../game/xp';
 import { showToast } from '../../lib/toastBus';
@@ -122,6 +122,14 @@ export function ReviewScreen() {
   return <Round key="review" spec={{ kind: 'review' }} />;
 }
 
+/** A short name for a stored round, for messages: "Family unit practice" or "Beginner Write". */
+function describeRound(row: RoundRow): string {
+  if (row.mode === 'review') return 'Review';
+  const unit = getUnit(row.unit_id ?? undefined);
+  if (unit) return `${unit.title} ${ROUND_MODE_LABEL[row.mode].toLowerCase()}`;
+  return `${LEVEL_LABEL[row.level]} ${ROUND_MODE_LABEL[row.mode]}`;
+}
+
 function Round({ spec }: { spec: RoundSpec }) {
   const level = specLevel(spec);
   const roundMode = specMode(spec);
@@ -145,7 +153,7 @@ function Round({ spec }: { spec: RoundSpec }) {
 
   function buildQuestions(): Question[] {
     const rng = createRng(randomSeed());
-    if (spec.kind === 'practice') return generateUnitPractice(spec.unit, units, allItems, learned, rng);
+    if (spec.kind === 'practice') return generateUnitPractice(spec.unit, allItems, learned, rng);
     if (spec.kind === 'check') return generateUnitCheck(spec.unit, allItems, rng);
     if (spec.kind === 'review') {
       const due = selectDue(progress.values(), toLocalDateString(new Date()), REVIEW_LIMIT, isKnownItem);
@@ -201,6 +209,10 @@ function Round({ spec }: { spec: RoundSpec }) {
         firstCompletion: passed && statuses.get(unit.id)?.state !== 'complete',
         nextUnitId: newlyUnlockedUnitIds(statuses, after)[0],
         treasureId: newlyUnlockedTreasureIds(treasureSlots(units), statuses, after)[0],
+        newRank: rankUp(
+          unlockedTreasureIds(treasureSlots(units), statuses).size,
+          unlockedTreasureIds(treasureSlots(units), after).size,
+        )?.name,
       };
       data.setUnitProgress(updated);
       void saveQueue.enqueue(`unit:${unit.id}`, () => saveUnitProgress(updated));
@@ -260,6 +272,8 @@ function Round({ spec }: { spec: RoundSpec }) {
       const row = await startRound(user.id, roundLevel, roundMode, serialiseRound(state), unit?.id ?? null);
       data.setActiveRound(row);
       setPhase({ kind: 'playing', roundId: row.id, state });
+      // A reload now continues this round instead of asking again.
+      navigate({ search: '?resume=1' }, { replace: true });
     } catch (error) {
       if (error instanceof RoundConflictError) {
         try {
@@ -279,7 +293,15 @@ function Round({ spec }: { spec: RoundSpec }) {
   }
 
   async function resume(row: RoundRow) {
-    const state = validateRoundState(row.state, itemsById);
+    const checked = validateRoundState(row.state, itemsById);
+    // A round's questions only ever show on the screen of its own unit, game and level.
+    const state =
+      checked &&
+      checked.mode === roundMode &&
+      (checked.unitId ?? null) === (unit?.id ?? null) &&
+      (spec.kind !== 'free' || checked.level === level)
+        ? checked
+        : null;
     if (!state) {
       try {
         await abandonRound(row.id);
@@ -296,6 +318,20 @@ function Round({ spec }: { spec: RoundSpec }) {
       return;
     }
     setPhase({ kind: 'playing', roundId: row.id, state });
+  }
+
+  /** Starting a round on purpose closes whatever else was in progress, and says so. */
+  async function closeOtherAndStart(row: RoundRow) {
+    try {
+      await abandonRound(row.id);
+    } catch (error) {
+      console.error('Could not close the old round', error);
+      setPhase({ kind: 'error', message: 'We could not close your unfinished round. Please try again.' });
+      return;
+    }
+    data.setActiveRound(null);
+    showToast(`Your unfinished ${describeRound(row)} round was closed.`, 'info');
+    await startFresh();
   }
 
   async function discardAndStart(row: RoundRow) {
@@ -318,12 +354,18 @@ function Round({ spec }: { spec: RoundSpec }) {
     const sameRound = activeRound !== null && matches(activeRound);
     // Start-up work depends on loaded data and runs exactly once per visit.
     /* eslint-disable react-hooks/set-state-in-effect */
-    if (activeRound && wantsResume && sameRound) {
-      void resume(activeRound);
-    } else if (activeRound) {
-      setPhase({ kind: 'conflict', existing: activeRound });
-    } else {
+    if (!activeRound) {
       void startFresh();
+    } else if (sameRound) {
+      // The same round again: continue it when asked to, otherwise let the learner choose.
+      if (wantsResume) void resume(activeRound);
+      else setPhase({ kind: 'conflict', existing: activeRound });
+    } else if (wantsResume && canResume(activeRound)) {
+      // A resume link for a different round: go to that round's own screen.
+      navigate(roundPath(activeRound, true), { replace: true });
+    } else {
+      // Starting this round on purpose: any other unfinished round is closed.
+      void closeOtherAndStart(activeRound);
     }
     /* eslint-enable react-hooks/set-state-in-effect */
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -394,11 +436,7 @@ function Round({ spec }: { spec: RoundSpec }) {
               <button
                 type="button"
                 className={ui.button}
-                onClick={() => {
-                  // Already on this round's screen: continue it here (navigating to the same address would do nothing).
-                  if (matches(existing)) void resume(existing);
-                  else navigate(roundPath(existing, true), { replace: true });
-                }}
+                onClick={() => void resume(existing)}
               >
                 Resume round
               </button>
@@ -419,6 +457,7 @@ function Round({ spec }: { spec: RoundSpec }) {
   const question = currentQuestion(state);
   if (!question) return null;
   const progressInfo = progressOf(state);
+  const headerTitle = state.mode === 'review' ? 'Review' : `${state.unitId ? (getUnit(state.unitId)?.title ?? '') : LEVEL_LABEL[state.level]} · ${ROUND_MODE_LABEL[state.mode]}`;
   const label = progressInfo.review
     ? `Review ${progressInfo.reviewPosition} of ${progressInfo.reviewTotal}`
     : `${progressInfo.position} / ${progressInfo.total}`;
@@ -440,7 +479,7 @@ function Round({ spec }: { spec: RoundSpec }) {
           Save and exit
         </Link>
         <span className={ui.muted}>
-          {spec.kind === 'review' ? 'Review' : `${unit ? unit.title : LEVEL_LABEL[level]} · ${ROUND_MODE_LABEL[roundMode]}`}
+          {headerTitle}
         </span>
       </div>
 

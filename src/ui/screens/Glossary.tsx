@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import { getItem, isWord, units } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
+import { literalFor } from '../../game/display';
 import { glossaryEntries, searchGlossary } from '../../game/glossarySearch';
 import { BreakdownDisclosure } from '../components/Breakdown';
 import ui from '../components/ui.module.css';
@@ -65,7 +66,14 @@ export function Glossary() {
             <span className={styles.entryMi} lang="mi">
               {entry.mi}
             </span>
-            <span>{entry.en[0]}</span>
+            <span>
+              {entry.en[0]}
+              {literalFor({ kind: 'word', en: entry.en, breakdown: entry.breakdown }) && (
+                <span className={styles.entryLiteral}>
+                  Literally: &ldquo;{entry.breakdown?.literal}&rdquo;
+                </span>
+              )}
+            </span>
             <span className={styles.tick}>
               {learned.has(entry.id) ? (
                 <>

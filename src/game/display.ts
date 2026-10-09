@@ -12,3 +12,22 @@ export function capitaliseFirst(text: string): string {
 export function sentenceFromTiles(tiles: readonly string[]): string {
   return capitaliseFirst(tiles.join(' '));
 }
+
+const looseText = (s: string) =>
+  s
+    .normalize('NFC')
+    .toLowerCase()
+    .replace(/[\p{P}\p{S}]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+/**
+ * The word-for-word meaning of a multi-word word item (such as kia ora, "be
+ * healthy, be well"), when it differs from the English meaning shown for it.
+ */
+export function literalFor(item: { kind: string; en: readonly string[]; breakdown?: { literal?: string } }): string | undefined {
+  if (item.kind !== 'word') return undefined;
+  const literal = item.breakdown?.literal?.trim();
+  if (!literal) return undefined;
+  return looseText(literal) === looseText(item.en[0] ?? '') ? undefined : literal;
+}

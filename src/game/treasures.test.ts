@@ -4,7 +4,12 @@ import {
   TREASURES,
   TREASURE_COUNT,
   newlyUnlockedTreasureIds,
+  nextRank,
   nextTreasure,
+  nextTreasureProgress,
+  rankFor,
+  rankUp,
+  recentTreasures,
   treasureAfter,
   treasureSlots,
   unlockedTreasureIds,
@@ -126,5 +131,133 @@ describe('nextTreasure', () => {
 
   it('is undefined when everything is collected', () => {
     expect(nextTreasure(slots, statuses(list, list.map((u) => u.id)))).toBeUndefined();
+  });
+});
+
+describe('treasure stories', () => {
+  it('has a story of two to four short sentences for each of the 20 treasures', () => {
+    for (const t of TREASURES) {
+      const sentences = t.story.split(/(?<=[.!?])\s+/);
+      expect(sentences.length, t.id).toBeGreaterThanOrEqual(2);
+      expect(sentences.length, t.id).toBeLessThanOrEqual(4);
+      expect(t.story.length, t.id).toBeLessThan(420);
+    }
+  });
+
+  it('says New Zealand in English text, never Aotearoa, and has no em dashes', () => {
+    for (const t of TREASURES) {
+      const all = t.name + t.caption + t.story;
+      expect(all, t.id).not.toMatch(/Aotearoa/);
+      expect(all, t.id).not.toContain(EM_DASH);
+    }
+  });
+
+  it('phrases disputed origins carefully', () => {
+    const story = (id: string) => TREASURES.find((t) => t.id === id)!.story;
+    expect(story('pavlova')).toContain('Both countries claim');
+    expect(story('jandals')).toContain('often said');
+    expect(story('silver-fern')).toContain('often said');
+  });
+});
+
+describe('collector rank', () => {
+  it('follows the agreed thresholds', () => {
+    const name = (n: number) => rankFor(n).name;
+    expect([0, 1, 4, 5, 9, 10, 14, 15, 19, 20].map(name)).toEqual([
+      'Ready to start',
+      'Kiwiana rookie',
+      'Kiwiana rookie',
+      'Explorer',
+      'Explorer',
+      'Collector',
+      'Collector',
+      'Treasure hunter',
+      'Treasure hunter',
+      'Kiwiana legend',
+    ]);
+  });
+
+  it('says what the next rank is and how many more treasures it needs', () => {
+    expect(nextRank(0)).toMatchObject({ rank: { name: 'Kiwiana rookie' }, needed: 1 });
+    expect(nextRank(3)).toMatchObject({ rank: { name: 'Explorer' }, needed: 2 });
+    expect(nextRank(19)).toMatchObject({ rank: { name: 'Kiwiana legend' }, needed: 1 });
+    expect(nextRank(20)).toBeUndefined();
+  });
+
+  it('reports a rank-up only when a threshold is crossed', () => {
+    expect(rankUp(0, 1)?.name).toBe('Kiwiana rookie');
+    expect(rankUp(4, 5)?.name).toBe('Explorer');
+    expect(rankUp(5, 6)).toBeUndefined();
+    expect(rankUp(19, 20)?.name).toBe('Kiwiana legend');
+    expect(rankUp(3, 3)).toBeUndefined();
+  });
+});
+
+describe('next treasure progress', () => {
+  const list = fakeUnits(22);
+
+  it('uses the learned items of the unit before the next treasure', () => {
+    const two = list.map((u) => ({ ...u, itemIds: [`${u.id}a`, `${u.id}b`] }));
+    const map = computeUnitStatuses(two, {
+      unitProgress: new Map([['u1', done('u1')]]),
+      learned: new Set(['u2a']),
+      beginnerCompleted: false,
+    });
+    const progress = nextTreasureProgress(treasureSlots(two), map);
+    expect(progress?.slot.treasure.id).toBe('jandals');
+    expect(progress).toMatchObject({ learned: 1, total: 2, ready: false });
+  });
+
+  it('is ready when every item of the unit is learned but the Kiwiz is not passed', () => {
+    const two = list.map((u) => ({ ...u, itemIds: [`${u.id}a`, `${u.id}b`] }));
+    // A unit whose items are all learned counts as complete, so ready only shows for a deck with an unlearned sentence.
+    const map = computeUnitStatuses(two, {
+      unitProgress: new Map([['u1', done('u1')]]),
+      learned: new Set(['u2a', 'u2b']),
+      beginnerCompleted: false,
+    });
+    expect(nextTreasureProgress(treasureSlots(two), map)?.slot.treasure.id).toBe('silver-fern');
+  });
+
+  it('is not ready while items are still to learn, and is undefined once everything is collected', () => {
+    const two = list.map((u) => ({ ...u, itemIds: [`${u.id}a`, `${u.id}b`] }));
+    const twoSlots = treasureSlots(two);
+    const map = computeUnitStatuses(two, { unitProgress: new Map(), learned: new Set(['u1a']), beginnerCompleted: false });
+    expect(nextTreasureProgress(twoSlots, map)).toMatchObject({ learned: 1, total: 2, ready: false });
+    const all = computeUnitStatuses(two, {
+      unitProgress: new Map(two.map((u) => [u.id, done(u.id)])),
+      learned: new Set(),
+      beginnerCompleted: false,
+    });
+    expect(nextTreasureProgress(twoSlots, all)).toBeUndefined();
+  });
+});
+
+describe('recently unlocked', () => {
+  const list = fakeUnits(22);
+  const slots = treasureSlots(list);
+
+  it('lists the last three unlocked, newest first, with their dates', () => {
+    const map = statuses(list, ['u1', 'u2', 'u3', 'u4']);
+    const dates = new Map([
+      ['u1', '2026-10-01T00:00:00Z'],
+      ['u2', '2026-10-02T00:00:00Z'],
+      ['u3', '2026-10-04T00:00:00Z'],
+      ['u4', '2026-10-03T00:00:00Z'],
+    ]);
+    const recent = recentTreasures(slots, map, dates);
+    expect(recent.map((r) => r.slot.treasure.id)).toEqual(['silver-fern', 'pohutukawa', 'jandals']);
+    expect(recent[0].date).toBe('2026-10-04T00:00:00Z');
+  });
+
+  it('puts treasures without a completion date after dated ones', () => {
+    const map = statuses(list, [], true);
+    const recent = recentTreasures(slots, map, new Map([['u2', '2026-10-02T00:00:00Z']]));
+    expect(recent.map((r) => r.slot.treasure.id)).toEqual(['jandals', 'hokey-pokey', 'fish-and-chips']);
+    expect(recent[1].date).toBeNull();
+  });
+
+  it('is empty when nothing is unlocked', () => {
+    expect(recentTreasures(slots, statuses(list, []), new Map())).toEqual([]);
   });
 });

@@ -245,7 +245,7 @@ describe('Kiwiana on the Path', () => {
     expect(paua.getAttribute('aria-expanded')).toBe('false');
     act(() => void paua.click());
     expect(paua.getAttribute('aria-expanded')).toBe('true');
-    expect(container.textContent).toContain("the shimmering shell of Aotearoa's rocky shores");
+    expect(container.textContent).toContain("the shimmering shell of New Zealand's rocky shores");
   });
 
   it('unlocks treasures at once for units complete through the PoC rule', () => {
@@ -262,11 +262,58 @@ describe('Kiwiana on the Path', () => {
   });
 });
 
+describe('Locked kiwiana reveal nothing', () => {
+  const LOCKED_NAMES = ['Jandals', 'Silver fern', 'Gumboot', 'Pavlova', 'Tūī', 'Wētā', 'Tuatara', 'Golden kiwi', 'Number 8 wire'];
+  const lockedTiles = () => container.querySelectorAll('svg[data-locked="true"]');
+
+  it('shows only a padlock tile, no name and no caption, for every locked treasure on the Kiwiana page', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(lockedTiles()).toHaveLength(19);
+    for (const name of LOCKED_NAMES) expect(container.textContent).not.toContain(name);
+    expect(container.textContent).not.toContain('flip-flops');
+    expect(container.textContent).toContain('???');
+    expect(container.textContent).toContain('Locked treasure. Finish Family to unlock.');
+    expect(container.textContent).toContain('Next treasure. Locked treasure. Finish Family to unlock.');
+  });
+
+  it('draws no treasure artwork for a locked tile (only a padlock)', () => {
+    renderAt('/kiwiana', appData());
+    const tile = lockedTiles()[0];
+    expect(tile.querySelectorAll('ellipse, circle')).toHaveLength(1); // the padlock keyhole only
+    expect(container.textContent).not.toContain('Pāua');
+  });
+
+  it('keeps the Home card, the Unit screen and the Path quiet about what is locked', () => {
+    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(lockedTiles().length).toBeGreaterThan(10);
+    for (const name of LOCKED_NAMES) expect(container.textContent).not.toContain(name);
+    expect(container.textContent).toContain('Locked treasure. Finish Family to unlock.');
+  });
+
+  it('shows a padlock tile, not the treasure, on the Unit screen until the unit is complete', () => {
+    renderAt('/unit/b01-greetings', appData());
+    expect(lockedTiles()).toHaveLength(1);
+    expect(container.textContent).not.toContain('Pāua');
+  });
+});
+
+describe('Kiwiana ranks', () => {
+  it('shows the rank on the Kiwiana page', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.textContent).toContain('Rank: Kiwiana rookie');
+  });
+
+  it('shows a rank chip on the Home card', () => {
+    renderAt('/home', appData({ beginnerCompleted: true }));
+    expect(container.querySelector('section[aria-labelledby="kiwiana-title"]')?.textContent).toContain('Explorer');
+  });
+});
+
 describe('Kiwiana page', () => {
   it('shows N / 20, a progress bar and all twenty treasures', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
     expect(container.querySelector('h1')?.textContent).toBe('Kiwiana');
-    expect(container.textContent).toContain('Finish units to collect treasures from Aotearoa New Zealand.');
+    expect(container.textContent).toContain('Finish units to collect treasures from New Zealand.');
     expect(container.textContent).toContain('1 / 20 collected');
     expect(container.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('1');
     expect(container.querySelectorAll('ul li')).toHaveLength(20);
@@ -278,8 +325,43 @@ describe('Kiwiana page', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
     expect(container.textContent).toContain('Finish Family to unlock');
     const next = container.querySelector('li[aria-current="step"]');
-    expect(next?.textContent).toContain('Next up');
+    expect(next?.textContent).toContain('Next: ???');
     expect(next?.textContent).toContain('Finish Family to unlock');
     expect(container.querySelectorAll('li[aria-current="step"]')).toHaveLength(1);
+  });
+});
+
+describe('Literal meaning on the Learn card', () => {
+  it('shows what kia ora literally means right under hello, not behind a toggle', () => {
+    renderAt('/unit/b01-greetings/learn', appData());
+    expect(container.textContent).toContain('hello');
+    expect(container.textContent).toContain('Literally: “be healthy, be well”');
+    expect(container.querySelector('details')).toBeNull();
+  });
+});
+
+describe('Kiwiana stories', () => {
+  it('opens an unlocked treasure in a dialog, without the unlock heading', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    const open = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Pāua')!;
+    act(() => void open.click());
+    const dialog = container.querySelector('[role="dialog"]')!;
+    expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
+    expect(dialog.textContent).toContain('eyes of carved figures');
+    expect(dialog.querySelectorAll('svg[data-locked="true"]')).toHaveLength(0);
+    act(() => {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    });
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+  });
+
+  it('never shows the story of a locked treasure, and only the unlocked one is a button', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.textContent).not.toContain('Taihape');
+    expect(container.textContent).not.toContain('Anna Pavlova');
+    expect(container.textContent).not.toContain('Hine-nui-te-p');
+    const itemButtons = [...container.querySelectorAll('ul button')];
+    expect(itemButtons.map((b) => b.textContent)).toEqual(['Pāua']);
   });
 });

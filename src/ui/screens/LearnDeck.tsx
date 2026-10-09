@@ -7,6 +7,7 @@ import { saveQueue } from '../../data/saveQueue';
 import { emptyUnitProgress, markLearned, saveUnitProgress } from '../../data/unitProgressRepo';
 import { buildLearnCards, type LearnCard } from '../../game/learnDeck';
 import { Breakdown } from '../components/Breakdown';
+import { LiteralLine } from '../components/LiteralLine';
 import { GrammarNote } from '../components/GrammarNote';
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
@@ -27,6 +28,7 @@ function WordCard({ card }: { card: Extract<LearnCard, { kind: 'word' }> }) {
         {word.mi}
       </p>
       <p className={styles.en}>{word.en[0]}</p>
+      <LiteralLine item={word} />
       {word.en.length > 1 && <p className={styles.alt}>Also: {word.en.slice(1).join(', ')}</p>}
       {word.breakdown && (
         <div className={styles.breakdown}>

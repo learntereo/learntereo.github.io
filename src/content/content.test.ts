@@ -352,3 +352,17 @@ describe('particles dictionary', () => {
     expect(referenced.size).toBeGreaterThan(15);
   });
 });
+
+describe('breakdown text hygiene', () => {
+  it('has no stray separators or empty literals or notes', () => {
+    for (const item of allItems) {
+      const b = item.breakdown;
+      if (!b) continue;
+      for (const text of [b.literal, b.note]) {
+        if (text === undefined) continue;
+        expect(text.trim().length, item.id).toBeGreaterThan(0);
+        expect(text, item.id).not.toMatch(/\|/);
+      }
+    }
+  });
+});
