@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router';
 import type { Treasure } from '../../game/treasures';
 import { TreasureIcon } from './Treasure';
@@ -71,7 +72,8 @@ export function TreasureDialog({ treasure, mode, newRank, onClose }: Props) {
     };
   }, [onClose]);
 
-  return (
+  // Rendered on <body> so no card, list or transform on the page can stack above it.
+  return createPortal(
     <div
       className={styles.overlay}
       onMouseDown={(e) => {
@@ -130,6 +132,7 @@ export function TreasureDialog({ treasure, mode, newRank, onClose }: Props) {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

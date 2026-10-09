@@ -174,12 +174,12 @@ describe('Results: unlock dialog', () => {
       round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true, treasureId: 'paua' } }),
       ['b01-greetings'],
     );
-    const dialog = container.querySelector('[role="dialog"]')!;
+    const dialog = document.querySelector('[role="dialog"]')!;
     expect(dialog.textContent).toContain('You unlocked: Pāua!');
     expect(dialog.textContent).toContain('set pāua into carvings');
     const close = [...dialog.querySelectorAll('button')].find((b) => b.textContent === 'Ka pai!')!;
     act(() => void close.click());
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
     expect(container.textContent).toContain('New kiwiana: Pāua!');
   });
 
@@ -189,17 +189,17 @@ describe('Results: unlock dialog', () => {
       ['b01-greetings'],
     );
     act(() => {
-      [...container.querySelectorAll('[role="dialog"] button')].find((b) => b.textContent === 'Ka pai!')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      [...document.querySelectorAll('[role="dialog"] button')].find((b) => b.textContent === 'Ka pai!')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
     const icon = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void icon.click());
-    const dialog = container.querySelector('[role="dialog"]')!;
+    const dialog = document.querySelector('[role="dialog"]')!;
     expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
   });
 
   it('has no dialog when nothing was unlocked', () => {
     renderResults(round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true } }), ['b01-greetings']);
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
   });
 });

@@ -32,7 +32,7 @@ const show = (id: string, mode: 'unlock' | 'view', onClose = () => {}) =>
       </MemoryRouter>,
     ),
   );
-const dialog = () => container.querySelector('[role="dialog"]') as HTMLElement;
+const dialog = () => document.querySelector('[role="dialog"]') as HTMLElement;
 
 describe('TreasureDialog', () => {
   it('is a modal dialog labelled by its heading, with the name, caption and story', () => {

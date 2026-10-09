@@ -241,7 +241,7 @@ describe('Kiwiana on the Path', () => {
     const locked = [...container.querySelectorAll('li button')].find((b) => b.textContent?.includes('Keep going to unlock')) as HTMLButtonElement;
     act(() => void locked.click());
     expect(locked.textContent).toContain('Finish Greetings and introductions to unlock');
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
   });
 
   it('unlocks the first treasure after unit 1 and a tap shows its caption', () => {
@@ -249,10 +249,10 @@ describe('Kiwiana on the Path', () => {
     expect(nodes()).toHaveLength(19);
     expect(container.textContent).toContain('1 / 20 collected');
     expect(container.textContent).toContain('Finish Family to unlock it.');
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
     const paua = container.querySelector('li button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void paua.click());
-    const dialog = container.querySelector('[role="dialog"]')!;
+    const dialog = document.querySelector('[role="dialog"]')!;
     expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
     expect(dialog.textContent).toContain('shining eyes');
     expect(dialog.querySelectorAll('svg[data-locked="true"]')).toHaveLength(0);
@@ -354,7 +354,7 @@ describe('Every unlocked kiwiana opens its story', () => {
     renderAt('/unit/b01-greetings', appData({ unitProgress: [doneRow('b01-greetings')] }));
     const button = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void button.click());
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
+    expect(document.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
   });
 
   it('opens from the Home card when everything is collected (the Golden kiwi)', () => {
@@ -364,7 +364,7 @@ describe('Every unlocked kiwiana opens its story', () => {
       .querySelector('section[aria-labelledby="kiwiana-title"]')!
       .querySelector('button[aria-label="Read about Golden kiwi"]') as HTMLButtonElement;
     act(() => void button.click());
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('kahu kiwi');
+    expect(document.querySelector('[role="dialog"]')?.textContent).toContain('kahu kiwi');
   });
 
   it('opens from the icon on the Kiwiana page as well as the name', () => {
@@ -372,24 +372,24 @@ describe('Every unlocked kiwiana opens its story', () => {
     const buttons = container.querySelectorAll('button[aria-label="Read about Pāua"]');
     expect(buttons).toHaveLength(2);
     act(() => void (buttons[0] as HTMLButtonElement).click());
-    expect(container.querySelector('[role="dialog"]')).not.toBeNull();
+    expect(document.querySelector('[role="dialog"]')).not.toBeNull();
   });
 });
 
 describe('Kiwiana stories', () => {
   it('opens an unlocked treasure in a dialog, without the unlock heading', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
     const open = [...container.querySelectorAll('button')].find((b) => b.textContent === 'Pāua')!;
     act(() => void open.click());
-    const dialog = container.querySelector('[role="dialog"]')!;
+    const dialog = document.querySelector('[role="dialog"]')!;
     expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
     expect(dialog.textContent).toContain('shining eyes');
     expect(dialog.querySelectorAll('svg[data-locked="true"]')).toHaveLength(0);
     act(() => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     });
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
   });
 
   it('never shows the story of a locked treasure, and only the unlocked one is a button', () => {
