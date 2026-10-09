@@ -148,6 +148,60 @@
   animation: fadeIn 0.5s ease-out 1.7s 1 forwards;
 }
 
+/* The lighter reveal when a treasure is opened again: it turns in, then the words fade up. */
+.view .treasure {
+  opacity: 0;
+  transform: scale(0.6) rotate(-12deg);
+  animation:
+    viewIn 0.45s ease-out 0.05s 1 forwards,
+    glow 0.7s ease-in-out 0.2s 1;
+}
+
+.view .title,
+.view .caption,
+.view .story {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: riseIn 0.3s ease-out 1 forwards;
+}
+
+.view .title {
+  animation-delay: 0.25s;
+}
+
+.view .caption {
+  animation-delay: 0.35s;
+}
+
+.view .story {
+  animation-delay: 0.45s;
+}
+
+@keyframes viewIn {
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 4px rgb(242 193 78 / 25%));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 18px rgb(242 193 78 / 85%));
+  }
+}
+
+@keyframes riseIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes shake {
   0%,
   100% {
@@ -224,8 +278,19 @@
   .reveal .rank,
   .reveal .title,
   .reveal .caption,
-  .reveal .story {
+  .reveal .story,
+  .view .title,
+  .view .caption,
+  .view .story {
     opacity: 1;
+    transform: none;
+    animation: fadeIn 0.3s linear 1;
+  }
+
+  .view .treasure {
+    opacity: 1;
+    transform: none;
+    filter: none;
     animation: fadeIn 0.3s linear 1;
   }
 

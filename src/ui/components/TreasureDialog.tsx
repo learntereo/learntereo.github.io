@@ -7,7 +7,7 @@ import styles from './TreasureDialog.module.css';
 
 interface Props {
   treasure: Treasure;
-  /** 'unlock' plays the reveal (shake, lock opens, treasure appears). 'view' shows the finished state at once. */
+  /** 'unlock' plays the full reveal (shake, lock opens, treasure appears). 'view' plays a lighter one: the treasure turns in, then the words fade up. */
   mode: 'unlock' | 'view';
   /** A collector rank this unlock earned, announced under the story. */
   newRank?: string;
@@ -89,13 +89,13 @@ export function TreasureDialog({ treasure, mode, newRank, onClose }: Props) {
         data-mode={mode}
       >
         <div className={styles.stage} aria-hidden="true">
-          {golden && reveal && (
+          {golden && (
             <svg className={styles.sparkles} viewBox="0 0 100 100" focusable="false">
               {SPARKLES.map(([x, y], i) => (
                 <path
                   key={i}
                   className={styles.sparkle}
-                  style={{ animationDelay: `${1.3 + i * 0.12}s` }}
+                  style={{ animationDelay: `${(reveal ? 1.3 : 0.35) + i * 0.12}s` }}
                   d={`M${x} ${y - 4} L${x + 1.2} ${y - 1.2} L${x + 4} ${y} L${x + 1.2} ${y + 1.2} L${x} ${y + 4} L${x - 1.2} ${y + 1.2} L${x - 4} ${y} L${x - 1.2} ${y - 1.2} Z`}
                   fill="#f2c14e"
                 />
