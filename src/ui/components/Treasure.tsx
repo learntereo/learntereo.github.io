@@ -241,7 +241,7 @@ interface TreasureIconProps {
   id: string;
   /** Pixel size (the icon is square). */
   size?: number;
-  /** Show the grey silhouette with a question mark. */
+  /** Show the generic locked tile (a padlock): nothing about the treasure is drawn. */
   locked?: boolean;
 }
 
@@ -249,10 +249,20 @@ interface TreasureIconProps {
 export function TreasureIcon({ id, size = 36, locked = false }: TreasureIconProps) {
   return (
     <span className={`${styles.wrap} ${locked ? styles.locked : ''}`} style={{ width: size, height: size }} aria-hidden="true">
-      <svg className={styles.svg} width={size} height={size} viewBox="0 0 48 48" focusable="false">
-        {ART[id] ?? ART.paua}
-      </svg>
-      {locked && <span className={styles.mark}>?</span>}
+      {locked ? (
+        // A locked treasure reveals nothing: no shape, only a padlock on a neutral tile.
+        <svg className={styles.svg} width={size} height={size} viewBox="0 0 48 48" focusable="false" data-locked="true">
+          <rect x="1" y="1" width="46" height="46" rx="12" fill="#e8e4de" stroke="#cfc8be" strokeWidth="1.5" />
+          <path d="M17 22v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#8d857c" strokeWidth="3" strokeLinecap="round" />
+          <rect x="13" y="22" width="22" height="16" rx="3.5" fill="#a39b91" />
+          <circle cx="24" cy="29.5" r="2.4" fill="#e8e4de" />
+          <rect x="22.9" y="30" width="2.2" height="4.5" rx="1" fill="#e8e4de" />
+        </svg>
+      ) : (
+        <svg className={styles.svg} width={size} height={size} viewBox="0 0 48 48" focusable="false">
+          {ART[id] ?? ART.paua}
+        </svg>
+      )}
     </span>
   );
 }

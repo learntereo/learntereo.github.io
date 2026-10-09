@@ -223,6 +223,8 @@ describe('unit check round', () => {
       passed: true,
       firstCompletion: true,
       nextUnitId: 'b04-taiao',
+      treasureId: 'paua',
+      newRank: 'Kiwiana rookie',
     });
     expect(finalState.summary?.missedItemIds).toHaveLength(1);
   });

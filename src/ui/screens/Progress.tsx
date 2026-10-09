@@ -8,6 +8,7 @@ import { LEVELS } from '../../game/types';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, formatDate } from '../labels';
+import { KiwianaHero } from './KiwianaHero';
 import styles from './Progress.module.css';
 
 export function Progress() {
@@ -37,6 +38,8 @@ export function Progress() {
   return (
     <main className={ui.page}>
       <h1>Your progress</h1>
+
+      <KiwianaHero />
 
       <div className={styles.stats}>
         <div className={`${ui.card} ${styles.stat}`}>

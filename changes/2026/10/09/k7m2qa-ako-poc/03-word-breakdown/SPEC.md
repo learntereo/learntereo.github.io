@@ -1,5 +1,8 @@
 | W8 | Rewards | "Just show a greyed-out hidden icon every so often that you reach to unlock: an icon, gem or kiwiana" (10 kiwiana treasures on the Path) | User |
 | W9 | Rewards | "There should be a page called Kiwiana showing 0/10 etc. You should get the first one from doing the first course, to sell people into it. Make 20 kiwiana" | User |
+| W10 | Rewards | "Each unlock should have a history or meaning behind it. When you unlock one you should get an animation saying you've unlocked it, with the history/meaning" | User |
+| W11 | Naming | "Only call it New Zealand" | User |
+| W12 | Rewards | "On Progress make kiwiana the big thing to collect, it's too hidden away, needs gamification" | User |
 ---
 title: Ako v2.1: Word-by-word breakdowns and layout polish
 type: feature
@@ -37,6 +40,8 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 - FR2.5 **Reference** gets a **Little words** (particles) screen listing the dictionary, searchable with the Glossary's accent-insensitive search.
 - FR2.6 **Glossary** entries for multi-word items show their breakdown.
 
+- FR2.7 Wherever the meaning of a multi-word word item is shown (Learn card, Glossary, Write prompt, Translate and Write after answering), a muted line "Literally: "{literal}"" sits directly under it when the literal differs from the meaning (ignoring case and punctuation). It is not hidden behind the Word by word toggle. For example kia ora is shown as "hello" with Literally: "be healthy, be well".
+
 ### FR3: Layout polish (bug)
 - FR3.1 Account page uses the shared page container (centred max-width, side padding) like other screens.
 - FR3.2 Sign out uses the app's secondary button style. The delete button uses danger style at auto width (not full-bleed). The delete card sits inside the container.
@@ -62,6 +67,12 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 - FR6.3 A Kiwiana page at /kiwiana has its own tab in the main navigation (the Account link moves to an icon in the header so the tabs fit at 360px). It shows "N / 20 collected" with a progress bar and a grid of all twenty: unlocked ones in colour with name and caption, locked ones as a silhouette with "?" and "Finish {unit title} to unlock". The next one to unlock is highlighted.
 - FR6.4 The collection is sold, confidently: a Home card "Collect all 20 kiwiana" with the count, the next silhouette, "Finish {unit} to unlock it" and a "See your Kiwiana" link; a line on each Unit screen with the silhouette (or the icon once earned); a clear unlock card on Results, "New kiwiana: {name}!", with the icon, caption and a "See your Kiwiana" button, and a bigger celebration for the Golden kiwi; and a small "N/20" count in the header that links to the page.
 - FR6.5 Path nodes stay small and quiet (a small silhouette or icon between unit rows, "Keep going to unlock"). Progress shows one "Kiwiana N / 20" tile that links to the page, not a second grid.
+
+- FR6.6 A locked treasure reveals nothing: every locked tile (Kiwiana page, Home card, Unit screen, Path, Progress shelf) is the same neutral padlock tile, with no shape, name or caption. The hint "Finish {unit} to unlock" stays, the next one is marked "Next", and the screen reader hears "Locked treasure. Finish {unit} to unlock."
+- FR6.7 Each treasure has a short story (two to four sentences) on its history or meaning, using well-attested facts, with disputed origins phrased as "often said" or as a claim by both sides. English text says "New Zealand", not "Aotearoa".
+- FR6.8 When a Kiwiz pass unlocks a treasure, an accessible modal dialog (focus kept inside, Escape or "Ka pai!" closes it, labelled by its heading) plays the reveal: the padlock tile shakes, fades away and the treasure appears with a soft glow, then "You unlocked: {name}!" and the story. With reduced motion it shows the revealed state with a simple fade. The Golden kiwi version is bigger, with sparkles. Tapping an unlocked treasure on the Kiwiana page or the Progress shelf opens the same dialog without the animation.
+- FR6.9 Collector ranks: 0 Ready to start, 1 to 4 Kiwiana rookie, 5 to 9 Explorer, 10 to 14 Collector, 15 to 19 Treasure hunter, 20 Kiwiana legend. An unlock that crosses a threshold also shows "New rank: {rank}!" in the dialog. The rank shows on the Kiwiana page and as a chip on Home's Kiwiana card.
+- FR6.10 The top of Progress is the "Your Kiwiana" hero: a ring with N / 20, the rank and what the next rank needs, a progress bar for the next treasure's unit ("{unit}: X of Y items learned, pass the Kiwiz to unlock"), a scrollable shelf of all 20, the last three unlocked with dates, and a "See all Kiwiana" button. The other stats and the history come below it.
 
 ## 3. Acceptance Criteria
 | # | Given | When | Then |

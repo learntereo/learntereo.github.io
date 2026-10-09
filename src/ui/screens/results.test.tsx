@@ -167,3 +167,24 @@ describe('Results: new kiwiana', () => {
     expect(container.textContent).not.toContain('New kiwiana');
   });
 });
+
+describe('Results: unlock dialog', () => {
+  it('opens the unlock dialog with the name and story when a Kiwiz pass unlocks a treasure', () => {
+    renderResults(
+      round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true, treasureId: 'paua' } }),
+      ['b01-greetings'],
+    );
+    const dialog = container.querySelector('[role="dialog"]')!;
+    expect(dialog.textContent).toContain('You unlocked: Pāua!');
+    expect(dialog.textContent).toContain('carvers have long used pāua shell');
+    const close = [...dialog.querySelectorAll('button')].find((b) => b.textContent === 'Ka pai!')!;
+    act(() => void close.click());
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(container.textContent).toContain('New kiwiana: Pāua!');
+  });
+
+  it('has no dialog when nothing was unlocked', () => {
+    renderResults(round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true } }), ['b01-greetings']);
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+  });
+});

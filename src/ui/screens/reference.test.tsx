@@ -4,6 +4,7 @@ import { createRoot, type Root } from 'react-dom/client';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { units } from '../../content/content';
+import type { UnitProgressRow } from '../../data/unitProgressRepo';
 import { AppDataContext, type AppData } from '../../data/AppDataContext';
 import { computeUnitStatuses } from '../../game/unitUnlock';
 import { Glossary } from './Glossary';
@@ -32,10 +33,18 @@ afterEach(() => {
   container.remove();
 });
 
-function data(opts: { beginnerCompleted?: boolean; learned?: string[]; dueCount?: number } = {}): AppData {
+function data(
+  opts: {
+    beginnerCompleted?: boolean;
+    learned?: string[];
+    dueCount?: number;
+    unitProgress?: UnitProgressRow[];
+  } = {},
+): AppData {
   const learned = new Set(opts.learned ?? []);
+  const unitProgress = new Map((opts.unitProgress ?? []).map((r) => [r.unit_id, r]));
   const statuses = computeUnitStatuses(units, {
-    unitProgress: new Map(),
+    unitProgress,
     learned,
     beginnerCompleted: opts.beginnerCompleted ?? false,
   });
@@ -54,7 +63,7 @@ function data(opts: { beginnerCompleted?: boolean; learned?: string[]; dueCount?
     },
     progress: new Map(),
     learned,
-    unitProgress: new Map(),
+    unitProgress,
     statuses,
     openLevels: ['beginner'],
     dueCount: opts.dueCount ?? 0,
@@ -156,16 +165,74 @@ describe('Progress stats (FR10)', () => {
   });
 });
 
-describe('Progress: Kiwiana tile', () => {
-  it('shows a single Kiwiana N / 20 tile that links to the page, with no duplicate grid', async () => {
-    show(<Progress />, data({ beginnerCompleted: true }));
+describe('Progress: Your Kiwiana hero', () => {
+  async function renderProgress(opts: Parameters<typeof data>[0] = {}) {
+    show(<Progress />, data(opts));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 10));
     });
-    const tile = container.querySelector('a[href="/kiwiana"]')!;
-    expect(tile.textContent).toContain('8 / 20');
-    expect(tile.textContent).toContain('Kiwiana');
-    expect(container.textContent).not.toContain('Kiwiana collection');
-    expect(container.querySelector('#kiwiana')).toBeNull();
+  }
+
+  it('comes first, with the ring count, the rank and what the next rank needs', async () => {
+    await renderProgress({ beginnerCompleted: true });
+    const hero = container.querySelector('#your-kiwiana')!.closest('section')!;
+    expect(container.querySelector('main')!.querySelector('section')).toBe(hero);
+    expect(hero.textContent).toContain('8 / 20');
+    expect(hero.textContent).toContain('Explorer');
+    expect(hero.textContent).toContain('2 more treasures to become Collector');
+    expect(hero.querySelector('a[href="/kiwiana"]')?.textContent).toBe('See all Kiwiana');
+  });
+
+  it('puts the stats and history below the hero', async () => {
+    await renderProgress();
+    const text = container.textContent ?? '';
+    expect(text.indexOf('Your Kiwiana')).toBeLessThan(text.indexOf('Total Kiwi XP'));
+    expect(text.indexOf('Total Kiwi XP')).toBeLessThan(text.indexOf('Recent rounds'));
+  });
+
+  it('shows a Ready to start rank and the next treasure progress for a new learner', async () => {
+    await renderProgress();
+    const hero = container.querySelector('#your-kiwiana')!.closest('section')!;
+    expect(hero.textContent).toContain('Ready to start');
+    expect(hero.textContent).toContain('1 more treasure to become Kiwiana rookie');
+    expect(hero.textContent).toContain('Greetings and introductions: 0 of 19 items learned · pass the Kiwiz to unlock');
+    expect(hero.querySelector('[role="progressbar"]')?.getAttribute('aria-valuemax')).toBe('19');
+    expect(hero.textContent).not.toContain('Recently unlocked');
+  });
+
+  it('has a shelf of all 20: colour tiles open the story, locked tiles say nothing about the treasure', async () => {
+    await renderProgress({ beginnerCompleted: true });
+    const tiles = container.querySelectorAll('[aria-label="All 20 kiwiana"] li');
+    expect(tiles).toHaveLength(20);
+    expect(container.querySelectorAll('[aria-label="All 20 kiwiana"] svg[data-locked="true"]')).toHaveLength(12);
+    const lockedText = [...tiles].slice(8).map((t) => t.textContent).join(' ');
+    expect(lockedText).not.toMatch(/Tūī|Pūkeko|Kūmara|Golden/);
+    const paua = container.querySelector('button[aria-label="Pāua. Open its story."]') as HTMLButtonElement;
+    act(() => void paua.click());
+    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('eyes of carved figures');
+  });
+
+  it('lists the last three unlocked with dates where the unit has one', async () => {
+    const done = (unit: string, at: string) => ({
+      user_id: 'u1',
+      unit_id: unit,
+      learned_at: at,
+      completed_at: at,
+      best_score: 11,
+      attempts: 1,
+    });
+    await renderProgress({
+      unitProgress: [
+        done('b01-greetings', '2026-10-01T10:00:00Z'),
+        done('b02-whanau', '2026-10-02T10:00:00Z'),
+        done('b03-tatau', '2026-10-03T10:00:00Z'),
+        done('b04-taiao', '2026-10-04T10:00:00Z'),
+      ],
+    });
+    const recent = container.querySelector('h3')!.parentElement!;
+    expect(recent.textContent).toContain('Recently unlocked');
+    const names = [...recent.querySelectorAll('li strong')].map((s) => s.textContent);
+    expect(names).toEqual(['Pōhutukawa', 'Silver fern', 'Jandals']);
+    expect(recent.textContent).toMatch(/2026/);
   });
 });

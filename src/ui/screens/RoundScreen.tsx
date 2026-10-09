@@ -26,7 +26,7 @@ import { REVIEW_LIMIT, applySrs, selectDue } from '../../game/srs';
 import { displayStreak, nextStreak, toLocalDateString } from '../../game/streak';
 import type { Level, Mode, Outcome, Question, RoundMode, RoundState, RoundSummary, Unit, UnitCheckSummary } from '../../game/types';
 import { generateUnitCheck, generateUnitPractice, isPass, missedItemIds } from '../../game/unitRound';
-import { newlyUnlockedTreasureIds, treasureSlots } from '../../game/treasures';
+import { newlyUnlockedTreasureIds, rankUp, treasureSlots, unlockedTreasureIds } from '../../game/treasures';
 import { computeUnitStatuses, newlyUnlockedUnitIds } from '../../game/unitUnlock';
 import { xpForRound } from '../../game/xp';
 import { showToast } from '../../lib/toastBus';
@@ -201,6 +201,10 @@ function Round({ spec }: { spec: RoundSpec }) {
         firstCompletion: passed && statuses.get(unit.id)?.state !== 'complete',
         nextUnitId: newlyUnlockedUnitIds(statuses, after)[0],
         treasureId: newlyUnlockedTreasureIds(treasureSlots(units), statuses, after)[0],
+        newRank: rankUp(
+          unlockedTreasureIds(treasureSlots(units), statuses).size,
+          unlockedTreasureIds(treasureSlots(units), after).size,
+        )?.name,
       };
       data.setUnitProgress(updated);
       void saveQueue.enqueue(`unit:${unit.id}`, () => saveUnitProgress(updated));

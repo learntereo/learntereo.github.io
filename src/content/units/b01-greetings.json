@@ -68,8 +68,8 @@
             "en": "well, healthy, alive"
           }
         ],
-        "literal": "be well",
-        "note": "Kia ora is an idiom: it wishes someone good health and is used for hello and for thank you."
+        "literal": "be healthy, be well",
+        "note": "Kia ora wishes someone good health. It's used for hello, thank you and to agree."
       }
     },
     {
@@ -159,7 +159,8 @@
         "tokens": [
           {
             "mi": "tēnā",
-            "en": "greetings to"
+            "en": "that (near you)",
+            "ref": "tenei"
           },
           {
             "mi": "kōrua",
@@ -167,8 +168,8 @@
             "ref": "koe"
           }
         ],
-        "literal": "greetings to you two",
-        "note": "Tēnā kōrua greets two people. Tēnā is a greeting word here."
+        "literal": "that (is) you two",
+        "note": "A respectful hello to two people. Tēnā koe is for one person and tēnā koutou for three or more."
       }
     },
     {
@@ -185,7 +186,8 @@
         "tokens": [
           {
             "mi": "tēnā",
-            "en": "greetings to"
+            "en": "that (near you)",
+            "ref": "tenei"
           },
           {
             "mi": "koutou",
@@ -193,8 +195,8 @@
             "ref": "koe"
           }
         ],
-        "literal": "greetings to you all",
-        "note": "Tēnā koutou greets three or more people. Tēnā is a greeting word here."
+        "literal": "that (is) you all",
+        "note": "A respectful hello to three or more people. Tēnā koe is for one person and tēnā kōrua for two."
       }
     },
     {
@@ -456,7 +458,8 @@
         "tokens": [
           {
             "mi": "Tēnā",
-            "en": "greetings to"
+            "en": "that (near you)",
+            "ref": "tenei"
           },
           {
             "mi": "koe",
@@ -464,8 +467,8 @@
             "ref": "koe"
           }
         ],
-        "literal": "greetings to you",
-        "note": "Tēnā koe greets one person."
+        "literal": "that (is) you",
+        "note": "A respectful hello to one person, acknowledging them. Tēnā kōrua is for two people and tēnā koutou for three or more."
       }
     },
     {
