@@ -152,4 +152,6 @@ export interface UnitCheckSummary {
   firstCompletion: boolean;
   /** The unit this pass opened up, when there is one. */
   nextUnitId?: string;
+  /** The kiwiana treasure this pass unlocked, when there is one. */
+  treasureId?: string;
 }

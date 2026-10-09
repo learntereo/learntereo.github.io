@@ -137,3 +137,31 @@ vi.mock('../../data/roundRepo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('../../data/roundRepo')>()),
   getRound: vi.fn(async () => null),
 }));
+
+describe('Results: treasure unlocked', () => {
+  it('shows a small card for a newly unlocked treasure', () => {
+    renderResults(
+      round({}, { unitCheck: { unitId: 'b02-whanau', passed: true, firstCompletion: true, treasureId: 'paua' } }),
+      ['b01-greetings', 'b02-whanau'],
+    );
+    expect(container.textContent).toContain('Treasure unlocked: Pāua!');
+    expect(container.textContent).toContain('shimmering shell');
+    expect(container.textContent).not.toContain('all 10');
+  });
+
+  it('gives the golden kiwi a bigger moment', () => {
+    renderResults(
+      round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true, treasureId: 'golden-kiwi' } }),
+      ['b01-greetings'],
+    );
+    expect(container.textContent).toContain('Treasure unlocked: Golden kiwi!');
+    expect(container.textContent).toContain('collected all 10 kiwiana treasures');
+  });
+
+  it('shows nothing about treasures when none was unlocked or the Kiwiz was missed', () => {
+    renderResults(round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true } }), ['b01-greetings']);
+    expect(container.textContent).not.toContain('Treasure unlocked');
+    renderResults(round({ score: 5 }, { unitCheck: { unitId: 'b01-greetings', passed: false, firstCompletion: false, treasureId: 'paua' } }), []);
+    expect(container.textContent).not.toContain('Treasure unlocked');
+  });
+});

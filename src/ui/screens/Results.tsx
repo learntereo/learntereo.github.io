@@ -4,8 +4,10 @@ import { getItem, getUnit, nextUnit } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { getRound, type RoundRow } from '../../data/roundRepo';
 import type { Item, RoundSummary, Unit } from '../../game/types';
+import { TREASURES, TREASURE_COUNT } from '../../game/treasures';
 import { passMark } from '../../game/unitRound';
 import { KoruFlourish } from '../components/Kowhaiwhai';
+import { TreasureIcon } from '../components/Treasure';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
 import styles from './Results.module.css';
@@ -18,6 +20,31 @@ function summaryOf(round: RoundRow): RoundSummary {
     unitCheck: state?.summary?.unitCheck,
     missedItemIds: state?.summary?.missedItemIds,
   };
+}
+
+/** A small inline card for a newly unlocked treasure; the last one gets a bigger moment. */
+function TreasureUnlocked({ id }: { id: string }) {
+  const treasure = TREASURES.find((t) => t.id === id);
+  if (!treasure) return null;
+  const last = treasure.id === TREASURES[TREASURE_COUNT - 1].id;
+  return (
+    <section
+      className={`${ui.card} ${styles.treasure} ${last ? styles.treasureBig : ''}`}
+      aria-labelledby="treasure-title"
+    >
+      {last && <KoruFlourish />}
+      <TreasureIcon id={treasure.id} size={last ? 96 : 48} />
+      <div>
+        <h2 id="treasure-title">Treasure unlocked: {treasure.name}!</h2>
+        <p className={ui.muted}>{treasure.caption}</p>
+        {last && (
+          <p>
+            <span lang="mi">Ka rawe!</span> You have collected all {TREASURE_COUNT} kiwiana treasures.
+          </p>
+        )}
+      </div>
+    </section>
+  );
 }
 
 function MissedList({ ids }: { ids: readonly string[] }) {
@@ -157,6 +184,8 @@ export function Results() {
           ) : null}
         </section>
       )}
+
+      {isCheck && check?.passed && check.treasureId && <TreasureUnlocked id={check.treasureId} />}
 
       <section className={`${ui.card} ${styles.score}`} aria-labelledby="results-title">
         <p className={ui.muted}>

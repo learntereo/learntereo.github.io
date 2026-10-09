@@ -63,3 +63,31 @@
   font-weight: 600;
   overflow-wrap: anywhere;
 }
+
+/* A newly unlocked treasure: a small inline card. */
+.treasure {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.treasure h2 {
+  margin: 0 0 var(--space-1);
+  font-size: 1.1rem;
+}
+
+.treasure p {
+  margin: 0;
+}
+
+/* Only the last treasure gets a bigger moment. */
+.treasureBig {
+  flex-direction: column;
+  text-align: center;
+  border: 2px solid var(--color-karaka);
+  background: #fffaf0;
+}
+
+.treasureBig h2 {
+  font-size: 1.5rem;
+}

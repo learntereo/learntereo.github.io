@@ -155,3 +155,26 @@ describe('Progress stats (FR10)', () => {
     expect(text).toContain('Advanced');
   });
 });
+
+describe('Progress: Kiwiana collection', () => {
+  it('shows the ten treasures, in colour once collected and locked otherwise', async () => {
+    show(<Progress />, data());
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    });
+    const text = container.textContent ?? '';
+    expect(text).toContain('Kiwiana collection');
+    expect(text).toContain('0 of 10 collected');
+    expect(container.querySelectorAll('#kiwiana li')).toHaveLength(10);
+    expect(text).toContain('Pass the Kiwiz in Family to unlock');
+  });
+
+  it('counts a collected treasure after the unit before it is complete', async () => {
+    show(<Progress />, data({ beginnerCompleted: true }));
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    });
+    expect(container.textContent).toContain('4 of 10 collected');
+    expect(container.textContent).toContain('Pōhutukawa');
+  });
+});

@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 import { useAppData } from '../../data/AppDataContext';
 import { getHistory, type RoundRow } from '../../data/roundRepo';
 import { getUnit, totalItemCount, units, unitsForLevel } from '../../content/content';
+import { TREASURE_COUNT, treasureSlots, unlockedTreasureIds } from '../../game/treasures';
 import { LEVELS } from '../../game/types';
+import { TreasureIcon } from '../components/Treasure';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, formatDate } from '../labels';
@@ -11,6 +14,9 @@ import styles from './Progress.module.css';
 export function Progress() {
   const { profile, learned, statuses, dueCount } = useAppData();
   const unitsComplete = units.filter((u) => statuses.get(u.id)?.state === 'complete').length;
+  const slots = treasureSlots(units);
+  const unlocked = unlockedTreasureIds(slots, statuses);
+  const { hash } = useLocation();
   const [history, setHistory] = useState<RoundRow[] | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -27,6 +33,10 @@ export function Progress() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (hash === '#kiwiana') document.getElementById('kiwiana')?.scrollIntoView?.({ block: 'start' });
+  }, [hash]);
 
   const streak = profile ? displayStreak(profile, toLocalDateString(new Date())) : 0;
 
@@ -66,6 +76,29 @@ export function Progress() {
           <span className={ui.muted}>Due for review</span>
         </div>
       </div>
+
+      <section id="kiwiana" aria-labelledby="kiwiana-title" className={styles.kiwiana}>
+        <h2 id="kiwiana-title">Kiwiana collection</h2>
+        <p className={ui.muted}>
+          {unlocked.size} of {TREASURE_COUNT} collected. Pass the Kiwiz at the end of a unit to unlock the treasure after it.
+        </p>
+        <ul className={styles.treasures}>
+          {slots.map(({ treasure, unit }) => {
+            const got = unlocked.has(treasure.id);
+            return (
+              <li key={treasure.id} className={styles.treasureItem}>
+                <TreasureIcon id={treasure.id} size={44} locked={!got} />
+                <span className={styles.treasureText}>
+                  <strong>{got ? treasure.name : 'Locked'}</strong>
+                  <span className={ui.muted}>
+                    {got ? treasure.caption : `Pass the Kiwiz in ${unit.title} to unlock`}
+                  </span>
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
 
       <section aria-labelledby="levels-title">
         <h2 id="levels-title">By level</h2>

@@ -185,3 +185,13 @@
 .skip:focus {
   top: var(--space-2);
 }
+
+.treasureCount {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.treasureCount:hover {
+  text-decoration: underline;
+}

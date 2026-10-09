@@ -4,6 +4,8 @@ import { isLevelLoaded } from '../../content/content';
 import { useContentLevels } from '../../content/useContent';
 import { AppDataProvider } from '../../data/AppDataProvider';
 import { useAppData } from '../../data/AppDataContext';
+import { TREASURE_COUNT, treasureSlots, unlockedTreasureIds } from '../../game/treasures';
+import { units } from '../../content/content';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import { KoruMark, KowhaiwhaiBorder } from './Kowhaiwhai';
 import { RouteFocus, SkipLink } from './RouteFocus';
@@ -129,7 +131,8 @@ function TabBar() {
 }
 
 function Header() {
-  const { profile } = useAppData();
+  const { profile, statuses } = useAppData();
+  const treasures = unlockedTreasureIds(treasureSlots(units), statuses).size;
   const streak = profile ? displayStreak(profile, toLocalDateString(new Date())) : 0;
 
   return (
@@ -146,6 +149,13 @@ function Header() {
           <span className={styles.stat}>
             <strong>{streak}</strong> day streak
           </span>
+          <Link
+            to="/progress#kiwiana"
+            className={styles.treasureCount}
+            aria-label={`${treasures} of ${TREASURE_COUNT} kiwiana treasures collected`}
+          >
+            {treasures}/{TREASURE_COUNT}
+          </Link>
         </div>
       </div>
       <KowhaiwhaiBorder height={20} />
