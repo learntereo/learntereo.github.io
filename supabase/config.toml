@@ -25,8 +25,8 @@ port = 54323
 enabled = true
 site_url = "http://127.0.0.1:5173"
 additional_redirect_urls = [
-  "http://127.0.0.1:5173/language-learning-website/",
-  "https://pattern-labs-foundation.github.io/language-learning-website/",
+  "http://127.0.0.1:5173/",
+  "https://learntereo.github.io/",
 ]
 jwt_expiry = 3600
 enable_signup = true

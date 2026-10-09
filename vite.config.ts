@@ -43,7 +43,7 @@ function staticLandingHtml(): string {
     '<h2>Learn te reo <span lang="mi">Māori</span>, free</h2>',
     '<p>Ako is a free way to learn te reo <span lang="mi">Māori</span>. Short lessons that work on your phone, from beginner to advanced. Vocabulary, sentences and pronunciation, made in New Zealand.</p>',
     ...levels,
-    '<p><a href="/language-learning-website/pepeha/">Pepeha builder</a></p>',
+    '<p><a href="/pepeha/">Pepeha builder</a></p>',
     '</section>',
     '</main>',
   ].join('');
@@ -83,7 +83,7 @@ function staticPepehaHtml(): string {
     '<h3>Example</h3>',
     example.map((l) => `<p><span lang="mi">${escapeHtml(l.mi)}</span><br>${escapeHtml(l.en)}</p>`).join(''),
     '</section>',
-    `<p><a href="/language-learning-website/">Learn te reo ${mi('Māori')} with Ako</a></p>`,
+    `<p><a href="/">Learn te reo ${mi('Māori')} with Ako</a></p>`,
     '</main>',
   ].join('');
 }
@@ -104,7 +104,7 @@ function staticLanding(): Plugin {
 }
 
 export default defineConfig({
-  base: '/language-learning-website/',
+  base: '/',
   plugins: [react(), staticLanding()],
   build: {
     rollupOptions: {
