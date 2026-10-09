@@ -110,6 +110,17 @@ export function numberWordsToDigits(words: readonly string[]): string[] {
  * "a / an / the / to" so "The Dog!" and "dog" compare equal. English number words
  * become digits, so "ten" and "10" compare equal. Meant for English answers only.
  */
+/** US spellings and words a learner might type, mapped to the NZ forms the course uses. */
+const US_TO_NZ: Readonly<Record<string, string>> = {
+  color: 'colour', colors: 'colours', colored: 'coloured', favorite: 'favourite', favorites: 'favourites',
+  gray: 'grey', mom: 'mum', moms: 'mums', mommy: 'mum', airplane: 'aeroplane', airplanes: 'aeroplanes',
+  center: 'centre', centers: 'centres', neighbor: 'neighbour', neighbors: 'neighbours', flavor: 'flavour',
+  flavors: 'flavours', honor: 'honour', humor: 'humour', behavior: 'behaviour', traveled: 'travelled',
+  traveling: 'travelling', traveler: 'traveller', theater: 'theatre', meter: 'metre', meters: 'metres',
+  organize: 'organise', organized: 'organised', realize: 'realise', recognize: 'recognise', practicing: 'practising',
+  pajamas: 'pyjamas', jewelry: 'jewellery', tire: 'tyre', tires: 'tyres', cozy: 'cosy',
+};
+
 export function normaliseAnswer(input: string): string {
   const cleaned = input
     .normalize('NFC')
@@ -119,7 +130,7 @@ export function normaliseAnswer(input: string): string {
     .replace(/\s+/g, ' ')
     .trim();
   if (cleaned === '') return '';
-  const parts = numberWordsToDigits(cleaned.split(' '));
+  const parts = numberWordsToDigits(cleaned.split(' ').map((word) => US_TO_NZ[word] ?? word));
   while (parts.length > 1 && LEADING_WORDS.has(parts[0])) parts.shift();
   return parts.join(' ');
 }

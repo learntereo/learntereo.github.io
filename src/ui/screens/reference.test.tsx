@@ -209,7 +209,7 @@ describe('Progress: Your Kiwiana hero', () => {
     expect(lockedText).not.toMatch(/Tūī|Pūkeko|Kūmara|Golden/);
     const paua = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void paua.click());
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
+    expect(document.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
   });
 
   it('shows the Finish hint when a locked shelf tile is tapped, and opens nothing', async () => {
@@ -217,7 +217,7 @@ describe('Progress: Your Kiwiana hero', () => {
     const locked = [...container.querySelectorAll('[aria-label="All 20 kiwiana"] button')][0] as HTMLButtonElement;
     act(() => void locked.click());
     expect(container.querySelector('[role="status"]')?.textContent).toBe('Finish Greetings and introductions to unlock');
-    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
   });
 
   it('lists the last three unlocked with dates where the unit has one', async () => {

@@ -125,3 +125,4 @@ Audio, morphology beyond word level (e.g. splitting *whakarongo* into *whaka* + 
 | W18 | Home | "Remove the Resume Round, there is too much noise on that front page" (resuming happens by reopening the same unit or game) | User |
 | W19 | Voice | "All your text should be written from the perspective of a New Zealander. Your wording looked like it was aimed at foreigners" (treasure captions and stories rewritten in a Kiwi voice) | User |
 | W20 | Design | "Make your koru banner design more accurate" (kōwhaiwhai band: kōkōwai field, white edges, thick koru stems ending in round bulbs, mirrored and interlocking; duplicate Home band removed) | User |
+| W21 | Spelling | "You must use NZ spelling" (display text audited: NZ spelling throughout; the marker also accepts US spellings such as color, mom, gray) | User |

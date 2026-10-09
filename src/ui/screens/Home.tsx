@@ -75,7 +75,7 @@ function UnitRow({ status, isNext }: { status: UnitStatus; isNext: boolean }) {
   const locked = state === 'locked';
   const detail =
     state === 'complete' && status.bestScore !== null
-      ? `Best check ${status.bestScore} / ${CHECK_SIZE}`
+      ? `Best Kiwiz ${status.bestScore} / ${CHECK_SIZE}`
       : state === 'in_progress'
         ? `${status.itemsLearned} / ${status.itemsTotal} items learned`
         : null;
