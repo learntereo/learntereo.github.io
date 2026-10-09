@@ -50,30 +50,12 @@
 }
 
 
-/* ---------- kiwiana collection ---------- */
-.kiwiana {
-  scroll-margin-top: var(--space-4);
+.statLink {
+  color: inherit;
+  text-decoration: none;
 }
 
-.treasures {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: var(--space-2) var(--space-4);
-}
-
-.treasureItem {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) 0;
-}
-
-.treasureText {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  font-size: 0.9rem;
+.statLink:hover,
+.statLink:focus-visible {
+  border-color: var(--color-kokowai);
 }

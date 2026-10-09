@@ -5,6 +5,7 @@ import { AppShell } from './ui/components/AppShell';
 import ui from './ui/components/ui.module.css';
 import { Account } from './ui/screens/Account';
 import { Home } from './ui/screens/Home';
+import { Kiwiana } from './ui/screens/Kiwiana';
 import { Landing } from './ui/screens/Landing';
 import { LearnDeck } from './ui/screens/LearnDeck';
 import { ModePicker } from './ui/screens/ModePicker';
@@ -90,6 +91,7 @@ export function AppRoutes() {
               </Suspense>
             }
           />
+          <Route path="/kiwiana" element={<Kiwiana />} />
           <Route path="/progress" element={<Progress />} />
           <Route path="/account" element={<Account />} />
         </Route>

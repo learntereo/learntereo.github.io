@@ -69,6 +69,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
+  border: 2px solid var(--color-pounamu);
 }
 
 .treasure h2 {
@@ -90,4 +91,8 @@
 
 .treasureBig h2 {
   font-size: 1.5rem;
+}
+
+.treasureLink {
+  margin-top: var(--space-2);
 }

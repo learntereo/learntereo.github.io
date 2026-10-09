@@ -138,30 +138,32 @@ vi.mock('../../data/roundRepo', async (importOriginal) => ({
   getRound: vi.fn(async () => null),
 }));
 
-describe('Results: treasure unlocked', () => {
-  it('shows a small card for a newly unlocked treasure', () => {
+describe('Results: new kiwiana', () => {
+  it('shows a clear unlock card with a link to the collection', () => {
     renderResults(
-      round({}, { unitCheck: { unitId: 'b02-whanau', passed: true, firstCompletion: true, treasureId: 'paua' } }),
-      ['b01-greetings', 'b02-whanau'],
+      round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true, treasureId: 'paua' } }),
+      ['b01-greetings'],
     );
-    expect(container.textContent).toContain('Treasure unlocked: Pāua!');
+    expect(container.textContent).toContain('New kiwiana: Pāua!');
     expect(container.textContent).toContain('shimmering shell');
-    expect(container.textContent).not.toContain('all 10');
+    expect(hrefs()).toContain('/kiwiana');
+    expect(container.textContent).toContain('See your Kiwiana');
+    expect(container.textContent).not.toContain('collected all 20');
   });
 
-  it('gives the golden kiwi a bigger moment', () => {
+  it('gives the golden kiwi the big celebration', () => {
     renderResults(
       round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true, treasureId: 'golden-kiwi' } }),
       ['b01-greetings'],
     );
-    expect(container.textContent).toContain('Treasure unlocked: Golden kiwi!');
-    expect(container.textContent).toContain('collected all 10 kiwiana treasures');
+    expect(container.textContent).toContain('New kiwiana: Golden kiwi!');
+    expect(container.textContent).toContain('collected all 20 kiwiana treasures');
   });
 
-  it('shows nothing about treasures when none was unlocked or the Kiwiz was missed', () => {
+  it('shows nothing about kiwiana when none was unlocked or the Kiwiz was missed', () => {
     renderResults(round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true } }), ['b01-greetings']);
-    expect(container.textContent).not.toContain('Treasure unlocked');
+    expect(container.textContent).not.toContain('New kiwiana');
     renderResults(round({ score: 5 }, { unitCheck: { unitId: 'b01-greetings', passed: false, firstCompletion: false, treasureId: 'paua' } }), []);
-    expect(container.textContent).not.toContain('Treasure unlocked');
+    expect(container.textContent).not.toContain('New kiwiana');
   });
 });
