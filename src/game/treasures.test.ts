@@ -56,7 +56,7 @@ describe('treasure definitions', () => {
       expect(t.caption + t.name).not.toContain(EM_DASH);
     }
     expect(new Set(TREASURES.map((t) => t.id)).size).toBe(20);
-    expect(TREASURES[2].caption).toContain('silver and catch the moonlight');
+    expect(TREASURES[2].caption).toContain('catch the moonlight');
   });
 
   it('puts treasure N after unit N for 1 to 19, and the Golden kiwi after the final unit', () => {
@@ -154,7 +154,7 @@ describe('treasure stories', () => {
 
   it('phrases disputed origins carefully', () => {
     const story = (id: string) => TREASURES.find((t) => t.id === id)!.story;
-    expect(story('pavlova')).toContain('Both countries claim');
+    expect(story('pavlova')).toContain('reckon they invented it');
     expect(story('jandals')).toContain('often said');
     expect(story('silver-fern')).toContain('often said');
   });

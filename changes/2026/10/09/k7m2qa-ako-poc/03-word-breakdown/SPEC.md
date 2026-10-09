@@ -123,3 +123,4 @@ Audio, morphology beyond word level (e.g. splitting *whakarongo* into *whaka* + 
 | W7 | Naming | "We don't have XP, we have Kiwi XP" | User || W16 | Copy | "Get rid of 'learn new words, practise them etc'. Apps should be intuitive, they don't need explanation" (explanatory paragraphs removed app-wide) | User |
 | W17 | Typography | "The accents are not over the letter" (heading font drew macrons off-centre on Android; Māori text now always uses the body font) | User |
 | W18 | Home | "Remove the Resume Round, there is too much noise on that front page" (resuming happens by reopening the same unit or game) | User |
+| W19 | Voice | "All your text should be written from the perspective of a New Zealander. Your wording looked like it was aimed at foreigners" (treasure captions and stories rewritten in a Kiwi voice) | User |

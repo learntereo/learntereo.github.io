@@ -209,7 +209,7 @@ describe('Progress: Your Kiwiana hero', () => {
     expect(lockedText).not.toMatch(/Tūī|Pūkeko|Kūmara|Golden/);
     const paua = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void paua.click());
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('eyes of carved figures');
+    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
   });
 
   it('shows the Finish hint when a locked shelf tile is tapped, and opens nothing', async () => {
