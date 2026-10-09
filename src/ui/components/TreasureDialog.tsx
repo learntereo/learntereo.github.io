@@ -1,9 +1,10 @@
-import { useEffect, useId, useRef } from 'react';
+import { useId, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router';
 import type { Treasure } from '../../game/treasures';
 import { TreasureIcon } from './Treasure';
 import styles from './TreasureDialog.module.css';
+import { useModalFocus } from './useModalFocus';
 
 interface Props {
   treasure: Treasure;
@@ -14,7 +15,6 @@ interface Props {
   onClose: () => void;
 }
 
-const FOCUSABLE = 'a[href], button:not([disabled])';
 const SPARKLES = [
   [8, 14],
   [88, 10],
@@ -39,38 +39,7 @@ export function TreasureDialog({ treasure, mode, newRank, onClose }: Props) {
   const golden = treasure.id === 'golden-kiwi';
   const reveal = mode === 'unlock';
 
-  useEffect(() => {
-    const before = document.activeElement as HTMLElement | null;
-    closeRef.current?.focus();
-    function onKey(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        event.stopPropagation();
-        onClose();
-        return;
-      }
-      if (event.key !== 'Tab' || !ref.current) return;
-      const nodes = [...ref.current.querySelectorAll<HTMLElement>(FOCUSABLE)];
-      if (nodes.length === 0) return;
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
-      const active = document.activeElement;
-      if (!ref.current.contains(active)) {
-        event.preventDefault();
-        first.focus();
-      } else if (event.shiftKey && active === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && active === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    }
-    document.addEventListener('keydown', onKey, true);
-    return () => {
-      document.removeEventListener('keydown', onKey, true);
-      before?.focus?.();
-    };
-  }, [onClose]);
+  useModalFocus(ref, closeRef, onClose);
 
   // Rendered on <body> so no card, list or transform on the page can stack above it.
   return createPortal(

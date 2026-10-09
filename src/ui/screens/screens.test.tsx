@@ -476,3 +476,52 @@ describe('Learn deck scrolling', () => {
     vi.unstubAllGlobals();
   });
 });
+
+describe('Know-rero on the Path', () => {
+  const knowRero = () => [...container.querySelectorAll('li button')].filter((b) => b.textContent?.includes('Know-rero'));
+
+  it('puts a Know-rero node after every unit, beside its treasure', () => {
+    renderAt('/home', appData());
+    expect(knowRero()).toHaveLength(22);
+    const extras = [...container.querySelectorAll('ol > li')].find((li) => li.textContent?.includes('Keep going to unlock') && li.textContent.includes('Know-rero'))!;
+    expect(extras.querySelectorAll('button')).toHaveLength(2);
+  });
+
+  it('opens the fact of a completed unit in a dialog with the unit title', () => {
+    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    const button = container.querySelector('button[aria-label="Read Know-rero for Greetings and introductions"]') as HTMLButtonElement;
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
+    act(() => void button.click());
+    const dialog = document.querySelector('[role="dialog"]')!;
+    expect(dialog.querySelector('h2')?.textContent).toBe('Know-rero');
+    expect(dialog.textContent).toContain('Greetings and introductions');
+    expect(dialog.textContent).toContain('double-hulled waka');
+    expect(dialog.getAttribute('data-mode')).toBe('view');
+    act(() => {
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    });
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
+  });
+
+  it('reveals nothing for a locked unit, only the hint when tapped', () => {
+    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.querySelectorAll('button[aria-label^="Read Know-rero"]')).toHaveLength(1);
+    expect(container.textContent).not.toContain('Polynesian navigators');
+    const locked = knowRero().find((b) => b.textContent?.includes('Locked Know-rero. Finish Family'))! as HTMLButtonElement;
+    act(() => void locked.click());
+    expect(locked.textContent).toContain('Finish Family to unlock');
+    expect(document.querySelector('[role="dialog"]')).toBeNull();
+    expect(container.textContent).not.toContain('Polynesian navigators');
+  });
+
+  it('shows a Know-rero card under the Kiwiana card with the count and a link', () => {
+    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings'), doneRow('b02-whanau')] }));
+    const card = container.querySelector('section[aria-labelledby="know-rero-title"]')!;
+    expect(card.textContent).toContain('2 / 22');
+    expect(card.querySelector('a[href="/know-rero"]')).not.toBeNull();
+    const sections = [...container.querySelectorAll('section')];
+    expect(sections.indexOf(card as HTMLElement)).toBeGreaterThan(
+      sections.indexOf(container.querySelector('section[aria-labelledby="kiwiana-title"]') as HTMLElement),
+    );
+  });
+});

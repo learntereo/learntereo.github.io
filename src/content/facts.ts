@@ -97,6 +97,14 @@ export const FACTS: readonly UnitFact[] = [
   },
 ];
 
+/** How many facts are unlocked: those whose unit is complete. */
+export function unlockedFactCount(isComplete: (unitId: string) => boolean): number {
+  return FACTS.filter((f) => {
+    const unit = units[f.afterUnit - 1];
+    return unit !== undefined && isComplete(unit.id);
+  }).length;
+}
+
 /** The fact for a unit, by its place in the course. */
 export function factForUnit(unitId: string): string | undefined {
   const index = units.findIndex((u) => u.id === unitId);
