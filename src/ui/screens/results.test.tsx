@@ -183,6 +183,21 @@ describe('Results: unlock dialog', () => {
     expect(container.textContent).toContain('New kiwiana: Pāua!');
   });
 
+  it('opens the story again from the icon on the unlock card', () => {
+    renderResults(
+      round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true, treasureId: 'paua' } }),
+      ['b01-greetings'],
+    );
+    act(() => {
+      [...container.querySelectorAll('[role="dialog"] button')].find((b) => b.textContent === 'Ka pai!')!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+    });
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    const icon = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
+    act(() => void icon.click());
+    const dialog = container.querySelector('[role="dialog"]')!;
+    expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
+  });
+
   it('has no dialog when nothing was unlocked', () => {
     renderResults(round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true } }), ['b01-greetings']);
     expect(container.querySelector('[role="dialog"]')).toBeNull();

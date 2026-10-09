@@ -76,3 +76,11 @@
   color: #1f4d39;
   font-weight: 700;
 }
+
+.iconButton {
+  flex: none;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}

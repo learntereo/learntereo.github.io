@@ -7,6 +7,7 @@ import { BreakdownDisclosure, TitleBreakdown } from '../components/Breakdown';
 import { GrammarNote } from '../components/GrammarNote';
 import { ItemImageView } from '../components/ItemImage';
 import { TreasureIcon } from '../components/Treasure';
+import { TreasureButton } from '../components/TreasureButton';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL } from '../labels';
 import styles from './UnitScreen.module.css';
@@ -75,7 +76,11 @@ export function UnitScreen() {
 
       {slot && (
         <section className={`${ui.card} ${styles.treasure}`} aria-label="Kiwiana treasure for this unit">
-          <TreasureIcon id={slot.treasure.id} size={48} locked={!complete} />
+          {complete ? (
+            <TreasureButton treasure={slot.treasure} size={48} className={styles.treasureButton} />
+          ) : (
+            <TreasureIcon id={slot.treasure.id} size={48} locked />
+          )}
           <p>
             {complete ? (
               <>

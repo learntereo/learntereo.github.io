@@ -233,7 +233,15 @@ describe('Kiwiana on the Path', () => {
   it('shows quiet locked nodes between unit rows for a new learner', () => {
     renderAt('/home', appData());
     expect(nodes()).toHaveLength(20);
-    expect(container.querySelector('button[aria-controls^="treasure-"]')).toBeNull();
+    expect(container.querySelector('button[aria-label^="Read about"]')).toBeNull();
+  });
+
+  it('reveals the Finish hint when a locked path node is tapped, and opens nothing', () => {
+    renderAt('/home', appData());
+    const locked = [...container.querySelectorAll('li button')].find((b) => b.textContent?.includes('Keep going to unlock')) as HTMLButtonElement;
+    act(() => void locked.click());
+    expect(locked.textContent).toContain('Finish Greetings and introductions to unlock');
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
   });
 
   it('unlocks the first treasure after unit 1 and a tap shows its caption', () => {
@@ -241,17 +249,19 @@ describe('Kiwiana on the Path', () => {
     expect(nodes()).toHaveLength(19);
     expect(container.textContent).toContain('1 / 20 collected');
     expect(container.textContent).toContain('Finish Family to unlock it.');
-    const paua = container.querySelector('button[aria-controls="treasure-paua"]') as HTMLButtonElement;
-    expect(paua.getAttribute('aria-expanded')).toBe('false');
+    expect(container.querySelector('[role="dialog"]')).toBeNull();
+    const paua = container.querySelector('li button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void paua.click());
-    expect(paua.getAttribute('aria-expanded')).toBe('true');
-    expect(container.textContent).toContain("the shimmering shell of New Zealand's rocky shores");
+    const dialog = container.querySelector('[role="dialog"]')!;
+    expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
+    expect(dialog.textContent).toContain('eyes of carved figures');
+    expect(dialog.querySelectorAll('svg[data-locked="true"]')).toHaveLength(0);
   });
 
   it('unlocks treasures at once for units complete through the PoC rule', () => {
     renderAt('/home', appData({ beginnerCompleted: true }));
     expect(container.textContent).toContain('8 / 20 collected');
-    expect(container.querySelector('button[aria-controls="treasure-hokey-pokey"]')).not.toBeNull();
+    expect(container.querySelector('button[aria-label="Read about Hokey pokey ice cream"]')).not.toBeNull();
   });
 
   it('tells the learner on the Unit screen what finishing the unit unlocks', () => {
@@ -340,6 +350,33 @@ describe('Literal meaning on the Learn card', () => {
   });
 });
 
+describe('Every unlocked kiwiana opens its story', () => {
+  it('opens from the unit screen line once the unit is complete', () => {
+    renderAt('/unit/b01-greetings', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    const button = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
+    act(() => void button.click());
+    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('eyes of carved figures');
+  });
+
+  it('opens from the Home card when everything is collected (the Golden kiwi)', () => {
+    const all = units.map((u) => doneRow(u.id));
+    renderAt('/home', appData({ unitProgress: all }));
+    const button = container
+      .querySelector('section[aria-labelledby="kiwiana-title"]')!
+      .querySelector('button[aria-label="Read about Golden kiwi"]') as HTMLButtonElement;
+    act(() => void button.click());
+    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('kahu kiwi');
+  });
+
+  it('opens from the icon on the Kiwiana page as well as the name', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    const buttons = container.querySelectorAll('button[aria-label="Read about Pāua"]');
+    expect(buttons).toHaveLength(2);
+    act(() => void (buttons[0] as HTMLButtonElement).click());
+    expect(container.querySelector('[role="dialog"]')).not.toBeNull();
+  });
+});
+
 describe('Kiwiana stories', () => {
   it('opens an unlocked treasure in a dialog, without the unlock heading', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
@@ -362,6 +399,6 @@ describe('Kiwiana stories', () => {
     expect(container.textContent).not.toContain('Anna Pavlova');
     expect(container.textContent).not.toContain('Hine-nui-te-p');
     const itemButtons = [...container.querySelectorAll('ul button')];
-    expect(itemButtons.map((b) => b.textContent)).toEqual(['Pāua']);
+    expect(new Set(itemButtons.map((b) => b.getAttribute('aria-label')))).toEqual(new Set(['Read about Pāua']));
   });
 });

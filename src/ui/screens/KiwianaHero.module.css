@@ -133,3 +133,19 @@ button.tileButton {
     transition: none;
   }
 }
+
+.hint {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+button.recentItem {
+  min-height: var(--tap-target-min);
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
