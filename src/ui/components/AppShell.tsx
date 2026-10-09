@@ -112,15 +112,15 @@ function TabBar() {
             className={active ? `${styles.navLink} ${styles.active}` : styles.navLink}
             aria-current={active ? 'page' : undefined}
           >
-            {tab.icon}
-            <span>
-              {tab.label}
+            <span className={styles.iconWrap}>
+              {tab.icon}
               {tab.to === '/review' && dueCount > 0 && (
                 <span className={styles.badge} aria-label={`${dueCount} due`}>
-                  {dueCount}
+                  {dueCount > 99 ? '99+' : dueCount}
                 </span>
               )}
             </span>
+            <span className={styles.label}>{tab.label}</span>
           </NavLink>
         );
       })}
