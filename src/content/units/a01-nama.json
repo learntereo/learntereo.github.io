@@ -1,0 +1,300 @@
+{
+  "unit": {
+    "id": "a01-nama",
+    "level": "advanced",
+    "order": 1,
+    "title": "Bigger numbers",
+    "titleMi": "Ngā Nama Nui",
+    "emoji": "💯",
+    "itemIds": [
+      "w-a-001",
+      "w-a-002",
+      "w-a-003",
+      "w-a-004",
+      "w-a-005",
+      "w-a-006",
+      "w-a-007",
+      "w-a-008",
+      "w-a-009",
+      "w-a-010",
+      "w-a-011",
+      "w-a-012",
+      "w-a-013",
+      "s-a-001",
+      "s-a-002",
+      "s-a-003",
+      "s-a-004",
+      "s-a-005",
+      "s-a-006",
+      "s-a-007"
+    ],
+    "grammar": "a01-nama"
+  },
+  "items": [
+    {
+      "id": "w-a-001",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tekau mā tahi",
+      "en": [
+        "eleven"
+      ]
+    },
+    {
+      "id": "w-a-002",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tekau mā rima",
+      "en": [
+        "fifteen"
+      ]
+    },
+    {
+      "id": "w-a-003",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "rua tekau",
+      "en": [
+        "twenty"
+      ]
+    },
+    {
+      "id": "w-a-004",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "toru tekau",
+      "en": [
+        "thirty"
+      ]
+    },
+    {
+      "id": "w-a-005",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "whā tekau",
+      "en": [
+        "forty"
+      ]
+    },
+    {
+      "id": "w-a-006",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "rima tekau",
+      "en": [
+        "fifty"
+      ]
+    },
+    {
+      "id": "w-a-007",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "kotahi rau",
+      "en": [
+        "one hundred",
+        "a hundred"
+      ]
+    },
+    {
+      "id": "w-a-008",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "kotahi mano",
+      "en": [
+        "one thousand",
+        "a thousand"
+      ]
+    },
+    {
+      "id": "w-a-009",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tokorua",
+      "en": [
+        "two people"
+      ]
+    },
+    {
+      "id": "w-a-010",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tokotoru",
+      "en": [
+        "three people"
+      ]
+    },
+    {
+      "id": "w-a-011",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tokowhā",
+      "en": [
+        "four people"
+      ]
+    },
+    {
+      "id": "w-a-012",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tokohia",
+      "en": [
+        "how many people"
+      ]
+    },
+    {
+      "id": "w-a-013",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "maha",
+      "en": [
+        "many",
+        "a lot"
+      ]
+    },
+    {
+      "id": "s-a-001",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "E tekau mā rima ngā tamariki",
+      "en": [
+        "There are fifteen children",
+        "Fifteen children"
+      ],
+      "tiles": [
+        "e",
+        "tekau",
+        "mā",
+        "rima",
+        "ngā",
+        "tamariki"
+      ],
+      "decoys": [
+        "he",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-a-002",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "E rua tekau ngā ākonga",
+      "en": [
+        "There are twenty students",
+        "Twenty students"
+      ],
+      "tiles": [
+        "e",
+        "rua",
+        "tekau",
+        "ngā",
+        "ākonga"
+      ],
+      "decoys": [
+        "he",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-a-003",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "E rima tekau ngā hipi",
+      "en": [
+        "There are fifty sheep",
+        "Fifty sheep"
+      ],
+      "tiles": [
+        "e",
+        "rima",
+        "tekau",
+        "ngā",
+        "hipi"
+      ],
+      "decoys": [
+        "he",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-a-004",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "E tokotoru ngā tamariki",
+      "en": [
+        "There are three children",
+        "Three children"
+      ],
+      "tiles": [
+        "e",
+        "tokotoru",
+        "ngā",
+        "tamariki"
+      ],
+      "decoys": [
+        "he",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-a-005",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Tokohia ngā tāngata",
+      "en": [
+        "How many people",
+        "How many people are there"
+      ],
+      "tiles": [
+        "tokohia",
+        "ngā",
+        "tāngata"
+      ],
+      "decoys": [
+        "e",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-a-006",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He maha ngā manu",
+      "en": [
+        "There are many birds",
+        "The birds are many",
+        "There are a lot of birds"
+      ],
+      "tiles": [
+        "he",
+        "maha",
+        "ngā",
+        "manu"
+      ],
+      "decoys": [
+        "e",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-a-007",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kotahi rau ngā manu",
+      "en": [
+        "There are a hundred birds",
+        "There are one hundred birds",
+        "A hundred birds"
+      ],
+      "tiles": [
+        "kotahi",
+        "rau",
+        "ngā",
+        "manu"
+      ],
+      "decoys": [
+        "e",
+        "he"
+      ]
+    }
+  ]
+}

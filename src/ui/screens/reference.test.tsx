@@ -117,7 +117,7 @@ describe('Grammar index', () => {
     show(<Grammar />, data());
     expect(container.querySelectorAll('details')).toHaveLength(1);
     expect(container.textContent).toContain('Hello to one, two or many');
-    expect(container.textContent).toContain('1 of 16 so far');
+    expect(container.textContent).toContain('1 of 22 so far');
   });
 
   it('shows every Beginner note and the first Intermediate note after Beginner', () => {
@@ -151,6 +151,6 @@ describe('Progress stats (FR10)', () => {
     expect(text).toContain('2 / ');
     expect(text).toContain('Beginner');
     expect(text).toContain('Intermediate');
-    expect(text).not.toContain('Advanced');
+    expect(text).toContain('Advanced');
   });
 });

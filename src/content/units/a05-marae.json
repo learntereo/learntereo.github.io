@@ -1,0 +1,307 @@
+{
+  "unit": {
+    "id": "a05-marae",
+    "level": "advanced",
+    "order": 5,
+    "title": "Marae and tikanga",
+    "titleMi": "Te Marae me ngā Tikanga",
+    "emoji": "🏛️",
+    "itemIds": [
+      "w-a-050",
+      "w-a-051",
+      "w-a-052",
+      "w-a-053",
+      "w-a-054",
+      "w-a-055",
+      "w-a-056",
+      "w-a-057",
+      "w-a-058",
+      "w-a-059",
+      "w-a-060",
+      "w-a-061",
+      "w-a-062",
+      "s-a-029",
+      "s-a-030",
+      "s-a-031",
+      "s-a-032",
+      "s-a-033",
+      "s-a-034",
+      "s-a-035"
+    ],
+    "grammar": "a05-marae"
+  },
+  "items": [
+    {
+      "id": "w-a-050",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "wharenui",
+      "en": [
+        "meeting house"
+      ]
+    },
+    {
+      "id": "w-a-051",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "wharekai",
+      "en": [
+        "dining hall"
+      ]
+    },
+    {
+      "id": "w-a-052",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "marae ātea",
+      "en": [
+        "marae courtyard",
+        "courtyard"
+      ]
+    },
+    {
+      "id": "w-a-053",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "pōwhiri",
+      "en": [
+        "welcome ceremony",
+        "formal welcome"
+      ]
+    },
+    {
+      "id": "w-a-054",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "karanga",
+      "en": [
+        "call",
+        "ceremonial call"
+      ]
+    },
+    {
+      "id": "w-a-055",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "whaikōrero",
+      "en": [
+        "formal speech",
+        "oratory"
+      ]
+    },
+    {
+      "id": "w-a-056",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "hongi",
+      "en": [
+        "hongi",
+        "press noses"
+      ]
+    },
+    {
+      "id": "w-a-057",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tapu",
+      "en": [
+        "sacred",
+        "restricted"
+      ]
+    },
+    {
+      "id": "w-a-058",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "manuhiri",
+      "en": [
+        "visitors",
+        "guests"
+      ]
+    },
+    {
+      "id": "w-a-059",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tangata whenua",
+      "en": [
+        "hosts",
+        "people of the land"
+      ]
+    },
+    {
+      "id": "w-a-060",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "kaumātua",
+      "en": [
+        "elders",
+        "elder"
+      ]
+    },
+    {
+      "id": "w-a-061",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tikanga",
+      "en": [
+        "custom",
+        "correct way"
+      ]
+    },
+    {
+      "id": "w-a-062",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "koha",
+      "en": [
+        "gift",
+        "donation"
+      ],
+      "image": {
+        "emoji": "🎁"
+      }
+    },
+    {
+      "id": "s-a-029",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He wharenui tēnei",
+      "en": [
+        "This is a meeting house"
+      ],
+      "tiles": [
+        "he",
+        "wharenui",
+        "tēnei"
+      ],
+      "decoys": [
+        "tērā",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-030",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He wharekai tērā",
+      "en": [
+        "That is a dining hall"
+      ],
+      "tiles": [
+        "he",
+        "wharekai",
+        "tērā"
+      ],
+      "decoys": [
+        "tēnei",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-031",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei te karanga te kuia",
+      "en": [
+        "The elderly woman is calling",
+        "The old woman is calling"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "karanga",
+        "te",
+        "kuia"
+      ],
+      "decoys": [
+        "ka",
+        "ngā"
+      ]
+    },
+    {
+      "id": "s-a-032",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei te whaikōrero te kaumātua",
+      "en": [
+        "The elder is giving a speech",
+        "The elders are giving a speech"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "whaikōrero",
+        "te",
+        "kaumātua"
+      ],
+      "decoys": [
+        "ka",
+        "ngā"
+      ]
+    },
+    {
+      "id": "s-a-033",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Ka hongi ngā manuhiri",
+      "en": [
+        "The visitors will hongi",
+        "The visitors will press noses"
+      ],
+      "tiles": [
+        "ka",
+        "hongi",
+        "ngā",
+        "manuhiri"
+      ],
+      "decoys": [
+        "kei",
+        "te"
+      ]
+    },
+    {
+      "id": "s-a-034",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "He tapu te wharenui",
+      "en": [
+        "The meeting house is sacred",
+        "The meeting house is tapu"
+      ],
+      "tiles": [
+        "he",
+        "tapu",
+        "te",
+        "wharenui"
+      ],
+      "decoys": [
+        "kei",
+        "ngā"
+      ]
+    },
+    {
+      "id": "s-a-035",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei te haere ngā manuhiri ki te marae",
+      "en": [
+        "The visitors are going to the marae"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "haere",
+        "ngā",
+        "manuhiri",
+        "ki",
+        "te",
+        "marae"
+      ],
+      "decoys": [
+        "ka",
+        "i"
+      ]
+    }
+  ]
+}

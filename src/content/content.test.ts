@@ -26,7 +26,7 @@ const strip = (s: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
-const LEVELS = ['beginner', 'intermediate'] as const;
+const LEVELS = ['beginner', 'intermediate', 'advanced'] as const;
 const EM_DASH = String.fromCharCode(0x2014);
 
 /** The 140 items of the PoC: their ids must never change (they key saved progress). */
@@ -38,9 +38,11 @@ const POC_IDS = [
 ];
 
 describe('curriculum structure', () => {
-  it('has 8 Beginner and 8 Intermediate units (Advanced comes later)', () => {
+  it('has 8 Beginner, 8 Intermediate and 6 Advanced units', () => {
     expect(unitsForLevel('beginner')).toHaveLength(8);
     expect(unitsForLevel('intermediate')).toHaveLength(8);
+    expect(unitsForLevel('advanced')).toHaveLength(6);
+    expect(units).toHaveLength(22);
   });
 
   it('lists units in path order with consecutive order numbers per level', () => {
@@ -96,8 +98,8 @@ describe('curriculum structure', () => {
   });
 
   it('has enough content in total', () => {
-    expect(allItems.filter((i) => i.kind === 'word').length).toBeGreaterThanOrEqual(190);
-    expect(allItems.filter((i) => i.kind === 'sentence').length).toBeGreaterThanOrEqual(95);
+    expect(allItems.filter((i) => i.kind === 'word').length).toBeGreaterThanOrEqual(270);
+    expect(allItems.filter((i) => i.kind === 'sentence').length).toBeGreaterThanOrEqual(135);
   });
 
   it('has enough image words for Picture mode', () => {
@@ -195,7 +197,7 @@ describe('sentences', () => {
 
   it('keeps decoys out of the tiles and defines enough of them', () => {
     for (const level of LEVELS) {
-      const need = level === 'beginner' ? 1 : 2;
+      const need = level === 'beginner' ? 1 : 2; // Intermediate and Advanced
       for (const s of sentencesForLevel(level)) {
         expect((s.decoys ?? []).length, s.id).toBeGreaterThanOrEqual(need);
         for (const decoy of s.decoys ?? []) expect(s.tiles).not.toContain(decoy);

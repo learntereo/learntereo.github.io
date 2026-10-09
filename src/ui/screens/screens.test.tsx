@@ -111,7 +111,7 @@ describe('Path home (AC1)', () => {
     expect([...open]).toEqual(['/unit/b01-greetings']);
     expect(container.querySelectorAll('[aria-disabled="true"]')).toHaveLength(units.length - 1);
     expect(container.textContent).toContain('Advanced');
-    expect(container.textContent).toContain('Coming soon');
+    expect(container.textContent).not.toContain('Coming soon');
   });
 
   it('offers Free practice and a Next up card', () => {

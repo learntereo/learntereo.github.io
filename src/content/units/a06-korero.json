@@ -1,0 +1,307 @@
+{
+  "unit": {
+    "id": "a06-korero",
+    "level": "advanced",
+    "order": 6,
+    "title": "Stories and joining sentences",
+    "titleMi": "Ngā Kōrero",
+    "emoji": "📖",
+    "itemIds": [
+      "w-a-063",
+      "w-a-064",
+      "w-a-065",
+      "w-a-066",
+      "w-a-067",
+      "w-a-068",
+      "w-a-069",
+      "w-a-070",
+      "w-a-071",
+      "w-a-072",
+      "w-a-073",
+      "w-a-074",
+      "s-a-036",
+      "s-a-037",
+      "s-a-038",
+      "s-a-039",
+      "s-a-040",
+      "s-a-041"
+    ],
+    "grammar": "a06-korero"
+  },
+  "items": [
+    {
+      "id": "w-a-063",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "ā",
+      "en": [
+        "and then",
+        "and"
+      ]
+    },
+    {
+      "id": "w-a-064",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "nā te mea",
+      "en": [
+        "because"
+      ]
+    },
+    {
+      "id": "w-a-065",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "engari",
+      "en": [
+        "but"
+      ]
+    },
+    {
+      "id": "w-a-066",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "nō reira",
+      "en": [
+        "so",
+        "therefore"
+      ]
+    },
+    {
+      "id": "w-a-067",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "ahakoa",
+      "en": [
+        "although",
+        "even though"
+      ]
+    },
+    {
+      "id": "w-a-068",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "hoki",
+      "en": [
+        "also",
+        "too"
+      ]
+    },
+    {
+      "id": "w-a-069",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tuatahi",
+      "en": [
+        "first"
+      ]
+    },
+    {
+      "id": "w-a-070",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tuarua",
+      "en": [
+        "second"
+      ]
+    },
+    {
+      "id": "w-a-071",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tuatoru",
+      "en": [
+        "third"
+      ]
+    },
+    {
+      "id": "w-a-072",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "pakiwaitara",
+      "en": [
+        "story",
+        "legend"
+      ]
+    },
+    {
+      "id": "w-a-073",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "tīmatanga",
+      "en": [
+        "beginning"
+      ]
+    },
+    {
+      "id": "w-a-074",
+      "kind": "word",
+      "level": "advanced",
+      "mi": "mutunga",
+      "en": [
+        "ending",
+        "end of something"
+      ]
+    },
+    {
+      "id": "s-a-036",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei te makariri ahau nā te mea kei te ua",
+      "en": [
+        "I am cold because it is raining"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "makariri",
+        "ahau",
+        "nā",
+        "te",
+        "mea",
+        "kei",
+        "te",
+        "ua"
+      ],
+      "decoys": [
+        "engari",
+        "ā"
+      ]
+    },
+    {
+      "id": "s-a-037",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei te pai ahau engari kei te ngenge ia",
+      "en": [
+        "I am well but he is tired",
+        "I am well but she is tired",
+        "I am good but he is tired",
+        "I am good but she is tired"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "pai",
+        "ahau",
+        "engari",
+        "kei",
+        "te",
+        "ngenge",
+        "ia"
+      ],
+      "decoys": [
+        "nā",
+        "ā"
+      ]
+    },
+    {
+      "id": "s-a-038",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei te ua nō reira ka noho mātou ki te whare",
+      "en": [
+        "It is raining so we will stay at home",
+        "It is raining so we will stay at the house"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "ua",
+        "nō",
+        "reira",
+        "ka",
+        "noho",
+        "mātou",
+        "ki",
+        "te",
+        "whare"
+      ],
+      "decoys": [
+        "engari",
+        "ā"
+      ]
+    },
+    {
+      "id": "s-a-039",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Ka haere ahau ki te kura ā ka whakarongo ki te kaiako",
+      "en": [
+        "I will go to school and then listen to the teacher"
+      ],
+      "tiles": [
+        "ka",
+        "haere",
+        "ahau",
+        "ki",
+        "te",
+        "kura",
+        "ā",
+        "ka",
+        "whakarongo",
+        "ki",
+        "te",
+        "kaiako"
+      ],
+      "decoys": [
+        "engari",
+        "nā"
+      ]
+    },
+    {
+      "id": "s-a-040",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Ahakoa te ua kei te haere tātou ki te tātahi",
+      "en": [
+        "Although it is raining we are going to the beach",
+        "Even though it is raining we are going to the beach"
+      ],
+      "tiles": [
+        "ahakoa",
+        "te",
+        "ua",
+        "kei",
+        "te",
+        "haere",
+        "tātou",
+        "ki",
+        "te",
+        "tātahi"
+      ],
+      "decoys": [
+        "engari",
+        "nā"
+      ]
+    },
+    {
+      "id": "s-a-041",
+      "kind": "sentence",
+      "level": "advanced",
+      "mi": "Kei te inu ahau i te wai kei te inu hoki ia",
+      "en": [
+        "I am drinking water and she is too",
+        "I am drinking water and he is too"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "inu",
+        "ahau",
+        "i",
+        "te",
+        "wai",
+        "kei",
+        "te",
+        "inu",
+        "hoki",
+        "ia"
+      ],
+      "decoys": [
+        "engari",
+        "nā"
+      ]
+    }
+  ]
+}
