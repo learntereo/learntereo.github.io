@@ -22,28 +22,49 @@ const escapeHtml = (text: string) => text.replace(/&/g, '&amp;').replace(/</g, '
 
 /**
  * Builds the page content a crawler (or a browser with scripts off) sees before React mounts:
- * the same headings, intro and level/unit lists as the Landing page, generated from unitIndex.json
+ * the same headings, intro, level summaries and unit lists as the Landing page, generated from unitIndex.json
  * so it cannot drift from the course. createRoot replaces it on mount.
  */
 function staticLandingHtml(): string {
   const unitIndex = JSON.parse(readFileSync(new URL('./src/content/unitIndex.json', import.meta.url), 'utf8')) as IndexedUnit[];
-  const levels = LEVEL_LABELS.map(([level, label]) => {
-    const items = unitIndex
-      .filter((u) => u.level === level)
-      .sort((a, b) => a.order - b.order)
-      .map((u) => `<li>${escapeHtml(u.title)} (<span lang="mi">${escapeHtml(u.titleMi)}</span>)</li>`)
-      .join('');
-    return `<div><h3>${label}</h3><ul>${items}</ul></div>`;
-  });
+  const byLevel = LEVEL_LABELS.map(([level, label]) => ({
+    label,
+    units: unitIndex.filter((u) => u.level === level).sort((a, b) => a.order - b.order),
+  }));
+  const total = byLevel.reduce((n, l) => n + l.units.length, 0);
+  const cards = byLevel
+    .map(
+      (l) =>
+        `<div><h3>${l.label}</h3><p>${l.units.length} units</p><ul>${l.units
+          .slice(0, 3)
+          .map((u) => `<li>${escapeHtml(u.title)}</li>`)
+          .join('')}</ul></div>`,
+    )
+    .join('');
+  const lists = byLevel
+    .map(
+      (l) =>
+        `<div><h3>${l.label}</h3><ul>${l.units
+          .map((u) => `<li>${escapeHtml(u.title)} <span lang="mi">${escapeHtml(u.titleMi)}</span></li>`)
+          .join('')}</ul></div>`,
+    )
+    .join('');
   return [
     '<main>',
-    '<h1 lang="mi">Ako</h1>',
-    '<p>Ako: learn te reo <span lang="mi">Māori</span>, one kupu at a time.</p>',
+    '<header>',
+    '<p lang="mi">Ako</p>',
+    '<h1>Learn te reo <span lang="mi">Māori</span></h1>',
+    '<p>Short lessons that work on your phone, from your first <span lang="mi">kia ora</span> to full sentences.</p>',
+    '</header>',
     '<section>',
-    '<h2>Learn te reo <span lang="mi">Māori</span>, free</h2>',
-    '<p>Ako is a free way to learn te reo <span lang="mi">Māori</span>. Short lessons that work on your phone, from beginner to advanced. Vocabulary, sentences and pronunciation, made in New Zealand.</p>',
-    ...levels,
-    '<p><a href="/pepeha/">Pepeha builder</a></p>',
+    '<h2>Three levels</h2>',
+    cards,
+    `<details open><summary>See all ${total} units</summary>${lists}</details>`,
+    '</section>',
+    '<section>',
+    '<h2>Write your pepeha</h2>',
+    '<p>Introduce yourself in te reo <span lang="mi">Māori</span>. No sign-in needed.</p>',
+    '<p><a href="/pepeha/">Open the pepeha builder</a></p>',
     '</section>',
     '</main>',
   ].join('');

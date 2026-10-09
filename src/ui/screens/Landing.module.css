@@ -4,22 +4,79 @@
   flex-direction: column;
   align-items: center;
   padding: var(--space-6) var(--space-4);
-  gap: var(--space-5);
+  gap: var(--space-6);
+}
+
+.hero {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
 }
 
 .brand {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .brandName {
-  font-size: 2.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
   color: var(--color-kokowai);
-  margin-bottom: var(--space-1);
+  margin: 0;
 }
 
-.tagline {
-  color: var(--color-text-muted);
+.title {
+  font-size: clamp(2.2rem, 7vw, 3.5rem);
   margin: 0;
+}
+
+.lead {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 34ch;
+  margin: 0;
+}
+
+.startButton {
+  width: 100%;
+  background: var(--color-kokowai);
+  color: var(--color-ma);
+  border: none;
+  border-radius: var(--radius-md);
+  min-height: 56px;
+  padding: var(--space-3) var(--space-6);
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.startButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (min-width: 640px) {
+  .startButton {
+    width: auto;
+    min-width: 280px;
+  }
+}
+
+.textButton {
+  background: none;
+  border: none;
+  color: var(--color-kokowai);
+  text-decoration: underline;
+  cursor: pointer;
+  padding: var(--space-2) var(--space-3);
+  font-size: 1rem;
 }
 
 .card {
@@ -139,11 +196,6 @@
   margin: 0;
 }
 
-.footer {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-}
-
 .topBorder {
   width: calc(100% + 2 * var(--space-4));
   margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-4)) 0;
@@ -155,41 +207,120 @@
   color: var(--color-kokowai);
 }
 
-/* ---------- about: plain content below the sign-in card ---------- */
-.about {
+
+/* ---------- levels and pepeha ---------- */
+.section {
   width: 100%;
-  max-width: 560px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.about h2,
-.about h3,
-.about p {
-  margin: 0;
-}
-
-.levels {
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
-.unitList {
-  margin: var(--space-2) 0 0;
-  padding-left: var(--space-5);
+.section h2,
+.section h3,
+.section p {
+  margin: 0;
+}
+
+.levelGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .levelGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.levelCard,
+.pepehaCard {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.levelCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.levelCount {
   color: var(--color-text-muted);
+}
+
+.chips {
+  list-style: none;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chips li {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-3);
+  font-size: 0.9rem;
   overflow-wrap: anywhere;
 }
 
-.guestButton {
-  background: none;
-  border: 2px solid var(--color-kokowai);
+.allUnits summary {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap-target-min);
+  cursor: pointer;
   color: var(--color-kokowai);
-  border-radius: var(--radius-md);
+  font-weight: 600;
+}
+
+.allUnits summary:focus-visible {
+  outline: 3px solid var(--color-karaka);
+  outline-offset: 2px;
+}
+
+.allUnitsBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-3);
+}
+
+.unitList {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-5);
+  overflow-wrap: anywhere;
+}
+
+.unitList span {
+  color: var(--color-text-muted);
+  margin-left: var(--space-1);
+}
+
+.pepehaCard {
+  align-items: flex-start;
+}
+
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: var(--tap-target-min);
   padding: var(--space-2) var(--space-4);
+  border: 2px solid var(--color-kokowai);
+  border-radius: var(--radius-md);
+  color: var(--color-kokowai);
   font-weight: 600;
-  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0;
 }
