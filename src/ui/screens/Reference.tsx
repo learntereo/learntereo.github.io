@@ -42,6 +42,11 @@ export function Reference() {
             <span className={styles.title}>Free practice</span>
           </Link>
         </li>
+        <li>
+          <a href={`${import.meta.env.BASE_URL}pepeha/`} className={`${ui.card} ${styles.page}`}>
+            <span className={styles.title}>Pepeha builder</span>
+          </a>
+        </li>
       </ul>
     </main>
   );
