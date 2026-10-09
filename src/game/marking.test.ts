@@ -145,3 +145,15 @@ describe('number words and digits', () => {
     expect(isAnswerCorrect('There are 15 children', ['There are fifteen children', 'Fifteen children'])).toBe(true);
   });
 });
+
+describe('NZ spelling', () => {
+  it('accepts US spellings for NZ answers', () => {
+    expect(isAnswerCorrect('my favorite color', ['my favourite colour'])).toBe(true);
+    expect(isAnswerCorrect('That is my mom', ['That is my mum'])).toBe(true);
+    expect(isAnswerCorrect('gray', ['grey'])).toBe(true);
+    expect(isAnswerCorrect('airplane', ['aeroplane'])).toBe(true);
+  });
+  it('still rejects a different word', () => {
+    expect(isAnswerCorrect('my favourite food', ['my favourite colour'])).toBe(false);
+  });
+});
