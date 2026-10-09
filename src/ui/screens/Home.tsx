@@ -8,8 +8,8 @@ import type { UnitStatus } from '../../game/unitUnlock';
 import { TitleBreakdown } from '../components/Breakdown';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel } from '../labels';
-import { roundPath } from '../paths';
+import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
+import { canResume, roundPath } from '../paths';
 import styles from './Home.module.css';
 
 function LockIcon() {
@@ -142,7 +142,7 @@ export function Home() {
     activeRound && typeof activeRound.state === 'object' && activeRound.state !== null
       ? Number((activeRound.state as { index?: unknown }).index ?? 0)
       : 0;
-  const resumable = activeRound && isLevel(activeRound.level);
+  const resumable = activeRound && canResume(activeRound);
   const resumeUnit = activeRound?.unit_id ? units.find((u) => u.id === activeRound.unit_id) : undefined;
 
   return (
