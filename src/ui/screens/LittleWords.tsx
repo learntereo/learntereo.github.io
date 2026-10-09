@@ -25,10 +25,6 @@ export function LittleWords() {
           &larr; Reference
         </Link>
         <h1>Little words</h1>
-        <p className={ui.muted}>
-          Small words such as <span lang="mi">te</span>, <span lang="mi">ngā</span> and <span lang="mi">kei te</span> do
-          a lot of work in te reo Māori. Here is what each one does.
-        </p>
       </div>
 
       <div>

@@ -95,7 +95,7 @@ describe('Results for a unit check', () => {
     );
     expect(container.textContent).not.toContain('Unit complete');
     expect(container.textContent).toContain('Not this time');
-    expect(container.textContent).toContain('You need 10 out of 12');
+    expect(container.textContent).toContain('10 out of 12 to pass');
     expect(container.textContent).toContain('Words to revisit (3)');
     expect(container.textContent).toContain('kia ora');
     expect(hrefs()).toContain('/unit/b01-greetings/practice');
@@ -145,7 +145,7 @@ describe('Results: new kiwiana', () => {
       ['b01-greetings'],
     );
     expect(container.textContent).toContain('New kiwiana: Pāua!');
-    expect(container.textContent).toContain('shimmering shell');
+    expect(container.textContent).toContain('shell that shimmers');
     expect(hrefs()).toContain('/kiwiana');
     expect(container.textContent).toContain('See your Kiwiana');
     expect(container.textContent).not.toContain('collected all 20');
@@ -176,7 +176,7 @@ describe('Results: unlock dialog', () => {
     );
     const dialog = container.querySelector('[role="dialog"]')!;
     expect(dialog.textContent).toContain('You unlocked: Pāua!');
-    expect(dialog.textContent).toContain('carvers have long used pāua shell');
+    expect(dialog.textContent).toContain('set pāua into carvings');
     const close = [...dialog.querySelectorAll('button')].find((b) => b.textContent === 'Ka pai!')!;
     act(() => void close.click());
     expect(container.querySelector('[role="dialog"]')).toBeNull();

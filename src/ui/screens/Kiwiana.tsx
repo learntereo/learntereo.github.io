@@ -23,7 +23,6 @@ export function Kiwiana() {
     <main className={ui.page}>
       <div>
         <h1>Kiwiana</h1>
-        <p className={ui.muted}>Finish units to collect treasures from New Zealand.</p>
       </div>
 
       <section className={`${ui.card} ${styles.summary}`} aria-label="Collection progress">

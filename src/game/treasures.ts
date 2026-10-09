@@ -15,65 +15,65 @@ export interface Treasure {
 
 /** In collection order. Treasure N follows unit N (1 to 19). The 20th, the Golden kiwi, follows the last unit (22). */
 export const TREASURES: readonly Treasure[] = [
-  { id: 'paua', name: 'Pāua', caption: "Pāua: the shimmering shell of New Zealand's rocky shores", story:
-      "Pāua are sea snails that cling to rocky shores around New Zealand. The inside of the shell flashes blue, green and purple, and Māori carvers have long used pāua shell for the eyes of carved figures. The flesh is a traditional food, gathered by hand.",
+  { id: "paua", name: "Pāua", caption: "Pāua: the shell that shimmers blue, green and purple", story:
+      "Every bach windowsill seems to have a pāua shell on it. Māori carvers have long set pāua into carvings as shining eyes, and the meat has always been prized kai, gathered by hand from our rocky coasts.",
     afterUnit: 1 },
-  { id: 'jandals', name: 'Jandals', caption: 'Jandals: what New Zealanders call flip-flops, perfect for the beach', story:
-      "Jandals is the New Zealand word for flip-flops. The name is often said to come from \"Japanese sandals\", a style that became popular in the 1950s. Tātahi means beach, a word from Places and travel, and the beach is where many New Zealanders wear their jandals.",
+  { id: "jandals", name: "Jandals", caption: "Jandals: summer footwear, sorted", story:
+      "Jandals have been our summer footwear since the 1950s. The name is often said to come from \"Japanese sandals\". Tātahi means beach, a word from Places and travel, and that's where most jandals end up.",
     afterUnit: 2 },
-  { id: 'silver-fern', name: 'Silver fern', caption: 'Silver fern (ponga): the undersides of its fronds are silver and catch the moonlight', story:
-      "The silver fern, or ponga, has fronds that are silver-white underneath. It is often said that travellers turned the fronds over so the pale undersides would catch the moonlight and show the trail at night. Today the silver fern is a well-known symbol of New Zealand.",
+  { id: "silver-fern", name: "Silver fern", caption: "Silver fern (ponga): silver underneath, made to catch the moonlight", story:
+      "Turn a ponga frond over and the underside is silver-white. It's often said hunters and travellers laid fronds silver-side up to catch the moonlight and mark the track home at night. Now you'll see it on the black jersey.",
     afterUnit: 3 },
-  { id: 'pohutukawa', name: 'Pōhutukawa', caption: 'Pōhutukawa: the coastal tree with red flowers that bloom around Christmas', story:
-      "The pōhutukawa is a coastal tree with bright red flowers that bloom in early summer, around Christmas, so it is often called the New Zealand Christmas tree. It grows on cliffs and beaches in the north of the country. Whero means red, a word from Nature and colours.",
+  { id: "pohutukawa", name: "Pōhutukawa", caption: "Pōhutukawa: red flowers that mean summer is here", story:
+      "When the pōhutukawa flowers red along the coast, you know Christmas and summer are close. In Māori tradition, an old pōhutukawa at Te Rerenga Wairua is where spirits leave the land. Whero means red, a word from Nature and colours.",
     afterUnit: 4 },
-  { id: 'gumboot', name: 'Gumboot', caption: 'Gumboot: the rubber boot every farm and garden needs', story:
-      "Gumboots are tall rubber boots for mud, rain and farm work. The town of Taihape is known as the gumboot capital of the world. Hū means shoe, a word from Clothes and things.",
+  { id: "gumboot", name: "Gumboot", caption: "Gumboot: farm, garden, festival, sorted", story:
+      "Gumboots get us through mud, rain and the farm. Taihape calls itself the gumboot capital of the world, and Fred Dagg sang about them. Hū means shoe, a word from Clothes and things.",
     afterUnit: 5 },
-  { id: 'pavlova', name: 'Pavlova', caption: 'Pavlova: a meringue dessert with cream and fruit, a summer favourite', story:
-      "Pavlova is a crisp meringue dessert with a soft middle, topped with cream and fruit. It is named after the Russian ballet dancer Anna Pavlova, who toured New Zealand and Australia in the 1920s. Both countries claim to have invented it, and the argument is still going.",
+  { id: "pavlova", name: "Pavlova", caption: "Pavlova: crisp outside, soft inside, cream and fruit on top", story:
+      "No summer gathering is complete without a pav. It's named after the ballet dancer Anna Pavlova, who toured here in the 1920s. The Aussies reckon they invented it, and we're not letting that go.",
     afterUnit: 6 },
-  { id: 'fish-and-chips', name: 'Fish and chips', caption: 'Fish and chips: a classic takeaway to eat by the beach', story:
-      "Fish and chips is a classic New Zealand takeaway, often eaten from paper by the beach. The tradition came from Britain with settlers. Ika means fish, a word from Animals.",
+  { id: "fish-and-chips", name: "Fish and chips", caption: "Fish and chips: wrapped in paper, eaten at the beach", story:
+      "Friday night fish and chips, wrapped in paper and eaten by the water, is hard to beat. Ika means fish, a word from Animals.",
     afterUnit: 7 },
-  { id: 'hokey-pokey', name: 'Hokey pokey ice cream', caption: 'Hokey pokey: vanilla ice cream with crunchy toffee pieces', story:
-      "Hokey pokey ice cream is vanilla ice cream with crunchy pieces of honeycomb toffee. It is a much-loved New Zealand flavour and a classic summer treat. The toffee is also called hokey pokey.",
+  { id: "hokey-pokey", name: "Hokey pokey ice cream", caption: "Hokey pokey: vanilla with crunchy honeycomb toffee", story:
+      "Hokey pokey is our own ice cream flavour: vanilla packed with crunchy honeycomb toffee. Ask for a double scoop at the dairy.",
     afterUnit: 8 },
-  { id: 'tui', name: 'Tūī', caption: 'Tūī: a forest bird with a white tuft at its throat and a beautiful song', story:
-      "The tūī is a native bird with a glossy dark body, a white tuft at its throat and a song of bell-like notes and clicks. It feeds on nectar from native flowers, which helps to pollinate them. Tūī is also a word from Animals.",
+  { id: "tui", name: "Tūī", caption: "Tūī: the bird with the white tuft and the best song in the bush", story:
+      "You hear a tūī before you see one: bell notes, clicks and wheezes all mixed together. They feed on nectar and help pollinate native trees like kōwhai and flax. Tūī is a word from Animals.",
     afterUnit: 9 },
-  { id: 'pukeko', name: 'Pūkeko', caption: 'Pūkeko: a blue swamp bird with a red beak and long legs, often seen in paddocks', story:
-      "Pūkeko are blue-purple swamp birds with red beaks and long red legs. You often see them walking through paddocks and beside wetlands. They are related to the takahē, another New Zealand bird with a red beak. Pūkeko is a word from Animals.",
+  { id: "pukeko", name: "Pūkeko", caption: "Pūkeko: blue feathers, red beak, big feet", story:
+      "You'll spot pūkeko stalking across paddocks and roadside swamps, flicking their white tails. They're cousins of the much rarer takahē. Pūkeko is a word from Animals.",
     afterUnit: 10 },
-  { id: 'kumara', name: 'Kūmara', caption: 'Kūmara: the sweet potato brought to New Zealand by early Māori voyagers', story:
-      "The kūmara, or sweet potato, was brought to New Zealand by Polynesian voyagers and became a vital crop for Māori. It was stored carefully over winter in pits. Kūmara is a word from Food and drink.",
+  { id: "kumara", name: "Kūmara", caption: "Kūmara: the crop that came with the waka", story:
+      "Kūmara came here with Polynesian voyagers and became one of the most important Māori crops, stored over winter in underground pits. Kūmara is a word from Food and drink.",
     afterUnit: 11 },
-  { id: 'kowhai', name: 'Kōwhai', caption: 'Kōwhai: a native tree with golden flowers in spring that tūī love', story:
-      "The kōwhai is a native tree that bursts into golden-yellow flowers in spring, and tūī love its nectar. Kōwhai is also the Māori word for the colour yellow, a word from Nature and colours.",
+  { id: "kowhai", name: "Kōwhai", caption: "Kōwhai: golden flowers in spring, loved by tūī", story:
+      "In spring, kōwhai trees burst into golden flowers and the tūī move in for the nectar. Kōwhai is also the word for yellow, a word from Nature and colours.",
     afterUnit: 12 },
-  { id: 'weta', name: 'Wētā', caption: 'Wētā: a big, gentle native insect, a bit like a cricket with long feelers', story:
-      "Wētā are large, gentle native insects, related to crickets, that come out at night. The giant wētā is one of the heaviest insects in the world. In Māori tradition the wētā punga is named after Punga, an ancestor of many creatures.",
+  { id: "weta", name: "Wētā", caption: "Wētā: big, spiky and harmless (mostly)", story:
+      "Wētā have been here since long before people. The giant wētā is one of the heaviest insects in the world. In Māori tradition the wētā punga is named after Punga, an ancestor of many creatures.",
     afterUnit: 13 },
-  { id: 'tuatara', name: 'Tuatara', caption: 'Tuatara: a reptile found only in New Zealand, from a family as old as the dinosaurs', story:
-      "The tuatara is a reptile that lives only in New Zealand. It looks like a lizard but belongs to a very old group that goes back to the age of the dinosaurs, so it is often called a living fossil. It is a taonga species, treasured by Māori, and its name is often explained as \"peaks on the back\".",
+  { id: "tuatara", name: "Tuatara", caption: "Tuatara: the last of a line older than the dinosaurs", story:
+      "Tuatara look like lizards, but they're the last survivors of a group that goes back to the age of the dinosaurs. They're a taonga species, and the name is often explained as \"peaks on the back\".",
     afterUnit: 14 },
-  { id: 'kereru', name: 'Kererū', caption: 'Kererū: the large native wood pigeon with a white chest and noisy wings', story:
-      "The kererū is a large native wood pigeon with a green-bronze back and a white chest. It swallows big native fruits whole and spreads their seeds far and wide, which helps native forest grow. Ngahere means forest, a word from Places and travel.",
+  { id: "kereru", name: "Kererū", caption: "Kererū: the wood pigeon with the noisy wings", story:
+      "You hear a kererū's heavy wingbeats before you see it. It swallows big native fruit whole and spreads the seeds, which keeps our forests growing. Ngahere means forest, a word from Places and travel.",
     afterUnit: 15 },
-  { id: 'piwakawaka', name: 'Pīwakawaka', caption: 'Pīwakawaka (fantail): a tiny bird that flits about with its tail spread like a fan', story:
-      "The pīwakawaka, or fantail, is a small friendly bird that flits about and fans out its tail. It often follows people through the bush to catch the insects they disturb. In a well-known story, Māui's quest to defeat death ended when a pīwakawaka's laughter woke Hine-nui-te-pō.",
+  { id: "piwakawaka", name: "Pīwakawaka", caption: "Pīwakawaka (fantail): your cheeky walking companion", story:
+      "Go for a bush walk and a pīwakawaka will follow you, snapping up the insects you disturb. In a well-known story, Māui's quest to defeat death ended when a pīwakawaka's laughter woke Hine-nui-te-pō.",
     afterUnit: 16 },
-  { id: 'feijoa', name: 'Feijoa', caption: 'Feijoa: a green fruit with sweet, gritty flesh that ripens in autumn', story:
-      "The feijoa is a green fruit with sweet, slightly gritty flesh and a strong perfumed smell. The trees come from South America, and the fruit ripens in autumn. It is a popular backyard fruit in New Zealand, and people often share bags of them with neighbours.",
+  { id: "feijoa", name: "Feijoa", caption: "Feijoa: autumn means bags of them from the neighbours", story:
+      "Come autumn, everyone's trying to give away bags of feijoas. The trees came from South America, but the fruit feels like ours now.",
     afterUnit: 17 },
-  { id: 'chilly-bin', name: 'Chilly bin', caption: 'Chilly bin: the insulated box that keeps food and drinks cold on the way to the beach', story:
-      "A chilly bin is an insulated box that keeps food and drinks cold. It is the New Zealand word for what people in other countries call a cooler or an esky. It is packed for picnics, camping trips and days at the beach.",
+  { id: "chilly-bin", name: "Chilly bin", caption: "Chilly bin: packed for every beach day", story:
+      "No beach day, camping trip or barbecue is complete without the chilly bin. The name is a Kiwi original, and it has stuck for decades.",
     afterUnit: 18 },
-  { id: 'number-8-wire', name: 'Number 8 wire', caption: 'Number 8 wire: fencing wire Kiwis use to fix almost anything', story:
-      "Number 8 wire is thick fencing wire that farmers have used to make and mend all kinds of things. In New Zealand it has become a saying: number 8 wire thinking means fixing a problem cleverly with whatever you have. Many people see it as part of the Kiwi spirit.",
+  { id: "number-8-wire", name: "Number 8 wire", caption: "Number 8 wire: fix anything with what you have", story:
+      "Farmers used number 8 fencing wire to make and mend just about anything. Number 8 wire thinking is our way of saying you can solve a problem with whatever is lying around.",
     afterUnit: 19 },
-  { id: 'golden-kiwi', name: 'Golden kiwi', caption: 'Golden kiwi: you found them all! The kiwi is the bird that lives only in New Zealand', story:
-      "The kiwi is a flightless bird that comes out at night and lives only in New Zealand. Its feathers were traditionally woven into prized cloaks called kahu kiwi. New Zealanders are nicknamed Kiwis too, and you have collected every treasure. Ka rawe!",
+  { id: "golden-kiwi", name: "Golden kiwi", caption: "Golden kiwi: you found them all!", story:
+      "The kiwi only lives here: a flightless night bird, and a taonga. Its feathers were woven into prized cloaks called kahu kiwi. It's our national bird and our nickname, and now it's yours too. Ka rawe!",
     afterUnit: 22 },
 ];
 

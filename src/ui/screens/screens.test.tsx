@@ -254,7 +254,7 @@ describe('Kiwiana on the Path', () => {
     act(() => void paua.click());
     const dialog = container.querySelector('[role="dialog"]')!;
     expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
-    expect(dialog.textContent).toContain('eyes of carved figures');
+    expect(dialog.textContent).toContain('shining eyes');
     expect(dialog.querySelectorAll('svg[data-locked="true"]')).toHaveLength(0);
   });
 
@@ -323,12 +323,11 @@ describe('Kiwiana page', () => {
   it('shows N / 20, a progress bar and all twenty treasures', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
     expect(container.querySelector('h1')?.textContent).toBe('Kiwiana');
-    expect(container.textContent).toContain('Finish units to collect treasures from New Zealand.');
     expect(container.textContent).toContain('1 / 20 collected');
     expect(container.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('1');
     expect(container.querySelectorAll('ul li')).toHaveLength(20);
     expect(container.textContent).toContain('Pāua');
-    expect(container.textContent).toContain('shimmering shell');
+    expect(container.textContent).toContain('shell that shimmers');
   });
 
   it('marks locked ones with the unit to finish and highlights the next one', () => {
@@ -355,7 +354,7 @@ describe('Every unlocked kiwiana opens its story', () => {
     renderAt('/unit/b01-greetings', appData({ unitProgress: [doneRow('b01-greetings')] }));
     const button = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void button.click());
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('eyes of carved figures');
+    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
   });
 
   it('opens from the Home card when everything is collected (the Golden kiwi)', () => {
@@ -385,7 +384,7 @@ describe('Kiwiana stories', () => {
     act(() => void open.click());
     const dialog = container.querySelector('[role="dialog"]')!;
     expect(dialog.querySelector('h2')?.textContent).toBe('Pāua');
-    expect(dialog.textContent).toContain('eyes of carved figures');
+    expect(dialog.textContent).toContain('shining eyes');
     expect(dialog.querySelectorAll('svg[data-locked="true"]')).toHaveLength(0);
     act(() => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));

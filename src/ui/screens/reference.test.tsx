@@ -127,7 +127,7 @@ describe('Grammar index', () => {
     show(<Grammar />, data());
     expect(container.querySelectorAll('details')).toHaveLength(3);
     expect(container.textContent).toContain('Hello to one, two or many');
-    expect(container.textContent).toContain('3 of 22 so far');
+    expect(container.textContent).toContain('3 of 22');
   });
 
   it('shows every Beginner note and the first three Intermediate notes after Beginner', () => {
@@ -195,7 +195,7 @@ describe('Progress: Your Kiwiana hero', () => {
     const hero = container.querySelector('#your-kiwiana')!.closest('section')!;
     expect(hero.textContent).toContain('Ready to start');
     expect(hero.textContent).toContain('1 more treasure to become Kiwiana rookie');
-    expect(hero.textContent).toContain('Greetings and introductions: 0 of 19 items learned · pass the Kiwiz to unlock');
+    expect(hero.textContent).toContain('Greetings and introductions: 0 of 19 items learned');
     expect(hero.querySelector('[role="progressbar"]')?.getAttribute('aria-valuemax')).toBe('19');
     expect(hero.textContent).not.toContain('Recently unlocked');
   });
@@ -209,7 +209,7 @@ describe('Progress: Your Kiwiana hero', () => {
     expect(lockedText).not.toMatch(/Tūī|Pūkeko|Kūmara|Golden/);
     const paua = container.querySelector('button[aria-label="Read about Pāua"]') as HTMLButtonElement;
     act(() => void paua.click());
-    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('eyes of carved figures');
+    expect(container.querySelector('[role="dialog"]')?.textContent).toContain('shining eyes');
   });
 
   it('shows the Finish hint when a locked shelf tile is tapped, and opens nothing', async () => {

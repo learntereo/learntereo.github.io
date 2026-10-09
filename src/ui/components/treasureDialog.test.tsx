@@ -42,7 +42,7 @@ describe('TreasureDialog', () => {
     expect(dialog().getAttribute('aria-labelledby')).toBe(heading.id);
     expect(heading.textContent).toBe('You unlocked: Pāua!');
     expect(dialog().textContent).toContain(treasure('paua').caption);
-    expect(dialog().textContent).toContain('carvers have long used pāua shell for the eyes');
+    expect(dialog().textContent).toContain('set pāua into carvings as shining eyes');
     expect(dialog().textContent).toContain('See your Kiwiana');
   });
 

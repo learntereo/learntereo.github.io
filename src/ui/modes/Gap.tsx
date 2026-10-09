@@ -138,8 +138,6 @@ export function Gap({ question, onDone }: ModeProps) {
         </div>
       </DndContext>
 
-      <p className={ui.muted}>Drag a word into the gap, or tap it.</p>
-
       <Feedback message={message} />
       {!asking && <BreakdownDisclosure breakdown={sentence.breakdown} />}
 

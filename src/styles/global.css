@@ -72,3 +72,9 @@ input:focus-visible {
 main:focus {
   outline: none;
 }
+
+/* The heading font draws macrons off-centre on some Android devices, so Māori text
+   always uses the body font. Two attribute selectors outrank single-class module rules. */
+[lang='mi'][lang] {
+  font-family: var(--font-body);
+}

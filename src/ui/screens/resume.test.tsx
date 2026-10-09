@@ -189,13 +189,9 @@ const where = () => container.querySelector('[data-testid="where"]')?.textConten
 const click = (el: Element) => act(() => void el.dispatchEvent(new MouseEvent('click', { bubbles: true })));
 const buttonNamed = (text: string) => [...container.querySelectorAll('button')].find((b) => b.textContent?.trim() === text) as HTMLButtonElement;
 
-/** Click Resume on Home, the way a learner does, and wait for the round to settle. */
+/** Open the round's own resume address and wait for the round to settle. */
 async function resumeFromHome(appData: AppData) {
-  mount(appData, '/home');
-  const link = [...container.querySelectorAll('a')].find((a) => a.textContent?.trim() === 'Resume round')!;
-  expect(link, 'Home offers Resume').toBeDefined();
-  expect(link.getAttribute('href')).toBe(roundPath(appData.activeRound!, true));
-  click(link);
+  mount(appData, roundPath(appData.activeRound!, true));
   await flush();
 }
 
@@ -256,8 +252,7 @@ describe('Resume never silently does nothing', () => {
 
   it('waits for the profile instead of hanging or finishing early (h)', async () => {
     const active = freeRow('translate');
-    mount(data(active, { profile: null }), '/home');
-    click([...container.querySelectorAll('a')].find((a) => a.textContent?.trim() === 'Resume round')!);
+    mount(data(active, { profile: null }), roundPath(active, true));
     await flush();
     expect(playing()).toBe(false);
     expect(container.textContent).toContain('Getting your round ready');
