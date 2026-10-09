@@ -1,4 +1,5 @@
-import { Link, NavLink, Outlet } from 'react-router';
+import type { ReactNode } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import { AppDataProvider } from '../../data/AppDataProvider';
 import { useAppData } from '../../data/AppDataContext';
 import { displayStreak, toLocalDateString } from '../../game/streak';
@@ -6,10 +7,107 @@ import { KoruMark, KowhaiwhaiBorder } from './Kowhaiwhai';
 import ui from './ui.module.css';
 import styles from './AppShell.module.css';
 
+/** Question screens use the whole screen, so the tab bar steps out of the way. */
+const ROUND_ROUTE = /^\/(play\/[^/]+\/[^/]+|unit\/[^/]+\/(practice|check|learn))\/?$/;
+
+function Icon({ children }: { children: ReactNode }) {
+  return (
+    <svg
+      className={styles.icon}
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      focusable="false"
+    >
+      {children}
+    </svg>
+  );
+}
+
+interface Tab {
+  to: string;
+  label: string;
+  /** Other paths that count as being on this tab. */
+  match: RegExp;
+  icon: ReactNode;
+}
+
+const TABS: readonly Tab[] = [
+  {
+    to: '/home',
+    label: 'Learn',
+    match: /^\/(home|unit\/)/,
+    icon: (
+      <Icon>
+        <path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2V5Z" />
+        <path d="M4 20a2 2 0 0 0 2 2h13v-4" />
+      </Icon>
+    ),
+  },
+  {
+    to: '/practice',
+    label: 'Practice',
+    match: /^\/(practice|play\/)/,
+    icon: (
+      <Icon>
+        <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+      </Icon>
+    ),
+  },
+  {
+    to: '/progress',
+    label: 'Progress',
+    match: /^\/progress/,
+    icon: (
+      <Icon>
+        <path d="M5 20V10M12 20V4M19 20v-7" />
+      </Icon>
+    ),
+  },
+  {
+    to: '/account',
+    label: 'Account',
+    match: /^\/account/,
+    icon: (
+      <Icon>
+        <circle cx="12" cy="8" r="4" />
+        <path d="M5 21a7 7 0 0 1 14 0" />
+      </Icon>
+    ),
+  },
+];
+
+function TabBar() {
+  const { pathname } = useLocation();
+  return (
+    <nav className={styles.nav} aria-label="Main">
+      {TABS.map((tab) => {
+        const active = tab.match.test(pathname);
+        return (
+          <NavLink
+            key={tab.to}
+            to={tab.to}
+            className={active ? `${styles.navLink} ${styles.active}` : styles.navLink}
+            aria-current={active ? 'page' : undefined}
+          >
+            {tab.icon}
+            <span>{tab.label}</span>
+          </NavLink>
+        );
+      })}
+    </nav>
+  );
+}
+
 function Header() {
   const { profile } = useAppData();
   const streak = profile ? displayStreak(profile, toLocalDateString(new Date())) : 0;
-  const navClass = ({ isActive }: { isActive: boolean }) => (isActive ? `${styles.navLink} ${styles.active}` : styles.navLink);
 
   return (
     <header className={styles.header}>
@@ -27,17 +125,6 @@ function Header() {
           </span>
         </div>
       </div>
-      <nav className={styles.nav} aria-label="Main">
-        <NavLink to="/home" className={navClass}>
-          Home
-        </NavLink>
-        <NavLink to="/progress" className={navClass}>
-          Progress
-        </NavLink>
-        <NavLink to="/account" className={navClass}>
-          Account
-        </NavLink>
-      </nav>
       <KowhaiwhaiBorder height={20} />
     </header>
   );
@@ -69,10 +156,14 @@ function Gate() {
   return <Outlet />;
 }
 
-export function AppShell() {
+function Shell() {
+  const { pathname } = useLocation();
+  const showTabs = !ROUND_ROUTE.test(pathname);
+
   return (
-    <AppDataProvider>
+    <div className={showTabs ? styles.withTabs : styles.shell}>
       <Header />
+      {showTabs && <TabBar />}
       <Gate />
       <footer className={styles.footer}>
         <p>
@@ -83,6 +174,14 @@ export function AppShell() {
           <Link to="/privacy">Privacy</Link>
         </p>
       </footer>
+    </div>
+  );
+}
+
+export function AppShell() {
+  return (
+    <AppDataProvider>
+      <Shell />
     </AppDataProvider>
   );
 }

@@ -1,0 +1,105 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.exit {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target-min);
+}
+
+.count {
+  margin: 0;
+  font-weight: 600;
+}
+
+.deck {
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  touch-action: pan-y;
+}
+
+.wordCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-1);
+}
+
+.picture {
+  margin-bottom: var(--space-2);
+}
+
+.mi {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-kokowai);
+  overflow-wrap: anywhere;
+}
+
+.en {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.alt {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.example {
+  margin-top: var(--space-4);
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-grey-100);
+}
+
+.exampleLabel {
+  margin: 0 0 var(--space-1);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.exampleMi {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.exampleEn {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+.finish {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.finish h1 {
+  color: var(--color-pounamu);
+  font-size: 2.2rem;
+}
+
+.nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}

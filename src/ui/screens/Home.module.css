@@ -1,32 +1,48 @@
-/* Shared with the Account screen. */
-.page {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-5) var(--space-4);
-  gap: var(--space-4);
-  max-width: 560px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.signOut {
-  align-self: flex-start;
-  background: none;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-2) var(--space-3);
-  cursor: pointer;
-}
-
 .greeting {
   color: var(--color-kokowai);
   overflow-wrap: anywhere;
 }
 
+.play {
+  margin-top: var(--space-3);
+  width: 100%;
+}
+
+.resume {
+  border-color: var(--color-karaka);
+  border-width: 2px;
+}
+
+/* ---------- next up ---------- */
+.nextCard {
+  border-color: var(--color-pounamu);
+  border-width: 2px;
+}
+
+.nextLabel {
+  margin: 0 0 var(--space-1);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-pounamu);
+}
+
+.nextMi {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+/* ---------- levels and the path ---------- */
+.level {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .levelHead {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: var(--space-3);
 }
@@ -35,24 +51,139 @@
   margin: 0;
 }
 
-.lock {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-1);
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-.locked {
+.soon {
   background: var(--color-grey-100);
 }
 
-.play {
-  margin-top: var(--space-4);
-  width: 100%;
+.path {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.resume {
-  border-color: var(--color-karaka);
+.unitItem {
+  position: relative;
+}
+
+/* The line that joins one unit to the next. */
+.unitItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 34px;
+  top: 50%;
+  bottom: -16px;
+  width: 3px;
+  background: var(--color-grey-200);
+  z-index: 0;
+}
+
+.unit {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 72px;
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: border-color var(--motion-duration) var(--motion-ease);
+}
+
+a.unit:hover,
+a.unit:focus-visible {
+  border-color: var(--color-kokowai);
+}
+
+.unitNext {
+  border-color: var(--color-pounamu);
   border-width: 2px;
+}
+
+.unitLocked {
+  background: var(--color-grey-100);
+  color: var(--color-text-muted);
+}
+
+.node {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  background: var(--color-ma);
+  border: 2px solid var(--color-karaka);
+}
+
+.node.complete {
+  background: var(--color-pounamu);
+  border-color: var(--color-pounamu);
+  color: #fff;
+}
+
+.node.locked {
+  background: var(--color-grey-200);
+  border-color: var(--color-grey-400);
+  color: var(--color-grey-600);
+}
+
+.node.in_progress {
+  border-color: var(--color-pounamu);
+}
+
+.unitBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.unitTitle {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.unitTitleMi {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.detail {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.badge {
+  flex: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  background: var(--color-grey-100);
+  color: var(--color-grey-800);
+}
+
+.badge_complete {
+  background: #e3f1ea;
+  color: #1f4d39;
+}
+
+.badge_available,
+.badge_in_progress {
+  background: #fff3de;
+  color: #7a4a05;
+}
+
+.badge_locked {
+  background: var(--color-grey-200);
+  color: var(--color-grey-600);
 }

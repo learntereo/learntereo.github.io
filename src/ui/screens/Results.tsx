@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router';
+import { getItem, getUnit, nextUnit } from '../../content/content';
+import { useAppData } from '../../data/AppDataContext';
 import { getRound, type RoundRow } from '../../data/roundRepo';
-import type { RoundSummary } from '../../game/types';
+import type { Item, RoundSummary, Unit } from '../../game/types';
+import { passMark } from '../../game/unitRound';
 import { KoruFlourish } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
@@ -11,21 +14,86 @@ function summaryOf(round: RoundRow): RoundSummary {
   const state = round.state as { summary?: Partial<RoundSummary> } | null;
   return {
     newlyLearned: state?.summary?.newlyLearned ?? 0,
-    unlockedIntermediate: state?.summary?.unlockedIntermediate ?? false,
     streak: state?.summary?.streak ?? 0,
+    unitCheck: state?.summary?.unitCheck,
+    missedItemIds: state?.summary?.missedItemIds,
   };
+}
+
+function MissedList({ ids }: { ids: readonly string[] }) {
+  const items = ids.map((id) => getItem(id)).filter((i): i is Item => i !== undefined);
+  if (items.length === 0) return null;
+  return (
+    <section className={ui.card} aria-labelledby="missed-title">
+      <h2 id="missed-title">Words to revisit ({items.length})</h2>
+      <ul className={styles.missed}>
+        {items.map((item) => (
+          <li key={item.id}>
+            <span className={styles.missedMi} lang="mi">
+              {item.mi}
+            </span>
+            <span className={ui.muted}>{item.en[0]}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function UnitActions({ round, unit, summary }: { round: RoundRow; unit: Unit; summary: RoundSummary }) {
+  const { statuses } = useAppData();
+  const isCheck = round.mode === 'unit_check';
+  const passed = summary.unitCheck?.passed === true;
+  const next = nextUnit(unit);
+  const nextOpen = next !== undefined && statuses.get(next.id)?.state !== 'locked';
+
+  return (
+    <div className={ui.row}>
+      {isCheck && passed && next && nextOpen && (
+        <Link className={ui.button} to={`/unit/${next.id}`}>
+          Next unit
+        </Link>
+      )}
+      {isCheck && !passed && (
+        <Link className={ui.button} to={`/unit/${unit.id}/practice`}>
+          Practise again
+        </Link>
+      )}
+      {!isCheck && (
+        <>
+          <Link className={ui.button} to={`/unit/${unit.id}/check`}>
+            Take the unit check
+          </Link>
+          <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}/practice`}>
+            Practise again
+          </Link>
+        </>
+      )}
+      {isCheck && !passed && (
+        <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}/check`}>
+          Try the check again
+        </Link>
+      )}
+      <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}`}>
+        Back to unit
+      </Link>
+      <Link className={`${ui.button} ${ui.secondary}`} to="/home">
+        Path
+      </Link>
+    </div>
+  );
 }
 
 export function Results() {
   const { roundId } = useParams();
   const location = useLocation();
   // Right after a round ends, the finished round is passed along so the page works even before the save lands.
-  const passed = (location.state as { round?: RoundRow } | null)?.round;
+  const passedRound = (location.state as { round?: RoundRow } | null)?.round;
   const [fetched, setRound] = useState<RoundRow | null | undefined>(undefined);
-  const round = passed && passed.id === roundId ? passed : fetched;
+  const round = passedRound && passedRound.id === roundId ? passedRound : fetched;
 
   useEffect(() => {
-    if (!roundId || (passed && passed.id === roundId)) return;
+    if (!roundId || (passedRound && passedRound.id === roundId)) return;
     let cancelled = false;
     getRound(roundId)
       .then((row) => {
@@ -62,32 +130,57 @@ export function Results() {
 
   const summary = summaryOf(round);
   const score = round.score ?? 0;
+  const unit = getUnit(round.unit_id ?? undefined);
+  const check = summary.unitCheck;
+  const isCheck = round.mode === 'unit_check';
+  const next = unit ? nextUnit(unit) : undefined;
+  const opened = check?.nextUnitId ? getUnit(check.nextUnitId) : undefined;
 
   return (
     <main className={ui.page}>
-      {summary.unlockedIntermediate && (
-        <section className={`${ui.card} ${styles.unlock}`} aria-labelledby="unlock-title">
+      {isCheck && check?.passed && unit && (
+        <section className={`${ui.card} ${styles.unlock}`} aria-labelledby="pass-title">
           <KoruFlourish />
-          <h2 id="unlock-title">
-            <span lang="mi">Ka rawe!</span> Intermediate is unlocked
+          <h2 id="pass-title">
+            <span lang="mi">Ka rawe!</span> {check.firstCompletion ? 'Unit complete' : 'Check passed'}
           </h2>
-          <p>You have learned every Beginner item. The next level is ready for you.</p>
-          <Link className={ui.button} to="/play/intermediate">
-            Start Intermediate
-          </Link>
+          <p>
+            You passed the <strong>{unit.title}</strong> check with {score} out of {round.total}.
+          </p>
+          {opened ? (
+            <p>
+              <strong>{opened.title}</strong> is now open.
+            </p>
+          ) : next === undefined ? (
+            <p>That is the last unit for now. More are on the way.</p>
+          ) : null}
         </section>
       )}
 
       <section className={`${ui.card} ${styles.score}`} aria-labelledby="results-title">
         <p className={ui.muted}>
-          {LEVEL_LABEL[round.level]} &middot; {ROUND_MODE_LABEL[round.mode]}
+          {unit ? unit.title : LEVEL_LABEL[round.level]} &middot; {ROUND_MODE_LABEL[round.mode]}
         </p>
         <h1 id="results-title">
-          <span lang="mi">Ka pai!</span>
+          {isCheck && check ? (
+            check.passed ? (
+              <span lang="mi">Ka pai!</span>
+            ) : (
+              'Not quite yet'
+            )
+          ) : (
+            <span lang="mi">Ka pai!</span>
+          )}
         </h1>
         <p className={styles.big} aria-label={`Score ${score} out of ${round.total}`}>
           {score} / {round.total}
         </p>
+        {isCheck && check && !check.passed && (
+          <p>
+            You need {passMark(round.total)} out of {round.total} to pass. Have another go at the practice, then try the
+            check again.
+          </p>
+        )}
         <dl className={styles.facts}>
           <div>
             <dt>XP earned</dt>
@@ -104,14 +197,23 @@ export function Results() {
         </dl>
       </section>
 
-      <div className={ui.row}>
-        <Link className={ui.button} to={`/play/${round.level}/${round.mode}`}>
-          Play again
-        </Link>
-        <Link className={`${ui.button} ${ui.secondary}`} to="/home">
-          Home
-        </Link>
-      </div>
+      {summary.missedItemIds && summary.missedItemIds.length > 0 && <MissedList ids={summary.missedItemIds} />}
+
+      {unit ? (
+        <UnitActions round={round} unit={unit} summary={summary} />
+      ) : (
+        <div className={ui.row}>
+          <Link className={ui.button} to={`/play/${round.level}/${round.mode}`}>
+            Play again
+          </Link>
+          <Link className={`${ui.button} ${ui.secondary}`} to="/practice">
+            Free practice
+          </Link>
+          <Link className={`${ui.button} ${ui.secondary}`} to="/home">
+            Path
+          </Link>
+        </div>
+      )}
     </main>
   );
 }

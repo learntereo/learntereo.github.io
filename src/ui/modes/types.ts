@@ -4,6 +4,11 @@ import type { Level, Outcome, Question } from '../../game/types';
 export interface ModeProps {
   question: Question;
   level: Level;
+  /**
+   * Whether boards may show the correct spot after repeated wrong drops.
+   * False in a unit check, where a wrong drop only bounces back.
+   */
+  hints?: boolean;
   onDone: (outcome: Outcome) => void;
 }
 

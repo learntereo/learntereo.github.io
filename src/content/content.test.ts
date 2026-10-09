@@ -15,6 +15,7 @@ import {
   wordsForLevel,
   wordsForUnit,
 } from './content';
+import { hasRawHtml } from '../game/grammarMarkdown';
 import { icons } from './icons';
 
 const strip = (s: string) =>
@@ -119,7 +120,7 @@ describe('grammar notes', () => {
   it('has no raw HTML, em dashes or stray files', () => {
     for (const [id, note] of grammarNotes) {
       expect(unitsById.has(id), `unused note ${id}`).toBe(true);
-      expect(note).not.toMatch(/<\/?[a-z][^>]*>/i);
+      expect(hasRawHtml(note)).toBe(false);
       expect(note).not.toContain(EM_DASH);
     }
   });

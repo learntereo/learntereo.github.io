@@ -43,3 +43,11 @@
   padding: var(--space-3);
   margin: 0;
 }
+
+.unavailable {
+  background: var(--color-grey-100);
+}
+
+.unavailable .modeName {
+  color: var(--color-grey-600);
+}

@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useAppData } from '../../data/AppDataContext';
 import { getHistory, type RoundRow } from '../../data/roundRepo';
-import { allItems } from '../../content/content';
+import { allItems, getUnit, units } from '../../content/content';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, formatDate } from '../labels';
 import styles from './Progress.module.css';
 
 export function Progress() {
-  const { profile, learned } = useAppData();
+  const { profile, learned, statuses } = useAppData();
+  const unitsComplete = units.filter((u) => statuses.get(u.id)?.state === 'complete').length;
   const [history, setHistory] = useState<RoundRow[] | null>(null);
   const [failed, setFailed] = useState(false);
 
@@ -52,6 +53,13 @@ export function Progress() {
           </span>
           <span className={ui.muted}>Items learned</span>
         </div>
+        <div className={`${ui.card} ${styles.stat}`}>
+          <span className={styles.value}>
+            {unitsComplete}
+            <span className={styles.of}> / {units.length}</span>
+          </span>
+          <span className={ui.muted}>Units complete</span>
+        </div>
       </div>
 
       <section aria-labelledby="history-title">
@@ -65,7 +73,8 @@ export function Progress() {
               <li key={round.id} className={`${ui.card} ${styles.item}`}>
                 <div>
                   <strong>
-                    {LEVEL_LABEL[round.level]} &middot; {ROUND_MODE_LABEL[round.mode]}
+                    {getUnit(round.unit_id ?? undefined)?.title ?? LEVEL_LABEL[round.level]} &middot;{' '}
+                    {ROUND_MODE_LABEL[round.mode]}
                   </strong>
                   <div className={ui.muted}>{formatDate(round.completed_at)}</div>
                 </div>
