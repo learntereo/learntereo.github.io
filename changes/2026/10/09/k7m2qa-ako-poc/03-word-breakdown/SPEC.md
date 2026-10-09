@@ -3,6 +3,7 @@
 | W10 | Rewards | "Each unlock should have a history or meaning behind it. When you unlock one you should get an animation saying you've unlocked it, with the history/meaning" | User |
 | W11 | Naming | "Only call it New Zealand" | User |
 | W12 | Rewards | "On Progress make kiwiana the big thing to collect, it's too hidden away, needs gamification" | User |
+| W13 | Practice | "Why is ata mārie part of numbers? It shouldn't be" (unit practice now uses only the unit's own items) | User |
 ---
 title: Ako v2.1: Word-by-word breakdowns and layout polish
 type: feature

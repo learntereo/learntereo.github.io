@@ -70,7 +70,7 @@ React 19 + Vite SPA on GitHub Pages, Supabase auth + `profiles`, `item_progress`
 - FR4.2 Notes are Markdown files rendered with a tiny, safe renderer (headings, bold, italics, lists only; no raw HTML). The Path has a **Grammar** screen listing all notes for unlocked units.
 
 ### FR5: Unit practice and unit check
-- FR5.1 **Practice**: a 10-question round drawn only from the unit's items (plus up to 3 review items from earlier units), using a mix of all modes eligible for those items. Same retry/reveal/re-queue/XP rules as the PoC.
+- FR5.1 **Practice**: a 10-question round drawn only from the unit's items (revising older words is the job of the Review tab), using a mix of all modes eligible for those items. Same retry/reveal/re-queue/XP rules as the PoC.
 - FR5.2 **Unit check**: a 12-question Mixed round from the unit's items, with **no reveal-after-retry hints for boards** (a wrong drop still bounces back). Pass = ≥ 80% (≥ 10/12). Passing marks the unit complete, stores `best_score` and shows a celebration on Results. Failing shows which items were missed and a "Practise again" button.
 - FR5.3 A unit check can be attempted at any time once Learn is done.
 

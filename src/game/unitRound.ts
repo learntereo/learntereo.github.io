@@ -1,11 +1,9 @@
 import { generateRound } from './roundGenerator';
-import { shuffle, type Rng } from './rng';
+import type { Rng } from './rng';
 import type { Item, Question, RoundState, Unit } from './types';
 
 export const PRACTICE_SIZE = 10;
 export const CHECK_SIZE = 12;
-/** At most this many practice questions revisit items from earlier units. */
-export const MAX_REVIEW_ITEMS = 3;
 /** The unit check is passed with at least this share of the questions right. */
 export const PASS_PERCENT = 80;
 
@@ -24,38 +22,11 @@ function itemsOf(unit: Unit, items: readonly Item[]): Item[] {
 }
 
 /**
- * Items the learner already knows from units before this one, in path order.
- * `units` must be in path order.
+ * Practice: 10 questions of every mode the unit supports, drawn only from the
+ * unit's own items. Revisiting older words is the job of the Review tab.
  */
-export function reviewPool(
-  unit: Unit,
-  units: readonly Unit[],
-  items: readonly Item[],
-  learned: ReadonlySet<string>,
-): Item[] {
-  const index = units.findIndex((u) => u.id === unit.id);
-  if (index <= 0) return [];
-  const earlier = new Set(units.slice(0, index).flatMap((u) => u.itemIds));
-  return items.filter((item) => earlier.has(item.id) && learned.has(item.id));
-}
-
-/**
- * Practice: 10 questions of every mode the unit supports, drawn from the
- * unit's items. Up to 3 of them are Translate questions on learned items from
- * earlier units, so older words keep coming back.
- */
-export function generateUnitPractice(
-  unit: Unit,
-  units: readonly Unit[],
-  items: readonly Item[],
-  learned: ReadonlySet<string>,
-  rng: Rng,
-): Question[] {
-  const review = shuffle(reviewPool(unit, units, items, learned), rng).slice(0, MAX_REVIEW_ITEMS);
-  const ownSize = PRACTICE_SIZE - review.length;
-  const own = generateRound(itemsOf(unit, items), unit.level, 'mixed', learned, rng, { size: ownSize, maxNew: ownSize });
-  const reviewQuestions = review.map((item): Question => ({ mode: 'translate', itemIds: [item.id], requeued: false }));
-  return shuffle([...own, ...reviewQuestions], rng);
+export function generateUnitPractice(unit: Unit, items: readonly Item[], learned: ReadonlySet<string>, rng: Rng): Question[] {
+  return generateRound(itemsOf(unit, items), unit.level, 'mixed', learned, rng, { size: PRACTICE_SIZE, maxNew: PRACTICE_SIZE });
 }
 
 /**

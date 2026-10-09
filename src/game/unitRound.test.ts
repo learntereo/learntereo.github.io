@@ -4,7 +4,6 @@ import { allItems, units } from '../content/content';
 import { createRng } from './rng';
 import {
   CHECK_SIZE,
-  MAX_REVIEW_ITEMS,
   PASS_PERCENT,
   PRACTICE_SIZE,
   generateUnitCheck,
@@ -12,7 +11,6 @@ import {
   isPass,
   missedItemIds,
   passMark,
-  reviewPool,
 } from './unitRound';
 import { createRound, recordAnswer, currentQuestion } from './roundState';
 import type { Item, Outcome, Result, RoundState, Unit } from './types';
@@ -100,60 +98,27 @@ describe('generateUnitCheck', () => {
   });
 });
 
-describe('reviewPool', () => {
-  it('holds learned items from earlier units only', () => {
-    const learned = new Set([...wordIds(1, 3), ...wordIds(13, 14)]);
-    const pool = reviewPool(unitTwo, [unitOne, unitTwo], items, learned);
-    expect(pool.map((i) => i.id).sort()).toEqual(wordIds(1, 3));
-  });
-
-  it('is empty for the first unit', () => {
-    expect(reviewPool(unitOne, [unitOne, unitTwo], items, new Set(wordIds(1, 12)))).toEqual([]);
-  });
-});
-
 describe('generateUnitPractice (FR5.1)', () => {
   it('builds 10 questions from the unit when nothing earlier is learned', () => {
-    const qs = generateUnitPractice(unitTwo, [unitOne, unitTwo], items, new Set(), createRng(4));
+    const qs = generateUnitPractice(unitTwo, items, new Set(), createRng(4));
     expect(qs).toHaveLength(PRACTICE_SIZE);
     const allowed = unitIds(unitTwo);
     for (const q of qs) for (const id of q.itemIds) expect(allowed.has(id)).toBe(true);
   });
 
-  it('adds up to 3 review questions from earlier units', () => {
+  it('uses only the own items of the unit, even when earlier units are learned', () => {
     const learned = new Set(wordIds(1, 12));
-    const qs = generateUnitPractice(unitTwo, [unitOne, unitTwo], items, learned, createRng(5));
-    expect(qs).toHaveLength(PRACTICE_SIZE);
     const own = unitIds(unitTwo);
-    const review = qs.filter((q) => q.itemIds.some((id) => !own.has(id)));
-    expect(review).toHaveLength(MAX_REVIEW_ITEMS);
-    for (const q of review) {
-      expect(q.mode).toBe('translate');
-      expect(q.itemIds).toHaveLength(1);
-      expect(learned.has(q.itemIds[0])).toBe(true);
+    for (const seed of [5, 6, 7, 8, 9, 10]) {
+      const qs = generateUnitPractice(unitTwo, items, learned, createRng(seed));
+      expect(qs).toHaveLength(PRACTICE_SIZE);
+      for (const q of qs) for (const id of q.itemIds) expect(own.has(id), `seed ${seed}`).toBe(true);
     }
-    // everything else is the unit's own
-    for (const q of qs.filter((x) => !review.includes(x))) for (const id of q.itemIds) expect(own.has(id)).toBe(true);
-  });
-
-  it('uses fewer review questions when little is learned', () => {
-    const qs = generateUnitPractice(unitTwo, [unitOne, unitTwo], items, new Set(wordIds(1, 1)), createRng(6));
-    const own = unitIds(unitTwo);
-    expect(qs.filter((q) => q.itemIds.some((id) => !own.has(id)))).toHaveLength(1);
-    expect(qs).toHaveLength(PRACTICE_SIZE);
-  });
-
-  it('never repeats a review item and prefers the unit\'s unlearned items for the rest', () => {
-    const learned = new Set(wordIds(1, 12));
-    const qs = generateUnitPractice(unitTwo, [unitOne, unitTwo], items, learned, createRng(7));
-    const own = unitIds(unitTwo);
-    const review = qs.filter((q) => q.itemIds.some((id) => !own.has(id))).map((q) => q.itemIds[0]);
-    expect(new Set(review).size).toBe(review.length);
   });
 
   it('is deterministic for a seed', () => {
-    const a = generateUnitPractice(unitTwo, [unitOne, unitTwo], items, new Set(wordIds(1, 12)), createRng(8));
-    const b = generateUnitPractice(unitTwo, [unitOne, unitTwo], items, new Set(wordIds(1, 12)), createRng(8));
+    const a = generateUnitPractice(unitTwo, items, new Set(wordIds(1, 12)), createRng(8));
+    const b = generateUnitPractice(unitTwo, items, new Set(wordIds(1, 12)), createRng(8));
     expect(a).toEqual(b);
   });
 });
@@ -161,7 +126,7 @@ describe('generateUnitPractice (FR5.1)', () => {
 describe('real content', () => {
   it('builds practice and check rounds for every unit', () => {
     for (const unit of units) {
-      expect(generateUnitPractice(unit, units, allItems, new Set(), createRng(1))).toHaveLength(PRACTICE_SIZE);
+      expect(generateUnitPractice(unit, allItems, new Set(), createRng(1))).toHaveLength(PRACTICE_SIZE);
       expect(generateUnitCheck(unit, allItems, createRng(1))).toHaveLength(CHECK_SIZE);
     }
   });
@@ -210,7 +175,7 @@ describe('missedItemIds', () => {
   });
 
   it('ignores answers to re-queued questions', () => {
-    const qs = generateUnitPractice(unitOne, [unitOne], items, new Set(), createRng(13));
+    const qs = generateUnitPractice(unitOne, items, new Set(), createRng(13));
     let s = createRound('beginner', 'unit_practice', qs, 'u1');
     s = play(s, (i) => (i === 0 ? { result: 'missed', wrongIds: [qs[0].itemIds[0]] } : { result: 'first', wrongIds: [] }));
     // answer the re-queued question wrongly again
