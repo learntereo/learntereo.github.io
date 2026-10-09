@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
 import { unitsForLevel, units } from '../../content/content';
@@ -5,11 +6,13 @@ import { useAppData } from '../../data/AppDataContext';
 import { LEVELS, type Level } from '../../game/types';
 import { PASS_PERCENT, CHECK_SIZE, passMark } from '../../game/unitRound';
 import type { UnitStatus } from '../../game/unitUnlock';
+import { treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
 import { TitleBreakdown } from '../components/Breakdown';
+import { TreasureIcon } from '../components/Treasure';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel } from '../labels';
-import { roundPath } from '../paths';
+import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
+import { canResume, roundPath } from '../paths';
 import styles from './Home.module.css';
 
 function LockIcon() {
@@ -42,6 +45,46 @@ function statusText(status: UnitStatus): string {
     case 'complete':
       return 'Complete';
   }
+}
+
+const SLOTS = treasureSlots(units);
+
+/** A small, quiet node between unit rows: a grey silhouette until its unit is complete, then the treasure in colour. */
+function TreasureNode({ slot, unlocked }: { slot: TreasureSlot; unlocked: boolean }) {
+  const [open, setOpen] = useState(false);
+  const { treasure, unit } = slot;
+  const captionId = `treasure-${treasure.id}`;
+  return (
+    <li className={styles.treasure}>
+      {unlocked ? (
+        <>
+          <button
+            type="button"
+            className={styles.treasureButton}
+            aria-expanded={open}
+            aria-controls={captionId}
+            onClick={() => setOpen(!open)}
+          >
+            <TreasureIcon id={treasure.id} size={36} />
+            <span className={styles.treasureName}>{treasure.name}</span>
+          </button>
+          {open && (
+            <p id={captionId} className={styles.treasureCaption}>
+              {treasure.caption}
+            </p>
+          )}
+        </>
+      ) : (
+        <div className={styles.treasureButton} title="Keep going to unlock">
+          <TreasureIcon id={treasure.id} size={36} locked />
+          <span className={styles.treasureName}>Keep going to unlock</span>
+          <span className={ui.visuallyHidden}>
+            Kiwiana treasure, locked. Pass the Kiwiz in {unit.title} to unlock.
+          </span>
+        </div>
+      )}
+    </li>
+  );
 }
 
 function UnitRow({ status, isNext }: { status: UnitStatus; isNext: boolean }) {
@@ -92,6 +135,7 @@ function UnitRow({ status, isNext }: { status: UnitStatus; isNext: boolean }) {
 
 function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<string> }) {
   const { statuses } = useAppData();
+  const unlocked = unlockedTreasureIds(SLOTS, statuses);
   const levelUnits = unitsForLevel(level);
 
   if (levelUnits.length === 0) {
@@ -117,9 +161,13 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
       </div>
       {levelLocked && <p className={ui.muted}>Complete units before this level to open it.</p>}
       <ol className={styles.path}>
-        {rows.map((status) => (
-          <UnitRow key={status.unit.id} status={status} isNext={openIds.has(status.unit.id)} />
-        ))}
+        {rows.flatMap((status) => {
+          const slot = treasureAfter(status.unit.id, SLOTS);
+          const row = <UnitRow key={status.unit.id} status={status} isNext={openIds.has(status.unit.id)} />;
+          return slot
+            ? [row, <TreasureNode key={`t-${slot.treasure.id}`} slot={slot} unlocked={unlocked.has(slot.treasure.id)} />]
+            : [row];
+        })}
       </ol>
     </section>
   );
@@ -142,7 +190,7 @@ export function Home() {
     activeRound && typeof activeRound.state === 'object' && activeRound.state !== null
       ? Number((activeRound.state as { index?: unknown }).index ?? 0)
       : 0;
-  const resumable = activeRound && isLevel(activeRound.level);
+  const resumable = activeRound && canResume(activeRound);
   const resumeUnit = activeRound?.unit_id ? units.find((u) => u.id === activeRound.unit_id) : undefined;
 
   return (
@@ -152,8 +200,12 @@ export function Home() {
           Kia ora, <span lang="mi">{displayName}</span>
         </h1>
         <p className={ui.muted}>
-          Learn new words, practise them, then pass the unit check ({passMark(CHECK_SIZE)} of {CHECK_SIZE}, or{' '}
+          Learn new words, practise them, then pass the Kiwiz ({passMark(CHECK_SIZE)} of {CHECK_SIZE}, or{' '}
           {PASS_PERCENT}%) to open another unit. Three units stay open at a time.
+        </p>
+        <p className={styles.treasureHint}>
+          <TreasureIcon id="paua" size={20} locked />
+          Keep learning to unlock kiwiana treasures along your path.
         </p>
       </div>
 

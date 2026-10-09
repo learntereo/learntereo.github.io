@@ -65,6 +65,19 @@ export function writeNote(verdict: WriteVerdict, target: string): string | null 
   return null;
 }
 
+/** Delete the selection, or the character before the cursor when nothing is selected. */
+export function deleteBeforeCursor(
+  value: string,
+  selectionStart: number | null,
+  selectionEnd: number | null,
+): { value: string; cursor: number } {
+  const start = selectionStart ?? value.length;
+  const end = selectionEnd ?? start;
+  if (end > start) return { value: value.slice(0, start) + value.slice(end), cursor: start };
+  if (start === 0) return { value, cursor: 0 };
+  return { value: value.slice(0, start - 1) + value.slice(end), cursor: start - 1 };
+}
+
 /** Insert `text` at the selection of an input value; returns the new value and cursor. */
 export function insertAtCursor(
   value: string,

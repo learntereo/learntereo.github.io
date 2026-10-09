@@ -4,8 +4,10 @@ import { getItem, getUnit, nextUnit } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { getRound, type RoundRow } from '../../data/roundRepo';
 import type { Item, RoundSummary, Unit } from '../../game/types';
+import { TREASURES, TREASURE_COUNT } from '../../game/treasures';
 import { passMark } from '../../game/unitRound';
 import { KoruFlourish } from '../components/Kowhaiwhai';
+import { TreasureIcon } from '../components/Treasure';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
 import styles from './Results.module.css';
@@ -18,6 +20,31 @@ function summaryOf(round: RoundRow): RoundSummary {
     unitCheck: state?.summary?.unitCheck,
     missedItemIds: state?.summary?.missedItemIds,
   };
+}
+
+/** A small inline card for a newly unlocked treasure; the last one gets a bigger moment. */
+function TreasureUnlocked({ id }: { id: string }) {
+  const treasure = TREASURES.find((t) => t.id === id);
+  if (!treasure) return null;
+  const last = treasure.id === TREASURES[TREASURE_COUNT - 1].id;
+  return (
+    <section
+      className={`${ui.card} ${styles.treasure} ${last ? styles.treasureBig : ''}`}
+      aria-labelledby="treasure-title"
+    >
+      {last && <KoruFlourish />}
+      <TreasureIcon id={treasure.id} size={last ? 96 : 48} />
+      <div>
+        <h2 id="treasure-title">Treasure unlocked: {treasure.name}!</h2>
+        <p className={ui.muted}>{treasure.caption}</p>
+        {last && (
+          <p>
+            <span lang="mi">Ka rawe!</span> You have collected all {TREASURE_COUNT} kiwiana treasures.
+          </p>
+        )}
+      </div>
+    </section>
+  );
 }
 
 function MissedList({ ids }: { ids: readonly string[] }) {
@@ -62,7 +89,7 @@ function UnitActions({ round, unit, summary }: { round: RoundRow; unit: Unit; su
       {!isCheck && (
         <>
           <Link className={ui.button} to={`/unit/${unit.id}/check`}>
-            Take the unit check
+            Take the Kiwiz
           </Link>
           <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}/practice`}>
             Practise again
@@ -71,7 +98,7 @@ function UnitActions({ round, unit, summary }: { round: RoundRow; unit: Unit; su
       )}
       {isCheck && !passed && (
         <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}/check`}>
-          Try the check again
+          Try the Kiwiz again
         </Link>
       )}
       <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}`}>
@@ -143,20 +170,22 @@ export function Results() {
         <section className={`${ui.card} ${styles.unlock}`} aria-labelledby="pass-title">
           <KoruFlourish />
           <h2 id="pass-title">
-            <span lang="mi">Ka rawe!</span> {check.firstCompletion ? 'Unit complete' : 'Check passed'}
+            <span lang="mi">Ka rawe!</span> {check.firstCompletion ? 'Unit complete' : 'Kiwiz passed'}
           </h2>
           <p>
-            You passed the <strong>{unit.title}</strong> check with {score} out of {round.total}.
+            You passed the <strong>{unit.title}</strong> Kiwiz with {score} out of {round.total}.
           </p>
           {opened ? (
             <p>
-              <strong>{opened.title}</strong> is now open.
+              The next unit is open: <strong>{opened.title}</strong>.
             </p>
           ) : next === undefined ? (
             <p>That is the last unit for now. More are on the way.</p>
           ) : null}
         </section>
       )}
+
+      {isCheck && check?.passed && check.treasureId && <TreasureUnlocked id={check.treasureId} />}
 
       <section className={`${ui.card} ${styles.score}`} aria-labelledby="results-title">
         <p className={ui.muted}>
@@ -167,7 +196,7 @@ export function Results() {
             check.passed ? (
               <span lang="mi">Ka pai!</span>
             ) : (
-              'Not quite yet'
+              'Not this time'
             )
           ) : (
             <span lang="mi">Ka pai!</span>
@@ -178,13 +207,13 @@ export function Results() {
         </p>
         {isCheck && check && !check.passed && (
           <p>
-            You need {passMark(round.total)} out of {round.total} to pass. Have another go at the practice, then try the
-            check again.
+            You need {passMark(round.total)} out of {round.total} to pass. Practise the words below and try the Kiwiz
+            again.
           </p>
         )}
         <dl className={styles.facts}>
           <div>
-            <dt>XP earned</dt>
+            <dt>Kiwi XP earned</dt>
             <dd>+{round.xp_earned}</dd>
           </div>
           <div>

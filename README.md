@@ -3,7 +3,7 @@
 Ako: learn te reo Māori, one kupu at a time.
 
 Ako is a free, mobile-friendly web app for learning te reo Māori from first words to connected sentences. A
-learning path of 22 units takes you through three levels, with games to practise, a check to pass each unit and
+learning path of 22 units takes you through three levels, with games to practise, a Kiwiz to pass each unit and
 spaced-repetition review to keep words fresh. Game logic runs entirely in the browser, and
 [Supabase](https://supabase.com) provides authentication and per-user progress.
 
@@ -16,8 +16,8 @@ The specifications and implementation plans live in
 
 - **The Path:** 22 units in three levels: Beginner (8), Intermediate (8) and Advanced (6). Each unit has 10-14 words,
   5-7 sentences and a short grammar note. The first three units are open to everyone; completing a unit opens the next one, so three are open at a time.
-- **Learn, practise, check:** each unit starts with a card deck of its new words (with pictures and examples) and the
-  grammar note. Then comes a 10-question practice round and a 12-question unit check. Get 10 of 12 to pass and open another
+- **Learn, practise, Kiwiz:** each unit starts with a card deck of its new words (with pictures and examples) and the
+  grammar note. Then comes a 10-question practice round and a 12-question Kiwiz. Get 10 of 12 to pass and open another
   unit.
 - **Games:** Match, Picture, Translate, Write (English to Māori, with a macron key row), Fill the gap, Order and Mixed.
   Every drag can also be done by tap or keyboard.
@@ -25,9 +25,9 @@ The specifications and implementation plans live in
   of up to 15 words that are ready to be remembered again.
 - **Free practice:** pick any open level and a game.
 - **Reference:** a grammar index, a pronunciation guide and a glossary that finds "kurī" when you type "kuri".
-- **Rounds:** one retry per question, and missed questions are replayed once at the end (not in a unit check). An
+- **Rounds:** one retry per question, and missed questions are replayed once at the end (not in a Kiwiz). An
   unfinished round can be resumed.
-- **XP and streaks:** +10 XP for a first-try answer, +5 for a retry, +20 for finishing a round. Completing at least
+- **Kiwi XP and streaks:** +10 Kiwi XP for a first-try answer, +5 for a retry, +20 for finishing a round. Completing at least
   one round per local day builds your streak.
 
 ## Stack

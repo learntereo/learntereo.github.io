@@ -20,7 +20,7 @@ export const MODE_LABEL: Record<Mode, string> = {
 export const ROUND_MODE_LABEL: Record<RoundMode, string> = {
   ...MODE_LABEL,
   unit_practice: 'Unit practice',
-  unit_check: 'Unit check',
+  unit_check: 'Kiwiz',
   review: 'Review',
 };
 

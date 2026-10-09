@@ -1,3 +1,4 @@
+| W8 | Rewards | "Just show a greyed-out hidden icon every so often that you reach to unlock: an icon, gem or kiwiana" (10 kiwiana treasures on the Path) | User |
 ---
 title: Ako v2.1: Word-by-word breakdowns and layout polish
 type: feature
@@ -48,6 +49,19 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 - FR4.4 The PoC migration rule is kept: a learner who finished Beginner in the PoC has every Beginner unit complete, and a unit whose items were all learned already counts as complete.
 - FR4.5 The Path lists the open units under "Next up", and copy no longer says units open one at a time.
 
+### FR5: Write mode keyboard
+- FR5.1 Write mode has an on-screen keyboard in Māori alphabet order: a e h i k m n o p r t u w, ng and wh (each one key that inserts two letters), then the macron vowels ā ē ī ō ū, plus Space and Backspace.
+- FR5.2 Keys insert at (and Backspace deletes before) the cursor in the answer box, and keep focus and the caret position. A real keyboard still works.
+- FR5.3 On touch devices a "Use phone keyboard" switch is shown. It is off by default, so tapping the answer box does not open the phone's keyboard (inputMode none). The choice is remembered in local storage, which may be unavailable.
+- FR5.4 Keys are buttons at least 44px square with labels such as "letter ng" and "backspace", and they wrap at 360px.
+
+### FR6: Kiwiana treasures
+- FR6.1 Ten collectible kiwiana treasures sit on the Path, each after a unit in course order: after units 2, 4, 6, 8 (end of Beginner), 10, 12, 14, 16 (end of Intermediate), 19 and 22 (end of the course). In order they are: Pāua shell, Jandals, Silver fern, Pōhutukawa flower, Gumboot, Pavlova, Fish and chips, Hokey pokey ice cream, Tūī and Golden kiwi. Each is an original illustration with a one-line friendly caption. There are no brand items and no sacred taonga.
+- FR6.2 A treasure unlocks when the unit before it is complete (its Kiwiz passed). It is derived from unit completion, so units already complete, including through the PoC migration rule, unlock their treasures at once. There is no new stored data.
+- FR6.3 Treasure nodes on the Path are small and quiet. A locked node is a grey silhouette with a question mark and the words "Keep going to unlock" (the screen reader text names the unit to pass). An unlocked node shows in colour with its name, and tapping it shows the caption. One muted line under the Path intro explains the idea.
+- FR6.4 When a Kiwiz pass unlocks a treasure, Results shows a small inline card "Treasure unlocked: {name}!". Only the tenth (Golden kiwi) gets a bigger moment.
+- FR6.5 Progress has a "Kiwiana collection" grid of the ten with "N of 10 collected". The header shows a small muted "N/10" count that links to it.
+
 ## 3. Acceptance Criteria
 | # | Given | When | Then |
 |---|---|---|---|
@@ -64,6 +78,13 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 | AC11 | b01 to b03 complete | the Path renders | b04, i01 and i02 are available (the window crosses into Intermediate) |
 | AC12 | a unit later in the window is completed first | the Path renders | it stays complete, the earlier units stay open, and the window still holds 3 not-yet-complete units |
 | AC13 | a learner whose first unit in Intermediate is open | they open Free Practice | Intermediate is open even though Beginner is not finished |
+| AC14 | Write mode | the learner taps ng then e r u | the answer box shows "ngeru" with the caret at the end |
+| AC15 | the caret in the middle of a word | they tap Backspace | the letter before the caret is removed and the caret stays put |
+| AC16 | a touch device | Write mode opens | the phone keyboard stays closed until "Use phone keyboard" is switched on, and the switch is remembered |
+| AC17 | b01 and b02 complete | the Path renders | the Pāua node after Family is in colour and tapping it shows its caption; the other nine are grey and say "Keep going to unlock" |
+| AC18 | a Kiwiz pass that completes unit 2 | Results opens | a small card says "Treasure unlocked: Pāua!" |
+| AC19 | the last unit is completed | Results opens | the Golden kiwi card is larger and says all 10 are collected |
+| AC20 | Beginner finished in the PoC | the Path renders | the first four treasures are already unlocked |
 
 ## 4. Testing
 Unit tests: content breakdown coverage and token-join (AC6), particle refs, breakdown component rendering (interlinear, popover), layout snapshot-free checks where practical. No em dashes. No references to the tools that built the app.
@@ -78,3 +99,6 @@ Audio, morphology beyond word level (e.g. splitting *whakarongo* into *whaka* + 
 | W2 | Layout | "The sign out screen is fucked looking" (screenshot: Account page flush left, default buttons, misaligned Review badge) | User |
 | W3 | Where breakdowns show, data shape, particles dictionary | Learn, unit title, after-answer feedback, tap-a-word popover, Little words reference | Dev team (delegated) |
 | W4 | Unlocking | "Have 3 courses available at a time, rather than one by one; each completion opens a new one" | User |
+| W5 | Spelling | "To spell the words I'm only given vowels, there are no letters. I should be able to select from a list of letters" | User |
+| W6 | Naming | "Don't call it unit check, it sounds like code. Call it something friendly, a play on the word kiwi" (named Kiwiz) | User |
+| W7 | Naming | "We don't have XP, we have Kiwi XP" | User |

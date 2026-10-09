@@ -26,6 +26,7 @@ import { REVIEW_LIMIT, applySrs, selectDue } from '../../game/srs';
 import { displayStreak, nextStreak, toLocalDateString } from '../../game/streak';
 import type { Level, Mode, Outcome, Question, RoundMode, RoundState, RoundSummary, Unit, UnitCheckSummary } from '../../game/types';
 import { generateUnitCheck, generateUnitPractice, isPass, missedItemIds } from '../../game/unitRound';
+import { newlyUnlockedTreasureIds, treasureSlots } from '../../game/treasures';
 import { computeUnitStatuses, newlyUnlockedUnitIds } from '../../game/unitUnlock';
 import { xpForRound } from '../../game/xp';
 import { showToast } from '../../lib/toastBus';
@@ -36,7 +37,7 @@ import { Gap } from '../modes/Gap';
 import { Order } from '../modes/Order';
 import { Translate } from '../modes/Translate';
 import { Write } from '../modes/Write';
-import { roundPath } from '../paths';
+import { canResume, roundPath } from '../paths';
 import styles from './RoundScreen.module.css';
 
 /** What this screen is playing: a Free Practice game, or a round on one unit. */
@@ -65,7 +66,7 @@ type Phase =
   | { kind: 'conflict'; existing: RoundRow }
   | { kind: 'playing'; roundId: string; state: RoundState }
   | { kind: 'saving' }
-  | { kind: 'error'; message: string };
+  | { kind: 'error'; message: string; retry?: () => void };
 
 /** Free Practice: #/play/:level/:mode */
 export function RoundScreen() {
@@ -77,12 +78,20 @@ export function RoundScreen() {
 /** Unit practice and unit check: #/unit/:unitId/practice and #/unit/:unitId/check */
 export function UnitRoundScreen({ kind }: { kind: 'practice' | 'check' }) {
   const { unitId } = useParams();
-  const { statuses } = useAppData();
+  const { statuses, activeRound } = useAppData();
+  const [search] = useSearchParams();
   const unit = getUnit(unitId);
   const status = unit ? statuses.get(unit.id) : undefined;
-  if (!unit || !status || status.state === 'locked') return <Navigate to="/home" replace />;
+  // A round the learner already started on this unit can always be resumed, even if the unit's state has changed since.
+  const resumingOwn =
+    unit !== undefined &&
+    search.get('resume') === '1' &&
+    activeRound?.unit_id === unit.id &&
+    activeRound.mode === (kind === 'practice' ? 'unit_practice' : 'unit_check');
+  if (!unit || !status) return <Navigate to="/home" replace />;
+  if (status.state === 'locked' && !resumingOwn) return <Navigate to="/home" replace />;
   // The check comes after Learn (units already complete from earlier progress can skip it).
-  if (kind === 'check' && !status.deckDone && status.state !== 'complete') {
+  if (kind === 'check' && !status.deckDone && status.state !== 'complete' && !resumingOwn) {
     return <Navigate to={`/unit/${unit.id}`} replace />;
   }
   return <Round key={`${kind}/${unit.id}`} spec={{ kind, unit }} />;
@@ -91,10 +100,10 @@ export function UnitRoundScreen({ kind }: { kind: 'practice' | 'check' }) {
 /** Review: up to 15 items that are due, most overdue first (#/review). */
 export function ReviewScreen() {
   const { dueCount, activeRound } = useAppData();
-  const [search] = useSearchParams();
   // Frozen when the screen opens, so finishing a round does not flip this screen to "all caught up".
   const [dueAtStart] = useState(dueCount);
-  const resuming = search.get('resume') === '1' && activeRound?.mode === 'review';
+  // Any unfinished review round is shown (to resume or replace), even when nothing is due any more.
+  const resuming = activeRound?.mode === 'review';
   if (dueAtStart === 0 && !resuming) {
     return (
       <main className={ui.page}>
@@ -127,7 +136,12 @@ function Round({ spec }: { spec: RoundSpec }) {
   const started = useRef(false);
 
   const exitTo = unit ? `/unit/${unit.id}` : spec.kind === 'review' ? '/home' : '/practice';
-  const levelOpen = unit !== undefined || openLevels.includes(level);
+  const matches = (row: RoundRow) =>
+    row.mode === roundMode &&
+    (row.unit_id ?? null) === (unit?.id ?? null) &&
+    (spec.kind !== 'free' || row.level === level);
+  const resumingOwn = search.get('resume') === '1' && activeRound !== null && matches(activeRound);
+  const levelOpen = unit !== undefined || openLevels.includes(level) || resumingOwn;
 
   function buildQuestions(): Question[] {
     const rng = createRng(randomSeed());
@@ -145,7 +159,10 @@ function Round({ spec }: { spec: RoundSpec }) {
   }
 
   async function finish(roundId: string, state: RoundState) {
-    if (!user || !profile) return;
+    if (!user || !profile) {
+      setPhase({ kind: 'error', message: 'We could not load your profile to finish this round. Please try again.', retry: () => void finish(roundId, state) });
+      return;
+    }
     setPhase({ kind: 'saving' });
 
     const now = new Date();
@@ -183,6 +200,7 @@ function Round({ spec }: { spec: RoundSpec }) {
         passed,
         firstCompletion: passed && statuses.get(unit.id)?.state !== 'complete',
         nextUnitId: newlyUnlockedUnitIds(statuses, after)[0],
+        treasureId: newlyUnlockedTreasureIds(treasureSlots(units), statuses, after)[0],
       };
       data.setUnitProgress(updated);
       void saveQueue.enqueue(`unit:${unit.id}`, () => saveUnitProgress(updated));
@@ -218,7 +236,12 @@ function Round({ spec }: { spec: RoundSpec }) {
 
     void saveQueue.enqueue(`progress:${roundId}`, () => recordAttempts(rows));
     void saveQueue.enqueue(`profile:${user.id}`, () => updateProfile(user.id, patch));
-    await saveQueue.enqueue(`round:${roundId}`, () => completeRound({ id: roundId, state: finalState, score, xpEarned: xp }));
+    try {
+      await saveQueue.enqueue(`round:${roundId}`, () => completeRound({ id: roundId, state: finalState, score, xpEarned: xp }));
+    } catch (error) {
+      // The results are already shown from local state; the save is retried in the background by the queue.
+      console.error('Could not save the finished round', error);
+    }
 
     navigate(`/results/${roundId}`, { replace: true, state: { round: completed } });
   }
@@ -288,13 +311,14 @@ function Round({ spec }: { spec: RoundSpec }) {
   }
 
   useEffect(() => {
-    if (started.current || !user || !levelOpen) return;
+    // Wait for the learner's profile too: finishing a round needs it.
+    if (started.current || !user || !profile || !levelOpen) return;
     started.current = true;
     const wantsResume = search.get('resume') === '1';
-    const sameRound = activeRound && activeRound.mode === roundMode && (activeRound.unit_id ?? null) === (unit?.id ?? null);
+    const sameRound = activeRound !== null && matches(activeRound);
     // Start-up work depends on loaded data and runs exactly once per visit.
     /* eslint-disable react-hooks/set-state-in-effect */
-    if (activeRound && wantsResume && sameRound && (spec.kind !== 'free' || activeRound.level === level)) {
+    if (activeRound && wantsResume && sameRound) {
       void resume(activeRound);
     } else if (activeRound) {
       setPhase({ kind: 'conflict', existing: activeRound });
@@ -303,7 +327,7 @@ function Round({ spec }: { spec: RoundSpec }) {
     }
     /* eslint-enable react-hooks/set-state-in-effect */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user, profile]);
 
   // ---- answering and finishing --------------------------------------------
 
@@ -315,6 +339,8 @@ function Round({ spec }: { spec: RoundSpec }) {
       return;
     }
     setPhase({ kind: 'playing', roundId, state: next });
+    // Keep the shared copy current, so Resume from Home continues from here.
+    if (activeRound?.id === roundId) data.setActiveRound({ ...activeRound, state: serialiseRound(next) });
     // Save after every answered question. Gameplay never waits on the network.
     void saveQueue.enqueue(`round:${roundId}`, () => saveRoundState(roundId, serialiseRound(next)));
   }
@@ -338,7 +364,7 @@ function Round({ spec }: { spec: RoundSpec }) {
           <h1>Something went wrong</h1>
           <p>{phase.message}</p>
           <div className={ui.row}>
-            <button type="button" className={ui.button} onClick={() => void startFresh()}>
+            <button type="button" className={ui.button} onClick={() => (phase.retry ? phase.retry() : void startFresh())}>
               Try again
             </button>
             <Link className={`${ui.button} ${ui.secondary}`} to="/home">
@@ -364,13 +390,19 @@ function Round({ spec }: { spec: RoundSpec }) {
             {existing.total}). Resume it, or start a new round and leave the old one behind?
           </p>
           <div className={ui.row}>
-            <button
-              type="button"
-              className={ui.button}
-              onClick={() => navigate(roundPath(existing, true), { replace: true })}
-            >
-              Resume round
-            </button>
+            {canResume(existing) && (
+              <button
+                type="button"
+                className={ui.button}
+                onClick={() => {
+                  // Already on this round's screen: continue it here (navigating to the same address would do nothing).
+                  if (matches(existing)) void resume(existing);
+                  else navigate(roundPath(existing, true), { replace: true });
+                }}
+              >
+                Resume round
+              </button>
+            )}
             <button type="button" className={`${ui.button} ${ui.secondary}`} onClick={() => void discardAndStart(existing)}>
               Start a new round
             </button>

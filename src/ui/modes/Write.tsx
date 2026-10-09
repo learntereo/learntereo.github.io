@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { getItem } from '../../content/content';
-import { insertAtCursor, isWriteCorrect, markWrite, writeNote } from '../../game/macronMarking';
+import { deleteBeforeCursor, insertAtCursor, isWriteCorrect, markWrite, writeNote } from '../../game/macronMarking';
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
 import { BreakdownDisclosure } from '../components/Breakdown';
 import { Feedback } from './Feedback';
-import { MacronRow } from './MacronRow';
+import { useKeyboardChoice } from './keyboardChoice';
+import { MaoriKeyboard } from './MaoriKeyboard';
 import { MSG_CORRECT, MSG_RETRY, type FeedbackMessage, type ModeProps } from './types';
 import styles from './modes.module.css';
 
@@ -21,6 +22,7 @@ export function Write({ question, onDone }: ModeProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const continueRef = useRef<HTMLButtonElement>(null);
   const pendingCursor = useRef<number | null>(null);
+  const keyboard = useKeyboardChoice();
 
   useEffect(() => {
     if (phase !== 'asking') continueRef.current?.focus();
@@ -38,6 +40,15 @@ export function Write({ question, onDone }: ModeProps) {
     const el = inputRef.current;
     if (!el || phase !== 'asking') return;
     const next = insertAtCursor(input, el.selectionStart, el.selectionEnd, letter);
+    pendingCursor.current = next.cursor;
+    setInput(next.value);
+    el.focus();
+  }
+
+  function backspace() {
+    const el = inputRef.current;
+    if (!el || phase !== 'asking') return;
+    const next = deleteBeforeCursor(input, el.selectionStart, el.selectionEnd);
     pendingCursor.current = next.cursor;
     setInput(next.value);
     el.focus();
@@ -97,8 +108,17 @@ export function Write({ question, onDone }: ModeProps) {
           autoCorrect="off"
           spellCheck={false}
           enterKeyHint="done"
+          inputMode={keyboard.nativeKeyboard ? 'text' : 'none'}
         />
-        {phase === 'asking' && <MacronRow onInsert={insert} />}
+        {phase === 'asking' && (
+          <MaoriKeyboard
+            onInsert={insert}
+            onBackspace={backspace}
+            touch={keyboard.touch}
+            usePhoneKeyboard={keyboard.usePhoneKeyboard}
+            onTogglePhoneKeyboard={keyboard.setUsePhoneKeyboard}
+          />
+        )}
         {phase === 'asking' && (
           <button type="submit" className={ui.button} disabled={input.trim() === ''}>
             Check

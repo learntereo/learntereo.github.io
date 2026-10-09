@@ -144,9 +144,9 @@ describe('Unit screen', () => {
     expect(container.querySelector('h1')?.textContent).toContain('Aroha');
   });
 
-  it('keeps the unit check disabled until Learn is done', () => {
+  it('keeps the Kiwiz disabled until Learn is done', () => {
     renderAt('/unit/b01-greetings', appData());
-    expect(buttonNamed('Take the check').disabled).toBe(true);
+    expect(buttonNamed('Take the Kiwiz').disabled).toBe(true);
     expect(container.textContent).toContain('Finish Learn first');
     expect(container.querySelector('a[href="/unit/b01-greetings/learn"]')).not.toBeNull();
     expect(container.querySelector('a[href="/unit/b01-greetings/practice"]')).not.toBeNull();
@@ -156,7 +156,7 @@ describe('Unit screen', () => {
     const row: UnitProgressRow = { ...doneRow('b01-greetings'), completed_at: null, best_score: 9 };
     renderAt('/unit/b01-greetings', appData({ unitProgress: [row] }));
     expect(container.querySelector('a[href="/unit/b01-greetings/check"]')).not.toBeNull();
-    expect(container.textContent).toContain('Best check 9 / 12');
+    expect(container.textContent).toContain('Best Kiwiz 9 / 12');
   });
 
   it('shows the grammar note', () => {
@@ -214,5 +214,34 @@ describe('GrammarNote', () => {
     expect(container.querySelector('img')).toBeNull();
     expect(container.querySelector('script')).toBeNull();
     expect(container.textContent).toContain('<script>alert(1)</script>');
+  });
+});
+
+describe('Kiwiana treasures on the Path', () => {
+  const nodes = () => [...container.querySelectorAll('li')].filter((li) => li.textContent?.includes('Keep going to unlock'));
+
+  it('explains the idea once and shows ten quiet locked nodes for a new learner', () => {
+    renderAt('/home', appData());
+    expect(container.textContent).toContain('Keep learning to unlock kiwiana treasures along your path.');
+    expect(nodes()).toHaveLength(10);
+    expect(container.textContent).toContain('Pass the Kiwiz in Family to unlock');
+    expect(container.querySelector('button[aria-controls^="treasure-"]')).toBeNull();
+  });
+
+  it('unlocks the Pāua after the second unit is complete, and a tap shows its caption', () => {
+    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings'), doneRow('b02-whanau')] }));
+    expect(nodes()).toHaveLength(9);
+    const paua = container.querySelector('button[aria-controls="treasure-paua"]') as HTMLButtonElement;
+    expect(paua.textContent).toContain('Pāua');
+    expect(paua.getAttribute('aria-expanded')).toBe('false');
+    act(() => void paua.click());
+    expect(paua.getAttribute('aria-expanded')).toBe('true');
+    expect(container.textContent).toContain("the shimmering shell of Aotearoa's rocky shores");
+  });
+
+  it('unlocks treasures at once for units complete through the PoC rule', () => {
+    renderAt('/home', appData({ beginnerCompleted: true }));
+    expect(nodes()).toHaveLength(6);
+    expect(container.querySelector('button[aria-controls="treasure-pohutukawa"]')).not.toBeNull();
   });
 });
