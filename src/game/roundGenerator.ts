@@ -45,16 +45,16 @@ function poolFor(mode: QuestionMode, pools: Pools): readonly Item[] {
   }
 }
 
-function slotModes(mode: Mode, eligible: readonly QuestionMode[], rng: Rng): QuestionMode[] {
+function slotModes(mode: Mode, eligible: readonly QuestionMode[], size: number, rng: Rng): QuestionMode[] {
   if (mode !== 'mixed') {
     if (!eligible.includes(mode)) throw new Error(`Not enough content for ${mode} mode`);
-    return Array.from({ length: ROUND_SIZE }, () => mode);
+    return Array.from({ length: size }, () => mode);
   }
   if (eligible.length === 0) throw new Error('No content available');
-  const modes = Array.from({ length: ROUND_SIZE }, () => eligible[Math.floor(rng() * eligible.length)]);
+  const modes = Array.from({ length: size }, () => eligible[Math.floor(rng() * eligible.length)]);
   // A "mixed" round should really mix: if chance gave one mode, swap the last slot.
   if (eligible.length > 1 && new Set(modes).size === 1) {
-    modes[ROUND_SIZE - 1] = eligible.find((m) => m !== modes[0]) as QuestionMode;
+    modes[size - 1] = eligible.find((m) => m !== modes[0]) as QuestionMode;
   }
   return modes;
 }
@@ -70,18 +70,30 @@ function slotModes(mode: Mode, eligible: readonly QuestionMode[], rng: Rng): Que
  *   of 5 words from 40 intermediate words) reuses the least-used words.
  * - Mixed picks a random eligible mode per question.
  */
+export interface GenerateOptions {
+  /** Number of questions (default 10). */
+  size?: number;
+  /** How many questions prefer unlearned items (default 7, or all if the round is shorter). */
+  maxNew?: number;
+  /** Ignore what is learned and spread questions evenly over the items (unit check). */
+  neutral?: boolean;
+}
+
 export function generateRound(
   items: readonly Item[],
   level: Level,
   mode: Mode,
   learned: ReadonlySet<string>,
   rng: Rng,
+  options: GenerateOptions = {},
 ): Question[] {
+  const size = options.size ?? ROUND_SIZE;
+  const maxNew = options.maxNew ?? Math.min(MAX_NEW_QUESTIONS, size);
   const pools = buildPools(items, level);
   const eligible = eligibleModes(items, level);
-  const modes = slotModes(mode, eligible, rng);
+  const modes = slotModes(mode, eligible, size, rng);
 
-  const newSlots = new Set(shuffle(Array.from({ length: ROUND_SIZE }, (_, i) => i), rng).slice(0, MAX_NEW_QUESTIONS));
+  const newSlots = new Set(shuffle(Array.from({ length: size }, (_, i) => i), rng).slice(0, maxNew));
   const usage = new Map<string, number>();
   const primaries = new Set<string>();
 
@@ -89,20 +101,21 @@ export function generateRound(
     const candidates = shuffle(pool, rng).filter((item) => !exclude.has(item.id));
     const rank = (item: Item) => {
       const isNew = !learned.has(item.id);
-      return (usage.get(item.id) ?? 0) * 2 + (isNew === wantNew ? 0 : 1);
+      return (usage.get(item.id) ?? 0) * 2 + (options.neutral || isNew === wantNew ? 0 : 1);
     };
     // Stable sort keeps the shuffled order among equal ranks.
     return candidates.sort((a, b) => rank(a) - rank(b)).slice(0, count);
   }
 
   const questions: Question[] = [];
-  for (let slot = 0; slot < ROUND_SIZE; slot++) {
+  for (let slot = 0; slot < size; slot++) {
     const questionMode = modes[slot];
     const wantNew = newSlots.has(slot);
     const pool = poolFor(questionMode, pools);
     const size = questionMode === 'match' ? MATCH_BOARD_SIZE : questionMode === 'picture' ? PICTURE_BOARD_SIZE : 1;
     // The primary item is never a previous primary; the rest of a board avoids it.
-    const [primary] = choose(pool, 1, wantNew, primaries);
+    // Small pools (a single unit's sentences) can run out of fresh primaries; then reuse the least-used.
+    const [primary] = choose(pool, 1, wantNew, primaries).concat(choose(pool, 1, wantNew, new Set()));
     primaries.add(primary.id);
     const chosen = [primary, ...choose(pool, size - 1, wantNew, new Set([primary.id]))];
     for (const item of chosen) usage.set(item.id, (usage.get(item.id) ?? 0) + 1);

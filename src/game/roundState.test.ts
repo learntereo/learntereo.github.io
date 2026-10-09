@@ -180,3 +180,45 @@ describe('validateRoundState rejects invalid state', () => {
     expect(validateRoundState({ ...s, questions: s.questions.slice(0, 9) }, byId)).toBeNull();
   });
 });
+
+describe('unit rounds', () => {
+  const unitIds = ['w-b-001', 'w-b-002', 'w-b-003', 'w-b-004', 'w-b-005', 'w-b-006'];
+  const questions = unitIds.map((id) => ({ mode: 'translate' as const, itemIds: [id], requeued: false }));
+
+  it('stores the unit id and path mode', () => {
+    const state = createRound('beginner', 'unit_practice', questions, 'u1');
+    expect(state).toMatchObject({ mode: 'unit_practice', unitId: 'u1' });
+    expect(createRound('beginner', 'match', questions)).not.toHaveProperty('unitId');
+  });
+
+  it('re-queues misses in practice but not in a unit check', () => {
+    const miss = (mode: 'unit_practice' | 'unit_check') =>
+      playAll(createRound('beginner', mode, questions, 'u1'), ['missed', 'first', 'first', 'first', 'first', 'first']);
+    expect(miss('unit_practice').questions).toHaveLength(7);
+    const check = miss('unit_check');
+    expect(check.questions).toHaveLength(6);
+    expect(isRoundComplete(check)).toBe(true);
+    expect(scoreOf(check)).toBe(5);
+  });
+
+  it('validates a unit round, including items from another level (review questions)', () => {
+    const review = [...questions.slice(0, 5), { mode: 'translate' as const, itemIds: ['w-i-001'], requeued: false }];
+    const state = serialiseRound(createRound('beginner', 'unit_practice', review, 'u1'));
+    expect(byId.has('w-i-001')).toBe(true);
+    expect(validateRoundState(state, byId)).not.toBeNull();
+  });
+
+  it('still rejects other-level items in a free practice round', () => {
+    const mixedLevels = [...questions.slice(0, 5), { mode: 'translate' as const, itemIds: ['w-i-001'], requeued: false }];
+    const state = serialiseRound(createRound('beginner', 'translate', mixedLevels));
+    expect(validateRoundState(state, byId)).toBeNull();
+  });
+
+  it('requires a unit id for unit rounds and forbids it otherwise', () => {
+    const noUnit = serialiseRound(createRound('beginner', 'unit_check', questions));
+    expect(validateRoundState(noUnit, byId)).toBeNull();
+    const strayUnit = serialiseRound(createRound('beginner', 'translate', questions, 'u1'));
+    expect(validateRoundState(strayUnit, byId)).toBeNull();
+    expect(validateRoundState(serialiseRound(createRound('beginner', 'unit_check', questions, 'u1')), byId)).not.toBeNull();
+  });
+});

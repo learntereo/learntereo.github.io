@@ -1,0 +1,320 @@
+{
+  "unit": {
+    "id": "i05-kakahu",
+    "level": "intermediate",
+    "order": 5,
+    "title": "Clothes and things",
+    "titleMi": "Ngā Kākahu me ngā Taonga",
+    "emoji": "👕",
+    "itemIds": [
+      "w-i-036",
+      "w-i-037",
+      "w-i-038",
+      "w-i-039",
+      "w-i-040",
+      "w-i-060",
+      "w-i-061",
+      "w-i-062",
+      "w-i-063",
+      "w-i-064",
+      "w-i-065",
+      "w-i-066",
+      "w-i-067",
+      "s-i-037",
+      "s-i-038",
+      "s-i-039",
+      "s-i-040",
+      "s-i-041",
+      "s-i-042"
+    ],
+    "grammar": "i05-kakahu"
+  },
+  "items": [
+    {
+      "id": "w-i-036",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "kākahu",
+      "en": [
+        "clothes",
+        "clothing"
+      ],
+      "image": {
+        "emoji": "👕"
+      }
+    },
+    {
+      "id": "w-i-037",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hū",
+      "en": [
+        "shoe",
+        "shoes"
+      ],
+      "image": {
+        "emoji": "👟"
+      }
+    },
+    {
+      "id": "w-i-038",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "kapu",
+      "en": [
+        "cup"
+      ],
+      "image": {
+        "emoji": "☕"
+      }
+    },
+    {
+      "id": "w-i-039",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "rorohiko",
+      "en": [
+        "computer"
+      ],
+      "image": {
+        "emoji": "💻"
+      }
+    },
+    {
+      "id": "w-i-040",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "pēke",
+      "en": [
+        "bag"
+      ],
+      "image": {
+        "emoji": "🎒"
+      }
+    },
+    {
+      "id": "w-i-060",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tarau",
+      "en": [
+        "trousers",
+        "pants"
+      ],
+      "image": {
+        "emoji": "👖"
+      }
+    },
+    {
+      "id": "w-i-061",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tōkena",
+      "en": [
+        "socks",
+        "sock"
+      ],
+      "image": {
+        "emoji": "🧦"
+      }
+    },
+    {
+      "id": "w-i-062",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "pōtae",
+      "en": [
+        "hat"
+      ],
+      "image": {
+        "emoji": "👒"
+      }
+    },
+    {
+      "id": "w-i-063",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hāte",
+      "en": [
+        "shirt"
+      ],
+      "image": {
+        "emoji": "👔"
+      }
+    },
+    {
+      "id": "w-i-064",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "koti",
+      "en": [
+        "coat",
+        "jacket"
+      ],
+      "image": {
+        "emoji": "🧥"
+      }
+    },
+    {
+      "id": "w-i-065",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "waea",
+      "en": [
+        "phone",
+        "telephone"
+      ],
+      "image": {
+        "emoji": "📱"
+      }
+    },
+    {
+      "id": "w-i-066",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "pene",
+      "en": [
+        "pen"
+      ],
+      "image": {
+        "emoji": "🖊️"
+      }
+    },
+    {
+      "id": "w-i-067",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "mau",
+      "en": [
+        "wear",
+        "carry",
+        "hold"
+      ]
+    },
+    {
+      "id": "s-i-037",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "He whero te koti",
+      "en": [
+        "The coat is red"
+      ],
+      "tiles": [
+        "he",
+        "whero",
+        "te",
+        "koti"
+      ],
+      "decoys": [
+        "kei",
+        "i"
+      ]
+    },
+    {
+      "id": "s-i-038",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "He kikorangi te tarau",
+      "en": [
+        "The trousers are blue",
+        "The pants are blue"
+      ],
+      "tiles": [
+        "he",
+        "kikorangi",
+        "te",
+        "tarau"
+      ],
+      "decoys": [
+        "kei",
+        "i"
+      ]
+    },
+    {
+      "id": "s-i-039",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei hea te pēke",
+      "en": [
+        "Where is the bag"
+      ],
+      "tiles": [
+        "kei",
+        "hea",
+        "te",
+        "pēke"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-040",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te mau ia i te pōtae",
+      "en": [
+        "He is wearing the hat",
+        "She is wearing the hat",
+        "He is wearing a hat",
+        "She is wearing a hat"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "mau",
+        "ia",
+        "i",
+        "te",
+        "pōtae"
+      ],
+      "decoys": [
+        "ka",
+        "e"
+      ]
+    },
+    {
+      "id": "s-i-041",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te mau ahau i ngā hū",
+      "en": [
+        "I am wearing the shoes",
+        "I am wearing shoes"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "mau",
+        "ahau",
+        "i",
+        "ngā",
+        "hū"
+      ],
+      "decoys": [
+        "ka",
+        "e"
+      ]
+    },
+    {
+      "id": "s-i-042",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "He pai te rorohiko",
+      "en": [
+        "The computer is good"
+      ],
+      "tiles": [
+        "he",
+        "pai",
+        "te",
+        "rorohiko"
+      ],
+      "decoys": [
+        "kei",
+        "i"
+      ]
+    }
+  ]
+}

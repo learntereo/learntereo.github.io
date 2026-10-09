@@ -1,0 +1,251 @@
+{
+  "unit": {
+    "id": "i08-pupuri",
+    "level": "intermediate",
+    "order": 8,
+    "title": "Mine and yours",
+    "titleMi": "Tāku me Tōku",
+    "emoji": "🤝",
+    "itemIds": [
+      "w-i-089",
+      "w-i-090",
+      "w-i-091",
+      "w-i-092",
+      "w-i-093",
+      "w-i-094",
+      "w-i-095",
+      "w-i-096",
+      "w-i-097",
+      "w-i-098",
+      "s-i-005",
+      "s-i-006",
+      "s-i-019",
+      "s-i-048",
+      "s-i-049",
+      "s-i-050"
+    ],
+    "grammar": "i08-pupuri"
+  },
+  "items": [
+    {
+      "id": "w-i-089",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tāku",
+      "en": [
+        "my (A category)",
+        "my"
+      ]
+    },
+    {
+      "id": "w-i-090",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tōku",
+      "en": [
+        "my (O category)",
+        "my"
+      ]
+    },
+    {
+      "id": "w-i-091",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "āku",
+      "en": [
+        "my (plural, A category)",
+        "my"
+      ]
+    },
+    {
+      "id": "w-i-092",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ōku",
+      "en": [
+        "my (plural, O category)",
+        "my"
+      ]
+    },
+    {
+      "id": "w-i-093",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tāu",
+      "en": [
+        "your (A category)",
+        "your"
+      ]
+    },
+    {
+      "id": "w-i-094",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tō",
+      "en": [
+        "your (O category)",
+        "your"
+      ]
+    },
+    {
+      "id": "w-i-095",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tāna",
+      "en": [
+        "his or her (A category)",
+        "his",
+        "her"
+      ]
+    },
+    {
+      "id": "w-i-096",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tōna",
+      "en": [
+        "his or her (O category)",
+        "his",
+        "her"
+      ]
+    },
+    {
+      "id": "w-i-097",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "mea",
+      "en": [
+        "thing"
+      ]
+    },
+    {
+      "id": "w-i-098",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tangata",
+      "en": [
+        "person"
+      ],
+      "image": {
+        "emoji": "🧑"
+      }
+    },
+    {
+      "id": "s-i-005",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei hea tō whare",
+      "en": [
+        "Where is your house"
+      ],
+      "tiles": [
+        "kei",
+        "hea",
+        "tō",
+        "whare"
+      ],
+      "decoys": [
+        "taku",
+        "ahau"
+      ]
+    },
+    {
+      "id": "s-i-006",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ko tōku whānau tēnei",
+      "en": [
+        "This is my family"
+      ],
+      "tiles": [
+        "ko",
+        "tōku",
+        "whānau",
+        "tēnei"
+      ],
+      "decoys": [
+        "taku",
+        "tēnā"
+      ]
+    },
+    {
+      "id": "s-i-019",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ko tōku māmā tērā",
+      "en": [
+        "That is my mum",
+        "That is my mother",
+        "That is my mom"
+      ],
+      "tiles": [
+        "ko",
+        "tōku",
+        "māmā",
+        "tērā"
+      ],
+      "decoys": [
+        "taku",
+        "tēnei"
+      ]
+    },
+    {
+      "id": "s-i-048",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ko tāku kurī tēnā",
+      "en": [
+        "That is my dog"
+      ],
+      "tiles": [
+        "ko",
+        "tāku",
+        "kurī",
+        "tēnā"
+      ],
+      "decoys": [
+        "tōku",
+        "ahau"
+      ]
+    },
+    {
+      "id": "s-i-049",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei hea tāku pukapuka",
+      "en": [
+        "Where is my book"
+      ],
+      "tiles": [
+        "kei",
+        "hea",
+        "tāku",
+        "pukapuka"
+      ],
+      "decoys": [
+        "tōku",
+        "ahau"
+      ]
+    },
+    {
+      "id": "s-i-050",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E rua āku tamariki",
+      "en": [
+        "I have two children",
+        "My children are two"
+      ],
+      "tiles": [
+        "e",
+        "rua",
+        "āku",
+        "tamariki"
+      ],
+      "decoys": [
+        "ōku",
+        "ahau"
+      ]
+    }
+  ]
+}

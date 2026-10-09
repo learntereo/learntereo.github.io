@@ -1,0 +1,315 @@
+{
+  "unit": {
+    "id": "b06-kai",
+    "level": "beginner",
+    "order": 6,
+    "title": "Food and drink",
+    "titleMi": "Te Kai me te Inu",
+    "emoji": "🍎",
+    "itemIds": [
+      "w-b-017",
+      "w-b-018",
+      "w-b-019",
+      "w-b-020",
+      "w-b-021",
+      "w-b-022",
+      "w-b-023",
+      "w-b-084",
+      "w-b-085",
+      "w-b-086",
+      "w-b-087",
+      "w-b-088",
+      "w-b-089",
+      "s-b-014",
+      "s-b-015",
+      "s-b-040",
+      "s-b-041",
+      "s-b-042",
+      "s-b-043"
+    ],
+    "grammar": "b06-kai"
+  },
+  "items": [
+    {
+      "id": "w-b-017",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "wai",
+      "en": [
+        "water"
+      ],
+      "image": {
+        "emoji": "💧"
+      }
+    },
+    {
+      "id": "w-b-018",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kai",
+      "en": [
+        "food"
+      ],
+      "image": {
+        "emoji": "🍽️"
+      }
+    },
+    {
+      "id": "w-b-019",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "miraka",
+      "en": [
+        "milk"
+      ],
+      "image": {
+        "emoji": "🥛"
+      }
+    },
+    {
+      "id": "w-b-020",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "āporo",
+      "en": [
+        "apple"
+      ],
+      "image": {
+        "emoji": "🍎"
+      }
+    },
+    {
+      "id": "w-b-021",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "parāoa",
+      "en": [
+        "bread"
+      ],
+      "image": {
+        "emoji": "🍞"
+      }
+    },
+    {
+      "id": "w-b-022",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "rīwai",
+      "en": [
+        "potato"
+      ],
+      "image": {
+        "emoji": "🥔"
+      }
+    },
+    {
+      "id": "w-b-023",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tī",
+      "en": [
+        "tea"
+      ],
+      "image": {
+        "emoji": "🍵"
+      }
+    },
+    {
+      "id": "w-b-084",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "hēki",
+      "en": [
+        "egg"
+      ],
+      "image": {
+        "emoji": "🥚"
+      }
+    },
+    {
+      "id": "w-b-085",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kūmara",
+      "en": [
+        "sweet potato",
+        "kumara"
+      ],
+      "image": {
+        "emoji": "🍠"
+      }
+    },
+    {
+      "id": "w-b-086",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kawhe",
+      "en": [
+        "coffee"
+      ],
+      "image": {
+        "emoji": "☕"
+      }
+    },
+    {
+      "id": "w-b-087",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "huka",
+      "en": [
+        "sugar"
+      ]
+    },
+    {
+      "id": "w-b-088",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kaimoana",
+      "en": [
+        "seafood"
+      ],
+      "image": {
+        "emoji": "🦐"
+      }
+    },
+    {
+      "id": "w-b-089",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "huarākau",
+      "en": [
+        "fruit"
+      ],
+      "image": {
+        "emoji": "🍇"
+      }
+    },
+    {
+      "id": "s-b-014",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te kai ahau",
+      "en": [
+        "I am eating"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "kai",
+        "ahau"
+      ],
+      "decoys": [
+        "inu"
+      ]
+    },
+    {
+      "id": "s-b-015",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te inu koe i te wai",
+      "en": [
+        "You are drinking water",
+        "You are drinking the water"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "inu",
+        "koe",
+        "i",
+        "te",
+        "wai"
+      ],
+      "decoys": [
+        "ki"
+      ]
+    },
+    {
+      "id": "s-b-040",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te inu ahau i te miraka",
+      "en": [
+        "I am drinking milk",
+        "I am drinking the milk"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "inu",
+        "ahau",
+        "i",
+        "te",
+        "miraka"
+      ],
+      "decoys": [
+        "ki"
+      ]
+    },
+    {
+      "id": "s-b-041",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te kai ia i te āporo",
+      "en": [
+        "He is eating the apple",
+        "She is eating the apple",
+        "He is eating an apple",
+        "She is eating an apple"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "kai",
+        "ia",
+        "i",
+        "te",
+        "āporo"
+      ],
+      "decoys": [
+        "ki"
+      ]
+    },
+    {
+      "id": "s-b-042",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He pai te parāoa",
+      "en": [
+        "The bread is good"
+      ],
+      "tiles": [
+        "he",
+        "pai",
+        "te",
+        "parāoa"
+      ],
+      "decoys": [
+        "kei"
+      ]
+    },
+    {
+      "id": "s-b-043",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te kai rātou i te kūmara",
+      "en": [
+        "They are eating the sweet potato",
+        "They are eating sweet potato",
+        "They are eating the kumara"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "kai",
+        "rātou",
+        "i",
+        "te",
+        "kūmara"
+      ],
+      "decoys": [
+        "ki"
+      ]
+    }
+  ]
+}

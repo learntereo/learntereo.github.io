@@ -1,0 +1,343 @@
+{
+  "unit": {
+    "id": "i01-mahi",
+    "level": "intermediate",
+    "order": 1,
+    "title": "Everyday actions",
+    "titleMi": "Ngā Mahi",
+    "emoji": "🏃",
+    "itemIds": [
+      "w-i-001",
+      "w-i-002",
+      "w-i-003",
+      "w-i-004",
+      "w-i-005",
+      "w-i-006",
+      "w-i-007",
+      "w-i-008",
+      "w-i-009",
+      "w-i-010",
+      "w-i-041",
+      "w-i-042",
+      "w-i-043",
+      "w-i-044",
+      "s-i-003",
+      "s-i-004",
+      "s-i-011",
+      "s-i-016",
+      "s-i-017",
+      "s-i-021",
+      "s-i-022"
+    ],
+    "grammar": "i01-mahi"
+  },
+  "items": [
+    {
+      "id": "w-i-001",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "haere",
+      "en": [
+        "go",
+        "to go"
+      ]
+    },
+    {
+      "id": "w-i-002",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "mahi",
+      "en": [
+        "work",
+        "to work"
+      ]
+    },
+    {
+      "id": "w-i-003",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "inu",
+      "en": [
+        "drink",
+        "to drink"
+      ]
+    },
+    {
+      "id": "w-i-004",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "moe",
+      "en": [
+        "sleep",
+        "to sleep"
+      ],
+      "image": {
+        "emoji": "😴"
+      }
+    },
+    {
+      "id": "w-i-005",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "kōrero",
+      "en": [
+        "talk",
+        "speak",
+        "to talk"
+      ],
+      "image": {
+        "emoji": "🗣️"
+      }
+    },
+    {
+      "id": "w-i-006",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "pānui",
+      "en": [
+        "read",
+        "to read"
+      ]
+    },
+    {
+      "id": "w-i-007",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tuhi",
+      "en": [
+        "write",
+        "to write"
+      ],
+      "image": {
+        "emoji": "✍️"
+      }
+    },
+    {
+      "id": "w-i-008",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "whakarongo",
+      "en": [
+        "listen",
+        "to listen"
+      ]
+    },
+    {
+      "id": "w-i-009",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "titiro",
+      "en": [
+        "look",
+        "to look"
+      ],
+      "image": {
+        "emoji": "👀"
+      }
+    },
+    {
+      "id": "w-i-010",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "oma",
+      "en": [
+        "run",
+        "to run"
+      ],
+      "image": {
+        "emoji": "🏃"
+      }
+    },
+    {
+      "id": "w-i-041",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "waiata",
+      "en": [
+        "sing",
+        "song"
+      ],
+      "image": {
+        "emoji": "🎤"
+      }
+    },
+    {
+      "id": "w-i-042",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tākaro",
+      "en": [
+        "play"
+      ],
+      "image": {
+        "emoji": "⚽"
+      }
+    },
+    {
+      "id": "w-i-043",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "noho",
+      "en": [
+        "sit",
+        "live",
+        "stay"
+      ]
+    },
+    {
+      "id": "w-i-044",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ako",
+      "en": [
+        "learn",
+        "teach",
+        "study"
+      ]
+    },
+    {
+      "id": "s-i-003",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E kai ana te kurī",
+      "en": [
+        "The dog is eating"
+      ],
+      "tiles": [
+        "e",
+        "kai",
+        "ana",
+        "te",
+        "kurī"
+      ],
+      "decoys": [
+        "kei",
+        "i"
+      ]
+    },
+    {
+      "id": "s-i-004",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E moe ana te pēpi",
+      "en": [
+        "The baby is sleeping"
+      ],
+      "tiles": [
+        "e",
+        "moe",
+        "ana",
+        "te",
+        "pēpi"
+      ],
+      "decoys": [
+        "kei",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-011",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E mahi ana tōku pāpā",
+      "en": [
+        "My dad is working",
+        "My father is working"
+      ],
+      "tiles": [
+        "e",
+        "mahi",
+        "ana",
+        "tōku",
+        "pāpā"
+      ],
+      "decoys": [
+        "taku",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-016",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te pānui ahau i te pukapuka",
+      "en": [
+        "I am reading the book",
+        "I am reading a book"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "pānui",
+        "ahau",
+        "i",
+        "te",
+        "pukapuka"
+      ],
+      "decoys": [
+        "ka",
+        "e"
+      ]
+    },
+    {
+      "id": "s-i-017",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E waiata ana ngā tamariki",
+      "en": [
+        "The children are singing"
+      ],
+      "tiles": [
+        "e",
+        "waiata",
+        "ana",
+        "ngā",
+        "tamariki"
+      ],
+      "decoys": [
+        "kei",
+        "i"
+      ]
+    },
+    {
+      "id": "s-i-021",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E tākaro ana ngā tamariki",
+      "en": [
+        "The children are playing"
+      ],
+      "tiles": [
+        "e",
+        "tākaro",
+        "ana",
+        "ngā",
+        "tamariki"
+      ],
+      "decoys": [
+        "kei",
+        "i"
+      ]
+    },
+    {
+      "id": "s-i-022",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E whakarongo ana ngā ākonga",
+      "en": [
+        "The students are listening"
+      ],
+      "tiles": [
+        "e",
+        "whakarongo",
+        "ana",
+        "ngā",
+        "ākonga"
+      ],
+      "decoys": [
+        "kei",
+        "ka"
+      ]
+    }
+  ]
+}

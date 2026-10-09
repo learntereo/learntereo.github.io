@@ -1,10 +1,14 @@
-export type Level = 'beginner' | 'intermediate';
+export type Level = 'beginner' | 'intermediate' | 'advanced';
 export type Mode = 'match' | 'translate' | 'order' | 'picture' | 'mixed';
 /** A single question is never "mixed": Mixed rounds pick one of these per question. */
 export type QuestionMode = Exclude<Mode, 'mixed'>;
 
-export const LEVELS: readonly Level[] = ['beginner', 'intermediate'];
+/** Everything a stored round can be: a free-practice mode or a path round. */
+export type RoundMode = Mode | 'unit_practice' | 'unit_check' | 'review';
+
+export const LEVELS: readonly Level[] = ['beginner', 'intermediate', 'advanced'];
 export const MODES: readonly Mode[] = ['match', 'translate', 'order', 'picture', 'mixed'];
+export const ROUND_MODES: readonly RoundMode[] = [...MODES, 'unit_practice', 'unit_check', 'review'];
 
 export type ItemImage = { emoji: string } | { svg: string };
 
@@ -30,8 +34,25 @@ export interface SentenceItem {
 
 export type Item = WordItem | SentenceItem;
 
-export interface Content {
-  version: number;
+/** One unit of the learning path. Its items are defined in the same content file. */
+export interface Unit {
+  id: string;
+  level: Level;
+  order: number;
+  /** English title. */
+  title: string;
+  /** Māori title. */
+  titleMi: string;
+  emoji: string;
+  /** Words and sentences that belong to this unit. */
+  itemIds: string[];
+  /** Id of the grammar note file for this unit. */
+  grammar: string;
+}
+
+/** Shape of each file in src/content/units. */
+export interface UnitFile {
+  unit: Unit;
   items: Item[];
 }
 
@@ -64,7 +85,9 @@ export interface Outcome {
 export interface RoundState {
   version: 1;
   level: Level;
-  mode: Mode;
+  mode: RoundMode;
+  /** Set for unit practice and unit check rounds. */
+  unitId?: string;
   /** Number of original questions (the score denominator). */
   originalCount: number;
   questions: Question[];
@@ -79,6 +102,20 @@ export interface RoundState {
 
 export interface RoundSummary {
   newlyLearned: number;
-  unlockedIntermediate: boolean;
+  /** Only set by PoC rounds; the path replaces this with unit completion. */
+  unlockedIntermediate?: boolean;
   streak: number;
+  /** Unit check rounds only. */
+  unitCheck?: UnitCheckSummary;
+  /** Ids of items answered wrong in the original questions (unit rounds). */
+  missedItemIds?: string[];
+}
+
+export interface UnitCheckSummary {
+  unitId: string;
+  passed: boolean;
+  /** True the first time this unit is completed. */
+  firstCompletion: boolean;
+  /** The unit this pass opened up, when there is one. */
+  nextUnitId?: string;
 }

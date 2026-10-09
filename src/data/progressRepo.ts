@@ -9,7 +9,15 @@ export interface ItemProgressRow {
   correct_count: number;
   first_correct_at: string | null;
   last_seen_at: string;
+  /** Spaced repetition (used by Review). */
+  ease: number;
+  interval_days: number;
+  due_on: string | null;
+  lapses: number;
 }
+
+/** The SRS values a brand new row starts with. */
+export const NEW_SRS = { ease: 2.5, interval_days: 1, due_on: null, lapses: 0 } as const;
 
 /**
  * Merge a round's item results into existing progress rows (the client merges
@@ -32,6 +40,7 @@ export function mergeAttempts(
         correct_count: 0,
         first_correct_at: null,
         last_seen_at: nowIso,
+        ...NEW_SRS,
       };
     merged.set(attempt.itemId, {
       ...base,

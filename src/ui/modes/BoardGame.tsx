@@ -102,7 +102,7 @@ function Target({ word, variant, placed, highlighted, hint, onTap }: TargetProps
 }
 
 /** Match (5 Māori words onto English) and Picture (4 words onto pictures) share this board. */
-export function BoardGame({ question, onDone }: ModeProps) {
+export function BoardGame({ question, onDone, hints = true }: ModeProps) {
   const variant = question.mode === 'picture' ? 'picture' : 'match';
   const words = useMemo(() => question.itemIds.map((id) => getItem(id) as WordItem), [question]);
   const [chipOrder] = useState(() => shuffle(words, createRng(randomSeed())));
@@ -135,7 +135,10 @@ export function BoardGame({ question, onDone }: ModeProps) {
     window.setTimeout(() => setShaking((current) => (current === chipId ? null : current)), 450);
     if (shouldReveal(count)) {
       if (!revealed.includes(chipId)) setRevealed([...revealed, chipId]);
-      setMessage({ kind: 'wrong', text: 'Not quite. The right spot is highlighted, drop it there.' });
+      setMessage({
+        kind: 'wrong',
+        text: hints ? 'Not quite. The right spot is highlighted, drop it there.' : 'Not quite. Keep trying.',
+      });
     } else {
       setMessage({ kind: 'wrong', text: MSG_RETRY });
     }
@@ -182,7 +185,7 @@ export function BoardGame({ question, onDone }: ModeProps) {
   const targets = (
     <div className={variant === 'picture' ? styles.pictureGrid : styles.targets}>
       {targetOrder.map((word) => {
-        const isRevealed = revealed.includes(word.id) && !placed.includes(word.id);
+        const isRevealed = hints && revealed.includes(word.id) && !placed.includes(word.id);
         return (
           <Target
             key={word.id}

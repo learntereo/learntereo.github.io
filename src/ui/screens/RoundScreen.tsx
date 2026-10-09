@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
-import { allItems } from '../../content/content';
+import { allItems, getUnit, itemsById, units } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { updateProfile } from '../../data/profileRepo';
 import { mergeAttempts, recordAttempts } from '../../data/progressRepo';
 import { RoundConflictError, abandonRound, completeRound, getActiveRound, saveRoundState, startRound, type RoundRow } from '../../data/roundRepo';
 import { saveQueue } from '../../data/saveQueue';
+import { applyCheckResult, emptyUnitProgress, saveUnitProgress } from '../../data/unitProgressRepo';
+import { openItems } from '../../game/freePractice';
 import { createRng, randomSeed } from '../../game/rng';
 import { generateRound } from '../../game/roundGenerator';
 import {
@@ -20,17 +22,36 @@ import {
   validateRoundState,
 } from '../../game/roundState';
 import { displayStreak, nextStreak, toLocalDateString } from '../../game/streak';
-import type { Level, Mode, Outcome, RoundState, RoundSummary } from '../../game/types';
-import { isBeginnerComplete } from '../../game/unlock';
+import type { Level, Mode, Outcome, Question, RoundMode, RoundState, RoundSummary, Unit, UnitCheckSummary } from '../../game/types';
+import { generateUnitCheck, generateUnitPractice, isPass, missedItemIds } from '../../game/unitRound';
+import { computeUnitStatuses, newlyUnlockedUnitIds } from '../../game/unitUnlock';
 import { xpForRound } from '../../game/xp';
-import { itemsById } from '../../content/content';
 import { showToast } from '../../lib/toastBus';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, MODE_LABEL, isLevel, isMode } from '../labels';
+import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel, isMode } from '../labels';
 import { BoardGame } from '../modes/BoardGame';
 import { Order } from '../modes/Order';
 import { Translate } from '../modes/Translate';
+import { roundPath } from '../paths';
 import styles from './RoundScreen.module.css';
+
+/** What this screen is playing: a Free Practice game, or a round on one unit. */
+type RoundSpec =
+  | { kind: 'free'; level: Level; mode: Mode }
+  | { kind: 'practice'; unit: Unit }
+  | { kind: 'check'; unit: Unit };
+
+function specMode(spec: RoundSpec): RoundMode {
+  return spec.kind === 'free' ? spec.mode : spec.kind === 'practice' ? 'unit_practice' : 'unit_check';
+}
+
+function specLevel(spec: RoundSpec): Level {
+  return spec.kind === 'free' ? spec.level : spec.unit.level;
+}
+
+function specUnit(spec: RoundSpec): Unit | undefined {
+  return spec.kind === 'free' ? undefined : spec.unit;
+}
 
 type Phase =
   | { kind: 'starting' }
@@ -39,20 +60,49 @@ type Phase =
   | { kind: 'saving' }
   | { kind: 'error'; message: string };
 
+/** Free Practice: #/play/:level/:mode */
 export function RoundScreen() {
   const { level, mode } = useParams();
-  if (!isLevel(level) || !isMode(mode)) return <Navigate to="/home" replace />;
-  return <Round level={level} mode={mode} />;
+  if (!isLevel(level) || !isMode(mode)) return <Navigate to="/practice" replace />;
+  return <Round key={`${level}/${mode}`} spec={{ kind: 'free', level, mode }} />;
 }
 
-function Round({ level, mode }: { level: Level; mode: Mode }) {
+/** Unit practice and unit check: #/unit/:unitId/practice and #/unit/:unitId/check */
+export function UnitRoundScreen({ kind }: { kind: 'practice' | 'check' }) {
+  const { unitId } = useParams();
+  const { statuses } = useAppData();
+  const unit = getUnit(unitId);
+  const status = unit ? statuses.get(unit.id) : undefined;
+  if (!unit || !status || status.state === 'locked') return <Navigate to="/home" replace />;
+  // The check comes after Learn (units already complete from earlier progress can skip it).
+  if (kind === 'check' && !status.deckDone && status.state !== 'complete') {
+    return <Navigate to={`/unit/${unit.id}`} replace />;
+  }
+  return <Round key={`${kind}/${unit.id}`} spec={{ kind, unit }} />;
+}
+
+function Round({ spec }: { spec: RoundSpec }) {
+  const level = specLevel(spec);
+  const roundMode = specMode(spec);
+  const unit = specUnit(spec);
+
   const { user } = useAuth();
   const navigate = useNavigate();
   const [search] = useSearchParams();
   const data = useAppData();
-  const { profile, progress, learned, activeRound, intermediateUnlocked } = data;
+  const { profile, progress, learned, activeRound, openLevels, statuses, unitProgress } = data;
   const [phase, setPhase] = useState<Phase>({ kind: 'starting' });
   const started = useRef(false);
+
+  const exitTo = unit ? `/unit/${unit.id}` : '/practice';
+  const levelOpen = unit !== undefined || openLevels.includes(level);
+
+  function buildQuestions(): Question[] {
+    const rng = createRng(randomSeed());
+    if (spec.kind === 'practice') return generateUnitPractice(spec.unit, units, allItems, learned, rng);
+    if (spec.kind === 'check') return generateUnitCheck(spec.unit, allItems, rng);
+    return generateRound(openItems(allItems, units, statuses), spec.level, spec.mode, learned, rng);
+  }
 
   async function finish(roundId: string, state: RoundState) {
     if (!user || !profile) return;
@@ -70,16 +120,40 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
     const newlyLearned = [...nowLearned].filter((id) => !learned.has(id)).length;
 
     const streak = nextStreak(profile, toLocalDateString(now));
-    const unlockedIntermediate = !profile.beginner_completed_at && isBeginnerComplete(allItems, nowLearned);
     const patch = {
       xp: profile.xp + xp,
       current_streak: streak.current_streak,
       longest_streak: streak.longest_streak,
       last_active_date: streak.last_active_date,
-      ...(unlockedIntermediate ? { beginner_completed_at: nowIso } : {}),
     };
 
-    const summary: RoundSummary = { newlyLearned, unlockedIntermediate, streak: streak.current_streak };
+    // A unit check records the attempt, the best score and, on a pass, completion.
+    let unitCheck: UnitCheckSummary | undefined;
+    if (state.mode === 'unit_check' && unit) {
+      const passed = isPass(score, state.originalCount);
+      const existing = unitProgress.get(unit.id) ?? emptyUnitProgress(user.id, unit.id);
+      const updated = applyCheckResult(existing, score, passed, nowIso);
+      const after = computeUnitStatuses(units, {
+        unitProgress: new Map(unitProgress).set(unit.id, updated),
+        learned: nowLearned,
+        beginnerCompleted: Boolean(profile.beginner_completed_at),
+      });
+      unitCheck = {
+        unitId: unit.id,
+        passed,
+        firstCompletion: passed && statuses.get(unit.id)?.state !== 'complete',
+        nextUnitId: newlyUnlockedUnitIds(statuses, after)[0],
+      };
+      data.setUnitProgress(updated);
+      void saveQueue.enqueue(`unit:${unit.id}`, () => saveUnitProgress(updated));
+    }
+
+    const summary: RoundSummary = {
+      newlyLearned,
+      streak: streak.current_streak,
+      ...(unit ? { missedItemIds: missedItemIds(state) } : {}),
+      ...(unitCheck ? { unitCheck } : {}),
+    };
     const finalState: RoundState = serialiseRound({ ...state, summary });
 
     // Update what the app shows right away, then persist (retried in the background).
@@ -92,6 +166,7 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
       user_id: user.id,
       level: state.level,
       mode: state.mode,
+      unit_id: state.unitId ?? null,
       status: 'completed',
       state: finalState,
       score,
@@ -114,9 +189,8 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
     if (!user) return;
     setPhase({ kind: 'starting' });
     try {
-      const questions = generateRound(allItems, level, mode, learned, createRng(randomSeed()));
-      const state = createRound(level, mode, questions);
-      const row = await startRound(user.id, level, mode, serialiseRound(state));
+      const state = createRound(level, roundMode, buildQuestions(), unit?.id);
+      const row = await startRound(user.id, level, roundMode, serialiseRound(state), unit?.id ?? null);
       data.setActiveRound(row);
       setPhase({ kind: 'playing', roundId: row.id, state });
     } catch (error) {
@@ -170,13 +244,13 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
   }
 
   useEffect(() => {
-    if (started.current || !user) return;
-    if (level === 'intermediate' && !intermediateUnlocked) return;
+    if (started.current || !user || !levelOpen) return;
     started.current = true;
     const wantsResume = search.get('resume') === '1';
+    const sameRound = activeRound && activeRound.mode === roundMode && (activeRound.unit_id ?? null) === (unit?.id ?? null);
     // Start-up work depends on loaded data and runs exactly once per visit.
     /* eslint-disable react-hooks/set-state-in-effect */
-    if (activeRound && wantsResume && activeRound.level === level && activeRound.mode === mode) {
+    if (activeRound && wantsResume && sameRound && activeRound.level === level) {
       void resume(activeRound);
     } else if (activeRound) {
       setPhase({ kind: 'conflict', existing: activeRound });
@@ -203,7 +277,7 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
 
   // ---- render ----------------------------------------------------------------
 
-  if (level === 'intermediate' && !intermediateUnlocked) return <Navigate to="/home" replace />;
+  if (!levelOpen) return <Navigate to="/practice" replace />;
 
   if (phase.kind === 'starting' || phase.kind === 'saving') {
     return (
@@ -235,20 +309,21 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
   if (phase.kind === 'conflict') {
     const existing = phase.existing;
     const existingIndex = Number((existing.state as { index?: unknown } | null)?.index ?? 0);
+    const existingUnit = getUnit(existing.unit_id ?? undefined);
     return (
       <main className={ui.page}>
         <section className={ui.card} aria-labelledby="conflict-title">
           <h1 id="conflict-title">Round in progress</h1>
           <p>
-            You have an unfinished {LEVEL_LABEL[existing.level]} {MODE_LABEL[existing.mode]} round (question{' '}
-            {Math.min(existingIndex + 1, existing.total)} of {existing.total}). Resume it, or start a new round and
-            leave the old one behind?
+            You have an unfinished {existingUnit ? `${existingUnit.title} ` : `${LEVEL_LABEL[existing.level]} `}
+            {ROUND_MODE_LABEL[existing.mode]} round (question {Math.min(existingIndex + 1, existing.total)} of{' '}
+            {existing.total}). Resume it, or start a new round and leave the old one behind?
           </p>
           <div className={ui.row}>
             <button
               type="button"
               className={ui.button}
-              onClick={() => navigate(`/play/${existing.level}/${existing.mode}?resume=1`, { replace: true })}
+              onClick={() => navigate(roundPath(existing, true), { replace: true })}
             >
               Resume round
             </button>
@@ -277,17 +352,19 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
   const modeProps = {
     question,
     level,
+    // A unit check never points out the right spot on a board.
+    hints: state.mode !== 'unit_check',
     onDone: (outcome: Outcome) => handleDone(roundId, state, outcome),
   };
 
   return (
     <main className={ui.page}>
       <div className={styles.top}>
-        <Link to="/home" className={styles.exit}>
+        <Link to={exitTo} className={styles.exit}>
           Save and exit
         </Link>
         <span className={ui.muted}>
-          {LEVEL_LABEL[level]} &middot; {MODE_LABEL[mode]}
+          {unit ? unit.title : LEVEL_LABEL[level]} &middot; {ROUND_MODE_LABEL[roundMode]}
         </span>
       </div>
 

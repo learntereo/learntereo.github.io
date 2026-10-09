@@ -1,0 +1,295 @@
+{
+  "unit": {
+    "id": "i04-kare-a-roto",
+    "level": "intermediate",
+    "order": 4,
+    "title": "Feelings",
+    "titleMi": "Ngā Kare-ā-roto",
+    "emoji": "😊",
+    "itemIds": [
+      "w-i-030",
+      "w-i-031",
+      "w-i-032",
+      "w-i-033",
+      "w-i-034",
+      "w-i-035",
+      "w-i-054",
+      "w-i-055",
+      "w-i-056",
+      "w-i-057",
+      "w-i-058",
+      "w-i-059",
+      "s-i-013",
+      "s-i-018",
+      "s-i-033",
+      "s-i-034",
+      "s-i-035",
+      "s-i-036"
+    ],
+    "grammar": "i04-kare-a-roto"
+  },
+  "items": [
+    {
+      "id": "w-i-030",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hari",
+      "en": [
+        "happy"
+      ],
+      "image": {
+        "emoji": "😊"
+      }
+    },
+    {
+      "id": "w-i-031",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "pōuri",
+      "en": [
+        "sad"
+      ],
+      "image": {
+        "emoji": "😢"
+      }
+    },
+    {
+      "id": "w-i-032",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "riri",
+      "en": [
+        "angry"
+      ],
+      "image": {
+        "emoji": "😠"
+      }
+    },
+    {
+      "id": "w-i-033",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "makariri",
+      "en": [
+        "cold"
+      ],
+      "image": {
+        "emoji": "🥶"
+      }
+    },
+    {
+      "id": "w-i-034",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ngenge",
+      "en": [
+        "tired"
+      ]
+    },
+    {
+      "id": "w-i-035",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hiakai",
+      "en": [
+        "hungry"
+      ]
+    },
+    {
+      "id": "w-i-054",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "mataku",
+      "en": [
+        "afraid",
+        "scared"
+      ],
+      "image": {
+        "emoji": "😨"
+      }
+    },
+    {
+      "id": "w-i-055",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "māuiui",
+      "en": [
+        "sick",
+        "unwell",
+        "ill"
+      ],
+      "image": {
+        "emoji": "🤒"
+      }
+    },
+    {
+      "id": "w-i-056",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hiainu",
+      "en": [
+        "thirsty"
+      ]
+    },
+    {
+      "id": "w-i-057",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "whakamā",
+      "en": [
+        "shy",
+        "embarrassed",
+        "ashamed"
+      ],
+      "image": {
+        "emoji": "😳"
+      }
+    },
+    {
+      "id": "w-i-058",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tino",
+      "en": [
+        "very",
+        "really"
+      ]
+    },
+    {
+      "id": "w-i-059",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hōhā",
+      "en": [
+        "bored"
+      ],
+      "image": {
+        "emoji": "🥱"
+      }
+    },
+    {
+      "id": "s-i-013",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te makariri te wai",
+      "en": [
+        "The water is cold"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "makariri",
+        "te",
+        "wai"
+      ],
+      "decoys": [
+        "i",
+        "e"
+      ]
+    },
+    {
+      "id": "s-i-018",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te hiakai ngā tamariki",
+      "en": [
+        "The children are hungry"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "hiakai",
+        "ngā",
+        "tamariki"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-033",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te tino pai ahau",
+      "en": [
+        "I am very good",
+        "I am very well",
+        "I am really good"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "tino",
+        "pai",
+        "ahau"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-034",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te mataku te kurī",
+      "en": [
+        "The dog is scared",
+        "The dog is afraid"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "mataku",
+        "te",
+        "kurī"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-035",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te māuiui te kuia",
+      "en": [
+        "The elderly woman is sick",
+        "The old woman is sick",
+        "The elderly woman is unwell"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "māuiui",
+        "te",
+        "kuia"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-036",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te hiainu ahau",
+      "en": [
+        "I am thirsty"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "hiainu",
+        "ahau"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    }
+  ]
+}

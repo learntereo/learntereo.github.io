@@ -1,0 +1,283 @@
+{
+  "unit": {
+    "id": "b01-greetings",
+    "level": "beginner",
+    "order": 1,
+    "title": "Greetings and introductions",
+    "titleMi": "Ngā Mihi",
+    "emoji": "👋",
+    "itemIds": [
+      "w-b-057",
+      "w-b-059",
+      "w-b-061",
+      "w-b-062",
+      "w-b-063",
+      "w-b-064",
+      "w-b-065",
+      "w-b-066",
+      "w-b-067",
+      "w-b-068",
+      "w-b-069",
+      "w-b-070",
+      "s-b-001",
+      "s-b-002",
+      "s-b-007",
+      "s-b-008",
+      "s-b-009",
+      "s-b-010",
+      "s-b-011"
+    ],
+    "grammar": "b01-greetings"
+  },
+  "items": [
+    {
+      "id": "w-b-057",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kia ora",
+      "en": [
+        "hello",
+        "hi",
+        "thank you",
+        "thanks"
+      ]
+    },
+    {
+      "id": "w-b-059",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "pai",
+      "en": [
+        "good"
+      ]
+    },
+    {
+      "id": "w-b-061",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ngā mihi",
+      "en": [
+        "greetings",
+        "thanks"
+      ]
+    },
+    {
+      "id": "w-b-062",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ahau",
+      "en": [
+        "I",
+        "me"
+      ]
+    },
+    {
+      "id": "w-b-063",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "koe",
+      "en": [
+        "you"
+      ]
+    },
+    {
+      "id": "w-b-064",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ingoa",
+      "en": [
+        "name"
+      ],
+      "image": {
+        "emoji": "📛"
+      }
+    },
+    {
+      "id": "w-b-065",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "hoa",
+      "en": [
+        "friend"
+      ]
+    },
+    {
+      "id": "w-b-066",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tēnā kōrua",
+      "en": [
+        "hello to two people",
+        "hello to you two"
+      ]
+    },
+    {
+      "id": "w-b-067",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tēnā koutou",
+      "en": [
+        "hello to three or more people",
+        "hello to you all",
+        "hello everyone"
+      ]
+    },
+    {
+      "id": "w-b-068",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "haere rā",
+      "en": [
+        "goodbye to someone leaving",
+        "goodbye",
+        "farewell"
+      ]
+    },
+    {
+      "id": "w-b-069",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "e noho rā",
+      "en": [
+        "goodbye to someone staying",
+        "goodbye",
+        "farewell"
+      ]
+    },
+    {
+      "id": "w-b-070",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "pō mārie",
+      "en": [
+        "good night"
+      ]
+    },
+    {
+      "id": "s-b-001",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te pai ahau",
+      "en": [
+        "I am good",
+        "I am well",
+        "I am fine",
+        "I am okay"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "pai",
+        "ahau"
+      ],
+      "decoys": [
+        "koe"
+      ]
+    },
+    {
+      "id": "s-b-002",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Ko Mere tōku ingoa",
+      "en": [
+        "My name is Mere",
+        "Mere is my name"
+      ],
+      "tiles": [
+        "ko",
+        "Mere",
+        "tōku",
+        "ingoa"
+      ],
+      "decoys": [
+        "taku"
+      ]
+    },
+    {
+      "id": "s-b-007",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te pēhea koe",
+      "en": [
+        "How are you"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "pēhea",
+        "koe"
+      ],
+      "decoys": [
+        "ahau"
+      ]
+    },
+    {
+      "id": "s-b-008",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te harikoa ahau",
+      "en": [
+        "I am happy"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "harikoa",
+        "ahau"
+      ],
+      "decoys": [
+        "koe"
+      ]
+    },
+    {
+      "id": "s-b-009",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Tēnā koe",
+      "en": [
+        "Hello",
+        "Hello to you"
+      ],
+      "tiles": [
+        "tēnā",
+        "koe"
+      ],
+      "decoys": [
+        "koutou"
+      ]
+    },
+    {
+      "id": "s-b-010",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Ata mārie",
+      "en": [
+        "Good morning"
+      ],
+      "tiles": [
+        "ata",
+        "mārie"
+      ],
+      "decoys": [
+        "pō"
+      ]
+    },
+    {
+      "id": "s-b-011",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Haere mai",
+      "en": [
+        "Welcome",
+        "Come here"
+      ],
+      "tiles": [
+        "haere",
+        "mai"
+      ],
+      "decoys": [
+        "atu"
+      ]
+    }
+  ]
+}

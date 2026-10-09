@@ -1,5 +1,21 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { allItems, imageWordsForLevel, itemsById, sentencesForLevel, wordsForLevel } from './content';
+import {
+  allItems,
+  grammarNotes,
+  imageWordsForLevel,
+  itemsById,
+  itemsForUnit,
+  sentencesForLevel,
+  sentencesForUnit,
+  unitForItem,
+  units,
+  unitsById,
+  unitsForLevel,
+  wordsForLevel,
+  wordsForUnit,
+} from './content';
+import { hasRawHtml } from '../game/grammarMarkdown';
 import { icons } from './icons';
 
 const strip = (s: string) =>
@@ -11,21 +27,102 @@ const strip = (s: string) =>
     .trim();
 
 const LEVELS = ['beginner', 'intermediate'] as const;
+const EM_DASH = String.fromCharCode(0x2014);
 
-describe('content counts', () => {
-  it('has 60 beginner and 40 intermediate words', () => {
-    expect(wordsForLevel('beginner')).toHaveLength(60);
-    expect(wordsForLevel('intermediate')).toHaveLength(40);
+/** The 140 items of the PoC: their ids must never change (they key saved progress). */
+const POC_IDS = [
+  ...Array.from({ length: 60 }, (_, i) => `w-b-${String(i + 1).padStart(3, '0')}`),
+  ...Array.from({ length: 40 }, (_, i) => `w-i-${String(i + 1).padStart(3, '0')}`),
+  ...Array.from({ length: 20 }, (_, i) => `s-b-${String(i + 1).padStart(3, '0')}`),
+  ...Array.from({ length: 20 }, (_, i) => `s-i-${String(i + 1).padStart(3, '0')}`),
+];
+
+describe('curriculum structure', () => {
+  it('has 8 Beginner and 8 Intermediate units (Advanced comes later)', () => {
+    expect(unitsForLevel('beginner')).toHaveLength(8);
+    expect(unitsForLevel('intermediate')).toHaveLength(8);
   });
 
-  it('has 20 beginner and 20 intermediate sentences', () => {
-    expect(sentencesForLevel('beginner')).toHaveLength(20);
-    expect(sentencesForLevel('intermediate')).toHaveLength(20);
+  it('lists units in path order with consecutive order numbers per level', () => {
+    for (const level of LEVELS) {
+      const orders = unitsForLevel(level).map((u) => u.order);
+      expect(orders).toEqual(orders.map((_, i) => i + 1));
+    }
+    const levelIndex = units.map((u) => ['beginner', 'intermediate', 'advanced'].indexOf(u.level));
+    expect(levelIndex).toEqual([...levelIndex].sort((a, b) => a - b));
+  });
+
+  it('has unique unit ids that match the id pattern and carry titles and an emoji', () => {
+    expect(unitsById.size).toBe(units.length);
+    for (const unit of units) {
+      expect(unit.id).toMatch(/^[bia]\d{2}-[a-z-]+$/);
+      expect(unit.id[0]).toBe(unit.level[0]);
+      expect(unit.title.trim().length).toBeGreaterThan(0);
+      expect(unit.titleMi.trim().length).toBeGreaterThan(0);
+      expect(unit.emoji).toMatch(/\p{Extended_Pictographic}/u);
+    }
+  });
+
+  it('gives every unit 10-14 words and 5-7 sentences', () => {
+    for (const unit of units) {
+      const words = wordsForUnit(unit).length;
+      const sentences = sentencesForUnit(unit).length;
+      expect(words, `${unit.id} words`).toBeGreaterThanOrEqual(10);
+      expect(words, `${unit.id} words`).toBeLessThanOrEqual(14);
+      expect(sentences, `${unit.id} sentences`).toBeGreaterThanOrEqual(5);
+      expect(sentences, `${unit.id} sentences`).toBeLessThanOrEqual(7);
+    }
+  });
+
+  it('keeps every PoC item with its original id', () => {
+    for (const id of POC_IDS) expect(itemsById.has(id), id).toBe(true);
+  });
+
+  it('puts each item in exactly one unit, at its own level', () => {
+    const seen = new Map<string, string>();
+    for (const unit of units) {
+      expect(new Set(unit.itemIds).size).toBe(unit.itemIds.length);
+      for (const id of unit.itemIds) {
+        expect(seen.has(id), `${id} is in two units`).toBe(false);
+        seen.set(id, unit.id);
+        const item = itemsById.get(id);
+        expect(item, id).toBeDefined();
+        expect(item?.level).toBe(unit.level);
+        expect(unitForItem(id)?.id).toBe(unit.id);
+      }
+    }
+    expect(seen.size).toBe(allItems.length);
+    expect(itemsForUnit(units[0]).length).toBe(units[0].itemIds.length);
+  });
+
+  it('has enough content in total', () => {
+    expect(allItems.filter((i) => i.kind === 'word').length).toBeGreaterThanOrEqual(190);
+    expect(allItems.filter((i) => i.kind === 'sentence').length).toBeGreaterThanOrEqual(95);
   });
 
   it('has enough image words for Picture mode', () => {
     expect(imageWordsForLevel('beginner').length).toBeGreaterThanOrEqual(30);
     expect(imageWordsForLevel('intermediate').length).toBeGreaterThanOrEqual(20);
+  });
+});
+
+describe('grammar notes', () => {
+  it('has one note per unit, with a heading and at most 200 words', () => {
+    for (const unit of units) {
+      const note = grammarNotes.get(unit.grammar);
+      expect(note, `${unit.id} grammar`).toBeDefined();
+      expect(note).toMatch(/^## /m);
+      const words = (note ?? '').split(/\s+/).filter(Boolean).length;
+      expect(words, `${unit.id} grammar length`).toBeLessThanOrEqual(200);
+    }
+  });
+
+  it('has no raw HTML, em dashes or stray files', () => {
+    for (const [id, note] of grammarNotes) {
+      expect(unitsById.has(id), `unused note ${id}`).toBe(true);
+      expect(hasRawHtml(note)).toBe(false);
+      expect(note).not.toContain(EM_DASH);
+    }
   });
 });
 
@@ -36,7 +133,7 @@ describe('content integrity', () => {
 
   it('has required fields on every item', () => {
     for (const item of allItems) {
-      expect(item.id).toMatch(/^[ws]-[bi]-\d{3}$/);
+      expect(item.id).toMatch(/^[ws]-[bia]-\d{3}$/);
       expect(item.mi.trim().length).toBeGreaterThan(0);
       expect(item.en.length).toBeGreaterThan(0);
       for (const answer of item.en) expect(answer.trim().length).toBeGreaterThan(0);
@@ -47,13 +144,19 @@ describe('content integrity', () => {
   it('keeps ids consistent with kind and level', () => {
     for (const item of allItems) {
       expect(item.id[0]).toBe(item.kind === 'word' ? 'w' : 's');
-      expect(item.id[2]).toBe(item.level === 'beginner' ? 'b' : 'i');
+      expect(item.id[2]).toBe(item.level[0]);
     }
   });
 
   it('only uses Latin letters plus precomposed macron vowels', () => {
     for (const item of allItems) {
       expect(item.mi).toMatch(/^[A-Za-zāēīōūĀĒĪŌŪ ]+$/);
+    }
+  });
+
+  it('has no em dashes anywhere in the content', () => {
+    for (const item of allItems) {
+      expect(JSON.stringify(item)).not.toContain(EM_DASH);
     }
   });
 
@@ -68,6 +171,13 @@ describe('content integrity', () => {
     for (const level of LEVELS) {
       const meanings = wordsForLevel(level).map((w) => w.en[0].toLowerCase());
       expect(new Set(meanings).size).toBe(meanings.length);
+    }
+  });
+
+  it('does not repeat a sentence within a level', () => {
+    for (const level of LEVELS) {
+      const sentences = sentencesForLevel(level).map((s) => strip(s.mi));
+      expect(new Set(sentences).size).toBe(sentences.length);
     }
   });
 });
@@ -87,7 +197,7 @@ describe('sentences', () => {
     for (const level of LEVELS) {
       const need = level === 'beginner' ? 1 : 2;
       for (const s of sentencesForLevel(level)) {
-        expect((s.decoys ?? []).length).toBeGreaterThanOrEqual(need);
+        expect((s.decoys ?? []).length, s.id).toBeGreaterThanOrEqual(need);
         for (const decoy of s.decoys ?? []) expect(s.tiles).not.toContain(decoy);
       }
     }
@@ -124,6 +234,15 @@ describe('images', () => {
     for (const level of LEVELS) {
       const images = imageWordsForLevel(level).map((w) => JSON.stringify(w.image));
       expect(new Set(images).size).toBe(images.length);
+    }
+  });
+});
+
+describe('content files', () => {
+  it('has no em dashes in any unit file on disk', () => {
+    for (const unit of units) {
+      const json = readFileSync(new URL(`./units/${unit.id}.json`, import.meta.url), 'utf8');
+      expect(json).not.toContain(EM_DASH);
     }
   });
 });

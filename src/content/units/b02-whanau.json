@@ -1,0 +1,309 @@
+{
+  "unit": {
+    "id": "b02-whanau",
+    "level": "beginner",
+    "order": 2,
+    "title": "Family",
+    "titleMi": "Te Whānau",
+    "emoji": "👪",
+    "itemIds": [
+      "w-b-040",
+      "w-b-041",
+      "w-b-042",
+      "w-b-043",
+      "w-b-044",
+      "w-b-045",
+      "w-b-046",
+      "w-b-058",
+      "w-b-071",
+      "w-b-072",
+      "w-b-073",
+      "w-b-074",
+      "w-b-075",
+      "s-b-012",
+      "s-b-013",
+      "s-b-018",
+      "s-b-021",
+      "s-b-022",
+      "s-b-023",
+      "s-b-024"
+    ],
+    "grammar": "b02-whanau"
+  },
+  "items": [
+    {
+      "id": "w-b-040",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "māmā",
+      "en": [
+        "mum",
+        "mother",
+        "mom"
+      ],
+      "image": {
+        "emoji": "👩"
+      }
+    },
+    {
+      "id": "w-b-041",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "pāpā",
+      "en": [
+        "dad",
+        "father"
+      ],
+      "image": {
+        "emoji": "👨"
+      }
+    },
+    {
+      "id": "w-b-042",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "pēpi",
+      "en": [
+        "baby"
+      ],
+      "image": {
+        "emoji": "👶"
+      }
+    },
+    {
+      "id": "w-b-043",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tamariki",
+      "en": [
+        "children",
+        "kids"
+      ],
+      "image": {
+        "emoji": "🧒"
+      }
+    },
+    {
+      "id": "w-b-044",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kuia",
+      "en": [
+        "elderly woman",
+        "old woman"
+      ],
+      "image": {
+        "emoji": "👵"
+      }
+    },
+    {
+      "id": "w-b-045",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "koroua",
+      "en": [
+        "elderly man",
+        "old man"
+      ],
+      "image": {
+        "emoji": "👴"
+      }
+    },
+    {
+      "id": "w-b-046",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "whānau",
+      "en": [
+        "family"
+      ],
+      "image": {
+        "emoji": "👪"
+      }
+    },
+    {
+      "id": "w-b-058",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "aroha",
+      "en": [
+        "love"
+      ]
+    },
+    {
+      "id": "w-b-071",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tāne",
+      "en": [
+        "man",
+        "husband"
+      ]
+    },
+    {
+      "id": "w-b-072",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "wahine",
+      "en": [
+        "woman",
+        "wife"
+      ]
+    },
+    {
+      "id": "w-b-073",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tama",
+      "en": [
+        "boy",
+        "son"
+      ]
+    },
+    {
+      "id": "w-b-074",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tamāhine",
+      "en": [
+        "girl",
+        "daughter"
+      ]
+    },
+    {
+      "id": "w-b-075",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "mokopuna",
+      "en": [
+        "grandchild",
+        "grandchildren"
+      ]
+    },
+    {
+      "id": "s-b-012",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He pai tēnei",
+      "en": [
+        "This is good"
+      ],
+      "tiles": [
+        "he",
+        "pai",
+        "tēnei"
+      ],
+      "decoys": [
+        "tēnā"
+      ]
+    },
+    {
+      "id": "s-b-013",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He tamariki rātou",
+      "en": [
+        "They are children"
+      ],
+      "tiles": [
+        "he",
+        "tamariki",
+        "rātou"
+      ],
+      "decoys": [
+        "ia"
+      ]
+    },
+    {
+      "id": "s-b-018",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He kuia tērā",
+      "en": [
+        "That is an elderly woman",
+        "That is an old woman"
+      ],
+      "tiles": [
+        "he",
+        "kuia",
+        "tērā"
+      ],
+      "decoys": [
+        "tēnei"
+      ]
+    },
+    {
+      "id": "s-b-021",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He tāne tērā",
+      "en": [
+        "That is a man",
+        "That is a man over there"
+      ],
+      "tiles": [
+        "he",
+        "tāne",
+        "tērā"
+      ],
+      "decoys": [
+        "tēnei"
+      ]
+    },
+    {
+      "id": "s-b-022",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He wahine tēnei",
+      "en": [
+        "This is a woman"
+      ],
+      "tiles": [
+        "he",
+        "wahine",
+        "tēnei"
+      ],
+      "decoys": [
+        "tērā"
+      ]
+    },
+    {
+      "id": "s-b-023",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He tama tēnā",
+      "en": [
+        "That is a boy"
+      ],
+      "tiles": [
+        "he",
+        "tama",
+        "tēnā"
+      ],
+      "decoys": [
+        "tēnei"
+      ]
+    },
+    {
+      "id": "s-b-024",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Ko Hemi tōku pāpā",
+      "en": [
+        "Hemi is my father",
+        "Hemi is my dad",
+        "My father is Hemi",
+        "My dad is Hemi"
+      ],
+      "tiles": [
+        "ko",
+        "Hemi",
+        "tōku",
+        "pāpā"
+      ],
+      "decoys": [
+        "taku"
+      ]
+    }
+  ]
+}
