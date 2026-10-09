@@ -12,11 +12,12 @@ A [Learner](learner.md)'s attempt and mastery record for one [Item](item.md), st
 | `correct_count` | Number of correct answers |
 | `first_correct_at` | When it was first answered correctly; its presence makes the item **learned** |
 | `last_seen_at` | Last time the item appeared |
+| `ease`, `interval_days`, `due_on`, `lapses` | Review schedule; see [ReviewSchedule](review-schedule.md) |
 
 ## Rules
 
 - The client merges counts from a completed round and upserts absolute values, so a retried write is safe.
 - A learned item stays learned.
-- Beginner completion and the "N / 80 items learned" count are derived from `first_correct_at`.
+- Unit completion by the "every item already learned" rule, and the items-learned counts, are derived from `first_correct_at`.
 
 Code: `src/data/progressRepo.ts`, `src/game/unlock.ts`.

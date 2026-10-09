@@ -146,3 +146,23 @@
   line-height: 1.5;
   text-align: center;
 }
+
+/* Hidden until it gets keyboard focus. */
+.skip {
+  position: absolute;
+  left: var(--space-2);
+  top: -100px;
+  z-index: 50;
+  min-height: var(--tap-target-min);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-pango);
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.skip:focus {
+  top: var(--space-2);
+}

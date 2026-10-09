@@ -116,7 +116,9 @@ function Deck({ unitId }: { unitId: string }) {
       >
         <div className={ui.barFill} style={{ width: `${((index + 1) / cards.length) * 100}%` }} />
       </div>
-      <p className={styles.count}>{label}</p>
+      <p className={styles.count} aria-live="polite">
+        {label}
+      </p>
 
       <div
         className={`${ui.card} ${styles.deck}`}

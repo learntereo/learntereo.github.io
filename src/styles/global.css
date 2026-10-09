@@ -67,3 +67,8 @@ input:focus-visible {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Pages take focus after navigation; they do not need a visible ring. */
+main:focus {
+  outline: none;
+}

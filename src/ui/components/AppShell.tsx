@@ -6,6 +6,7 @@ import { AppDataProvider } from '../../data/AppDataProvider';
 import { useAppData } from '../../data/AppDataContext';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import { KoruMark, KowhaiwhaiBorder } from './Kowhaiwhai';
+import { RouteFocus, SkipLink } from './RouteFocus';
 import ui from './ui.module.css';
 import styles from './AppShell.module.css';
 
@@ -207,6 +208,8 @@ function Shell() {
 
   return (
     <div className={showTabs ? styles.withTabs : styles.shell}>
+      <SkipLink className={styles.skip} />
+      <RouteFocus />
       <Header />
       {showTabs && <TabBar />}
       <Gate />

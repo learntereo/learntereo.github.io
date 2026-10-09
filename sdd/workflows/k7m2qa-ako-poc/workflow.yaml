@@ -11,7 +11,7 @@ progress:
   specs_pending: 0
   plans_completed: 2
   plans_pending: 0
-  implemented: 1
+  implemented: 2
   reviewed: 1
 items:
   - id: 01-ako-poc
@@ -33,6 +33,6 @@ items:
     depends_on: [01-ako-poc]
     spec_status: approved
     plan_status: approved
-    impl_status: in_progress
-    review_status: pending
+    impl_status: complete
+    review_status: ready_for_review
     substep: null
