@@ -16,8 +16,8 @@ describe('normaliseAnswer', () => {
   });
 
   it('removes apostrophes without splitting words', () => {
-    expect(normaliseAnswer("I'm good")).toBe('im good');
-    expect(normaliseAnswer('I’m good')).toBe('im good');
+    expect(normaliseAnswer("I'm good")).toBe('i am good');
+    expect(normaliseAnswer('I’m good')).toBe('i am good');
   });
 
   it('strips leading articles and a leading "to"', () => {
@@ -155,5 +155,65 @@ describe('NZ spelling', () => {
   });
   it('still rejects a different word', () => {
     expect(isAnswerCorrect('my favourite food', ['my favourite colour'])).toBe(false);
+  });
+});
+
+describe('contractions', () => {
+  const same = (a: string, b: string) => expect(normaliseAnswer(a)).toBe(normaliseAnswer(b));
+
+  it('expands contractions on the input so they match the full form', () => {
+    same("That's a green tree", 'That is a green tree');
+    same("It's cold", 'It is cold');
+    same("I'm happy", 'I am happy');
+    same("You're well", 'You are well');
+    same("We're going", 'We are going');
+    same("They're children", 'They are children');
+    same("He's eating", 'He is eating');
+    same("She's eating", 'She is eating');
+    same("There's a dog", 'There is a dog');
+    same("What's this", 'What is this');
+    same("Where's the bus", 'Where is the bus');
+    same("Who's that", 'Who is that');
+    same("Isn't it", 'Is not it');
+    same("They aren't here", 'They are not here');
+    same("Don't talk", 'Do not talk');
+    same("Doesn't work", 'Does not work');
+    same("Didn't go", 'Did not go');
+    same("Won't go", 'Will not go');
+    same("Can't go", 'Cannot go');
+    same("Can't go", 'Can not go');
+    same("I'll go", 'I will go');
+    same("We'll go", 'We will go');
+    same("You'll go", 'You will go');
+    same("I've eaten", 'I have eaten');
+    same("Let's go", 'Let us go');
+  });
+
+  it('expands them on the accepted answers too, and handles curly apostrophes', () => {
+    expect(isAnswerCorrect('That is a green tree', ["That's a green tree"])).toBe(true);
+    expect(isAnswerCorrect('That’s a green tree', ['That is a green tree'])).toBe(true);
+    expect(isAnswerCorrect("don't run", ['Do not run'])).toBe(true);
+  });
+
+  it('handles the unambiguous forms typed without an apostrophe', () => {
+    same('thats a green tree', 'that is a green tree');
+    same('im happy', 'i am happy');
+    same('youre well', 'you are well');
+    same('theyre children', 'they are children');
+    same('dont run', 'do not run');
+    same('doesnt work', 'does not work');
+    same('isnt cold', 'is not cold');
+    same('cant go', 'cannot go');
+  });
+
+  it('leaves real words and possessives alone', () => {
+    expect(normaliseAnswer('its tail')).toBe('its tail');
+    expect(normaliseAnswer('wont')).toBe('wont');
+    expect(normaliseAnswer("my mum's dog")).toBe('my mums dog');
+  });
+
+  it('does not let a contraction turn a wrong answer right', () => {
+    expect(isAnswerCorrect("That's a green tree", ['That is a blue house'])).toBe(false);
+    expect(isAnswerCorrect("I'm happy", ['You are happy'])).toBe(false);
   });
 });
