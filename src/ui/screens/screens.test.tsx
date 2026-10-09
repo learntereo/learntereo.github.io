@@ -423,18 +423,18 @@ describe('Every unlocked kiwiana opens its story', () => {
 describe('Unit fact', () => {
   it('shows the fact on the unit screen once the unit is complete', () => {
     renderAt('/unit/b01-greetings', appData({ unitProgress: [doneRow('b01-greetings')] }));
-    expect(container.textContent).toContain('Did you know?');
+    expect(container.textContent).toContain('Know-rero');
     expect(container.textContent).toContain('double-hulled waka');
   });
 
   it('shows no fact before the unit is complete', () => {
     renderAt('/unit/b01-greetings', appData());
-    expect(container.textContent).not.toContain('Did you know?');
+    expect(container.textContent).not.toContain('Know-rero');
   });
 
   it('shows no fact on a unit that is not complete yet, even when an earlier one is', () => {
     renderAt('/unit/b02-whanau', appData({ unitProgress: [doneRow('b01-greetings')] }));
-    expect(container.textContent).not.toContain('Did you know?');
+    expect(container.textContent).not.toContain('Know-rero');
   });
 });
 

@@ -168,10 +168,10 @@ describe('Results: new kiwiana', () => {
   });
 });
 
-describe('Results: Did you know?', () => {
+describe('Results: Know-rero', () => {
   it('shows the unit fact after passing the Kiwiz', () => {
     renderResults(round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true } }), ['b01-greetings']);
-    expect(container.textContent).toContain('Did you know?');
+    expect(container.textContent).toContain('Know-rero');
     expect(container.textContent).toContain('double-hulled waka');
   });
 
@@ -182,14 +182,14 @@ describe('Results: Did you know?', () => {
     );
     const text = container.textContent ?? '';
     expect(text.indexOf('New kiwiana')).toBeGreaterThan(-1);
-    expect(text.indexOf('Did you know?')).toBeGreaterThan(text.indexOf('New kiwiana'));
+    expect(text.indexOf('Know-rero')).toBeGreaterThan(text.indexOf('New kiwiana'));
   });
 
   it('shows no fact after a failed Kiwiz or a practice round', () => {
     renderResults(round({ score: 5 }, { unitCheck: { unitId: 'b01-greetings', passed: false, firstCompletion: false } }), []);
-    expect(container.textContent).not.toContain('Did you know?');
+    expect(container.textContent).not.toContain('Know-rero');
     renderResults(round({ mode: 'unit_practice' }, {}), []);
-    expect(container.textContent).not.toContain('Did you know?');
+    expect(container.textContent).not.toContain('Know-rero');
   });
 });
 
