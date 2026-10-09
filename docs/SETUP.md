@@ -34,6 +34,15 @@ The project already exists (ref `zmdbimnvxpbmnctqefcu`, Asia-Pacific region).
 4. Copy the generated **Client ID** and **Client secret**.
 5. In Supabase: **Authentication -> Providers -> Google**, enable it, paste the Client ID and secret, save.
 
+### Guest mode (anonymous sign-ins)
+
+Guests use Supabase anonymous sign-ins, and can save their progress later by linking Google or an email address.
+
+1. **Authentication -> Sign In / Providers**: turn on **Allow anonymous sign-ins**.
+2. Same page, under **User Signups**: turn on **Allow manual linking** (needed for `linkIdentity` with Google).
+3. Supabase recommends CAPTCHA (for example Cloudflare Turnstile) to stop abuse of anonymous sign-ins. It is not set up yet.
+4. Anonymous users who never save pile up in `auth.users`. Plan to delete stale ones from time to time.
+
 ## 3. Database credentials (for CI)
 
 1. The deploy pipeline connects through the Supabase **session pooler**. Its host for this project is

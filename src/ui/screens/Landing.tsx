@@ -45,7 +45,7 @@ function AboutAko() {
 }
 
 export function Landing() {
-  const { session, loading, signInWithGoogle, signInWithPassword, signUpWithPassword, sendPasswordReset } =
+  const { session, loading, signInWithGoogle, signInWithPassword, signUpWithPassword, sendPasswordReset, continueAsGuest } =
     useAuth();
   const [mode, setMode] = useState<Mode>('signin');
   const [email, setEmail] = useState('');
@@ -60,6 +60,15 @@ export function Landing() {
     setError(null);
     try {
       await signInWithGoogle();
+    } catch (err) {
+      setError(errorMessage(err));
+    }
+  }
+
+  async function handleGuest() {
+    setError(null);
+    try {
+      await continueAsGuest();
     } catch (err) {
       setError(errorMessage(err));
     }
@@ -176,6 +185,10 @@ export function Landing() {
           )}
         </form>
       </div>
+
+      <button type="button" className={styles.guestButton} onClick={handleGuest} disabled={!isSupabaseConfigured}>
+        Try it first, no account needed
+      </button>
 
       <AboutAko />
 

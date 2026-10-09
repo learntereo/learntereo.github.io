@@ -17,6 +17,10 @@ export function Privacy() {
         and it is used only to run Ako for you.
       </p>
       <p>
+        If you try Ako as a guest, your progress is stored against an anonymous account with no name or email. It is
+        lost if you clear your browser data before saving it to an email address or Google account.
+      </p>
+      <p>
         You can delete your account and all associated data at any time from the Account screen. Deleting your
         account is permanent and cannot be undone.
       </p>
