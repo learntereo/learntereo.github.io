@@ -1,0 +1,49 @@
+:root {
+  /* Māori-inspired palette */
+  --color-kokowai: #a3271f; /* red ochre */
+  --color-pango: #1b1714; /* black */
+  --color-ma: #f7f2e9; /* white / bone */
+  --color-pounamu: #2e6b4f; /* greenstone */
+  --color-karaka: #d98e2b; /* ochre / amber */
+
+  --color-grey-100: #f1efec;
+  --color-grey-200: #e2ddd6;
+  --color-grey-400: #a9a19a;
+  --color-grey-600: #6b655f;
+  --color-grey-800: #3a3532;
+
+  --color-success: var(--color-pounamu);
+  --color-error: var(--color-kokowai);
+
+  --color-bg: var(--color-ma);
+  --color-surface: #ffffff;
+  --color-text: var(--color-pango);
+  --color-text-muted: var(--color-grey-600);
+  --color-border: var(--color-grey-200);
+
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --tap-target-min: 44px;
+
+  --motion-duration: 180ms;
+  --motion-ease: ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-duration: 0ms;
+  }
+}
