@@ -7,7 +7,6 @@
     "titleMi": "Ngā Kōrero",
     "emoji": "📖",
     "itemIds": [
-      "w-a-063",
       "w-a-064",
       "w-a-065",
       "w-a-066",
@@ -22,23 +21,12 @@
       "s-a-036",
       "s-a-037",
       "s-a-038",
-      "s-a-039",
       "s-a-040",
       "s-a-041"
     ],
     "grammar": "a06-korero"
   },
   "items": [
-    {
-      "id": "w-a-063",
-      "kind": "word",
-      "level": "advanced",
-      "mi": "ā",
-      "en": [
-        "and then",
-        "and"
-      ]
-    },
     {
       "id": "w-a-064",
       "kind": "word",
@@ -165,7 +153,7 @@
       ],
       "decoys": [
         "engari",
-        "ā"
+        "hoki"
       ]
     },
     {
@@ -192,7 +180,7 @@
       ],
       "decoys": [
         "nā",
-        "ā"
+        "hoki"
       ]
     },
     {
@@ -219,34 +207,7 @@
       ],
       "decoys": [
         "engari",
-        "ā"
-      ]
-    },
-    {
-      "id": "s-a-039",
-      "kind": "sentence",
-      "level": "advanced",
-      "mi": "Ka haere ahau ki te kura ā ka whakarongo ki te kaiako",
-      "en": [
-        "I will go to school and then listen to the teacher"
-      ],
-      "tiles": [
-        "ka",
-        "haere",
-        "ahau",
-        "ki",
-        "te",
-        "kura",
-        "ā",
-        "ka",
-        "whakarongo",
-        "ki",
-        "te",
-        "kaiako"
-      ],
-      "decoys": [
-        "engari",
-        "nā"
+        "hoki"
       ]
     },
     {
