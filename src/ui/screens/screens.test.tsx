@@ -96,6 +96,18 @@ const click = (el: Element) =>
 const buttonNamed = (text: string) =>
   [...container.querySelectorAll('button')].find((b) => b.textContent?.trim() === text) as HTMLButtonElement;
 
+const levelButton = (level: string) => container.querySelector(`#level-${level} button`) as HTMLButtonElement;
+
+/** Home opens one level at a time, so visit each level in turn and gather what `pick` finds in it. */
+function acrossLevels<T>(pick: () => T[]): T[] {
+  const found: T[] = [];
+  for (const level of ['beginner', 'intermediate', 'advanced']) {
+    if (levelButton(level).getAttribute('aria-expanded') === 'false') click(levelButton(level));
+    found.push(...pick());
+  }
+  return found;
+}
+
 const doneRow = (unitId: string): UnitProgressRow => ({
   user_id: 'u1',
   unit_id: unitId,
@@ -111,7 +123,7 @@ describe('Path home (AC1)', () => {
     // The Next up card and the unit rows lead to the same three units.
     const open = new Set([...container.querySelectorAll('a[href^="/unit/"]')].map((a) => a.getAttribute('href')));
     expect([...open]).toEqual(['/unit/b01-greetings', '/unit/b02-whanau', '/unit/b03-tatau']);
-    expect(container.querySelectorAll('[aria-disabled="true"]')).toHaveLength(units.length - 3);
+    expect(acrossLevels(() => [...container.querySelectorAll('[aria-disabled="true"]')])).toHaveLength(units.length - 3);
     expect(container.textContent).toContain('Advanced');
     expect(container.textContent).not.toContain('Coming soon');
   });
@@ -127,7 +139,8 @@ describe('Path home (AC1)', () => {
     const hrefs = [...container.querySelectorAll('a[href^="/unit/"]')].map((a) => a.getAttribute('href'));
     expect(hrefs).toContain('/unit/i01-mahi');
     expect(hrefs).toContain('/unit/i03-wahi');
-    expect(hrefs).toContain('/unit/b08-whare-kura');
+    click(levelButton('beginner'));
+    expect([...container.querySelectorAll('a[href^="/unit/"]')].map((a) => a.getAttribute('href'))).toContain('/unit/b08-whare-kura');
     expect(hrefs).not.toContain('/unit/i04-kare-a-roto');
     expect(container.textContent).toContain('Complete');
   });
@@ -266,7 +279,7 @@ describe('Kiwiana on the Path', () => {
 
   it('shows quiet locked nodes between unit rows for a new learner', () => {
     renderAt('/home', appData());
-    expect(nodes()).toHaveLength(20);
+    expect(acrossLevels(nodes)).toHaveLength(20);
     expect(container.querySelector('button[aria-label^="Read about"]')).toBeNull();
   });
 
@@ -280,7 +293,7 @@ describe('Kiwiana on the Path', () => {
 
   it('unlocks the first treasure after unit 1 and a tap shows its caption', () => {
     renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings')] }));
-    expect(nodes()).toHaveLength(19);
+    expect(acrossLevels(nodes)).toHaveLength(19);
     expect(container.textContent).toContain('1 / 20 collected');
     expect(container.textContent).toContain('Finish Family to unlock it.');
     expect(document.querySelector('[role="dialog"]')).toBeNull();
@@ -338,6 +351,55 @@ describe('Locked kiwiana reveal nothing', () => {
     renderAt('/unit/b01-greetings', appData());
     expect(lockedTiles()).toHaveLength(1);
     expect(container.textContent).not.toContain('Pāua');
+  });
+});
+
+describe('Level accordion on Home', () => {
+  const expanded = () =>
+    ['beginner', 'intermediate', 'advanced'].map((l) => levelButton(l).getAttribute('aria-expanded'));
+
+  it('opens the level that holds the first next-up unit', () => {
+    renderAt('/home', appData());
+    expect(expanded()).toEqual(['true', 'false', 'false']);
+    expect(container.querySelector('#level-panel-beginner a[href="/unit/b01-greetings"]')).not.toBeNull();
+  });
+
+  it('starts on Intermediate once Beginner is finished', () => {
+    renderAt('/home', appData({ beginnerCompleted: true }));
+    expect(expanded()).toEqual(['false', 'true', 'false']);
+    expect(container.querySelector('#level-panel-beginner')).toBeNull();
+    expect(container.querySelector('#level-panel-intermediate')).not.toBeNull();
+  });
+
+  it('opening another level closes the first', () => {
+    renderAt('/home', appData());
+    click(levelButton('advanced'));
+    expect(expanded()).toEqual(['false', 'false', 'true']);
+    expect(container.querySelector('#level-panel-beginner')).toBeNull();
+    expect(container.querySelector('#level-panel-advanced')).not.toBeNull();
+  });
+
+  it('clicking the open level collapses all three', () => {
+    renderAt('/home', appData());
+    click(levelButton('beginner'));
+    expect(expanded()).toEqual(['false', 'false', 'false']);
+    expect(container.querySelectorAll('ol[id^="level-panel-"]')).toHaveLength(0);
+    click(levelButton('beginner'));
+    expect(expanded()).toEqual(['true', 'false', 'false']);
+  });
+
+  it('keeps the header visible with its count, and wires aria-controls to the panel', () => {
+    renderAt('/home', appData());
+    expect(levelButton('beginner').getAttribute('aria-controls')).toBe('level-panel-beginner');
+    expect(container.querySelector('#level-panel-beginner')).not.toBeNull();
+    expect(levelButton('intermediate').textContent).toMatch(/Intermediate\s*0 \/ \d+ units/);
+    click(levelButton('beginner'));
+    expect(levelButton('beginner').textContent).toContain('units');
+  });
+
+  it('collapses everything when every unit is complete', () => {
+    renderAt('/home', appData({ unitProgress: units.map((u) => doneRow(u.id)) }));
+    expect(expanded()).toEqual(['false', 'false', 'false']);
   });
 });
 
@@ -482,7 +544,8 @@ describe('Know-rero on the Path', () => {
 
   it('puts a Know-rero node after every unit, beside its treasure', () => {
     renderAt('/home', appData());
-    expect(knowRero()).toHaveLength(22);
+    expect(acrossLevels(knowRero)).toHaveLength(22);
+    click(levelButton('beginner'));
     const extras = [...container.querySelectorAll('ol > li')].find((li) => li.textContent?.includes('Keep going to unlock') && li.textContent.includes('Know-rero'))!;
     expect(extras.querySelectorAll('button')).toHaveLength(2);
   });
