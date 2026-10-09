@@ -284,21 +284,40 @@
   background: #fff3d6;
 }
 
-/* ---------- write: macron keys ---------- */
-.macronRows {
+/* ---------- write: on-screen Māori keyboard ---------- */
+.keyboard {
   display: flex;
   flex-direction: column;
+  gap: var(--space-3);
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
   gap: var(--space-2);
 }
 
-.macronRow {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+.keyWide {
+  grid-column: span 2;
+}
+
+.phoneToggle {
+  display: flex;
+  align-items: center;
   gap: var(--space-2);
+  min-height: var(--tap-target-min);
+}
+
+.phoneToggle input {
+  width: 22px;
+  height: 22px;
 }
 
 .macronKey {
+  min-width: 44px;
   min-height: var(--tap-target-min);
+  padding: 0 var(--space-1);
+  font: inherit;
   font-size: 1.25rem;
   font-weight: 600;
   background: var(--color-surface);

@@ -63,7 +63,6 @@ describe('Write', () => {
     type('mama', 1);
     click(button('ā'));
     expect((container.querySelector('input') as HTMLInputElement).value).toBe('māama');
-    expect(container.querySelectorAll('[aria-label="Macron letters"] button')).toHaveLength(10);
   });
 
   it('allows one retry, then shows the answer and counts as missed', () => {

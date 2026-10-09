@@ -48,6 +48,12 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 - FR4.4 The PoC migration rule is kept: a learner who finished Beginner in the PoC has every Beginner unit complete, and a unit whose items were all learned already counts as complete.
 - FR4.5 The Path lists the open units under "Next up", and copy no longer says units open one at a time.
 
+### FR5: Write mode keyboard
+- FR5.1 Write mode has an on-screen keyboard in Māori alphabet order: a e h i k m n o p r t u w, ng and wh (each one key that inserts two letters), then the macron vowels ā ē ī ō ū, plus Space and Backspace.
+- FR5.2 Keys insert at (and Backspace deletes before) the cursor in the answer box, and keep focus and the caret position. A real keyboard still works.
+- FR5.3 On touch devices a "Use phone keyboard" switch is shown. It is off by default, so tapping the answer box does not open the phone's keyboard (inputMode none). The choice is remembered in local storage, which may be unavailable.
+- FR5.4 Keys are buttons at least 44px square with labels such as "letter ng" and "backspace", and they wrap at 360px.
+
 ## 3. Acceptance Criteria
 | # | Given | When | Then |
 |---|---|---|---|
@@ -64,6 +70,9 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 | AC11 | b01 to b03 complete | the Path renders | b04, i01 and i02 are available (the window crosses into Intermediate) |
 | AC12 | a unit later in the window is completed first | the Path renders | it stays complete, the earlier units stay open, and the window still holds 3 not-yet-complete units |
 | AC13 | a learner whose first unit in Intermediate is open | they open Free Practice | Intermediate is open even though Beginner is not finished |
+| AC14 | Write mode | the learner taps ng then e r u | the answer box shows "ngeru" with the caret at the end |
+| AC15 | the caret in the middle of a word | they tap Backspace | the letter before the caret is removed and the caret stays put |
+| AC16 | a touch device | Write mode opens | the phone keyboard stays closed until "Use phone keyboard" is switched on, and the switch is remembered |
 
 ## 4. Testing
 Unit tests: content breakdown coverage and token-join (AC6), particle refs, breakdown component rendering (interlinear, popover), layout snapshot-free checks where practical. No em dashes. No references to the tools that built the app.
@@ -78,3 +87,4 @@ Audio, morphology beyond word level (e.g. splitting *whakarongo* into *whaka* + 
 | W2 | Layout | "The sign out screen is fucked looking" (screenshot: Account page flush left, default buttons, misaligned Review badge) | User |
 | W3 | Where breakdowns show, data shape, particles dictionary | Learn, unit title, after-answer feedback, tap-a-word popover, Little words reference | Dev team (delegated) |
 | W4 | Unlocking | "Have 3 courses available at a time, rather than one by one; each completion opens a new one" | User |
+| W5 | Spelling | "To spell the words I'm only given vowels, there are no letters. I should be able to select from a list of letters" | User |
