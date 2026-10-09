@@ -408,7 +408,7 @@
         "tokens": [
           {
             "mi": "Ka",
-            "en": "will (future)",
+            "en": "then / next action",
             "ref": "ka"
           },
           {
@@ -425,8 +425,8 @@
             "en": "visitors"
           }
         ],
-        "literal": "will hongi the visitors",
-        "note": "Ka before the verb makes it future (will)."
+        "literal": "then hongi the visitors",
+        "note": "Ka marks a new or next action in a sequence, here the next step of the welcome. It is often, but not always, future."
       }
     },
     {
