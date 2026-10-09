@@ -27,7 +27,36 @@
       "s-b-042",
       "s-b-043"
     ],
-    "grammar": "b06-kai"
+    "grammar": "b06-kai",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Kai",
+          "en": "food"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Inu",
+          "en": "drink"
+        }
+      ],
+      "literal": "the food and the drink",
+      "note": "Me joins two nouns like 'and'. Here kai and inu are nouns."
+    }
   },
   "items": [
     {
@@ -200,7 +229,27 @@
       ],
       "decoys": [
         "inu"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          }
+        ],
+        "literal": "is eating I",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-015",
@@ -222,7 +271,41 @@
       ],
       "decoys": [
         "ki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "inu",
+            "en": "drink"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is drunk)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "wai",
+            "en": "water"
+          }
+        ],
+        "literal": "is drinking you the water",
+        "note": "The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     },
     {
       "id": "s-b-040",
@@ -244,7 +327,41 @@
       ],
       "decoys": [
         "ki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "inu",
+            "en": "drink"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is drunk)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "miraka",
+            "en": "milk"
+          }
+        ],
+        "literal": "is drinking I the milk",
+        "note": "The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     },
     {
       "id": "s-b-041",
@@ -268,7 +385,41 @@
       ],
       "decoys": [
         "ki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "ia",
+            "en": "he / she",
+            "ref": "ia"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is eaten)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "āporo",
+            "en": "apple"
+          }
+        ],
+        "literal": "is eating he/she the apple",
+        "note": "The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     },
     {
       "id": "s-b-042",
@@ -286,7 +437,31 @@
       ],
       "decoys": [
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "pai",
+            "en": "good"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "parāoa",
+            "en": "bread"
+          }
+        ],
+        "literal": "a good the bread",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     },
     {
       "id": "s-b-043",
@@ -309,7 +484,41 @@
       ],
       "decoys": [
         "ki"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "kai",
+            "en": "eat"
+          },
+          {
+            "mi": "rātou",
+            "en": "they (three or more)",
+            "ref": "matou"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is eaten)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kūmara",
+            "en": "sweet potato"
+          }
+        ],
+        "literal": "is eating they the sweet-potato",
+        "note": "The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     }
   ]
 }

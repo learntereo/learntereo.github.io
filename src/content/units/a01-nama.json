@@ -28,7 +28,26 @@
       "s-a-006",
       "s-a-007"
     ],
-    "grammar": "a01-nama"
+    "grammar": "a01-nama",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Nama",
+          "en": "numbers"
+        },
+        {
+          "mi": "Nui",
+          "en": "big"
+        }
+      ],
+      "literal": "the numbers big",
+      "note": "Ngā makes nama plural, and nui (big) comes after the noun, so Ngā Nama Nui is a heading meaning 'The Big Numbers'."
+    }
   },
   "items": [
     {
@@ -38,7 +57,26 @@
       "mi": "tekau mā tahi",
       "en": [
         "eleven"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "tekau",
+            "en": "ten"
+          },
+          {
+            "mi": "mā",
+            "en": "and (adds a number)",
+            "ref": "ma"
+          },
+          {
+            "mi": "tahi",
+            "en": "one"
+          }
+        ],
+        "literal": "ten and one",
+        "note": "In counting, mā means 'and' and joins the unit to the ten: tekau mā tahi is 11."
+      }
     },
     {
       "id": "w-a-002",
@@ -47,7 +85,26 @@
       "mi": "tekau mā rima",
       "en": [
         "fifteen"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "tekau",
+            "en": "ten"
+          },
+          {
+            "mi": "mā",
+            "en": "and (adds a number)",
+            "ref": "ma"
+          },
+          {
+            "mi": "rima",
+            "en": "five"
+          }
+        ],
+        "literal": "ten and five",
+        "note": "Teens are 'ten and' plus the unit: tekau mā rima is 15."
+      }
     },
     {
       "id": "w-a-003",
@@ -56,7 +113,21 @@
       "mi": "rua tekau",
       "en": [
         "twenty"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "rua",
+            "en": "two"
+          },
+          {
+            "mi": "tekau",
+            "en": "tens"
+          }
+        ],
+        "literal": "two tens",
+        "note": "The tens come after the number: rua tekau is two tens, or 20."
+      }
     },
     {
       "id": "w-a-004",
@@ -65,7 +136,21 @@
       "mi": "toru tekau",
       "en": [
         "thirty"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "toru",
+            "en": "three"
+          },
+          {
+            "mi": "tekau",
+            "en": "tens"
+          }
+        ],
+        "literal": "three tens",
+        "note": "Same pattern as rua tekau: toru tekau is 30."
+      }
     },
     {
       "id": "w-a-005",
@@ -74,7 +159,21 @@
       "mi": "whā tekau",
       "en": [
         "forty"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "whā",
+            "en": "four"
+          },
+          {
+            "mi": "tekau",
+            "en": "tens"
+          }
+        ],
+        "literal": "four tens",
+        "note": "Same pattern as rua tekau: whā tekau is 40."
+      }
     },
     {
       "id": "w-a-006",
@@ -83,7 +182,21 @@
       "mi": "rima tekau",
       "en": [
         "fifty"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "rima",
+            "en": "five"
+          },
+          {
+            "mi": "tekau",
+            "en": "tens"
+          }
+        ],
+        "literal": "five tens",
+        "note": "Same pattern as rua tekau: rima tekau is 50."
+      }
     },
     {
       "id": "w-a-007",
@@ -93,7 +206,20 @@
       "en": [
         "one hundred",
         "a hundred"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "kotahi",
+            "en": "one"
+          },
+          {
+            "mi": "rau",
+            "en": "hundred"
+          }
+        ],
+        "literal": "one hundred |"
+      }
     },
     {
       "id": "w-a-008",
@@ -103,7 +229,20 @@
       "en": [
         "one thousand",
         "a thousand"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "kotahi",
+            "en": "one"
+          },
+          {
+            "mi": "mano",
+            "en": "thousand"
+          }
+        ],
+        "literal": "one thousand |"
+      }
     },
     {
       "id": "w-a-009",
@@ -171,7 +310,40 @@
       "decoys": [
         "he",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "tekau",
+            "en": "ten"
+          },
+          {
+            "mi": "mā",
+            "en": "and (adds a number)",
+            "ref": "ma"
+          },
+          {
+            "mi": "rima",
+            "en": "five"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "fifteen the children",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-a-002",
@@ -192,7 +364,35 @@
       "decoys": [
         "he",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "rua",
+            "en": "two"
+          },
+          {
+            "mi": "tekau",
+            "en": "tens"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "ākonga",
+            "en": "students"
+          }
+        ],
+        "literal": "twenty the students",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-a-003",
@@ -213,7 +413,35 @@
       "decoys": [
         "he",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "rima",
+            "en": "five"
+          },
+          {
+            "mi": "tekau",
+            "en": "tens"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "hipi",
+            "en": "sheep"
+          }
+        ],
+        "literal": "fifty the sheep",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-a-004",
@@ -233,7 +461,31 @@
       "decoys": [
         "he",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "tokotoru",
+            "en": "three (people)"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "three the children",
+        "note": "Toko in tokotoru is used when counting people."
+      }
     },
     {
       "id": "s-a-005",
@@ -252,7 +504,26 @@
       "decoys": [
         "e",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Tokohia",
+            "en": "how many (people)"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tāngata",
+            "en": "people"
+          }
+        ],
+        "literal": "how many the people",
+        "note": "Tāngata is the plural of tangata (person): the long vowel shows more than one."
+      }
     },
     {
       "id": "s-a-006",
@@ -273,7 +544,31 @@
       "decoys": [
         "e",
         "kei"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "maha",
+            "en": "many"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "manu",
+            "en": "bird"
+          }
+        ],
+        "literal": "a many the birds",
+        "note": "The describing word comes first: He maha ngā manu is literally 'The birds are many', which means there are many birds."
+      }
     },
     {
       "id": "s-a-007",
@@ -294,7 +589,29 @@
       "decoys": [
         "e",
         "he"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kotahi",
+            "en": "one"
+          },
+          {
+            "mi": "rau",
+            "en": "hundred"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "manu",
+            "en": "bird"
+          }
+        ],
+        "literal": "one hundred the birds |"
+      }
     }
   ]
 }

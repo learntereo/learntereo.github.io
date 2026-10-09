@@ -27,7 +27,36 @@
       "s-a-020",
       "s-a-021"
     ],
-    "grammar": "a03-whakahau"
+    "grammar": "a03-whakahau",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Whakahau",
+          "en": "commands"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Tono",
+          "en": "requests"
+        }
+      ],
+      "literal": "the commands and the requests",
+      "note": "Me joins two nouns like 'and'. Ngā is repeated before each noun."
+    }
   },
   "items": [
     {
@@ -166,7 +195,36 @@
       "decoys": [
         "kia",
         "kaua"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Me",
+            "en": "should",
+            "ref": "me"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "kura",
+            "en": "school"
+          }
+        ],
+        "literal": "should go you to the school",
+        "note": "Me before the verb says what should happen."
+      }
     },
     {
       "id": "s-a-016",
@@ -186,7 +244,22 @@
       "decoys": [
         "me",
         "kia"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kaua e",
+            "en": "do not",
+            "ref": "kaua"
+          },
+          {
+            "mi": "kōrero",
+            "en": "talk"
+          }
+        ],
+        "literal": "do not talk",
+        "note": "Kaua e starts a negative command."
+      }
     },
     {
       "id": "s-a-017",
@@ -205,7 +278,22 @@
       "decoys": [
         "me",
         "kia"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kaua e",
+            "en": "do not",
+            "ref": "kaua"
+          },
+          {
+            "mi": "oma",
+            "en": "run"
+          }
+        ],
+        "literal": "do not run",
+        "note": "Kaua e starts a negative command."
+      }
     },
     {
       "id": "s-a-018",
@@ -222,7 +310,22 @@
       "decoys": [
         "me",
         "kaua"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kia",
+            "en": "be",
+            "ref": "kia"
+          },
+          {
+            "mi": "tūpato",
+            "en": "careful"
+          }
+        ],
+        "literal": "be careful",
+        "note": "Kia before a describing word gives a wish or a gentle command."
+      }
     },
     {
       "id": "s-a-019",
@@ -239,7 +342,22 @@
       "decoys": [
         "me",
         "kaua"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kia",
+            "en": "be",
+            "ref": "kia"
+          },
+          {
+            "mi": "kaha",
+            "en": "strong"
+          }
+        ],
+        "literal": "be strong",
+        "note": "Kia kaha is a common way to encourage someone."
+      }
     },
     {
       "id": "s-a-020",
@@ -259,7 +377,32 @@
       "decoys": [
         "kia",
         "kaua"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Me",
+            "en": "should",
+            "ref": "me"
+          },
+          {
+            "mi": "whakarongo",
+            "en": "listen"
+          },
+          {
+            "mi": "mai",
+            "en": "towards the speaker",
+            "ref": "mai-atu"
+          },
+          {
+            "mi": "koe",
+            "en": "you (one person)",
+            "ref": "koe"
+          }
+        ],
+        "literal": "should listen towards-me you",
+        "note": "Mai points the action towards the speaker, so whakarongo mai is 'listen to me'."
+      }
     },
     {
       "id": "s-a-021",
@@ -278,7 +421,26 @@
       "decoys": [
         "me",
         "kaua"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Tēnā koa",
+            "en": "please"
+          },
+          {
+            "mi": "tatari",
+            "en": "wait"
+          },
+          {
+            "mi": "mai",
+            "en": "towards the speaker",
+            "ref": "mai-atu"
+          }
+        ],
+        "literal": "please wait towards-me",
+        "note": "Tēnā koa is a fixed polite phrase for 'please'."
+      }
     }
   ]
 }

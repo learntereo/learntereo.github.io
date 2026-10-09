@@ -28,7 +28,22 @@
       "s-b-028",
       "s-b-029"
     ],
-    "grammar": "b03-tatau"
+    "grammar": "b03-tatau",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Tatau",
+          "en": "counting, numbers"
+        }
+      ],
+      "literal": "the counting",
+      "note": "Te Tatau is a heading meaning 'Counting' or 'Numbers'."
+    }
   },
   "items": [
     {
@@ -178,7 +193,31 @@
       ],
       "decoys": [
         "koe"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "(goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "hia",
+            "en": "how many"
+          },
+          {
+            "mi": "ō",
+            "en": "your (more than one thing)",
+            "ref": "possessives"
+          },
+          {
+            "mi": "tau",
+            "en": "years"
+          }
+        ],
+        "literal": "how many your years",
+        "note": "E hia asks how many. Ō tau means 'your years', so this asks someone's age."
+      }
     },
     {
       "id": "s-b-020",
@@ -197,7 +236,31 @@
       ],
       "decoys": [
         "kau"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "rima",
+            "en": "five"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "manu",
+            "en": "bird"
+          }
+        ],
+        "literal": "five the birds",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-b-025",
@@ -216,7 +279,31 @@
       ],
       "decoys": [
         "he"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "toru",
+            "en": "three"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "kurī",
+            "en": "dog"
+          }
+        ],
+        "literal": "three the dogs",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-b-026",
@@ -235,7 +322,31 @@
       ],
       "decoys": [
         "he"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "whā",
+            "en": "four"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "tamariki",
+            "en": "children"
+          }
+        ],
+        "literal": "four the children",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-b-027",
@@ -254,7 +365,31 @@
       ],
       "decoys": [
         "he"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "(goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "hia",
+            "en": "how many"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "ngeru",
+            "en": "cat"
+          }
+        ],
+        "literal": "how many the cats",
+        "note": "E hia asks how many."
+      }
     },
     {
       "id": "s-b-028",
@@ -273,7 +408,31 @@
       ],
       "decoys": [
         "koe"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "ono",
+            "en": "six"
+          },
+          {
+            "mi": "ōku",
+            "en": "my (more than one thing)",
+            "ref": "possessives"
+          },
+          {
+            "mi": "tau",
+            "en": "years"
+          }
+        ],
+        "literal": "six my years",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-b-029",
@@ -292,7 +451,31 @@
       ],
       "decoys": [
         "he"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "tekau",
+            "en": "ten"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "ika",
+            "en": "fish"
+          }
+        ],
+        "literal": "ten the fish",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     }
   ]
 }

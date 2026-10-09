@@ -10,6 +10,24 @@ export const LEVELS: readonly Level[] = ['beginner', 'intermediate', 'advanced']
 export const MODES: readonly Mode[] = ['match', 'picture', 'translate', 'write', 'gap', 'order', 'mixed'];
 export const ROUND_MODES: readonly RoundMode[] = [...MODES, 'unit_practice', 'unit_check', 'review'];
 
+/** One word (or small group of words) of a Māori text, with its English gloss. */
+export interface GlossToken {
+  mi: string;
+  en: string;
+  /** Id of an entry in particles.json. */
+  ref?: string;
+}
+
+/** A word-by-word explanation of a Māori text with more than one word. */
+export interface Breakdown {
+  /** Cover the Māori text in order. */
+  tokens: GlossToken[];
+  /** Word-for-word English. */
+  literal?: string;
+  /** One or two sentences on how the parts combine. */
+  note?: string;
+}
+
 export type ItemImage = { emoji: string } | { svg: string };
 
 export interface WordItem {
@@ -19,6 +37,7 @@ export interface WordItem {
   mi: string;
   en: string[];
   image?: ItemImage;
+  breakdown?: Breakdown;
 }
 
 export interface SentenceItem {
@@ -30,6 +49,7 @@ export interface SentenceItem {
   tiles: string[];
   altOrders?: string[][];
   decoys?: string[];
+  breakdown?: Breakdown;
 }
 
 export type Item = WordItem | SentenceItem;
@@ -48,6 +68,11 @@ export interface Unit {
   itemIds: string[];
   /** Id of the grammar note file for this unit. */
   grammar: string;
+  /**
+   * Word-by-word breakdown of titleMi. It lives in the unit file but is left
+   * out of unitIndex.json, so it is only downloaded with the level (see getTitleBreakdown).
+   */
+  titleBreakdown?: Breakdown;
 }
 
 /** Shape of each file in src/content/units. */

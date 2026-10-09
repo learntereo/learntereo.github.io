@@ -25,7 +25,22 @@
       "s-i-046",
       "s-i-047"
     ],
-    "grammar": "i06-huarere"
+    "grammar": "i06-huarere",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Huarere",
+          "en": "weather"
+        }
+      ],
+      "literal": "the weather",
+      "note": "Te Huarere is a heading meaning 'The Weather'."
+    }
   },
   "items": [
     {
@@ -168,7 +183,27 @@
       "decoys": [
         "kei",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "ua",
+            "en": "rain"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          }
+        ],
+        "literal": "is raining",
+        "note": "Weather is often said with e ... ana. E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     },
     {
       "id": "s-i-043",
@@ -186,7 +221,27 @@
       "decoys": [
         "kei",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "is ... (starts 'is ...ing')",
+            "ref": "e-ana"
+          },
+          {
+            "mi": "hukarere",
+            "en": "snow"
+          },
+          {
+            "mi": "ana",
+            "en": "...ing (ends 'is ...ing')",
+            "ref": "e-ana"
+          }
+        ],
+        "literal": "is snowing",
+        "note": "E ... ana wraps around the verb to say it is happening now. It means much the same as kei te."
+      }
     },
     {
       "id": "s-i-044",
@@ -208,7 +263,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "wera",
+            "en": "hot"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "rā",
+            "en": "sun"
+          }
+        ],
+        "literal": "is hot the sun",
+        "note": "Rā means both 'sun' and 'day'."
+      }
     },
     {
       "id": "s-i-045",
@@ -228,7 +307,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "mahana",
+            "en": "warm"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "wai",
+            "en": "water"
+          }
+        ],
+        "literal": "is warm the water",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-i-046",
@@ -249,7 +352,31 @@
       "decoys": [
         "kei",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "nui",
+            "en": "big"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "hau",
+            "en": "wind"
+          }
+        ],
+        "literal": "a big the wind",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     },
     {
       "id": "s-i-047",
@@ -270,7 +397,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "marino",
+            "en": "calm"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "moana",
+            "en": "sea"
+          }
+        ],
+        "literal": "is calm the sea",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     }
   ]
 }

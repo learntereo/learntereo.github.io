@@ -28,7 +28,36 @@
       "s-a-034",
       "s-a-035"
     ],
-    "grammar": "a05-marae"
+    "grammar": "a05-marae",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Marae",
+          "en": "marae"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Tikanga",
+          "en": "customs"
+        }
+      ],
+      "literal": "the marae and the customs",
+      "note": "Tikanga are the customs and correct ways of doing things."
+    }
   },
   "items": [
     {
@@ -57,7 +86,21 @@
       "en": [
         "marae courtyard",
         "courtyard"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "marae",
+            "en": "marae"
+          },
+          {
+            "mi": "ātea",
+            "en": "open space"
+          }
+        ],
+        "literal": "marae open space",
+        "note": "The marae ātea is the open space in front of the meeting house."
+      }
     },
     {
       "id": "w-a-053",
@@ -127,7 +170,21 @@
       "en": [
         "hosts",
         "people of the land"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "tangata",
+            "en": "people"
+          },
+          {
+            "mi": "whenua",
+            "en": "land"
+          }
+        ],
+        "literal": "people land",
+        "note": "Tangata whenua are the people of a place, the hosts."
+      }
     },
     {
       "id": "w-a-060",
@@ -178,7 +235,27 @@
       "decoys": [
         "tērā",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "wharenui",
+            "en": "meeting house"
+          },
+          {
+            "mi": "tēnei",
+            "en": "this (near me)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a meeting-house this",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-a-030",
@@ -196,7 +273,27 @@
       "decoys": [
         "tēnei",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "wharekai",
+            "en": "dining hall"
+          },
+          {
+            "mi": "tērā",
+            "en": "that (over there)",
+            "ref": "tenei"
+          }
+        ],
+        "literal": "a dining-hall that",
+        "note": "There is no word for 'is'. He kurī tēnā is literally 'a dog that', which English says as 'That is a dog'."
+      }
     },
     {
       "id": "s-a-031",
@@ -217,7 +314,31 @@
       "decoys": [
         "ka",
         "ngā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "karanga",
+            "en": "call (ceremonial call)"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kuia",
+            "en": "elderly woman"
+          }
+        ],
+        "literal": "is calling the elderly woman",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-a-032",
@@ -238,7 +359,31 @@
       "decoys": [
         "ka",
         "ngā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "whaikōrero",
+            "en": "give a formal speech"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "kaumātua",
+            "en": "elder"
+          }
+        ],
+        "literal": "is giving-a-speech the elder",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-a-033",
@@ -258,7 +403,31 @@
       "decoys": [
         "kei",
         "te"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Ka",
+            "en": "will (future)",
+            "ref": "ka"
+          },
+          {
+            "mi": "hongi",
+            "en": "hongi (press noses)"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "manuhiri",
+            "en": "visitors"
+          }
+        ],
+        "literal": "will hongi the visitors",
+        "note": "Ka before the verb makes it future (will)."
+      }
     },
     {
       "id": "s-a-034",
@@ -278,7 +447,31 @@
       "decoys": [
         "kei",
         "ngā"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "tapu",
+            "en": "sacred"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "wharenui",
+            "en": "meeting house"
+          }
+        ],
+        "literal": "a sacred the meeting-house",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     },
     {
       "id": "s-a-035",
@@ -301,7 +494,40 @@
       "decoys": [
         "ka",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "haere",
+            "en": "go"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "manuhiri",
+            "en": "visitors"
+          },
+          {
+            "mi": "ki te",
+            "en": "to the",
+            "ref": "ki-te"
+          },
+          {
+            "mi": "marae",
+            "en": "marae"
+          }
+        ],
+        "literal": "is going the visitors to the marae",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     }
   ]
 }

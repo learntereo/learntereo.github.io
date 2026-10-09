@@ -27,7 +27,36 @@
       "s-i-041",
       "s-i-042"
     ],
-    "grammar": "i05-kakahu"
+    "grammar": "i05-kakahu",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Kākahu",
+          "en": "clothes"
+        },
+        {
+          "mi": "me",
+          "en": "and",
+          "ref": "me"
+        },
+        {
+          "mi": "ngā",
+          "en": "the (plural)",
+          "ref": "nga"
+        },
+        {
+          "mi": "Taonga",
+          "en": "belongings, treasures"
+        }
+      ],
+      "literal": "the clothes and the belongings",
+      "note": "A taonga is something valued, from a treasured heirloom to everyday belongings."
+    }
   },
   "items": [
     {
@@ -208,7 +237,31 @@
       "decoys": [
         "kei",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "whero",
+            "en": "red"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "koti",
+            "en": "coat"
+          }
+        ],
+        "literal": "a red the coat",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     },
     {
       "id": "s-i-038",
@@ -228,7 +281,31 @@
       "decoys": [
         "kei",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "kikorangi",
+            "en": "blue"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "tarau",
+            "en": "trousers"
+          }
+        ],
+        "literal": "a blue the trousers",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     },
     {
       "id": "s-i-039",
@@ -247,7 +324,31 @@
       "decoys": [
         "i",
         "ka"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei",
+            "en": "at",
+            "ref": "kei"
+          },
+          {
+            "mi": "hea",
+            "en": "where"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "pēke",
+            "en": "bag"
+          }
+        ],
+        "literal": "at where the bag",
+        "note": "Kei hea asks where something is: kei means 'at' and hea means 'where'."
+      }
     },
     {
       "id": "s-i-040",
@@ -272,7 +373,41 @@
       "decoys": [
         "ka",
         "e"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "mau",
+            "en": "wear"
+          },
+          {
+            "mi": "ia",
+            "en": "he / she",
+            "ref": "ia"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is worn)",
+            "ref": "i"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "pōtae",
+            "en": "hat"
+          }
+        ],
+        "literal": "is wearing he/she the hat",
+        "note": "The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     },
     {
       "id": "s-i-041",
@@ -295,7 +430,41 @@
       "decoys": [
         "ka",
         "e"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "mau",
+            "en": "wear"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          },
+          {
+            "mi": "i",
+            "en": "(marks what is worn)",
+            "ref": "i"
+          },
+          {
+            "mi": "ngā",
+            "en": "the (plural)",
+            "ref": "nga"
+          },
+          {
+            "mi": "hū",
+            "en": "shoes"
+          }
+        ],
+        "literal": "is wearing I the shoes",
+        "note": "The i before te marks the thing the action is done to (the object). It has no English word."
+      }
     },
     {
       "id": "s-i-042",
@@ -314,7 +483,31 @@
       "decoys": [
         "kei",
         "i"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "He",
+            "en": "a / some",
+            "ref": "he"
+          },
+          {
+            "mi": "pai",
+            "en": "good"
+          },
+          {
+            "mi": "te",
+            "en": "the (singular)",
+            "ref": "te"
+          },
+          {
+            "mi": "rorohiko",
+            "en": "computer"
+          }
+        ],
+        "literal": "a good the computer",
+        "note": "There is no word for 'is'. The describing word comes first, then the thing it describes: He nui te whare is 'The house is big'."
+      }
     }
   ]
 }

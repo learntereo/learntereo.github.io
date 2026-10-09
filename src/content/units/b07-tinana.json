@@ -27,7 +27,22 @@
       "s-b-047",
       "s-b-048"
     ],
-    "grammar": "b07-tinana"
+    "grammar": "b07-tinana",
+    "titleBreakdown": {
+      "tokens": [
+        {
+          "mi": "Te",
+          "en": "the (singular)",
+          "ref": "te"
+        },
+        {
+          "mi": "Tinana",
+          "en": "body"
+        }
+      ],
+      "literal": "the body",
+      "note": "Te Tinana is a heading meaning 'The Body'."
+    }
   },
   "items": [
     {
@@ -196,7 +211,27 @@
       ],
       "decoys": [
         "koe"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "makariri",
+            "en": "cold"
+          },
+          {
+            "mi": "ahau",
+            "en": "I / me",
+            "ref": "ahau"
+          }
+        ],
+        "literal": "is cold I",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-044",
@@ -217,7 +252,31 @@
       ],
       "decoys": [
         "taku"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "mamae",
+            "en": "sore, painful"
+          },
+          {
+            "mi": "tōku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "upoko",
+            "en": "head"
+          }
+        ],
+        "literal": "is sore my head",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-045",
@@ -238,7 +297,31 @@
       ],
       "decoys": [
         "āku"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "mamae",
+            "en": "sore, painful"
+          },
+          {
+            "mi": "ōku",
+            "en": "my (more than one thing)",
+            "ref": "possessives"
+          },
+          {
+            "mi": "waewae",
+            "en": "legs"
+          }
+        ],
+        "literal": "is sore my legs",
+        "note": "Ōku is used for more than one thing, so it goes with waewae (legs)."
+      }
     },
     {
       "id": "s-b-046",
@@ -259,7 +342,31 @@
       ],
       "decoys": [
         "taku"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "Kei te",
+            "en": "is / am ...ing (present tense)",
+            "ref": "kei-te"
+          },
+          {
+            "mi": "mamae",
+            "en": "sore, painful"
+          },
+          {
+            "mi": "tōku",
+            "en": "my",
+            "ref": "possessives"
+          },
+          {
+            "mi": "puku",
+            "en": "stomach"
+          }
+        ],
+        "literal": "is sore my stomach",
+        "note": "Kei te says the action is happening now. The person or thing comes after the verb or describing word, so Māori puts the 'who' last."
+      }
     },
     {
       "id": "s-b-047",
@@ -278,7 +385,31 @@
       ],
       "decoys": [
         "āku"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "rua",
+            "en": "two"
+          },
+          {
+            "mi": "ōku",
+            "en": "my (more than one thing)",
+            "ref": "possessives"
+          },
+          {
+            "mi": "ringa",
+            "en": "hands"
+          }
+        ],
+        "literal": "two my hands",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     },
     {
       "id": "s-b-048",
@@ -297,7 +428,31 @@
       ],
       "decoys": [
         "āku"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "E",
+            "en": "there are (goes before a number)",
+            "ref": "e"
+          },
+          {
+            "mi": "rua",
+            "en": "two"
+          },
+          {
+            "mi": "ōku",
+            "en": "my (more than one thing)",
+            "ref": "possessives"
+          },
+          {
+            "mi": "karu",
+            "en": "eyes"
+          }
+        ],
+        "literal": "two my eyes",
+        "note": "E before a number says how many there are. There is no separate word for 'there are'."
+      }
     }
   ]
 }
