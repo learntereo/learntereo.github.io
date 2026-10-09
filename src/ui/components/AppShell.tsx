@@ -67,7 +67,7 @@ const TABS: readonly Tab[] = [
   {
     to: '/reference',
     label: 'Reference',
-    match: /^\/(reference|grammar|pronunciation|glossary)/,
+    match: /^\/(reference|grammar|pronunciation|glossary|little-words)/,
     icon: (
       <Icon>
         <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" />

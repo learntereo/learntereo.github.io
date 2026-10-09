@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { getItem, isWord, units } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { glossaryEntries, searchGlossary } from '../../game/glossarySearch';
+import { BreakdownDisclosure } from '../components/Breakdown';
 import ui from '../components/ui.module.css';
 import styles from './Reference.module.css';
 
@@ -74,6 +75,11 @@ export function Glossary() {
               ) : null}
             </span>
             <span className={styles.entryUnit}>{entry.unitTitle}</span>
+            {entry.breakdown && (
+              <div className={styles.entryBreakdown}>
+                <BreakdownDisclosure breakdown={entry.breakdown} />
+              </div>
+            )}
           </li>
         ))}
       </ul>

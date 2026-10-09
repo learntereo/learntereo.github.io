@@ -5,6 +5,7 @@ import { useAppData } from '../../data/AppDataContext';
 import { LEVELS, type Level } from '../../game/types';
 import { PASS_PERCENT, CHECK_SIZE, passMark } from '../../game/unitRound';
 import type { UnitStatus } from '../../game/unitUnlock';
+import { TitleBreakdown } from '../components/Breakdown';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel } from '../labels';
@@ -198,6 +199,7 @@ export function Home() {
                   <p className={styles.nextMi} lang="mi">
                     {next.titleMi}
                   </p>
+                  <TitleBreakdown unitId={next.id} />
                 </div>
                 <Link className={ui.button} to={`/unit/${next.id}`} aria-label={`${statuses.get(next.id)?.state === 'in_progress' ? 'Continue' : 'Start'} ${next.title}`}>
                   {statuses.get(next.id)?.state === 'in_progress' ? 'Continue' : 'Start'}

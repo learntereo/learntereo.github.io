@@ -106,6 +106,10 @@ details[open] > .summary {
   color: var(--color-text-muted);
 }
 
+.entryBreakdown {
+  grid-column: 1 / -1;
+}
+
 .tick {
   color: var(--color-pounamu);
   font-weight: 700;
@@ -147,4 +151,25 @@ details[open] > .summary {
 
 .bullets li {
   margin-bottom: var(--space-2);
+}
+
+/* ---------- little words ---------- */
+.little {
+  scroll-margin-top: var(--space-4);
+}
+
+.littleTitle {
+  margin-bottom: var(--space-1);
+  color: var(--color-kokowai);
+  overflow-wrap: anywhere;
+}
+
+.littleGloss {
+  font-weight: 600;
+}
+
+.littleExample {
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--color-karaka);
+  margin-bottom: 0;
 }

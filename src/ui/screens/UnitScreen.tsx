@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router';
 import { getUnit, grammarFor, sentencesForUnit, wordsForUnit } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { CHECK_SIZE, PRACTICE_SIZE, passMark } from '../../game/unitRound';
+import { BreakdownDisclosure, TitleBreakdown } from '../components/Breakdown';
 import { GrammarNote } from '../components/GrammarNote';
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
@@ -35,6 +36,7 @@ export function UnitScreen() {
         <p className={styles.titleMi} lang="mi">
           {unit.titleMi}
         </p>
+        <TitleBreakdown unitId={unit.id} />
       </div>
 
       <section className={ui.card} aria-label="Your progress in this unit">
@@ -139,6 +141,7 @@ export function UnitScreen() {
               </span>
               <br />
               <span className={ui.muted}>{sentence.en[0]}</span>
+              <BreakdownDisclosure breakdown={sentence.breakdown} />
             </li>
           ))}
         </ul>

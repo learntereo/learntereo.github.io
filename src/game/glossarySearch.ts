@@ -1,4 +1,4 @@
-import type { Unit, WordItem } from './types';
+import type { Breakdown, Unit, WordItem } from './types';
 
 /** Lowercase and remove accents and macrons, so "kuri" finds "kurī". */
 export function foldAccents(text: string): string {
@@ -10,6 +10,19 @@ export function foldAccents(text: string): string {
     .trim();
 }
 
+export interface ParticleLike {
+  id: string;
+  forms: readonly string[];
+  gloss: string;
+}
+
+/** Little words matching the query (forms, gloss or id), accents ignored. An empty query matches everything. */
+export function searchParticles<T extends ParticleLike>(particles: readonly T[], query: string): T[] {
+  const q = foldAccents(query);
+  if (q === '') return [...particles];
+  return particles.filter((p) => [p.id, p.gloss, ...p.forms].some((text) => foldAccents(text).includes(q)));
+}
+
 export interface GlossaryEntry {
   id: string;
   mi: string;
@@ -17,6 +30,7 @@ export interface GlossaryEntry {
   unitId: string;
   unitTitle: string;
   level: Unit['level'];
+  breakdown?: Breakdown;
 }
 
 /** One entry per word of the given units, A to Z by Māori word (macrons ignored when sorting). */
@@ -29,7 +43,7 @@ export function glossaryEntries(
     for (const id of unit.itemIds) {
       const word = getWord(id);
       if (word) {
-        entries.push({ id, mi: word.mi, en: word.en, unitId: unit.id, unitTitle: unit.title, level: unit.level });
+        entries.push({ id, mi: word.mi, en: word.en, unitId: unit.id, unitTitle: unit.title, level: unit.level, breakdown: word.breakdown });
       }
     }
   }

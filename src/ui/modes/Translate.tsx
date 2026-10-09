@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { getItem } from '../../content/content';
 import { isAnswerCorrect } from '../../game/marking';
 import ui from '../components/ui.module.css';
+import { BreakdownDisclosure } from '../components/Breakdown';
 import { Feedback } from './Feedback';
 import { MSG_CORRECT, MSG_RETRY, type FeedbackMessage, type ModeProps } from './types';
 import styles from './modes.module.css';
@@ -80,6 +81,7 @@ export function Translate({ question, onDone }: ModeProps) {
       </form>
 
       <Feedback message={message} />
+      {phase !== 'asking' && <BreakdownDisclosure breakdown={item.breakdown} />}
 
       {phase !== 'asking' && (
         <button type="button" ref={continueRef} className={ui.button} onClick={handleContinue}>
