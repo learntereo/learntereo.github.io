@@ -173,7 +173,8 @@
       "level": "intermediate",
       "mi": "E ua ana",
       "en": [
-        "It is raining"
+        "It is raining",
+        "It's raining"
       ],
       "tiles": [
         "e",
@@ -211,7 +212,8 @@
       "level": "intermediate",
       "mi": "E hukarere ana",
       "en": [
-        "It is snowing"
+        "It is snowing",
+        "It's snowing"
       ],
       "tiles": [
         "e",
@@ -295,7 +297,8 @@
       "level": "intermediate",
       "mi": "Kei te mahana te wai",
       "en": [
-        "The water is warm"
+        "The water is warm",
+        "The water feels warm"
       ],
       "tiles": [
         "kei",

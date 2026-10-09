@@ -280,7 +280,8 @@
       "level": "beginner",
       "mi": "He kākāriki te rākau",
       "en": [
-        "The tree is green"
+        "The tree is green",
+        "The tree is green in colour"
       ],
       "tiles": [
         "he",
@@ -322,7 +323,8 @@
       "level": "beginner",
       "mi": "He kōwhai te rā",
       "en": [
-        "The sun is yellow"
+        "The sun is yellow",
+        "The sun is yellow in colour"
       ],
       "tiles": [
         "he",
@@ -364,7 +366,8 @@
       "level": "beginner",
       "mi": "He mā te marama",
       "en": [
-        "The moon is white"
+        "The moon is white",
+        "The moon is white in colour"
       ],
       "tiles": [
         "he",
@@ -440,7 +443,9 @@
       "mi": "He rākau kākāriki tēnā",
       "en": [
         "That is a green tree",
-        "That is a green tree there"
+        "That is a green tree there",
+        "That tree is green",
+        "It is a green tree"
       ],
       "tiles": [
         "he",

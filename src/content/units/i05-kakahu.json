@@ -226,7 +226,8 @@
       "level": "intermediate",
       "mi": "He whero te koti",
       "en": [
-        "The coat is red"
+        "The coat is red",
+        "The jacket is red"
       ],
       "tiles": [
         "he",
@@ -313,7 +314,8 @@
       "level": "intermediate",
       "mi": "Kei hea te pēke",
       "en": [
-        "Where is the bag"
+        "Where is the bag",
+        "Where's the bag"
       ],
       "tiles": [
         "kei",
@@ -472,7 +474,8 @@
       "level": "intermediate",
       "mi": "He pai te rorohiko",
       "en": [
-        "The computer is good"
+        "The computer is good",
+        "It is a good computer"
       ],
       "tiles": [
         "he",

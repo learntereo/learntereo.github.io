@@ -290,7 +290,8 @@
       "level": "intermediate",
       "mi": "I mahi ahau i te Rātū",
       "en": [
-        "I worked on Tuesday"
+        "I worked on Tuesday",
+        "On Tuesday I worked"
       ],
       "tiles": [
         "i",
@@ -346,7 +347,8 @@
       "mi": "Ka haere ahau ki te toa ā te Rāapa",
       "en": [
         "I will go to the shop on Wednesday",
-        "I will go to the store on Wednesday"
+        "I will go to the store on Wednesday",
+        "On Wednesday I will go to the shop"
       ],
       "tiles": [
         "ka",
@@ -413,7 +415,9 @@
       "level": "intermediate",
       "mi": "Ka mahi ahau āpōpō",
       "en": [
-        "I will work tomorrow"
+        "I will work tomorrow",
+        "I am going to work tomorrow",
+        "Tomorrow I will work"
       ],
       "tiles": [
         "ka",
@@ -464,7 +468,8 @@
       "level": "intermediate",
       "mi": "I moe ahau inanahi",
       "en": [
-        "I slept yesterday"
+        "I slept yesterday",
+        "Yesterday I slept"
       ],
       "tiles": [
         "i",
@@ -515,7 +520,9 @@
       "level": "intermediate",
       "mi": "Ka haere tātou ā te Rātapu",
       "en": [
-        "We will go on Sunday"
+        "We will go on Sunday",
+        "We are going on Sunday",
+        "On Sunday we will go"
       ],
       "tiles": [
         "ka",

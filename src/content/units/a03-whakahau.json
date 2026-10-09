@@ -182,7 +182,8 @@
       "mi": "Me haere koe ki te kura",
       "en": [
         "You should go to school",
-        "You should go to the school"
+        "You should go to the school",
+        "You ought to go to school"
       ],
       "tiles": [
         "me",
@@ -301,7 +302,8 @@
       "level": "advanced",
       "mi": "Kia tūpato",
       "en": [
-        "Be careful"
+        "Be careful",
+        "Take care"
       ],
       "tiles": [
         "kia",
@@ -333,7 +335,8 @@
       "level": "advanced",
       "mi": "Kia kaha",
       "en": [
-        "Be strong"
+        "Be strong",
+        "Stay strong"
       ],
       "tiles": [
         "kia",
@@ -410,7 +413,8 @@
       "level": "advanced",
       "mi": "Tēnā koa tatari mai",
       "en": [
-        "Please wait"
+        "Please wait",
+        "Please wait for me"
       ],
       "tiles": [
         "tēnā",

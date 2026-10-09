@@ -258,7 +258,9 @@
       "mi": "Ka haere ahau ki te kura āpōpō",
       "en": [
         "I will go to school tomorrow",
-        "I will go to the school tomorrow"
+        "I will go to the school tomorrow",
+        "I am going to go to school tomorrow",
+        "Tomorrow I will go to school"
       ],
       "tiles": [
         "ka",
@@ -375,7 +377,8 @@
       "mi": "Ka kai tātou i te parāoa",
       "en": [
         "We will eat the bread",
-        "We will eat bread"
+        "We will eat bread",
+        "We are going to eat the bread"
       ],
       "tiles": [
         "ka",
@@ -538,7 +541,8 @@
       "level": "intermediate",
       "mi": "I oma te kurī ki te awa",
       "en": [
-        "The dog ran to the river"
+        "The dog ran to the river",
+        "The dog ran towards the river"
       ],
       "tiles": [
         "i",

@@ -179,7 +179,9 @@
       "level": "advanced",
       "mi": "He wahine ātaahua tērā",
       "en": [
-        "That is a beautiful woman"
+        "That is a beautiful woman",
+        "That woman is beautiful",
+        "That is a pretty woman"
       ],
       "tiles": [
         "he",
@@ -222,7 +224,8 @@
       "level": "advanced",
       "mi": "He tāne roa tēnei",
       "en": [
-        "This is a tall man"
+        "This is a tall man",
+        "This man is tall"
       ],
       "tiles": [
         "he",
@@ -266,7 +269,10 @@
       "mi": "He maunga teitei tērā",
       "en": [
         "That is a high mountain",
-        "That is a tall mountain"
+        "That is a tall mountain",
+        "That mountain is high",
+        "That mountain is tall",
+        "It is a high mountain"
       ],
       "tiles": [
         "he",
@@ -309,7 +315,9 @@
       "level": "advanced",
       "mi": "He awa hōhonu tēnei",
       "en": [
-        "This is a deep river"
+        "This is a deep river",
+        "This river is deep",
+        "It is a deep river"
       ],
       "tiles": [
         "he",
@@ -352,7 +360,9 @@
       "level": "advanced",
       "mi": "He whare hou tēnei",
       "en": [
-        "This is a new house"
+        "This is a new house",
+        "This house is new",
+        "It is a new house"
       ],
       "tiles": [
         "he",
@@ -396,7 +406,9 @@
       "mi": "He rangatahi ia",
       "en": [
         "He is a young person",
-        "She is a young person"
+        "She is a young person",
+        "He is young",
+        "She is young"
       ],
       "tiles": [
         "he",
@@ -434,7 +446,8 @@
       "level": "advanced",
       "mi": "He ātaahua te whenua",
       "en": [
-        "The land is beautiful"
+        "The land is beautiful",
+        "The land is pretty"
       ],
       "tiles": [
         "he",

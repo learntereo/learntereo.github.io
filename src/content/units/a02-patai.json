@@ -258,7 +258,8 @@
       "level": "advanced",
       "mi": "Kei hea ngā tamariki",
       "en": [
-        "Where are the children"
+        "Where are the children",
+        "Where are the kids"
       ],
       "tiles": [
         "kei",
@@ -301,7 +302,8 @@
       "level": "advanced",
       "mi": "He aha tēnei",
       "en": [
-        "What is this"
+        "What is this",
+        "What is this thing"
       ],
       "tiles": [
         "he",
@@ -335,7 +337,8 @@
       "level": "advanced",
       "mi": "Nō hea koe",
       "en": [
-        "Where are you from"
+        "Where are you from",
+        "Where do you come from"
       ],
       "tiles": [
         "nō",
@@ -374,7 +377,8 @@
       "mi": "Āhea koe haere ai",
       "en": [
         "When will you go",
-        "When are you going"
+        "When are you going",
+        "When are you going to go"
       ],
       "tiles": [
         "āhea",
@@ -417,7 +421,8 @@
       "level": "advanced",
       "mi": "Inahea koe i haere ai",
       "en": [
-        "When did you go"
+        "When did you go",
+        "When did you leave"
       ],
       "tiles": [
         "inahea",
@@ -466,7 +471,8 @@
       "level": "advanced",
       "mi": "He aha te tae o te kurī",
       "en": [
-        "What colour is the dog"
+        "What colour is the dog",
+        "What is the colour of the dog"
       ],
       "tiles": [
         "he",
