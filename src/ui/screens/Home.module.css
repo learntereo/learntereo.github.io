@@ -13,6 +13,16 @@
   border-width: 2px;
 }
 
+/* ---------- guest ---------- */
+.guestCard {
+  border-color: var(--color-karaka);
+  border-width: 2px;
+}
+
+.guestCard p {
+  margin: 0 0 var(--space-3);
+}
+
 /* ---------- review ---------- */
 .reviewCard {
   border-color: var(--color-karaka);

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router';
+import { useAuth } from '../../auth/AuthContext';
 import { getItem, getUnit, nextUnit } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { getRound, type RoundRow } from '../../data/roundRepo';
@@ -129,6 +130,7 @@ export function Results() {
   const [fetched, setRound] = useState<RoundRow | null | undefined>(undefined);
   const round = passedRound && passedRound.id === roundId ? passedRound : fetched;
   const { dueCount } = useAppData();
+  const { isGuest } = useAuth();
 
   useEffect(() => {
     if (!roundId || (passedRound && passedRound.id === roundId)) return;
@@ -237,6 +239,16 @@ export function Results() {
           </div>
         </dl>
       </section>
+
+      {isCheck && check?.passed && isGuest && (
+        <section className={ui.card} aria-labelledby="guest-save-title">
+          <h2 id="guest-save-title">Keep your progress</h2>
+          <p>You&apos;re a guest. Save your progress so you don&apos;t lose it.</p>
+          <Link className={ui.button} to="/account">
+            Save your progress
+          </Link>
+        </section>
+      )}
 
       {summary.missedItemIds && summary.missedItemIds.length > 0 && <MissedList ids={summary.missedItemIds} />}
 

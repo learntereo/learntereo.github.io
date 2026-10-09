@@ -3,6 +3,7 @@ import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { AuthContext, type AuthState } from '../../auth/AuthContext';
 import { units } from '../../content/content';
 import { AppDataContext, type AppData } from '../../data/AppDataContext';
 import type { RoundRow } from '../../data/roundRepo';
@@ -56,13 +57,15 @@ function renderResults(r: RoundRow, completed: string[]) {
   const data = { statuses } as unknown as AppData;
   act(() =>
     root.render(
+      <AuthContext.Provider value={{ isGuest: false } as AuthState}>
       <AppDataContext.Provider value={data}>
         <MemoryRouter initialEntries={[{ pathname: '/results/r1', state: { round: r } }]}>
           <Routes>
             <Route path="/results/:roundId" element={<Results />} />
           </Routes>
         </MemoryRouter>
-      </AppDataContext.Provider>,
+      </AppDataContext.Provider>
+      </AuthContext.Provider>,
     ),
   );
 }

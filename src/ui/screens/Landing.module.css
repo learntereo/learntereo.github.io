@@ -182,3 +182,14 @@
   color: var(--color-text-muted);
   overflow-wrap: anywhere;
 }
+
+.guestButton {
+  background: none;
+  border: 2px solid var(--color-kokowai);
+  color: var(--color-kokowai);
+  border-radius: var(--radius-md);
+  min-height: var(--tap-target-min);
+  padding: var(--space-2) var(--space-4);
+  font-weight: 600;
+  cursor: pointer;
+}

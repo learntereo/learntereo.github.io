@@ -251,9 +251,12 @@ function KiwianaCard() {
 }
 
 export function Home() {
-  const { user } = useAuth();
-  const { profile, statuses, dueCount } = useAppData();
+  const { user, isGuest } = useAuth();
+  const { profile, statuses, dueCount, learned, unitProgress } = useAppData();
   const displayName = profile?.display_name ?? user?.email ?? 'learner';
+  // Brand-new guests see the course first; the nudge waits until they have done something.
+  const guestHasProgress =
+    learned.size > 0 || (profile?.xp ?? 0) > 0 || [...unitProgress.values()].some((r) => r.learned_at !== null || r.attempts > 0);
 
   // The open units that are not complete yet (up to three, in course order).
   const openUnits = units.filter((u) => {
@@ -269,9 +272,27 @@ export function Home() {
     <main className={ui.page}>
       <div>
         <h1 className={styles.greeting}>
-          Kia ora, <span lang="mi">{displayName}</span>
+          {isGuest ? (
+            <span lang="mi">Kia ora</span>
+          ) : (
+            <>
+              Kia ora, <span lang="mi">{displayName}</span>
+            </>
+          )}
         </h1>
       </div>
+
+      {isGuest && guestHasProgress && (
+        <section className={`${ui.card} ${styles.guestCard}`} aria-labelledby="guest-title">
+          <h2 id="guest-title" className={ui.visuallyHidden}>
+            Guest
+          </h2>
+          <p>You&apos;re trying Ako as a guest. Save your progress so you don&apos;t lose it.</p>
+          <Link className={ui.button} to="/account">
+            Save your progress
+          </Link>
+        </section>
+      )}
 
       <KiwianaCard />
 
