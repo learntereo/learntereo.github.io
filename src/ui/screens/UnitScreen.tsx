@@ -4,6 +4,7 @@ import { useAppData } from '../../data/AppDataContext';
 import { treasureAfter, treasureSlots } from '../../game/treasures';
 import { CHECK_SIZE, passMark } from '../../game/unitRound';
 import { BreakdownDisclosure, TitleBreakdown } from '../components/Breakdown';
+import { FactCard } from '../components/FactCard';
 import { GrammarNote } from '../components/GrammarNote';
 import { ItemImageView } from '../components/ItemImage';
 import { TreasureIcon } from '../components/Treasure';
@@ -94,6 +95,8 @@ export function UnitScreen() {
           </p>
         </section>
       )}
+
+      {complete && <FactCard unitId={unit.id} />}
 
       <ol className={styles.steps}>
         <li className={`${ui.card} ${styles.step}`}>
