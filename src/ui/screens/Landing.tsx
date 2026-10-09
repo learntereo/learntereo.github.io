@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link, Navigate } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
 import { unitsForLevel } from '../../content/content';
@@ -15,34 +15,57 @@ function errorMessage(err: unknown): string {
   return 'Something went wrong. Please try again.';
 }
 
-/** Plain words about the course, in the page itself so search engines and screen readers get them. Mirrored in vite.config.ts for the pre-render. */
-function AboutAko() {
+/** Levels, example topics and the full unit lists, in the page itself so search engines and screen readers get them. Mirrored in vite.config.ts for the pre-render. */
+function Levels() {
+  const total = LEVELS.reduce((n, level) => n + unitsForLevel(level).length, 0);
   return (
-    <section className={styles.about} aria-labelledby="about-title">
-      <h2 id="about-title">
-        Learn te reo <span lang="mi">Māori</span>, free
-      </h2>
-      <p>
-        Ako is a free way to learn te reo <span lang="mi">Māori</span>. Short lessons that work on your phone, from beginner to advanced. Vocabulary,
-        sentences and pronunciation, made in New Zealand.
-      </p>
-      <div className={styles.levels}>
-        {LEVELS.map((level) => (
-          <div key={level}>
-            <h3>{LEVEL_LABEL[level]}</h3>
-            <ul className={styles.unitList}>
-              {unitsForLevel(level).map((u) => (
-                <li key={u.id}>
-                  {u.title} (<span lang="mi">{u.titleMi}</span>)
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <section className={styles.section} aria-labelledby="levels-title">
+      <h2 id="levels-title">Three levels</h2>
+      <div className={styles.levelGrid}>
+        {LEVELS.map((level) => {
+          const levelUnits = unitsForLevel(level);
+          return (
+            <div key={level} className={styles.levelCard} data-testid="level-card">
+              <h3>{LEVEL_LABEL[level]}</h3>
+              <p className={styles.levelCount}>{levelUnits.length} units</p>
+              <ul className={styles.chips}>
+                {levelUnits.slice(0, 3).map((u) => (
+                  <li key={u.id}>{u.title}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
-      <p>
-        <a href={`${import.meta.env.BASE_URL}pepeha/`}>Pepeha builder</a>
-      </p>
+      <details className={styles.allUnits}>
+        <summary>See all {total} units</summary>
+        <div className={styles.allUnitsBody}>
+          {LEVELS.map((level) => (
+            <div key={level}>
+              <h3>{LEVEL_LABEL[level]}</h3>
+              <ul className={styles.unitList}>
+                {unitsForLevel(level).map((u) => (
+                  <li key={u.id}>
+                    {u.title} <span lang="mi">{u.titleMi}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </details>
+    </section>
+  );
+}
+
+function PepehaCard() {
+  return (
+    <section className={`${styles.section} ${styles.pepehaCard}`} aria-labelledby="pepeha-title">
+      <h2 id="pepeha-title">Write your pepeha</h2>
+      <p>Introduce yourself in te reo Māori. No sign-in needed.</p>
+      <a className={styles.secondaryLink} href={`${import.meta.env.BASE_URL}pepeha/`}>
+        Open the pepeha builder
+      </a>
     </section>
   );
 }
@@ -56,6 +79,14 @@ export function Landing() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [starting, setStarting] = useState(false);
+  const [startError, setStartError] = useState<string | null>(null);
+  const signInRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (showSignIn) signInRef.current?.focus();
+  }, [showSignIn]);
 
   if (!loading && session) return <Navigate to="/home" replace />;
 
@@ -69,11 +100,14 @@ export function Landing() {
   }
 
   async function handleGuest() {
-    setError(null);
+    setStartError(null);
+    setStarting(true);
     try {
       await continueAsGuest();
     } catch (err) {
-      setError(errorMessage(err));
+      setStartError(errorMessage(err));
+    } finally {
+      setStarting(false);
     }
   }
 
@@ -103,17 +137,41 @@ export function Landing() {
     <main className={styles.page}>
       <KowhaiwhaiBorder className={styles.topBorder} />
 
-      <div className={styles.brand}>
-        <KoruMark size={44} className={styles.mark} />
-        <h1 className={styles.brandName} lang="mi">
-          Ako
+      <header className={styles.hero}>
+        <div className={styles.brand}>
+          <KoruMark size={40} className={styles.mark} />
+          <p className={styles.brandName} lang="mi">
+            Ako
+          </p>
+        </div>
+        <h1 className={styles.title}>
+          Learn te reo <span lang="mi">Māori</span>
         </h1>
-        <p className={styles.tagline}>Ako: learn te reo Māori, one kupu at a time.</p>
-      </div>
+        <p className={styles.lead}>
+          Short lessons that work on your phone, from your first <span lang="mi">kia ora</span> to full sentences.
+        </p>
+        {!isSupabaseConfigured && <p className={styles.error}>Configuration missing: sign-in is unavailable.</p>}
+        <button type="button" className={styles.startButton} onClick={handleGuest} disabled={!isSupabaseConfigured || starting}>
+          {starting ? 'Starting...' : 'Start learning'}
+        </button>
+        {startError && (
+          <p className={styles.error} role="alert">
+            {startError}
+          </p>
+        )}
+        <button
+          type="button"
+          className={styles.textButton}
+          aria-expanded={showSignIn}
+          aria-controls="signin-card"
+          onClick={() => setShowSignIn((v) => !v)}
+        >
+          I already have an account
+        </button>
+      </header>
 
-      {!isSupabaseConfigured && <p className={styles.error}>Configuration missing: sign-in is unavailable.</p>}
-
-      <div className={styles.card}>
+      {showSignIn && (
+      <div id="signin-card" ref={signInRef} tabIndex={-1} className={styles.card} aria-label="Sign in">
         <button type="button" className={styles.googleButton} onClick={handleGoogle} disabled={!isSupabaseConfigured}>
           Continue with Google
         </button>
@@ -187,13 +245,15 @@ export function Landing() {
             </button>
           )}
         </form>
+        <button type="button" className={styles.linkButton} onClick={() => setShowSignIn(false)}>
+          Close
+        </button>
       </div>
+      )}
 
-      <button type="button" className={styles.guestButton} onClick={handleGuest} disabled={!isSupabaseConfigured}>
-        Try it first, no account needed
-      </button>
+      <Levels />
 
-      <AboutAko />
+      <PepehaCard />
 
       <p className={styles.footer}>
         <Link to="/privacy">Privacy</Link>

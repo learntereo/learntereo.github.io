@@ -83,7 +83,7 @@ describe('Landing guest button', () => {
   it('calls continueAsGuest', () => {
     const continueAsGuest = vi.fn().mockResolvedValue(undefined);
     renderWith({ session: null, loading: false, continueAsGuest } as unknown as AuthState, <Landing />);
-    const button = buttonNamed('Try it first, no account needed');
+    const button = buttonNamed('Start learning');
     expect(button).toBeDefined();
     click(button!);
     expect(continueAsGuest).toHaveBeenCalledTimes(1);
