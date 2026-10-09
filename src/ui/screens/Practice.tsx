@@ -14,10 +14,6 @@ export function Practice() {
     <main className={ui.page}>
       <div>
         <h1>Free practice</h1>
-        <p className={ui.muted}>
-          Choose a level, then a game. You will be asked about the units you have opened. To open new units, follow the
-          Path.
-        </p>
       </div>
 
       <ul className={styles.list}>
@@ -39,7 +35,7 @@ export function Practice() {
             return (
               <li key={level} className={`${ui.card} ${styles.locked}`}>
                 <h2>{LEVEL_LABEL[level]}</h2>
-                <p className={ui.muted}>Locked. Open a unit in this level on the Path to use Free practice for it.</p>
+                <p className={ui.muted}>Locked</p>
               </li>
             );
           }

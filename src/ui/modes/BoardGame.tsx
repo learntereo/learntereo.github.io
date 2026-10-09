@@ -169,8 +169,8 @@ export function BoardGame({ question, onDone, hints = true }: ModeProps) {
 
   const prompt =
     variant === 'match'
-      ? 'Drag each Māori word onto its English meaning. You can also tap a word, then tap its meaning.'
-      : 'Drag each Māori word onto its picture. You can also tap a word, then tap its picture.';
+      ? 'Match each Māori word to its English'
+      : 'Match each Māori word to its picture';
 
   const chips = (
     <div className={styles.chips}>

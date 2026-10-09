@@ -33,9 +33,7 @@ export function Glossary() {
           &larr; Reference
         </Link>
         <h1>Glossary</h1>
-        <p className={ui.muted}>
-          {entries.length} words from the units you have opened. A tick means you have got the word right.
-        </p>
+        <p className={ui.muted}>{entries.length} words</p>
       </div>
 
       <div>

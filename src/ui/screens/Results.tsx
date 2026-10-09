@@ -216,8 +216,7 @@ export function Results() {
         </p>
         {isCheck && check && !check.passed && (
           <p>
-            You need {passMark(round.total)} out of {round.total} to pass. Practise the words below and try the Kiwiz
-            again.
+            {passMark(round.total)} out of {round.total} to pass.
           </p>
         )}
         <dl className={styles.facts}>

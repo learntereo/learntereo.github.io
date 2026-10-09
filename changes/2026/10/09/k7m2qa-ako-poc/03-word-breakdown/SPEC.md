@@ -120,4 +120,6 @@ Audio, morphology beyond word level (e.g. splitting *whakarongo* into *whaka* + 
 | W4 | Unlocking | "Have 3 courses available at a time, rather than one by one; each completion opens a new one" | User |
 | W5 | Spelling | "To spell the words I'm only given vowels, there are no letters. I should be able to select from a list of letters" | User |
 | W6 | Naming | "Don't call it unit check, it sounds like code. Call it something friendly, a play on the word kiwi" (named Kiwiz) | User |
-| W7 | Naming | "We don't have XP, we have Kiwi XP" | User |
+| W7 | Naming | "We don't have XP, we have Kiwi XP" | User || W16 | Copy | "Get rid of 'learn new words, practise them etc'. Apps should be intuitive, they don't need explanation" (explanatory paragraphs removed app-wide) | User |
+| W17 | Typography | "The accents are not over the letter" (heading font drew macrons off-centre on Android; Māori text now always uses the body font) | User |
+| W18 | Home | "Remove the Resume Round, there is too much noise on that front page" (resuming happens by reopening the same unit or game) | User |

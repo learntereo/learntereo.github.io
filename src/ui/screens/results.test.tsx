@@ -95,7 +95,7 @@ describe('Results for a unit check', () => {
     );
     expect(container.textContent).not.toContain('Unit complete');
     expect(container.textContent).toContain('Not this time');
-    expect(container.textContent).toContain('You need 10 out of 12');
+    expect(container.textContent).toContain('10 out of 12 to pass');
     expect(container.textContent).toContain('Words to revisit (3)');
     expect(container.textContent).toContain('kia ora');
     expect(hrefs()).toContain('/unit/b01-greetings/practice');

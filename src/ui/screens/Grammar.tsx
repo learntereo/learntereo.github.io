@@ -19,7 +19,7 @@ export function Grammar() {
         </Link>
         <h1>Grammar</h1>
         <p className={ui.muted}>
-          One short note for each unit you have opened. {open.length} of {units.length} so far.
+          {open.length} of {units.length}
         </p>
       </div>
 

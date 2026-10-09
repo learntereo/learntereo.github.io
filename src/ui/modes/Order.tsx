@@ -179,10 +179,6 @@ export function Order({ question, onDone }: ModeProps) {
         </DropZone>
       </DndContext>
 
-      <p className={ui.muted}>
-        Tap a word to move it, or drag it. There are extra words that do not belong.
-      </p>
-
       <Feedback message={message} />
       {phase !== 'asking' && <BreakdownDisclosure breakdown={sentence.breakdown} />}
 

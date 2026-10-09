@@ -127,7 +127,7 @@ describe('Grammar index', () => {
     show(<Grammar />, data());
     expect(container.querySelectorAll('details')).toHaveLength(3);
     expect(container.textContent).toContain('Hello to one, two or many');
-    expect(container.textContent).toContain('3 of 22 so far');
+    expect(container.textContent).toContain('3 of 22');
   });
 
   it('shows every Beginner note and the first three Intermediate notes after Beginner', () => {
@@ -195,7 +195,7 @@ describe('Progress: Your Kiwiana hero', () => {
     const hero = container.querySelector('#your-kiwiana')!.closest('section')!;
     expect(hero.textContent).toContain('Ready to start');
     expect(hero.textContent).toContain('1 more treasure to become Kiwiana rookie');
-    expect(hero.textContent).toContain('Greetings and introductions: 0 of 19 items learned · pass the Kiwiz to unlock');
+    expect(hero.textContent).toContain('Greetings and introductions: 0 of 19 items learned');
     expect(hero.querySelector('[role="progressbar"]')?.getAttribute('aria-valuemax')).toBe('19');
     expect(hero.textContent).not.toContain('Recently unlocked');
   });

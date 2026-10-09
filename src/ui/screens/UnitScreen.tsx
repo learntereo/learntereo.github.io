@@ -2,7 +2,7 @@ import { Link, Navigate, useParams } from 'react-router';
 import { getUnit, grammarFor, sentencesForUnit, units, wordsForUnit } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { treasureAfter, treasureSlots } from '../../game/treasures';
-import { CHECK_SIZE, PRACTICE_SIZE, passMark } from '../../game/unitRound';
+import { CHECK_SIZE, passMark } from '../../game/unitRound';
 import { BreakdownDisclosure, TitleBreakdown } from '../components/Breakdown';
 import { GrammarNote } from '../components/GrammarNote';
 import { ItemImageView } from '../components/ItemImage';
@@ -98,16 +98,12 @@ export function UnitScreen() {
       <ol className={styles.steps}>
         <li className={`${ui.card} ${styles.step}`}>
           <h2>1. Learn</h2>
-          <p className={ui.muted}>
-            Meet {words.length} new words with pictures and examples, then read a short grammar note.
-          </p>
           <Link className={`${ui.button} ${status.deckDone ? ui.secondary : ''}`} to={`/unit/${unit.id}/learn`}>
-            {status.deckDone ? 'Go through the words again' : 'Start learning'}
+            {status.deckDone ? 'Learn again' : 'Learn'}
           </Link>
         </li>
         <li className={`${ui.card} ${styles.step}`}>
           <h2>2. Practice</h2>
-          <p className={ui.muted}>{PRACTICE_SIZE} questions in a mix of games, just for this unit.</p>
           <Link className={`${ui.button} ${ui.secondary}`} to={`/unit/${unit.id}/practice`}>
             Practise
           </Link>
@@ -115,7 +111,7 @@ export function UnitScreen() {
         <li className={`${ui.card} ${styles.step}`}>
           <h2>3. Kiwiz</h2>
           <p className={ui.muted}>
-            {CHECK_SIZE} questions. Get {passMark(CHECK_SIZE)} right to pass{complete ? '' : ' and open the next unit'}.
+            {passMark(CHECK_SIZE)} of {CHECK_SIZE} to pass
           </p>
           {status.deckDone ? (
             <Link className={ui.button} to={`/unit/${unit.id}/check`}>
@@ -127,7 +123,7 @@ export function UnitScreen() {
                 Take the Kiwiz
               </button>
               <p id={`${unit.id}-check-note`} className={styles.note}>
-                Finish Learn first. It only takes a few minutes.
+                Finish Learn first.
               </p>
             </>
           )}

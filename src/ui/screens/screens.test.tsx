@@ -323,7 +323,6 @@ describe('Kiwiana page', () => {
   it('shows N / 20, a progress bar and all twenty treasures', () => {
     renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
     expect(container.querySelector('h1')?.textContent).toBe('Kiwiana');
-    expect(container.textContent).toContain('Finish units to collect treasures from New Zealand.');
     expect(container.textContent).toContain('1 / 20 collected');
     expect(container.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('1');
     expect(container.querySelectorAll('ul li')).toHaveLength(20);

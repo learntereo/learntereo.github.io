@@ -111,7 +111,6 @@ export function ReviewScreen() {
           <h1>
             <span lang="mi">Kua oti!</span> All caught up
           </h1>
-          <p className={ui.muted}>Nothing is due for review right now. Words come back after a day or more, depending on how well you know them.</p>
           <Link className={ui.button} to="/home">
             Back to the Path
           </Link>

@@ -120,7 +120,7 @@ export function Progress() {
         <h2 id="history-title">Recent rounds</h2>
         {failed && <p>We could not load your history. Please try again later.</p>}
         {!failed && history === null && <p role="status">Loading...</p>}
-        {history && history.length === 0 && <p className={ui.muted}>No rounds yet. Play one to see it here.</p>}
+        {history && history.length === 0 && <p className={ui.muted}>No rounds yet.</p>}
         {history && history.length > 0 && (
           <ul className={styles.list}>
             {history.map((round) => (

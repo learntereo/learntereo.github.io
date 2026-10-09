@@ -105,7 +105,7 @@ export function KiwianaHero() {
           <p className={ui.muted}>
             {progress.ready
               ? 'Ready! Take the Kiwiz to unlock'
-              : `${progress.slot.unit.title}: ${progress.learned} of ${progress.total} items learned · pass the Kiwiz to unlock`}
+              : `${progress.slot.unit.title}: ${progress.learned} of ${progress.total} items learned`}
           </p>
         </div>
       )}

@@ -4,7 +4,7 @@ import { useAuth } from '../../auth/AuthContext';
 import { unitsForLevel, units } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { LEVELS, type Level } from '../../game/types';
-import { PASS_PERCENT, CHECK_SIZE, passMark } from '../../game/unitRound';
+import { CHECK_SIZE } from '../../game/unitRound';
 import type { UnitStatus } from '../../game/unitUnlock';
 import { TREASURE_COUNT, nextTreasure, rankFor, treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
 import { TitleBreakdown } from '../components/Breakdown';
@@ -12,8 +12,7 @@ import { TreasureIcon } from '../components/Treasure';
 import { TreasureButton } from '../components/TreasureButton';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
-import { canResume, roundPath } from '../paths';
+import { LEVEL_LABEL } from '../labels';
 import styles from './Home.module.css';
 
 function LockIcon() {
@@ -127,14 +126,13 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
     return (
       <section className={`${ui.card} ${styles.soon}`} aria-labelledby={`level-${level}`}>
         <h2 id={`level-${level}`}>{LEVEL_LABEL[level]}</h2>
-        <p className={ui.muted}>Coming soon. Finish Intermediate and more units will be waiting for you.</p>
+        <p className={ui.muted}>Coming soon.</p>
       </section>
     );
   }
 
   const rows = levelUnits.map((u) => statuses.get(u.id)).filter((s): s is UnitStatus => s !== undefined);
   const complete = rows.filter((s) => s.state === 'complete').length;
-  const levelLocked = rows.every((s) => s.state === 'locked');
 
   return (
     <section aria-labelledby={`level-${level}`} className={styles.level}>
@@ -144,7 +142,6 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
           {complete} / {rows.length} units
         </span>
       </div>
-      {levelLocked && <p className={ui.muted}>Complete units before this level to open it.</p>}
       <ol className={styles.path}>
         {rows.flatMap((status) => {
           const slot = treasureAfter(status.unit.id, SLOTS);
@@ -175,7 +172,7 @@ function KiwianaCard() {
         <p className={styles.kiwianaCount}>
           {count} / {TREASURE_COUNT} collected <span className={styles.rankChip}>{rankFor(count).name}</span>
         </p>
-        <p className={ui.muted}>{next ? `Finish ${next.unit.title} to unlock it.` : 'You have collected them all.'}</p>
+        <p className={ui.muted}>{next ? `Finish ${next.unit.title} to unlock it.` : 'All collected.'}</p>
         <Link to="/kiwiana">See your Kiwiana</Link>
       </div>
     </section>
@@ -184,7 +181,7 @@ function KiwianaCard() {
 
 export function Home() {
   const { user } = useAuth();
-  const { profile, activeRound, statuses, dueCount } = useAppData();
+  const { profile, statuses, dueCount } = useAppData();
   const displayName = profile?.display_name ?? user?.email ?? 'learner';
 
   // The open units that are not complete yet (up to three, in course order).
@@ -195,47 +192,21 @@ export function Home() {
   const openIds = new Set(openUnits.map((u) => u.id));
   const allDone = units.every((u) => statuses.get(u.id)?.state === 'complete');
 
-  const resumeIndex =
-    activeRound && typeof activeRound.state === 'object' && activeRound.state !== null
-      ? Number((activeRound.state as { index?: unknown }).index ?? 0)
-      : 0;
-  const resumable = activeRound && canResume(activeRound);
-  const resumeUnit = activeRound?.unit_id ? units.find((u) => u.id === activeRound.unit_id) : undefined;
-
   return (
     <main className={ui.page}>
       <div>
         <h1 className={styles.greeting}>
           Kia ora, <span lang="mi">{displayName}</span>
         </h1>
-        <p className={ui.muted}>
-          Learn new words, practise them, then pass the Kiwiz ({passMark(CHECK_SIZE)} of {CHECK_SIZE}, or{' '}
-          {PASS_PERCENT}%) to open another unit. Three units stay open at a time.
-        </p>
       </div>
 
       <KowhaiwhaiBorder height={20} />
 
       <KiwianaCard />
 
-      {resumable && (
-        <section className={`${ui.card} ${styles.resume}`} aria-labelledby="resume-title">
-          <h2 id="resume-title">Resume round</h2>
-          <p className={ui.muted}>
-            {resumeUnit ? `${resumeUnit.title} · ` : `${LEVEL_LABEL[activeRound.level]} · `}
-            {ROUND_MODE_LABEL[activeRound.mode]} &middot; question {Math.min(resumeIndex + 1, activeRound.total)} of{' '}
-            {activeRound.total}
-          </p>
-          <Link className={ui.button} to={roundPath(activeRound, true)}>
-            Resume round
-          </Link>
-        </section>
-      )}
-
       {dueCount > 0 && (
         <section className={`${ui.card} ${styles.reviewCard}`} aria-labelledby="review-title">
           <h2 id="review-title">Review ({dueCount} due)</h2>
-          <p className={ui.muted}>A quick round on words that are ready to be remembered again.</p>
           <Link className={ui.button} to="/review">
             Start review
           </Link>
@@ -274,7 +245,6 @@ export function Home() {
           <h2>
             <span lang="mi">Ka rawe!</span> Every unit is complete
           </h2>
-          <p className={ui.muted}>Use Free practice to keep your words fresh.</p>
         </section>
       )}
 
@@ -284,7 +254,6 @@ export function Home() {
 
       <section className={ui.card} aria-labelledby="free-title">
         <h2 id="free-title">Free practice</h2>
-        <p className={ui.muted}>Pick a level and a game: Match, Translate, Order, Picture or Mixed.</p>
         <Link className={`${ui.button} ${ui.secondary}`} to="/practice">
           Open free practice
         </Link>
