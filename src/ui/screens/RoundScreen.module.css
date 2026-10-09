@@ -1,0 +1,26 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.exit {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap-target-min);
+}
+
+.count {
+  margin: 0;
+  font-weight: 600;
+}
+
+.streak {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.back {
+  margin: var(--space-4) 0 0;
+}

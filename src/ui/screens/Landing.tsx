@@ -2,6 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { Link, Navigate } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
 import { isSupabaseConfigured } from '../../data/supabaseClient';
+import { KoruMark, KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import styles from './Landing.module.css';
 
 type Mode = 'signin' | 'signup' | 'forgot';
@@ -56,7 +57,10 @@ export function Landing() {
 
   return (
     <main className={styles.page}>
+      <KowhaiwhaiBorder className={styles.topBorder} />
+
       <div className={styles.brand}>
+        <KoruMark size={44} className={styles.mark} />
         <h1 className={styles.brandName} lang="mi">
           Ako
         </h1>

@@ -1,0 +1,45 @@
+.back {
+  display: inline-block;
+  min-height: var(--tap-target-min);
+  line-height: var(--tap-target-min);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.mode {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 72px;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color var(--motion-duration) var(--motion-ease);
+}
+
+.mode:hover,
+.mode:focus-visible {
+  border-color: var(--color-kokowai);
+}
+
+.modeName {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-kokowai);
+}
+
+.notice {
+  background: #fff7e6;
+  border: 1px solid var(--color-karaka);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin: 0;
+}

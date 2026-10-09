@@ -1,4 +1,5 @@
 import { supabase } from './supabaseClient';
+import { withRetry } from './retry';
 
 export interface Profile {
   id: string;
@@ -12,15 +13,29 @@ export interface Profile {
   updated_at: string;
 }
 
-export async function getProfile(userId: string): Promise<Profile> {
+export type ProfilePatch = Partial<
+  Pick<Profile, 'display_name' | 'xp' | 'current_streak' | 'longest_streak' | 'last_active_date' | 'beginner_completed_at'>
+>;
+
+export function requireClient() {
   if (!supabase) throw new Error('Supabase is not configured');
-  const { data, error } = await supabase.from('profiles').select('*').eq('id', userId).single();
+  return supabase;
+}
+
+export function getProfile(userId: string): Promise<Profile> {
+  return withRetry(async () => {
+    const { data, error } = await requireClient().from('profiles').select('*').eq('id', userId).single();
+    if (error) throw error;
+    return data as Profile;
+  });
+}
+
+export async function updateProfile(userId: string, patch: ProfilePatch): Promise<void> {
+  const { error } = await requireClient().from('profiles').update(patch).eq('id', userId);
   if (error) throw error;
-  return data as Profile;
 }
 
 export async function deleteMyAccount(): Promise<void> {
-  if (!supabase) throw new Error('Supabase is not configured');
-  const { error } = await supabase.rpc('delete_my_account');
+  const { error } = await requireClient().rpc('delete_my_account');
   if (error) throw error;
 }

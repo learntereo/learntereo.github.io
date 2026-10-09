@@ -1,0 +1,43 @@
+.score {
+  text-align: center;
+}
+
+.big {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: var(--space-3) 0 var(--space-4);
+  color: var(--color-pounamu);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.facts div {
+  background: var(--color-grey-100);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-2);
+}
+
+.facts dt {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.unlock {
+  text-align: center;
+  border: 2px solid var(--color-karaka);
+  background: #fffaf0;
+}

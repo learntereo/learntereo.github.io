@@ -47,6 +47,13 @@ button {
   min-height: var(--tap-target-min);
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--color-karaka);
+  outline-offset: 2px;
+}
+
 [lang='mi'] {
   font-style: normal;
 }
