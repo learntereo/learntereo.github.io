@@ -7,7 +7,9 @@ import { LEVELS, type Level } from '../../game/types';
 import { CHECK_SIZE } from '../../game/unitRound';
 import type { UnitStatus } from '../../game/unitUnlock';
 import { TREASURE_COUNT, nextTreasure, rankFor, treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
+import { FACTS, unlockedFactCount } from '../../content/facts';
 import { TitleBreakdown } from '../components/Breakdown';
+import { KnowReroButton, KnowReroIcon } from '../components/KnowRero';
 import { TreasureIcon } from '../components/Treasure';
 import { TreasureButton } from '../components/TreasureButton';
 import ui from '../components/ui.module.css';
@@ -53,7 +55,7 @@ function TreasureNode({ slot, unlocked }: { slot: TreasureSlot; unlocked: boolea
   const [hint, setHint] = useState(false);
   const { treasure, unit } = slot;
   return (
-    <li className={styles.treasure}>
+    <>
       {unlocked ? (
         <TreasureButton treasure={treasure} size={36} className={styles.treasureButton}>
           <span className={styles.treasureName}>{treasure.name}</span>
@@ -65,6 +67,32 @@ function TreasureNode({ slot, unlocked }: { slot: TreasureSlot; unlocked: boolea
           <span className={ui.visuallyHidden}>Locked treasure. Finish {unit.title} to unlock.</span>
         </button>
       )}
+    </>
+  );
+}
+
+/** The Know-rero node for a unit: its fact once the unit is complete, a padlock until then. */
+function KnowReroNode({ status }: { status: UnitStatus }) {
+  const [hint, setHint] = useState(false);
+  const { unit } = status;
+  if (status.state === 'complete') {
+    return <KnowReroButton unitId={unit.id} unitTitle={unit.title} size={36} className={styles.treasureButton} />;
+  }
+  return (
+    <button type="button" className={styles.treasureButton} onClick={() => setHint(!hint)} aria-expanded={hint}>
+      <KnowReroIcon size={36} locked />
+      <span>{hint ? `Finish ${unit.title} to unlock` : 'Know-rero'}</span>
+      <span className={ui.visuallyHidden}>Locked Know-rero. Finish {unit.title} to unlock.</span>
+    </button>
+  );
+}
+
+/** The quiet row after a unit: its kiwiana treasure (when it has one) and its Know-rero side by side. */
+function PathExtras({ status, slot, unlocked }: { status: UnitStatus; slot: TreasureSlot | undefined; unlocked: boolean }) {
+  return (
+    <li className={styles.treasure}>
+      {slot && <TreasureNode slot={slot} unlocked={unlocked} />}
+      <KnowReroNode status={status} />
     </li>
   );
 }
@@ -144,9 +172,10 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
         {rows.flatMap((status) => {
           const slot = treasureAfter(status.unit.id, SLOTS);
           const row = <UnitRow key={status.unit.id} status={status} isNext={openIds.has(status.unit.id)} />;
-          return slot
-            ? [row, <TreasureNode key={`t-${slot.treasure.id}`} slot={slot} unlocked={unlocked.has(slot.treasure.id)} />]
-            : [row];
+          return [
+            row,
+            <PathExtras key={`x-${status.unit.id}`} status={status} slot={slot} unlocked={slot ? unlocked.has(slot.treasure.id) : false} />,
+          ];
         })}
       </ol>
     </section>
@@ -154,6 +183,21 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
 }
 
 /** Sells the collection: how many are collected, what comes next and what unlocks it. */
+/** Know-rero: how many facts are unlocked, and a link to all of them. */
+function KnowReroCard() {
+  const { statuses } = useAppData();
+  const count = unlockedFactCount((id) => statuses.get(id)?.state === 'complete');
+  return (
+    <section className={`${ui.card} ${styles.knowReroCard}`} aria-labelledby="know-rero-title">
+      <h2 id="know-rero-title">Know-rero</h2>
+      <p className={styles.kiwianaCount}>
+        {count} / {FACTS.length}
+      </p>
+      <Link to="/know-rero">See all Know-rero</Link>
+    </section>
+  );
+}
+
 function KiwianaCard() {
   const { statuses } = useAppData();
   const unlocked = unlockedTreasureIds(SLOTS, statuses);
@@ -208,6 +252,8 @@ export function Home() {
       </div>
 
       <KiwianaCard />
+
+      <KnowReroCard />
 
       {dueCount > 0 && (
         <section className={`${ui.card} ${styles.reviewCard}`} aria-labelledby="review-title">
