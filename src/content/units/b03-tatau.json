@@ -51,6 +51,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "tahi",
+      "miAlt": [
+        "kotahi"
+      ],
       "en": [
         "one",
         "1"
@@ -61,6 +64,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "rua",
+      "miAlt": [
+        "e rua"
+      ],
       "en": [
         "two",
         "2"
@@ -71,6 +77,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "toru",
+      "miAlt": [
+        "e toru"
+      ],
       "en": [
         "three",
         "3"
@@ -81,6 +90,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "whā",
+      "miAlt": [
+        "e whā"
+      ],
       "en": [
         "four",
         "4"
@@ -91,6 +103,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "rima",
+      "miAlt": [
+        "e rima"
+      ],
       "en": [
         "five",
         "5"
@@ -101,6 +116,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "ono",
+      "miAlt": [
+        "e ono"
+      ],
       "en": [
         "six",
         "6"
@@ -111,6 +129,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "whitu",
+      "miAlt": [
+        "e whitu"
+      ],
       "en": [
         "seven",
         "7"
@@ -121,6 +142,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "waru",
+      "miAlt": [
+        "e waru"
+      ],
       "en": [
         "eight",
         "8"
@@ -131,6 +155,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "iwa",
+      "miAlt": [
+        "e iwa"
+      ],
       "en": [
         "nine",
         "9"
@@ -141,6 +168,9 @@
       "kind": "word",
       "level": "beginner",
       "mi": "tekau",
+      "miAlt": [
+        "e tekau"
+      ],
       "en": [
         "ten",
         "10"
@@ -161,10 +191,28 @@
       "id": "w-b-077",
       "kind": "word",
       "level": "beginner",
-      "mi": "hia",
+      "mi": "e hia",
+      "miAlt": [
+        "hia"
+      ],
       "en": [
         "how many"
-      ]
+      ],
+      "breakdown": {
+        "tokens": [
+          {
+            "mi": "e",
+            "en": "(number marker)",
+            "ref": "e"
+          },
+          {
+            "mi": "hia",
+            "en": "how many"
+          }
+        ],
+        "literal": "how many",
+        "note": "E goes before a number, and hia asks 'how many'. On its own, hia also means 'how many' and is used inside other words such as tokohia."
+      }
     },
     {
       "id": "w-b-078",

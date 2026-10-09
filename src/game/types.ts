@@ -35,6 +35,8 @@ export interface WordItem {
   kind: 'word';
   level: Level;
   mi: string;
+  /** Other Māori forms accepted when the learner writes this word (the canonical form is mi). */
+  miAlt?: string[];
   en: string[];
   image?: ItemImage;
   breakdown?: Breakdown;
@@ -45,6 +47,8 @@ export interface SentenceItem {
   kind: 'sentence';
   level: Level;
   mi: string;
+  /** Other Māori forms accepted when the learner writes this sentence. */
+  miAlt?: string[];
   en: string[];
   tiles: string[];
   altOrders?: string[][];

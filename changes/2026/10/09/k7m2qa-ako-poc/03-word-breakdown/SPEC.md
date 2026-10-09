@@ -4,6 +4,7 @@
 | W11 | Naming | "Only call it New Zealand" | User |
 | W12 | Rewards | "On Progress make kiwiana the big thing to collect, it's too hidden away, needs gamification" | User |
 | W13 | Practice | "Why is ata mārie part of numbers? It shouldn't be" (unit practice now uses only the unit's own items) | User |
+| W14 | Marking | "I put 'e hia' for how many but it only accepts 'hia'; this should be close enough" | User |
 ---
 title: Ako v2.1: Word-by-word breakdowns and layout polish
 type: feature

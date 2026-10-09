@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { getItem } from '../../content/content';
-import { deleteBeforeCursor, insertAtCursor, isWriteCorrect, markWrite, writeNote } from '../../game/macronMarking';
+import { deleteBeforeCursor, insertAtCursor, isWriteCorrect, markWriteItem, writeNote } from '../../game/macronMarking';
 import { ItemImageView } from '../components/ItemImage';
 import ui from '../components/ui.module.css';
 import { BreakdownDisclosure } from '../components/Breakdown';
@@ -59,7 +59,7 @@ export function Write({ question, onDone }: ModeProps) {
     event.preventDefault();
     if (phase !== 'asking' || input.trim() === '') return;
 
-    const verdict = markWrite(input, item.mi);
+    const verdict = markWriteItem(input, item);
     if (isWriteCorrect(verdict)) {
       setPhase('correct');
       const note = writeNote(verdict, item.mi);
