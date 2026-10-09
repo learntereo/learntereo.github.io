@@ -48,7 +48,8 @@ const click = (el: Element) =>
 
 describe('Landing hero', () => {
   it('has the h1 with Māori marked up', () => {
-    expect(container.querySelector('h1')?.textContent).toBe('Learn te reo Māori');
+    expect(container.querySelector('h1')?.textContent).toBe('Learn te reo Māori for free');
+    expect(container.textContent).toContain('Free. No account needed to start.');
     expect(container.querySelector('h1 [lang="mi"]')?.textContent).toBe('Māori');
   });
 
@@ -108,6 +109,6 @@ describe('Landing pepeha card', () => {
   it('links to the pepeha builder', () => {
     const link = [...container.querySelectorAll('a')].find((a) => a.textContent === 'Open the pepeha builder')!;
     expect(link.getAttribute('href')).toBe(`${import.meta.env.BASE_URL}pepeha/`);
-    expect(container.textContent).toContain('Introduce yourself in te reo Māori. No sign-in needed.');
+    expect(container.textContent).toContain('Introduce yourself in te reo Māori. Free, and no sign-in needed.');
   });
 });
