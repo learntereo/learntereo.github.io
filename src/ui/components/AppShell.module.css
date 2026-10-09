@@ -132,3 +132,17 @@
 .icon {
   flex: none;
 }
+
+.badge {
+  display: inline-block;
+  min-width: 1.3em;
+  margin-left: var(--space-1);
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--color-kokowai);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}

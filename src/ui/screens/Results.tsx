@@ -91,6 +91,7 @@ export function Results() {
   const passedRound = (location.state as { round?: RoundRow } | null)?.round;
   const [fetched, setRound] = useState<RoundRow | null | undefined>(undefined);
   const round = passedRound && passedRound.id === roundId ? passedRound : fetched;
+  const { dueCount } = useAppData();
 
   useEffect(() => {
     if (!roundId || (passedRound && passedRound.id === roundId)) return;
@@ -159,7 +160,7 @@ export function Results() {
 
       <section className={`${ui.card} ${styles.score}`} aria-labelledby="results-title">
         <p className={ui.muted}>
-          {unit ? unit.title : LEVEL_LABEL[round.level]} &middot; {ROUND_MODE_LABEL[round.mode]}
+          {round.mode === 'review' ? 'Review' : `${unit ? unit.title : LEVEL_LABEL[round.level]} · ${ROUND_MODE_LABEL[round.mode]}`}
         </p>
         <h1 id="results-title">
           {isCheck && check ? (
@@ -201,6 +202,17 @@ export function Results() {
 
       {unit ? (
         <UnitActions round={round} unit={unit} summary={summary} />
+      ) : round.mode === 'review' ? (
+        <div className={ui.row}>
+          {(dueCount ?? 0) > 0 && (
+            <Link className={ui.button} to="/review">
+              Review more ({dueCount} due)
+            </Link>
+          )}
+          <Link className={`${ui.button} ${ui.secondary}`} to="/home">
+            Path
+          </Link>
+        </div>
       ) : (
         <div className={ui.row}>
           <Link className={ui.button} to={`/play/${round.level}/${round.mode}`}>

@@ -58,6 +58,7 @@ function appData(opts: { unitProgress?: UnitProgressRow[]; beginnerCompleted?: b
     unitProgress,
     statuses,
     openLevels: unlockedLevels(units, statuses),
+    dueCount: 0,
     activeRound: null,
     reload: async () => {},
     setProfile: () => {},

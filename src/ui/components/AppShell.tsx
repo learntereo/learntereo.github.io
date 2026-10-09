@@ -8,7 +8,7 @@ import ui from './ui.module.css';
 import styles from './AppShell.module.css';
 
 /** Question screens use the whole screen, so the tab bar steps out of the way. */
-const ROUND_ROUTE = /^\/(play\/[^/]+\/[^/]+|unit\/[^/]+\/(practice|check|learn))\/?$/;
+const ROUND_ROUTE = /^\/(review|play\/[^/]+\/[^/]+|unit\/[^/]+\/(practice|check|learn))\/?$/;
 
 function Icon({ children }: { children: ReactNode }) {
   return (
@@ -42,7 +42,7 @@ const TABS: readonly Tab[] = [
   {
     to: '/home',
     label: 'Learn',
-    match: /^\/(home|unit\/)/,
+    match: /^\/(home|unit\/|practice|play\/)/,
     icon: (
       <Icon>
         <path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2V5Z" />
@@ -51,12 +51,13 @@ const TABS: readonly Tab[] = [
     ),
   },
   {
-    to: '/practice',
-    label: 'Practice',
-    match: /^\/(practice|play\/)/,
+    to: '/review',
+    label: 'Review',
+    match: /^\/review/,
     icon: (
       <Icon>
-        <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />
+        <path d="M21 12a9 9 0 1 1-3-6.7" />
+        <path d="M21 4v5h-5" />
       </Icon>
     ),
   },
@@ -85,6 +86,7 @@ const TABS: readonly Tab[] = [
 
 function TabBar() {
   const { pathname } = useLocation();
+  const { dueCount } = useAppData();
   return (
     <nav className={styles.nav} aria-label="Main">
       {TABS.map((tab) => {
@@ -97,7 +99,14 @@ function TabBar() {
             aria-current={active ? 'page' : undefined}
           >
             {tab.icon}
-            <span>{tab.label}</span>
+            <span>
+              {tab.label}
+              {tab.to === '/review' && dueCount > 0 && (
+                <span className={styles.badge} aria-label={`${dueCount} due`}>
+                  {dueCount}
+                </span>
+              )}
+            </span>
           </NavLink>
         );
       })}

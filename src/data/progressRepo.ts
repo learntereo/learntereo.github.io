@@ -1,3 +1,4 @@
+import { NEW_SRS } from '../game/srs';
 import type { ItemOutcome } from '../game/types';
 import { withRetry } from './retry';
 import { requireClient } from './profileRepo';
@@ -16,8 +17,6 @@ export interface ItemProgressRow {
   lapses: number;
 }
 
-/** The SRS values a brand new row starts with. */
-export const NEW_SRS = { ease: 2.5, interval_days: 1, due_on: null, lapses: 0 } as const;
 
 /**
  * Merge a round's item results into existing progress rows (the client merges

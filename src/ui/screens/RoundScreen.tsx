@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
-import { allItems, getUnit, itemsById, units } from '../../content/content';
+import { allItems, getItem, getUnit, itemsById, units } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { updateProfile } from '../../data/profileRepo';
 import { mergeAttempts, recordAttempts } from '../../data/progressRepo';
@@ -10,6 +10,7 @@ import { saveQueue } from '../../data/saveQueue';
 import { applyCheckResult, emptyUnitProgress, saveUnitProgress } from '../../data/unitProgressRepo';
 import { openItems } from '../../game/freePractice';
 import { createRng, randomSeed } from '../../game/rng';
+import { generateReview } from '../../game/reviewRound';
 import { generateRound } from '../../game/roundGenerator';
 import {
   createRound,
@@ -21,6 +22,7 @@ import {
   serialiseRound,
   validateRoundState,
 } from '../../game/roundState';
+import { REVIEW_LIMIT, applySrs, selectDue } from '../../game/srs';
 import { displayStreak, nextStreak, toLocalDateString } from '../../game/streak';
 import type { Level, Mode, Outcome, Question, RoundMode, RoundState, RoundSummary, Unit, UnitCheckSummary } from '../../game/types';
 import { generateUnitCheck, generateUnitPractice, isPass, missedItemIds } from '../../game/unitRound';
@@ -41,18 +43,21 @@ import styles from './RoundScreen.module.css';
 type RoundSpec =
   | { kind: 'free'; level: Level; mode: Mode }
   | { kind: 'practice'; unit: Unit }
-  | { kind: 'check'; unit: Unit };
+  | { kind: 'check'; unit: Unit }
+  | { kind: 'review' };
 
 function specMode(spec: RoundSpec): RoundMode {
-  return spec.kind === 'free' ? spec.mode : spec.kind === 'practice' ? 'unit_practice' : 'unit_check';
+  if (spec.kind === 'free') return spec.mode;
+  return spec.kind === 'practice' ? 'unit_practice' : spec.kind === 'check' ? 'unit_check' : 'review';
 }
 
 function specLevel(spec: RoundSpec): Level {
+  if (spec.kind === 'review') return 'beginner'; // replaced by the level of the first due item
   return spec.kind === 'free' ? spec.level : spec.unit.level;
 }
 
 function specUnit(spec: RoundSpec): Unit | undefined {
-  return spec.kind === 'free' ? undefined : spec.unit;
+  return spec.kind === 'free' || spec.kind === 'review' ? undefined : spec.unit;
 }
 
 type Phase =
@@ -83,6 +88,31 @@ export function UnitRoundScreen({ kind }: { kind: 'practice' | 'check' }) {
   return <Round key={`${kind}/${unit.id}`} spec={{ kind, unit }} />;
 }
 
+/** Review: up to 15 items that are due, most overdue first (#/review). */
+export function ReviewScreen() {
+  const { dueCount, activeRound } = useAppData();
+  const [search] = useSearchParams();
+  // Frozen when the screen opens, so finishing a round does not flip this screen to "all caught up".
+  const [dueAtStart] = useState(dueCount);
+  const resuming = search.get('resume') === '1' && activeRound?.mode === 'review';
+  if (dueAtStart === 0 && !resuming) {
+    return (
+      <main className={ui.page}>
+        <section className={ui.card}>
+          <h1>
+            <span lang="mi">Kua oti!</span> All caught up
+          </h1>
+          <p className={ui.muted}>Nothing is due for review right now. Words come back after a day or more, depending on how well you know them.</p>
+          <Link className={ui.button} to="/home">
+            Back to the Path
+          </Link>
+        </section>
+      </main>
+    );
+  }
+  return <Round key="review" spec={{ kind: 'review' }} />;
+}
+
 function Round({ spec }: { spec: RoundSpec }) {
   const level = specLevel(spec);
   const roundMode = specMode(spec);
@@ -96,13 +126,21 @@ function Round({ spec }: { spec: RoundSpec }) {
   const [phase, setPhase] = useState<Phase>({ kind: 'starting' });
   const started = useRef(false);
 
-  const exitTo = unit ? `/unit/${unit.id}` : '/practice';
+  const exitTo = unit ? `/unit/${unit.id}` : spec.kind === 'review' ? '/home' : '/practice';
   const levelOpen = unit !== undefined || openLevels.includes(level);
 
   function buildQuestions(): Question[] {
     const rng = createRng(randomSeed());
     if (spec.kind === 'practice') return generateUnitPractice(spec.unit, units, allItems, learned, rng);
     if (spec.kind === 'check') return generateUnitCheck(spec.unit, allItems, rng);
+    if (spec.kind === 'review') {
+      const due = selectDue(progress.values(), toLocalDateString(new Date()), REVIEW_LIMIT, (id) => itemsById.has(id));
+      return generateReview(
+        due.map((row) => itemsById.get(row.item_id)!),
+        allItems,
+        rng,
+      );
+    }
     return generateRound(openItems(allItems, units, statuses), spec.level, spec.mode, learned, rng);
   }
 
@@ -116,7 +154,7 @@ function Round({ spec }: { spec: RoundSpec }) {
     const score = scoreOf(state);
 
     const attempts = state.outcomes.flatMap((o) => o.items);
-    const rows = mergeAttempts(user.id, progress, attempts, nowIso);
+    const rows = applySrs(mergeAttempts(user.id, progress, attempts, nowIso), state.outcomes, toLocalDateString(now));
     const nowLearned = new Set(learned);
     for (const row of rows) if (row.first_correct_at) nowLearned.add(row.item_id);
     const newlyLearned = [...nowLearned].filter((id) => !learned.has(id)).length;
@@ -191,8 +229,12 @@ function Round({ spec }: { spec: RoundSpec }) {
     if (!user) return;
     setPhase({ kind: 'starting' });
     try {
-      const state = createRound(level, roundMode, buildQuestions(), unit?.id);
-      const row = await startRound(user.id, level, roundMode, serialiseRound(state), unit?.id ?? null);
+      const questions = buildQuestions();
+      if (questions.length === 0) throw new Error('Nothing to ask');
+      // A review mixes levels; it is filed under the level of its first item.
+      const roundLevel = spec.kind === 'review' ? (getItem(questions[0].itemIds[0])?.level ?? level) : level;
+      const state = createRound(roundLevel, roundMode, questions, unit?.id);
+      const row = await startRound(user.id, roundLevel, roundMode, serialiseRound(state), unit?.id ?? null);
       data.setActiveRound(row);
       setPhase({ kind: 'playing', roundId: row.id, state });
     } catch (error) {
@@ -252,7 +294,7 @@ function Round({ spec }: { spec: RoundSpec }) {
     const sameRound = activeRound && activeRound.mode === roundMode && (activeRound.unit_id ?? null) === (unit?.id ?? null);
     // Start-up work depends on loaded data and runs exactly once per visit.
     /* eslint-disable react-hooks/set-state-in-effect */
-    if (activeRound && wantsResume && sameRound && activeRound.level === level) {
+    if (activeRound && wantsResume && sameRound && (spec.kind !== 'free' || activeRound.level === level)) {
       void resume(activeRound);
     } else if (activeRound) {
       setPhase({ kind: 'conflict', existing: activeRound });
@@ -353,7 +395,7 @@ function Round({ spec }: { spec: RoundSpec }) {
 
   const modeProps = {
     question,
-    level,
+    level: state.level,
     // A unit check never points out the right spot on a board.
     hints: state.mode !== 'unit_check',
     onDone: (outcome: Outcome) => handleDone(roundId, state, outcome),
@@ -366,7 +408,7 @@ function Round({ spec }: { spec: RoundSpec }) {
           Save and exit
         </Link>
         <span className={ui.muted}>
-          {unit ? unit.title : LEVEL_LABEL[level]} &middot; {ROUND_MODE_LABEL[roundMode]}
+          {spec.kind === 'review' ? 'Review' : `${unit ? unit.title : LEVEL_LABEL[level]} · ${ROUND_MODE_LABEL[roundMode]}`}
         </span>
       </div>
 

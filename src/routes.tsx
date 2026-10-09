@@ -9,7 +9,7 @@ import { ModePicker } from './ui/screens/ModePicker';
 import { Practice } from './ui/screens/Practice';
 import { Privacy } from './ui/screens/Privacy';
 import { Progress } from './ui/screens/Progress';
-import { RoundScreen, UnitRoundScreen } from './ui/screens/RoundScreen';
+import { ReviewScreen, RoundScreen, UnitRoundScreen } from './ui/screens/RoundScreen';
 import { ResetPassword } from './ui/screens/ResetPassword';
 import { Results } from './ui/screens/Results';
 import { UnitScreen } from './ui/screens/UnitScreen';
@@ -28,6 +28,7 @@ export function AppRoutes() {
           <Route path="/unit/:unitId/learn" element={<LearnDeck />} />
           <Route path="/unit/:unitId/practice" element={<UnitRoundScreen kind="practice" />} />
           <Route path="/unit/:unitId/check" element={<UnitRoundScreen kind="check" />} />
+          <Route path="/review" element={<ReviewScreen />} />
           <Route path="/practice" element={<Practice />} />
           <Route path="/play/:level" element={<ModePicker />} />
           <Route path="/play/:level/:mode" element={<RoundScreen />} />

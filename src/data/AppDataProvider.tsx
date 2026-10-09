@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useAuth } from '../auth/AuthContext';
-import { units } from '../content/content';
+import { itemsById, units } from '../content/content';
+import { backfillDueDates, countDue } from '../game/srs';
+import { toLocalDateString } from '../game/streak';
 import { learnedIds } from '../game/unlock';
 import { computeUnitStatuses, unlockedLevels } from '../game/unitUnlock';
 import { showToast } from '../lib/toastBus';
 import { AppDataContext, type AppData } from './AppDataContext';
 import { getProfile, type Profile } from './profileRepo';
-import { getItemProgress, type ItemProgressRow } from './progressRepo';
+import { getItemProgress, recordAttempts, type ItemProgressRow } from './progressRepo';
 import { getActiveRound, type RoundRow } from './roundRepo';
+import { saveQueue } from './saveQueue';
 import { getUnitProgress, type UnitProgressRow } from './unitProgressRepo';
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
@@ -28,8 +31,13 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         getUnitProgress(),
         getActiveRound(),
       ]);
+      // Items learned before Review existed have no schedule: they fall due today, 15 at a time.
+      const backfilled = backfillDueDates(rows, toLocalDateString(new Date()));
+      const byItem = new Map(rows.map((r) => [r.item_id, r]));
+      for (const row of backfilled) byItem.set(row.item_id, row);
+      if (backfilled.length > 0) void saveQueue.enqueue(`backfill:${userId}`, () => recordAttempts(backfilled));
       setProfile(p);
-      setProgressMap(new Map(rows.map((r) => [r.item_id, r])));
+      setProgressMap(byItem);
       setUnitProgressMap(new Map(unitRows.map((r) => [r.unit_id, r])));
       setActiveRound(round);
       setStatus('ready');
@@ -73,6 +81,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       unitProgress,
       statuses,
       openLevels: unlockedLevels(units, statuses),
+      dueCount: countDue(progress.values(), toLocalDateString(new Date()), (id) => itemsById.has(id)),
       activeRound,
       reload,
       setProfile,

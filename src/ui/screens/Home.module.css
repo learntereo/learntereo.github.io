@@ -13,6 +13,16 @@
   border-width: 2px;
 }
 
+/* ---------- review ---------- */
+.reviewCard {
+  border-color: var(--color-karaka);
+  border-width: 2px;
+}
+
+.reviewCard h2 {
+  margin-bottom: var(--space-1);
+}
+
 /* ---------- next up ---------- */
 .nextCard {
   border-color: var(--color-pounamu);

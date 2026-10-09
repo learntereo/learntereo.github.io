@@ -176,7 +176,7 @@ export function validateRoundState(raw: unknown, itemsById: ReadonlyMap<string, 
   const index = raw.index as number;
 
   if (raw.questions.length < originalCount) return null;
-  if (!raw.questions.every((q) => validQuestion(q, itemsById, isUnitRound ? null : level))) return null;
+  if (!raw.questions.every((q) => validQuestion(q, itemsById, isUnitRound || raw.mode === 'review' ? null : level))) return null;
   if (!raw.outcomes.every(validOutcome)) return null;
   if (index < 0 || index > raw.questions.length) return null;
   if (raw.outcomes.length !== index) return null;
