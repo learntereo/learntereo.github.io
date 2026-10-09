@@ -30,8 +30,10 @@ import { showToast } from '../../lib/toastBus';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel, isMode } from '../labels';
 import { BoardGame } from '../modes/BoardGame';
+import { Gap } from '../modes/Gap';
 import { Order } from '../modes/Order';
 import { Translate } from '../modes/Translate';
+import { Write } from '../modes/Write';
 import { roundPath } from '../paths';
 import styles from './RoundScreen.module.css';
 
@@ -388,6 +390,10 @@ function Round({ spec }: { spec: RoundSpec }) {
         <BoardGame key={state.index} {...modeProps} />
       ) : question.mode === 'translate' ? (
         <Translate key={state.index} {...modeProps} />
+      ) : question.mode === 'write' ? (
+        <Write key={state.index} {...modeProps} />
+      ) : question.mode === 'gap' ? (
+        <Gap key={state.index} {...modeProps} />
       ) : (
         <Order key={state.index} {...modeProps} />
       )}

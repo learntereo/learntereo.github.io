@@ -1,5 +1,5 @@
 export type Level = 'beginner' | 'intermediate' | 'advanced';
-export type Mode = 'match' | 'translate' | 'order' | 'picture' | 'mixed';
+export type Mode = 'match' | 'picture' | 'translate' | 'write' | 'gap' | 'order' | 'mixed';
 /** A single question is never "mixed": Mixed rounds pick one of these per question. */
 export type QuestionMode = Exclude<Mode, 'mixed'>;
 
@@ -7,7 +7,7 @@ export type QuestionMode = Exclude<Mode, 'mixed'>;
 export type RoundMode = Mode | 'unit_practice' | 'unit_check' | 'review';
 
 export const LEVELS: readonly Level[] = ['beginner', 'intermediate', 'advanced'];
-export const MODES: readonly Mode[] = ['match', 'translate', 'order', 'picture', 'mixed'];
+export const MODES: readonly Mode[] = ['match', 'picture', 'translate', 'write', 'gap', 'order', 'mixed'];
 export const ROUND_MODES: readonly RoundMode[] = [...MODES, 'unit_practice', 'unit_check', 'review'];
 
 export type ItemImage = { emoji: string } | { svg: string };
@@ -66,6 +66,10 @@ export interface Question {
   itemIds: string[];
   /** Order only: the decoy tiles chosen when the round was generated. */
   decoys?: string[];
+  /** Fill the gap only: which tile is blanked. */
+  gapIndex?: number;
+  /** Fill the gap only: the answer and its distractors, shuffled when the round was generated. */
+  options?: string[];
   /** True when this is the second, final attempt at a missed question. */
   requeued: boolean;
 }
@@ -73,6 +77,11 @@ export interface Question {
 export interface ItemOutcome {
   itemId: string;
   correct: boolean;
+  /**
+   * How this item went on its own. Boards set it per word; for single-item
+   * questions it is the question result and may be left out.
+   */
+  result?: Result;
 }
 
 /** The recorded result of one answered question. */

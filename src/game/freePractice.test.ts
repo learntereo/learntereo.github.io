@@ -39,6 +39,8 @@ describe('availableModes', () => {
     expect(availableModes(items.filter((i) => i.level === 'beginner'), 'beginner')).toEqual([
       'match',
       'translate',
+      'write',
+      'gap',
       'order',
       'picture',
       'mixed',
@@ -47,7 +49,7 @@ describe('availableModes', () => {
 
   it('drops match and picture when the open words are few', () => {
     const few = openItems(items, units, statusesFor([]));
-    expect(availableModes(few, 'beginner')).toEqual(['translate', 'order', 'mixed']);
+    expect(availableModes(few, 'beginner')).toEqual(['translate', 'write', 'gap', 'order', 'mixed']);
   });
 
   it('is empty when nothing is open', () => {
