@@ -1,13 +1,17 @@
 import { Link, Navigate, useParams } from 'react-router';
-import { getUnit, grammarFor, sentencesForUnit, wordsForUnit } from '../../content/content';
+import { getUnit, grammarFor, sentencesForUnit, units, wordsForUnit } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
+import { treasureAfter, treasureSlots } from '../../game/treasures';
 import { CHECK_SIZE, PRACTICE_SIZE, passMark } from '../../game/unitRound';
 import { BreakdownDisclosure, TitleBreakdown } from '../components/Breakdown';
 import { GrammarNote } from '../components/GrammarNote';
 import { ItemImageView } from '../components/ItemImage';
+import { TreasureIcon } from '../components/Treasure';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL } from '../labels';
 import styles from './UnitScreen.module.css';
+
+const SLOTS = treasureSlots(units);
 
 export function UnitScreen() {
   const { unitId } = useParams();
@@ -21,6 +25,7 @@ export function UnitScreen() {
   const grammar = grammarFor(unit);
   const percent = status.itemsTotal === 0 ? 0 : Math.round((status.itemsLearned / status.itemsTotal) * 100);
   const complete = status.state === 'complete';
+  const slot = treasureAfter(unit.id, SLOTS);
 
   return (
     <main className={ui.page}>
@@ -67,6 +72,23 @@ export function UnitScreen() {
           <div className={ui.barFill} style={{ width: `${percent}%` }} />
         </div>
       </section>
+
+      {slot && (
+        <section className={`${ui.card} ${styles.treasure}`} aria-label="Kiwiana treasure for this unit">
+          <TreasureIcon id={slot.treasure.id} size={48} locked={!complete} />
+          <p>
+            {complete ? (
+              <>
+                <strong>{slot.treasure.name}</strong> is in your Kiwiana. <Link to="/kiwiana">See your Kiwiana</Link>
+              </>
+            ) : (
+              <>
+                Finish this unit to unlock a kiwiana treasure. <Link to="/kiwiana">See your Kiwiana</Link>
+              </>
+            )}
+          </p>
+        </section>
+      )}
 
       <ol className={styles.steps}>
         <li className={`${ui.card} ${styles.step}`}>

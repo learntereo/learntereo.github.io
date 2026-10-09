@@ -88,13 +88,12 @@ const TABS: readonly Tab[] = [
     ),
   },
   {
-    to: '/account',
-    label: 'Account',
-    match: /^\/account/,
+    to: '/kiwiana',
+    label: 'Kiwiana',
+    match: /^\/kiwiana/,
     icon: (
       <Icon>
-        <circle cx="12" cy="8" r="4" />
-        <path d="M5 21a7 7 0 0 1 14 0" />
+        <path d="M12 3l2.6 5.6 6 .8-4.4 4.2 1.1 6L12 16.7 6.7 19.6l1.1-6L3.4 9.4l6-.8L12 3Z" />
       </Icon>
     ),
   },
@@ -131,6 +130,7 @@ function TabBar() {
 }
 
 function Header() {
+  const { pathname } = useLocation();
   const { profile, statuses } = useAppData();
   const treasures = unlockedTreasureIds(treasureSlots(units), statuses).size;
   const streak = profile ? displayStreak(profile, toLocalDateString(new Date())) : 0;
@@ -150,13 +150,24 @@ function Header() {
             <strong>{streak}</strong> day streak
           </span>
           <Link
-            to="/progress#kiwiana"
+            to="/kiwiana"
             className={styles.treasureCount}
             aria-label={`${treasures} of ${TREASURE_COUNT} kiwiana treasures collected`}
           >
             {treasures}/{TREASURE_COUNT}
           </Link>
         </div>
+        <Link
+          to="/account"
+          className={styles.accountLink}
+          aria-label="Account"
+          aria-current={pathname.startsWith('/account') ? 'page' : undefined}
+        >
+          <Icon>
+            <circle cx="12" cy="8" r="4" />
+            <path d="M5 21a7 7 0 0 1 14 0" />
+          </Icon>
+        </Link>
       </div>
       <KowhaiwhaiBorder height={20} />
     </header>

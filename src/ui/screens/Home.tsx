@@ -6,7 +6,7 @@ import { useAppData } from '../../data/AppDataContext';
 import { LEVELS, type Level } from '../../game/types';
 import { PASS_PERCENT, CHECK_SIZE, passMark } from '../../game/unitRound';
 import type { UnitStatus } from '../../game/unitUnlock';
-import { treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
+import { TREASURE_COUNT, nextTreasure, treasureAfter, treasureSlots, unlockedTreasureIds, type TreasureSlot } from '../../game/treasures';
 import { TitleBreakdown } from '../components/Breakdown';
 import { TreasureIcon } from '../components/Treasure';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
@@ -173,6 +173,26 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
   );
 }
 
+/** Sells the collection: how many are collected, what comes next and what unlocks it. */
+function KiwianaCard() {
+  const { statuses } = useAppData();
+  const count = unlockedTreasureIds(SLOTS, statuses).size;
+  const next = nextTreasure(SLOTS, statuses);
+  return (
+    <section className={`${ui.card} ${styles.kiwianaCard}`} aria-labelledby="kiwiana-title">
+      {next ? <TreasureIcon id={next.treasure.id} size={56} locked /> : <TreasureIcon id="golden-kiwi" size={56} />}
+      <div className={styles.kiwianaText}>
+        <h2 id="kiwiana-title">Collect all {TREASURE_COUNT} kiwiana</h2>
+        <p className={styles.kiwianaCount}>
+          {count} / {TREASURE_COUNT} collected
+        </p>
+        <p className={ui.muted}>{next ? `Finish ${next.unit.title} to unlock it.` : 'You have collected them all.'}</p>
+        <Link to="/kiwiana">See your Kiwiana</Link>
+      </div>
+    </section>
+  );
+}
+
 export function Home() {
   const { user } = useAuth();
   const { profile, activeRound, statuses, dueCount } = useAppData();
@@ -203,13 +223,11 @@ export function Home() {
           Learn new words, practise them, then pass the Kiwiz ({passMark(CHECK_SIZE)} of {CHECK_SIZE}, or{' '}
           {PASS_PERCENT}%) to open another unit. Three units stay open at a time.
         </p>
-        <p className={styles.treasureHint}>
-          <TreasureIcon id="paua" size={20} locked />
-          Keep learning to unlock kiwiana treasures along your path.
-        </p>
       </div>
 
       <KowhaiwhaiBorder height={20} />
+
+      <KiwianaCard />
 
       {resumable && (
         <section className={`${ui.card} ${styles.resume}`} aria-labelledby="resume-title">

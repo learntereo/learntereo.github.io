@@ -33,15 +33,18 @@ function TreasureUnlocked({ id }: { id: string }) {
       aria-labelledby="treasure-title"
     >
       {last && <KoruFlourish />}
-      <TreasureIcon id={treasure.id} size={last ? 96 : 48} />
+      <TreasureIcon id={treasure.id} size={last ? 96 : 56} />
       <div>
-        <h2 id="treasure-title">Treasure unlocked: {treasure.name}!</h2>
+        <h2 id="treasure-title">New kiwiana: {treasure.name}!</h2>
         <p className={ui.muted}>{treasure.caption}</p>
         {last && (
           <p>
             <span lang="mi">Ka rawe!</span> You have collected all {TREASURE_COUNT} kiwiana treasures.
           </p>
         )}
+        <Link className={`${ui.button} ${ui.secondary} ${styles.treasureLink}`} to="/kiwiana">
+          See your Kiwiana
+        </Link>
       </div>
     </section>
   );

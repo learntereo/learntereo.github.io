@@ -11,6 +11,7 @@ import type { UnitProgressRow } from '../../data/unitProgressRepo';
 import { computeUnitStatuses, unlockedLevels } from '../../game/unitUnlock';
 import { GrammarNote } from '../components/GrammarNote';
 import { Home } from './Home';
+import { Kiwiana } from './Kiwiana';
 import { LearnDeck } from './LearnDeck';
 import { UnitScreen } from './UnitScreen';
 
@@ -76,6 +77,7 @@ function renderAt(path: string, data: AppData) {
           <MemoryRouter initialEntries={[path]}>
             <Routes>
               <Route path="/home" element={<Home />} />
+              <Route path="/kiwiana" element={<Kiwiana />} />
               <Route path="/unit/:unitId" element={<UnitScreen />} />
               <Route path="/unit/:unitId/learn" element={<LearnDeck />} />
             </Routes>
@@ -217,22 +219,29 @@ describe('GrammarNote', () => {
   });
 });
 
-describe('Kiwiana treasures on the Path', () => {
+describe('Kiwiana on the Path', () => {
   const nodes = () => [...container.querySelectorAll('li')].filter((li) => li.textContent?.includes('Keep going to unlock'));
 
-  it('explains the idea once and shows ten quiet locked nodes for a new learner', () => {
+  it('sells the collection on Home: count, the next silhouette, what unlocks it and a link', () => {
     renderAt('/home', appData());
-    expect(container.textContent).toContain('Keep learning to unlock kiwiana treasures along your path.');
-    expect(nodes()).toHaveLength(10);
-    expect(container.textContent).toContain('Pass the Kiwiz in Family to unlock');
+    expect(container.textContent).toContain('Collect all 20 kiwiana');
+    expect(container.textContent).toContain('0 / 20 collected');
+    expect(container.textContent).toContain('Finish Greetings and introductions to unlock it.');
+    expect(container.querySelector('a[href="/kiwiana"]')?.textContent).toBe('See your Kiwiana');
+  });
+
+  it('shows quiet locked nodes between unit rows for a new learner', () => {
+    renderAt('/home', appData());
+    expect(nodes()).toHaveLength(20);
     expect(container.querySelector('button[aria-controls^="treasure-"]')).toBeNull();
   });
 
-  it('unlocks the Pāua after the second unit is complete, and a tap shows its caption', () => {
-    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings'), doneRow('b02-whanau')] }));
-    expect(nodes()).toHaveLength(9);
+  it('unlocks the first treasure after unit 1 and a tap shows its caption', () => {
+    renderAt('/home', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(nodes()).toHaveLength(19);
+    expect(container.textContent).toContain('1 / 20 collected');
+    expect(container.textContent).toContain('Finish Family to unlock it.');
     const paua = container.querySelector('button[aria-controls="treasure-paua"]') as HTMLButtonElement;
-    expect(paua.textContent).toContain('Pāua');
     expect(paua.getAttribute('aria-expanded')).toBe('false');
     act(() => void paua.click());
     expect(paua.getAttribute('aria-expanded')).toBe('true');
@@ -241,7 +250,36 @@ describe('Kiwiana treasures on the Path', () => {
 
   it('unlocks treasures at once for units complete through the PoC rule', () => {
     renderAt('/home', appData({ beginnerCompleted: true }));
-    expect(nodes()).toHaveLength(6);
-    expect(container.querySelector('button[aria-controls="treasure-pohutukawa"]')).not.toBeNull();
+    expect(container.textContent).toContain('8 / 20 collected');
+    expect(container.querySelector('button[aria-controls="treasure-hokey-pokey"]')).not.toBeNull();
+  });
+
+  it('tells the learner on the Unit screen what finishing the unit unlocks', () => {
+    renderAt('/unit/b01-greetings', appData());
+    expect(container.textContent).toContain('Finish this unit to unlock a kiwiana treasure.');
+    renderAt('/unit/b01-greetings', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.textContent).toContain('Pāua is in your Kiwiana.');
+  });
+});
+
+describe('Kiwiana page', () => {
+  it('shows N / 20, a progress bar and all twenty treasures', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.querySelector('h1')?.textContent).toBe('Kiwiana');
+    expect(container.textContent).toContain('Finish units to collect treasures from Aotearoa New Zealand.');
+    expect(container.textContent).toContain('1 / 20 collected');
+    expect(container.querySelector('[role="progressbar"]')?.getAttribute('aria-valuenow')).toBe('1');
+    expect(container.querySelectorAll('ul li')).toHaveLength(20);
+    expect(container.textContent).toContain('Pāua');
+    expect(container.textContent).toContain('shimmering shell');
+  });
+
+  it('marks locked ones with the unit to finish and highlights the next one', () => {
+    renderAt('/kiwiana', appData({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.textContent).toContain('Finish Family to unlock');
+    const next = container.querySelector('li[aria-current="step"]');
+    expect(next?.textContent).toContain('Next up');
+    expect(next?.textContent).toContain('Finish Family to unlock');
+    expect(container.querySelectorAll('li[aria-current="step"]')).toHaveLength(1);
   });
 });

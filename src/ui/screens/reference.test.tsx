@@ -156,25 +156,16 @@ describe('Progress stats (FR10)', () => {
   });
 });
 
-describe('Progress: Kiwiana collection', () => {
-  it('shows the ten treasures, in colour once collected and locked otherwise', async () => {
-    show(<Progress />, data());
-    await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 10));
-    });
-    const text = container.textContent ?? '';
-    expect(text).toContain('Kiwiana collection');
-    expect(text).toContain('0 of 10 collected');
-    expect(container.querySelectorAll('#kiwiana li')).toHaveLength(10);
-    expect(text).toContain('Pass the Kiwiz in Family to unlock');
-  });
-
-  it('counts a collected treasure after the unit before it is complete', async () => {
+describe('Progress: Kiwiana tile', () => {
+  it('shows a single Kiwiana N / 20 tile that links to the page, with no duplicate grid', async () => {
     show(<Progress />, data({ beginnerCompleted: true }));
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 10));
     });
-    expect(container.textContent).toContain('4 of 10 collected');
-    expect(container.textContent).toContain('Pōhutukawa');
+    const tile = container.querySelector('a[href="/kiwiana"]')!;
+    expect(tile.textContent).toContain('8 / 20');
+    expect(tile.textContent).toContain('Kiwiana');
+    expect(container.textContent).not.toContain('Kiwiana collection');
+    expect(container.querySelector('#kiwiana')).toBeNull();
   });
 });

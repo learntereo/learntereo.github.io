@@ -125,6 +125,105 @@ const ART: Record<string, ReactNode> = {
       <circle cx="33" cy="14" r="0.7" fill={INK} />
     </>
   ),
+  pukeko: (
+    <>
+      <path d="M18 34 L16 44 M26 34 L26 44" stroke="#d6453b" strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M10 28 Q8 14 22 12 Q34 12 36 24 Q38 36 22 36 Q12 36 10 28 Z" fill="#2c4a8c" stroke={INK} strokeWidth="2" strokeLinejoin="round" />
+      <path d="M14 26 Q22 30 32 26" fill="none" stroke="#5a86c8" strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M32 14 L33 6 Q40 6 40 12 L36 17 Z" fill="#d6453b" stroke={INK} strokeWidth="1.5" strokeLinejoin="round" />
+      <circle cx="30" cy="16" r="1.4" fill="#fff" />
+      <path d="M8 34 L5 38" stroke="#f1f1f1" strokeWidth="2.4" strokeLinecap="round" />
+    </>
+  ),
+  kumara: (
+    <>
+      <path d="M6 30 Q10 14 26 16 Q42 18 43 28 Q42 38 24 36 Q10 36 6 30 Z" fill="#c9764f" stroke={INK} strokeWidth="2" strokeLinejoin="round" />
+      <path d="M12 27 Q22 22 36 26" fill="none" stroke="#e7a37a" strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M16 33 Q26 31 36 33" fill="none" stroke="#a85a38" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M8 29 L3 29 M42 30 L46 31" stroke={INK} strokeWidth="2" strokeLinecap="round" />
+    </>
+  ),
+  kowhai: (
+    <>
+      <path d="M8 6 Q24 8 38 20" fill="none" stroke="#6b8a4a" strokeWidth="2.4" strokeLinecap="round" />
+      {[
+        [12, 12],
+        [20, 14],
+        [28, 18],
+        [34, 24],
+      ].map(([x, y]) => (
+        <g key={`${x}${y}`}>
+          <path d={`M${x} ${y} Q${x - 3} ${y + 9} ${x + 1} ${y + 16} Q${x + 7} ${y + 10} ${x + 4} ${y + 3} Z`} fill="#f2c14e" stroke={INK} strokeWidth="1.5" strokeLinejoin="round" />
+          <circle cx={x + 1} cy={y + 8} r="1.2" fill="#d79a3b" />
+        </g>
+      ))}
+    </>
+  ),
+  weta: (
+    <>
+      <path d="M14 26 Q4 14 6 6 M14 28 Q2 30 4 42 M32 26 Q44 14 42 6 M32 28 Q46 30 44 42" fill="none" stroke={INK} strokeWidth="2.2" strokeLinecap="round" />
+      <ellipse cx="23" cy="28" rx="10" ry="8" fill="#a8774a" stroke={INK} strokeWidth="2" />
+      <path d="M15 26 H31 M16 31 H30" stroke="#6f4a2b" strokeWidth="1.8" />
+      <circle cx="23" cy="18" r="5" fill="#a8774a" stroke={INK} strokeWidth="2" />
+      <path d="M20 14 Q14 6 10 8 M26 14 Q32 6 38 8" fill="none" stroke={INK} strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="21" cy="17" r="1.1" fill={INK} />
+      <circle cx="26" cy="17" r="1.1" fill={INK} />
+    </>
+  ),
+  tuatara: (
+    <>
+      <path d="M6 32 Q10 24 22 26 Q34 20 42 28 L46 26 L44 32 Q34 38 22 36 Q12 40 4 36 Z" fill="#6f9a5a" stroke={INK} strokeWidth="2" strokeLinejoin="round" />
+      {[14, 19, 24, 29, 34].map((x) => (
+        <path key={x} d={`M${x} ${26 - (x > 20 ? 1 : 0)} l2 -5 l2 5`} fill="#c8d98a" stroke={INK} strokeWidth="1.2" strokeLinejoin="round" />
+      ))}
+      <path d="M12 36 L10 43 M30 36 L32 43" stroke={INK} strokeWidth="2.4" strokeLinecap="round" />
+      <circle cx="40" cy="27" r="1.4" fill={INK} />
+    </>
+  ),
+  kereru: (
+    <>
+      <path d="M4 44 H44" stroke="#8a6a4c" strokeWidth="3" strokeLinecap="round" />
+      <path d="M10 38 Q6 20 20 12 Q34 6 38 20 Q40 34 26 40 Z" fill="#3f7d63" stroke={INK} strokeWidth="2" strokeLinejoin="round" />
+      <path d="M26 40 Q36 36 38 22 Q42 28 38 36 Q34 42 26 40 Z" fill="#fbfaf5" stroke={INK} strokeWidth="1.5" strokeLinejoin="round" />
+      <path d="M14 30 Q20 22 30 20" fill="none" stroke="#7bbf9c" strokeWidth="3" strokeLinecap="round" />
+      <path d="M36 14 L44 16 L36 19 Z" fill="#d6453b" stroke={INK} strokeWidth="1.4" strokeLinejoin="round" />
+      <circle cx="32" cy="15" r="1.3" fill={INK} />
+    </>
+  ),
+  piwakawaka: (
+    <>
+      <path d="M22 28 Q8 30 4 16 Q16 16 22 24 Z" fill="#f4efe4" stroke={INK} strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M22 28 Q10 36 5 30" fill="none" stroke={INK} strokeWidth="1.4" />
+      <path d="M22 24 Q26 12 36 14 Q42 20 36 28 Q30 34 22 28 Z" fill="#6a5240" stroke={INK} strokeWidth="2" strokeLinejoin="round" />
+      <path d="M28 26 Q34 28 38 24" fill="none" stroke="#e9cf9a" strokeWidth="2.6" strokeLinecap="round" />
+      <path d="M38 18 L45 20 L38 22 Z" fill="#d79a3b" stroke={INK} strokeWidth="1.3" strokeLinejoin="round" />
+      <circle cx="33" cy="18" r="1.3" fill="#fff" stroke={INK} strokeWidth="0.6" />
+      <path d="M28 33 L27 40 M32 32 L33 40" stroke={INK} strokeWidth="1.8" strokeLinecap="round" />
+    </>
+  ),
+  feijoa: (
+    <>
+      <ellipse cx="24" cy="26" rx="14" ry="17" fill="#7fae48" stroke={INK} strokeWidth="2" />
+      <path d="M16 18 Q24 12 32 18" fill="none" stroke="#a8cf70" strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M21 9 Q24 6 27 9 L26 12 H22 Z" fill="#5d7f33" stroke={INK} strokeWidth="1.4" strokeLinejoin="round" />
+      <path d="M24 5 L24 9" stroke={INK} strokeWidth="1.6" strokeLinecap="round" />
+    </>
+  ),
+  'chilly-bin': (
+    <>
+      <rect x="6" y="19" width="36" height="22" rx="3" fill="#3d86c6" stroke={INK} strokeWidth="2" />
+      <rect x="4" y="13" width="40" height="9" rx="3" fill="#f4f4f1" stroke={INK} strokeWidth="2" />
+      <path d="M16 13 Q24 3 32 13" fill="none" stroke={INK} strokeWidth="2.4" strokeLinecap="round" />
+      <path d="M12 28 H36 M12 34 H36" stroke="#7bb4e0" strokeWidth="1.8" />
+    </>
+  ),
+  'number-8-wire': (
+    <>
+      <path d="M24 24 C14 8 6 18 14 26 C20 32 24 24 24 24 C24 24 28 16 34 18 C42 22 38 34 30 32 C24 30 24 24 24 24 C24 24 20 34 14 34 C6 34 4 28 10 26" fill="none" stroke="#8a8f98" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M24 24 C14 8 6 18 14 26" fill="none" stroke="#c9ced6" strokeWidth="1" strokeLinecap="round" />
+      <path d="M24 24 C24 24 28 16 34 18 C42 22 38 34 30 32" fill="none" stroke={INK} strokeWidth="0.8" strokeLinecap="round" />
+    </>
+  ),
   'golden-kiwi': (
     <>
       <ellipse cx="22" cy="28" rx="15" ry="13" fill="#e2ad2b" stroke={INK} strokeWidth="2" />

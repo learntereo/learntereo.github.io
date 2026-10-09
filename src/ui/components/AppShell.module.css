@@ -186,6 +186,21 @@
   top: var(--space-2);
 }
 
+.accountLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--tap-target-min);
+  height: var(--tap-target-min);
+  color: var(--color-text-muted);
+}
+
+.accountLink:hover,
+.accountLink[aria-current='page'] {
+  color: var(--color-kokowai);
+}
+
 .treasureCount {
   color: var(--color-text-muted);
   text-decoration: none;

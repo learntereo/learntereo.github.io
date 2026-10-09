@@ -277,3 +277,26 @@ button.treasureButton {
   font-size: 0.85rem;
   color: var(--color-text-muted);
 }
+
+.kiwianaCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.kiwianaText {
+  min-width: 0;
+}
+
+.kiwianaText h2 {
+  margin: 0 0 var(--space-1);
+  font-size: 1.15rem;
+}
+
+.kiwianaText p {
+  margin: 0 0 var(--space-1);
+}
+
+.kiwianaCount {
+  font-weight: 600;
+}

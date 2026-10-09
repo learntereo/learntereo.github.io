@@ -93,3 +93,13 @@ details[open] > .summary {
   font-weight: 600;
   overflow-wrap: anywhere;
 }
+
+.treasure {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.treasure p {
+  margin: 0;
+}
