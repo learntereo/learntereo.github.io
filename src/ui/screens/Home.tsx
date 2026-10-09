@@ -47,7 +47,6 @@ function statusText(status: UnitStatus): string {
 }
 
 const SLOTS = treasureSlots(units);
-const GOLDEN = SLOTS[SLOTS.length - 1].treasure;
 
 /** A small, quiet node between unit rows: a grey silhouette until its unit is complete, then the treasure in colour. */
 function TreasureNode({ slot, unlocked }: { slot: TreasureSlot; unlocked: boolean }) {
@@ -157,23 +156,32 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
 /** Sells the collection: how many are collected, what comes next and what unlocks it. */
 function KiwianaCard() {
   const { statuses } = useAppData();
-  const count = unlockedTreasureIds(SLOTS, statuses).size;
+  const unlocked = unlockedTreasureIds(SLOTS, statuses);
+  const count = unlocked.size;
   const next = nextTreasure(SLOTS, statuses);
+  const collected = SLOTS.filter((s) => unlocked.has(s.treasure.id));
   return (
     <section className={`${ui.card} ${styles.kiwianaCard}`} aria-labelledby="kiwiana-title">
-      {next ? (
-        <TreasureIcon id={next.treasure.id} size={56} locked />
-      ) : (
-        <TreasureButton treasure={GOLDEN} size={56} className={styles.treasureButton} />
-      )}
-      <div className={styles.kiwianaText}>
-        <h2 id="kiwiana-title">Collect all {TREASURE_COUNT} kiwiana</h2>
-        <p className={styles.kiwianaCount}>
-          {count} / {TREASURE_COUNT} collected <span className={styles.rankChip}>{rankFor(count).name}</span>
-        </p>
-        <p className={ui.muted}>{next ? `Finish ${next.unit.title} to unlock it.` : 'All collected.'}</p>
-        <Link to="/kiwiana">See your Kiwiana</Link>
-      </div>
+      <h2 id="kiwiana-title">Your kiwiana</h2>
+      <p className={styles.kiwianaCount}>
+        {count} / {TREASURE_COUNT} collected <span className={styles.rankChip}>{rankFor(count).name}</span>
+      </p>
+      <ul className={styles.kiwianaRow}>
+        {collected.map(({ treasure }) => (
+          <li key={treasure.id}>
+            <TreasureButton treasure={treasure} size={40} className={styles.kiwianaTile} />
+          </li>
+        ))}
+        {next && (
+          <li>
+            <span className={styles.kiwianaTile}>
+              <TreasureIcon id={next.treasure.id} size={40} locked />
+            </span>
+          </li>
+        )}
+      </ul>
+      <p className={`${ui.muted} ${styles.kiwianaHint}`}>{next ? `Finish ${next.unit.title} to unlock it.` : 'All collected.'}</p>
+      <Link to="/kiwiana">See your Kiwiana</Link>
     </section>
   );
 }
