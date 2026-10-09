@@ -1,10 +1,12 @@
 import { Link } from 'react-router';
+import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import styles from './Home.module.css';
 
 export function Privacy() {
   return (
     <main className={styles.page}>
       <h1>Privacy</h1>
+      <KowhaiwhaiBorder height={20} />
       <p>
         Ako stores the minimum needed to save your progress: your name and email address (from Google or from your
         email/password sign-up), your item progress (which words and sentences you have learned), your round history
