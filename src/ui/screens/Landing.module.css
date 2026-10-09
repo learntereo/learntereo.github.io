@@ -37,6 +37,19 @@
   margin: 0;
 }
 
+/* "Free" should be impossible to miss. */
+.free {
+  color: var(--color-kokowai);
+  white-space: nowrap;
+}
+
+.reassure {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 .lead {
   font-size: 1.1rem;
   color: var(--color-text-muted);

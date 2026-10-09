@@ -62,7 +62,7 @@ function PepehaCard() {
   return (
     <section className={`${styles.section} ${styles.pepehaCard}`} aria-labelledby="pepeha-title">
       <h2 id="pepeha-title">Write your pepeha</h2>
-      <p>Introduce yourself in te reo Māori. No sign-in needed.</p>
+      <p>Introduce yourself in te reo Māori. Free, and no sign-in needed.</p>
       <a className={styles.secondaryLink} href={`${import.meta.env.BASE_URL}pepeha/`}>
         Open the pepeha builder
       </a>
@@ -145,7 +145,7 @@ export function Landing() {
           </p>
         </div>
         <h1 className={styles.title}>
-          Learn te reo <span lang="mi">Māori</span>
+          Learn te reo <span lang="mi">Māori</span> <span className={styles.free}>for free</span>
         </h1>
         <p className={styles.lead}>
           Short lessons that work on your phone, from your first <span lang="mi">kia ora</span> to full sentences.
@@ -154,6 +154,7 @@ export function Landing() {
         <button type="button" className={styles.startButton} onClick={handleGuest} disabled={!isSupabaseConfigured || starting}>
           {starting ? 'Starting...' : 'Start learning'}
         </button>
+        <p className={styles.reassure}>Free. No account needed to start.</p>
         {startError && (
           <p className={styles.error} role="alert">
             {startError}
