@@ -1,0 +1,311 @@
+{
+  "unit": {
+    "id": "b08-whare-kura",
+    "level": "beginner",
+    "order": 8,
+    "title": "Home and school",
+    "titleMi": "Te Whare me te Kura",
+    "emoji": "🏫",
+    "itemIds": [
+      "w-b-052",
+      "w-b-053",
+      "w-b-054",
+      "w-b-055",
+      "w-b-056",
+      "w-b-060",
+      "w-b-098",
+      "w-b-099",
+      "w-b-100",
+      "w-b-101",
+      "w-b-102",
+      "w-b-103",
+      "w-b-104",
+      "w-b-105",
+      "s-b-005",
+      "s-b-016",
+      "s-b-017",
+      "s-b-049",
+      "s-b-050",
+      "s-b-051"
+    ],
+    "grammar": "b08-whare-kura"
+  },
+  "items": [
+    {
+      "id": "w-b-052",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "whare",
+      "en": [
+        "house"
+      ],
+      "image": {
+        "emoji": "🏠"
+      }
+    },
+    {
+      "id": "w-b-053",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kura",
+      "en": [
+        "school"
+      ],
+      "image": {
+        "emoji": "🏫"
+      }
+    },
+    {
+      "id": "w-b-054",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "pukapuka",
+      "en": [
+        "book"
+      ],
+      "image": {
+        "emoji": "📖"
+      }
+    },
+    {
+      "id": "w-b-055",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kūaha",
+      "en": [
+        "door"
+      ],
+      "image": {
+        "emoji": "🚪"
+      }
+    },
+    {
+      "id": "w-b-056",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "motokā",
+      "en": [
+        "car"
+      ],
+      "image": {
+        "emoji": "🚗"
+      }
+    },
+    {
+      "id": "w-b-060",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "nui",
+      "en": [
+        "big",
+        "large"
+      ]
+    },
+    {
+      "id": "w-b-098",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tēpu",
+      "en": [
+        "table"
+      ]
+    },
+    {
+      "id": "w-b-099",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tūru",
+      "en": [
+        "chair"
+      ],
+      "image": {
+        "emoji": "🪑"
+      }
+    },
+    {
+      "id": "w-b-100",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "wini",
+      "en": [
+        "window"
+      ],
+      "image": {
+        "emoji": "🪟"
+      }
+    },
+    {
+      "id": "w-b-101",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "moenga",
+      "en": [
+        "bed"
+      ],
+      "image": {
+        "emoji": "🛏️"
+      }
+    },
+    {
+      "id": "w-b-102",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ākonga",
+      "en": [
+        "student",
+        "pupil"
+      ],
+      "image": {
+        "emoji": "🧑‍🎓"
+      }
+    },
+    {
+      "id": "w-b-103",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kaiako",
+      "en": [
+        "teacher"
+      ],
+      "image": {
+        "emoji": "🧑‍🏫"
+      }
+    },
+    {
+      "id": "w-b-104",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "iti",
+      "en": [
+        "small",
+        "little"
+      ]
+    },
+    {
+      "id": "w-b-105",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "wharepaku",
+      "en": [
+        "toilet",
+        "bathroom"
+      ],
+      "image": {
+        "emoji": "🚻"
+      }
+    },
+    {
+      "id": "s-b-005",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei hea te wharepaku",
+      "en": [
+        "Where is the toilet",
+        "Where is the bathroom"
+      ],
+      "tiles": [
+        "kei",
+        "hea",
+        "te",
+        "wharepaku"
+      ],
+      "decoys": [
+        "ahau"
+      ]
+    },
+    {
+      "id": "s-b-016",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He nui te whare",
+      "en": [
+        "The house is big",
+        "The house is large"
+      ],
+      "tiles": [
+        "he",
+        "nui",
+        "te",
+        "whare"
+      ],
+      "decoys": [
+        "iti"
+      ]
+    },
+    {
+      "id": "s-b-017",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te haere ahau ki te kura",
+      "en": [
+        "I am going to school",
+        "I am going to the school"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "haere",
+        "ahau",
+        "ki",
+        "te",
+        "kura"
+      ],
+      "decoys": [
+        "i"
+      ]
+    },
+    {
+      "id": "s-b-049",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei hea te kaiako",
+      "en": [
+        "Where is the teacher"
+      ],
+      "tiles": [
+        "kei",
+        "hea",
+        "te",
+        "kaiako"
+      ],
+      "decoys": [
+        "ahau"
+      ]
+    },
+    {
+      "id": "s-b-050",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He iti te tēpu",
+      "en": [
+        "The table is small"
+      ],
+      "tiles": [
+        "he",
+        "iti",
+        "te",
+        "tēpu"
+      ],
+      "decoys": [
+        "nui"
+      ]
+    },
+    {
+      "id": "s-b-051",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He pukapuka tēnei",
+      "en": [
+        "This is a book"
+      ],
+      "tiles": [
+        "he",
+        "pukapuka",
+        "tēnei"
+      ],
+      "decoys": [
+        "tērā"
+      ]
+    }
+  ]
+}

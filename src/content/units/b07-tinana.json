@@ -1,0 +1,303 @@
+{
+  "unit": {
+    "id": "b07-tinana",
+    "level": "beginner",
+    "order": 7,
+    "title": "The body",
+    "titleMi": "Te Tinana",
+    "emoji": "🧍",
+    "itemIds": [
+      "w-b-047",
+      "w-b-048",
+      "w-b-049",
+      "w-b-050",
+      "w-b-051",
+      "w-b-090",
+      "w-b-091",
+      "w-b-092",
+      "w-b-093",
+      "w-b-094",
+      "w-b-095",
+      "w-b-096",
+      "w-b-097",
+      "s-b-019",
+      "s-b-044",
+      "s-b-045",
+      "s-b-046",
+      "s-b-047",
+      "s-b-048"
+    ],
+    "grammar": "b07-tinana"
+  },
+  "items": [
+    {
+      "id": "w-b-047",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ringa",
+      "en": [
+        "hand"
+      ],
+      "image": {
+        "emoji": "✋"
+      }
+    },
+    {
+      "id": "w-b-048",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ihu",
+      "en": [
+        "nose"
+      ],
+      "image": {
+        "emoji": "👃"
+      }
+    },
+    {
+      "id": "w-b-049",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "taringa",
+      "en": [
+        "ear"
+      ],
+      "image": {
+        "emoji": "👂"
+      }
+    },
+    {
+      "id": "w-b-050",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "niho",
+      "en": [
+        "tooth",
+        "teeth"
+      ],
+      "image": {
+        "emoji": "🦷"
+      }
+    },
+    {
+      "id": "w-b-051",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "waha",
+      "en": [
+        "mouth"
+      ],
+      "image": {
+        "emoji": "👄"
+      }
+    },
+    {
+      "id": "w-b-090",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tinana",
+      "en": [
+        "body"
+      ]
+    },
+    {
+      "id": "w-b-091",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "upoko",
+      "en": [
+        "head"
+      ]
+    },
+    {
+      "id": "w-b-092",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "makawe",
+      "en": [
+        "hair"
+      ]
+    },
+    {
+      "id": "w-b-093",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "karu",
+      "en": [
+        "eye",
+        "eyes"
+      ],
+      "image": {
+        "emoji": "👁️"
+      }
+    },
+    {
+      "id": "w-b-094",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kanohi",
+      "en": [
+        "face"
+      ],
+      "image": {
+        "emoji": "🙂"
+      }
+    },
+    {
+      "id": "w-b-095",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "waewae",
+      "en": [
+        "leg",
+        "foot",
+        "legs",
+        "feet"
+      ],
+      "image": {
+        "emoji": "🦵"
+      }
+    },
+    {
+      "id": "w-b-096",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "puku",
+      "en": [
+        "stomach",
+        "belly",
+        "tummy"
+      ]
+    },
+    {
+      "id": "w-b-097",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "mamae",
+      "en": [
+        "pain",
+        "sore",
+        "hurt"
+      ]
+    },
+    {
+      "id": "s-b-019",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te makariri ahau",
+      "en": [
+        "I am cold"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "makariri",
+        "ahau"
+      ],
+      "decoys": [
+        "koe"
+      ]
+    },
+    {
+      "id": "s-b-044",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te mamae tōku upoko",
+      "en": [
+        "My head is sore",
+        "My head hurts",
+        "I have a headache"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "mamae",
+        "tōku",
+        "upoko"
+      ],
+      "decoys": [
+        "taku"
+      ]
+    },
+    {
+      "id": "s-b-045",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te mamae ōku waewae",
+      "en": [
+        "My legs are sore",
+        "My legs hurt",
+        "My feet are sore"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "mamae",
+        "ōku",
+        "waewae"
+      ],
+      "decoys": [
+        "āku"
+      ]
+    },
+    {
+      "id": "s-b-046",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te mamae tōku puku",
+      "en": [
+        "My stomach is sore",
+        "My stomach hurts",
+        "I have a sore stomach"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "mamae",
+        "tōku",
+        "puku"
+      ],
+      "decoys": [
+        "taku"
+      ]
+    },
+    {
+      "id": "s-b-047",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E rua ōku ringa",
+      "en": [
+        "I have two hands",
+        "My hands are two"
+      ],
+      "tiles": [
+        "e",
+        "rua",
+        "ōku",
+        "ringa"
+      ],
+      "decoys": [
+        "āku"
+      ]
+    },
+    {
+      "id": "s-b-048",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E rua ōku karu",
+      "en": [
+        "I have two eyes",
+        "My eyes are two"
+      ],
+      "tiles": [
+        "e",
+        "rua",
+        "ōku",
+        "karu"
+      ],
+      "decoys": [
+        "āku"
+      ]
+    }
+  ]
+}

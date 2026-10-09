@@ -1,0 +1,335 @@
+{
+  "unit": {
+    "id": "i03-wahi",
+    "level": "intermediate",
+    "order": 3,
+    "title": "Places and travel",
+    "titleMi": "Ngā Wāhi me ngā Waka",
+    "emoji": "🚌",
+    "itemIds": [
+      "w-i-020",
+      "w-i-021",
+      "w-i-022",
+      "w-i-023",
+      "w-i-024",
+      "w-i-025",
+      "w-i-026",
+      "w-i-027",
+      "w-i-028",
+      "w-i-029",
+      "w-i-050",
+      "w-i-051",
+      "w-i-052",
+      "w-i-053",
+      "s-i-007",
+      "s-i-009",
+      "s-i-029",
+      "s-i-030",
+      "s-i-031",
+      "s-i-032"
+    ],
+    "grammar": "i03-wahi"
+  },
+  "items": [
+    {
+      "id": "w-i-020",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hōhipera",
+      "en": [
+        "hospital"
+      ],
+      "image": {
+        "emoji": "🏥"
+      }
+    },
+    {
+      "id": "w-i-021",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "toa",
+      "en": [
+        "shop",
+        "store"
+      ],
+      "image": {
+        "emoji": "🏪"
+      }
+    },
+    {
+      "id": "w-i-022",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "kāinga",
+      "en": [
+        "home"
+      ],
+      "image": {
+        "emoji": "🏡"
+      }
+    },
+    {
+      "id": "w-i-023",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "motu",
+      "en": [
+        "island"
+      ],
+      "image": {
+        "emoji": "🏝️"
+      }
+    },
+    {
+      "id": "w-i-024",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ngahere",
+      "en": [
+        "forest"
+      ],
+      "image": {
+        "emoji": "🌲"
+      }
+    },
+    {
+      "id": "w-i-025",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tātahi",
+      "en": [
+        "beach"
+      ],
+      "image": {
+        "emoji": "🏖️"
+      }
+    },
+    {
+      "id": "w-i-026",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "pahi",
+      "en": [
+        "bus"
+      ],
+      "image": {
+        "emoji": "🚌"
+      }
+    },
+    {
+      "id": "w-i-027",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tereina",
+      "en": [
+        "train"
+      ],
+      "image": {
+        "emoji": "🚆"
+      }
+    },
+    {
+      "id": "w-i-028",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "poti",
+      "en": [
+        "boat"
+      ],
+      "image": {
+        "emoji": "🚤"
+      }
+    },
+    {
+      "id": "w-i-029",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "paihikara",
+      "en": [
+        "bicycle",
+        "bike"
+      ],
+      "image": {
+        "emoji": "🚲"
+      }
+    },
+    {
+      "id": "w-i-050",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "taone",
+      "en": [
+        "town",
+        "city"
+      ],
+      "image": {
+        "emoji": "🏙️"
+      }
+    },
+    {
+      "id": "w-i-051",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "marae",
+      "en": [
+        "marae",
+        "meeting grounds"
+      ]
+    },
+    {
+      "id": "w-i-052",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "waka",
+      "en": [
+        "canoe",
+        "vehicle"
+      ],
+      "image": {
+        "emoji": "🛶"
+      }
+    },
+    {
+      "id": "w-i-053",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "rererangi",
+      "en": [
+        "aeroplane",
+        "airplane",
+        "plane"
+      ],
+      "image": {
+        "emoji": "✈️"
+      }
+    },
+    {
+      "id": "s-i-007",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te whare te ngeru",
+      "en": [
+        "The cat is at the house"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "whare",
+        "te",
+        "ngeru"
+      ],
+      "decoys": [
+        "i",
+        "ki"
+      ]
+    },
+    {
+      "id": "s-i-009",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te haere mātou ki te tātahi",
+      "en": [
+        "We are going to the beach"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "haere",
+        "mātou",
+        "ki",
+        "te",
+        "tātahi"
+      ],
+      "decoys": [
+        "tātou",
+        "ana"
+      ]
+    },
+    {
+      "id": "s-i-029",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei hea te pahi",
+      "en": [
+        "Where is the bus"
+      ],
+      "tiles": [
+        "kei",
+        "hea",
+        "te",
+        "pahi"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-030",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te haere ahau ki te hōhipera",
+      "en": [
+        "I am going to the hospital"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "haere",
+        "ahau",
+        "ki",
+        "te",
+        "hōhipera"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-031",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te taone te toa",
+      "en": [
+        "The shop is in town",
+        "The store is in town",
+        "The shop is in the town"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "taone",
+        "te",
+        "toa"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-032",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te haere ngā tamariki ki te marae",
+      "en": [
+        "The children are going to the marae"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "haere",
+        "ngā",
+        "tamariki",
+        "ki",
+        "te",
+        "marae"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    }
+  ]
+}

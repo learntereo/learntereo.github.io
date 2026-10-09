@@ -1,0 +1,323 @@
+{
+  "unit": {
+    "id": "i02-ra-wa",
+    "level": "intermediate",
+    "order": 2,
+    "title": "Days and time",
+    "titleMi": "Ngā Rā me te Wā",
+    "emoji": "📅",
+    "itemIds": [
+      "w-i-011",
+      "w-i-012",
+      "w-i-013",
+      "w-i-014",
+      "w-i-015",
+      "w-i-016",
+      "w-i-017",
+      "w-i-018",
+      "w-i-019",
+      "w-i-045",
+      "w-i-046",
+      "w-i-047",
+      "w-i-048",
+      "w-i-049",
+      "s-i-023",
+      "s-i-024",
+      "s-i-025",
+      "s-i-026",
+      "s-i-027",
+      "s-i-028"
+    ],
+    "grammar": "i02-ra-wa"
+  },
+  "items": [
+    {
+      "id": "w-i-011",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "Rāhina",
+      "en": [
+        "Monday"
+      ]
+    },
+    {
+      "id": "w-i-012",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "Rātū",
+      "en": [
+        "Tuesday"
+      ]
+    },
+    {
+      "id": "w-i-013",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "Rāapa",
+      "en": [
+        "Wednesday"
+      ]
+    },
+    {
+      "id": "w-i-014",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "Rāpare",
+      "en": [
+        "Thursday"
+      ]
+    },
+    {
+      "id": "w-i-015",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "Rāmere",
+      "en": [
+        "Friday"
+      ]
+    },
+    {
+      "id": "w-i-016",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "Rāhoroi",
+      "en": [
+        "Saturday"
+      ]
+    },
+    {
+      "id": "w-i-017",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "Rātapu",
+      "en": [
+        "Sunday"
+      ]
+    },
+    {
+      "id": "w-i-018",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "āpōpō",
+      "en": [
+        "tomorrow"
+      ]
+    },
+    {
+      "id": "w-i-019",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "inanahi",
+      "en": [
+        "yesterday"
+      ]
+    },
+    {
+      "id": "w-i-045",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "wiki",
+      "en": [
+        "week"
+      ],
+      "image": {
+        "emoji": "📅"
+      }
+    },
+    {
+      "id": "w-i-046",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "rā whānau",
+      "en": [
+        "birthday"
+      ],
+      "image": {
+        "emoji": "🎂"
+      }
+    },
+    {
+      "id": "w-i-047",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ata",
+      "en": [
+        "morning"
+      ],
+      "image": {
+        "emoji": "🌅"
+      }
+    },
+    {
+      "id": "w-i-048",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ahiahi",
+      "en": [
+        "evening",
+        "afternoon"
+      ],
+      "image": {
+        "emoji": "🌇"
+      }
+    },
+    {
+      "id": "w-i-049",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "pō",
+      "en": [
+        "night"
+      ],
+      "image": {
+        "emoji": "🌃"
+      }
+    },
+    {
+      "id": "s-i-023",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "I haere ahau ki te kura i te Rāhina",
+      "en": [
+        "I went to school on Monday",
+        "I went to the school on Monday"
+      ],
+      "tiles": [
+        "i",
+        "haere",
+        "ahau",
+        "ki",
+        "te",
+        "kura",
+        "i",
+        "te",
+        "Rāhina"
+      ],
+      "decoys": [
+        "ka",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-024",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "I mahi ahau i te Rātū",
+      "en": [
+        "I worked on Tuesday"
+      ],
+      "tiles": [
+        "i",
+        "mahi",
+        "ahau",
+        "i",
+        "te",
+        "Rātū"
+      ],
+      "decoys": [
+        "ka",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-025",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ka haere ahau ki te toa ā te Rāapa",
+      "en": [
+        "I will go to the shop on Wednesday",
+        "I will go to the store on Wednesday"
+      ],
+      "tiles": [
+        "ka",
+        "haere",
+        "ahau",
+        "ki",
+        "te",
+        "toa",
+        "ā",
+        "te",
+        "Rāapa"
+      ],
+      "decoys": [
+        "i",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-026",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ka mahi ahau āpōpō",
+      "en": [
+        "I will work tomorrow"
+      ],
+      "tiles": [
+        "ka",
+        "mahi",
+        "ahau",
+        "āpōpō"
+      ],
+      "altOrders": [
+        [
+          "āpōpō",
+          "ka",
+          "mahi",
+          "ahau"
+        ]
+      ],
+      "decoys": [
+        "i",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-027",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "I moe ahau inanahi",
+      "en": [
+        "I slept yesterday"
+      ],
+      "tiles": [
+        "i",
+        "moe",
+        "ahau",
+        "inanahi"
+      ],
+      "altOrders": [
+        [
+          "inanahi",
+          "i",
+          "moe",
+          "ahau"
+        ]
+      ],
+      "decoys": [
+        "ka",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-028",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ka haere tātou ā te Rātapu",
+      "en": [
+        "We will go on Sunday"
+      ],
+      "tiles": [
+        "ka",
+        "haere",
+        "tātou",
+        "ā",
+        "te",
+        "Rātapu"
+      ],
+      "decoys": [
+        "i",
+        "kei"
+      ]
+    }
+  ]
+}

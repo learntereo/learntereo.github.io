@@ -1,0 +1,298 @@
+{
+  "unit": {
+    "id": "b03-tatau",
+    "level": "beginner",
+    "order": 3,
+    "title": "Numbers 1 to 10",
+    "titleMi": "Te Tatau",
+    "emoji": "🔢",
+    "itemIds": [
+      "w-b-030",
+      "w-b-031",
+      "w-b-032",
+      "w-b-033",
+      "w-b-034",
+      "w-b-035",
+      "w-b-036",
+      "w-b-037",
+      "w-b-038",
+      "w-b-039",
+      "w-b-076",
+      "w-b-077",
+      "w-b-078",
+      "s-b-006",
+      "s-b-020",
+      "s-b-025",
+      "s-b-026",
+      "s-b-027",
+      "s-b-028",
+      "s-b-029"
+    ],
+    "grammar": "b03-tatau"
+  },
+  "items": [
+    {
+      "id": "w-b-030",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tahi",
+      "en": [
+        "one",
+        "1"
+      ]
+    },
+    {
+      "id": "w-b-031",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "rua",
+      "en": [
+        "two",
+        "2"
+      ]
+    },
+    {
+      "id": "w-b-032",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "toru",
+      "en": [
+        "three",
+        "3"
+      ]
+    },
+    {
+      "id": "w-b-033",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "whā",
+      "en": [
+        "four",
+        "4"
+      ]
+    },
+    {
+      "id": "w-b-034",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "rima",
+      "en": [
+        "five",
+        "5"
+      ]
+    },
+    {
+      "id": "w-b-035",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ono",
+      "en": [
+        "six",
+        "6"
+      ]
+    },
+    {
+      "id": "w-b-036",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "whitu",
+      "en": [
+        "seven",
+        "7"
+      ]
+    },
+    {
+      "id": "w-b-037",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "waru",
+      "en": [
+        "eight",
+        "8"
+      ]
+    },
+    {
+      "id": "w-b-038",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "iwa",
+      "en": [
+        "nine",
+        "9"
+      ]
+    },
+    {
+      "id": "w-b-039",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tekau",
+      "en": [
+        "ten",
+        "10"
+      ]
+    },
+    {
+      "id": "w-b-076",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kore",
+      "en": [
+        "zero",
+        "none",
+        "nothing"
+      ]
+    },
+    {
+      "id": "w-b-077",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "hia",
+      "en": [
+        "how many"
+      ]
+    },
+    {
+      "id": "w-b-078",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tau",
+      "en": [
+        "year",
+        "age"
+      ]
+    },
+    {
+      "id": "s-b-006",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E hia ō tau",
+      "en": [
+        "How old are you",
+        "What is your age"
+      ],
+      "tiles": [
+        "e",
+        "hia",
+        "ō",
+        "tau"
+      ],
+      "decoys": [
+        "koe"
+      ]
+    },
+    {
+      "id": "s-b-020",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E rima ngā manu",
+      "en": [
+        "There are five birds",
+        "Five birds"
+      ],
+      "tiles": [
+        "e",
+        "rima",
+        "ngā",
+        "manu"
+      ],
+      "decoys": [
+        "kau"
+      ]
+    },
+    {
+      "id": "s-b-025",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E toru ngā kurī",
+      "en": [
+        "There are three dogs",
+        "Three dogs"
+      ],
+      "tiles": [
+        "e",
+        "toru",
+        "ngā",
+        "kurī"
+      ],
+      "decoys": [
+        "he"
+      ]
+    },
+    {
+      "id": "s-b-026",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E whā ngā tamariki",
+      "en": [
+        "There are four children",
+        "Four children"
+      ],
+      "tiles": [
+        "e",
+        "whā",
+        "ngā",
+        "tamariki"
+      ],
+      "decoys": [
+        "he"
+      ]
+    },
+    {
+      "id": "s-b-027",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E hia ngā ngeru",
+      "en": [
+        "How many cats",
+        "How many cats are there"
+      ],
+      "tiles": [
+        "e",
+        "hia",
+        "ngā",
+        "ngeru"
+      ],
+      "decoys": [
+        "he"
+      ]
+    },
+    {
+      "id": "s-b-028",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E ono ōku tau",
+      "en": [
+        "I am six years old",
+        "I am six"
+      ],
+      "tiles": [
+        "e",
+        "ono",
+        "ōku",
+        "tau"
+      ],
+      "decoys": [
+        "koe"
+      ]
+    },
+    {
+      "id": "s-b-029",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "E tekau ngā ika",
+      "en": [
+        "There are ten fish",
+        "Ten fish"
+      ],
+      "tiles": [
+        "e",
+        "tekau",
+        "ngā",
+        "ika"
+      ],
+      "decoys": [
+        "he"
+      ]
+    }
+  ]
+}

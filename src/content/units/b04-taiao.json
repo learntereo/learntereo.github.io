@@ -1,0 +1,316 @@
+{
+  "unit": {
+    "id": "b04-taiao",
+    "level": "beginner",
+    "order": 4,
+    "title": "Nature and colours",
+    "titleMi": "Te Taiao me ngā Tae",
+    "emoji": "🌈",
+    "itemIds": [
+      "w-b-009",
+      "w-b-010",
+      "w-b-011",
+      "w-b-012",
+      "w-b-013",
+      "w-b-014",
+      "w-b-015",
+      "w-b-016",
+      "w-b-024",
+      "w-b-025",
+      "w-b-026",
+      "w-b-027",
+      "w-b-028",
+      "w-b-029",
+      "s-b-030",
+      "s-b-031",
+      "s-b-032",
+      "s-b-033",
+      "s-b-034",
+      "s-b-035"
+    ],
+    "grammar": "b04-taiao"
+  },
+  "items": [
+    {
+      "id": "w-b-009",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "rā",
+      "en": [
+        "sun",
+        "day"
+      ],
+      "image": {
+        "emoji": "☀️"
+      }
+    },
+    {
+      "id": "w-b-010",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "marama",
+      "en": [
+        "moon"
+      ],
+      "image": {
+        "emoji": "🌙"
+      }
+    },
+    {
+      "id": "w-b-011",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "whetū",
+      "en": [
+        "star"
+      ],
+      "image": {
+        "emoji": "⭐"
+      }
+    },
+    {
+      "id": "w-b-012",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ua",
+      "en": [
+        "rain"
+      ],
+      "image": {
+        "emoji": "🌧️"
+      }
+    },
+    {
+      "id": "w-b-013",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "awa",
+      "en": [
+        "river"
+      ],
+      "image": {
+        "emoji": "🏞️"
+      }
+    },
+    {
+      "id": "w-b-014",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "maunga",
+      "en": [
+        "mountain"
+      ],
+      "image": {
+        "emoji": "⛰️"
+      }
+    },
+    {
+      "id": "w-b-015",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "moana",
+      "en": [
+        "sea",
+        "ocean"
+      ],
+      "image": {
+        "emoji": "🌊"
+      }
+    },
+    {
+      "id": "w-b-016",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "rākau",
+      "en": [
+        "tree",
+        "wood"
+      ],
+      "image": {
+        "emoji": "🌳"
+      }
+    },
+    {
+      "id": "w-b-024",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "whero",
+      "en": [
+        "red"
+      ],
+      "image": {
+        "emoji": "🔴"
+      }
+    },
+    {
+      "id": "w-b-025",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kikorangi",
+      "en": [
+        "blue"
+      ],
+      "image": {
+        "emoji": "🔵"
+      }
+    },
+    {
+      "id": "w-b-026",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kākāriki",
+      "en": [
+        "green"
+      ],
+      "image": {
+        "emoji": "🟢"
+      }
+    },
+    {
+      "id": "w-b-027",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kōwhai",
+      "en": [
+        "yellow"
+      ],
+      "image": {
+        "emoji": "🟡"
+      }
+    },
+    {
+      "id": "w-b-028",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "pango",
+      "en": [
+        "black"
+      ],
+      "image": {
+        "emoji": "⚫"
+      }
+    },
+    {
+      "id": "w-b-029",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "mā",
+      "en": [
+        "white"
+      ],
+      "image": {
+        "emoji": "⚪"
+      }
+    },
+    {
+      "id": "s-b-030",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He kikorangi te moana",
+      "en": [
+        "The sea is blue",
+        "The ocean is blue"
+      ],
+      "tiles": [
+        "he",
+        "kikorangi",
+        "te",
+        "moana"
+      ],
+      "decoys": [
+        "kei"
+      ]
+    },
+    {
+      "id": "s-b-031",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He kākāriki te rākau",
+      "en": [
+        "The tree is green"
+      ],
+      "tiles": [
+        "he",
+        "kākāriki",
+        "te",
+        "rākau"
+      ],
+      "decoys": [
+        "kei"
+      ]
+    },
+    {
+      "id": "s-b-032",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He kōwhai te rā",
+      "en": [
+        "The sun is yellow"
+      ],
+      "tiles": [
+        "he",
+        "kōwhai",
+        "te",
+        "rā"
+      ],
+      "decoys": [
+        "kei"
+      ]
+    },
+    {
+      "id": "s-b-033",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He mā te marama",
+      "en": [
+        "The moon is white"
+      ],
+      "tiles": [
+        "he",
+        "mā",
+        "te",
+        "marama"
+      ],
+      "decoys": [
+        "kei"
+      ]
+    },
+    {
+      "id": "s-b-034",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te ua",
+      "en": [
+        "It is raining",
+        "It is rainy"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "ua"
+      ],
+      "decoys": [
+        "he"
+      ]
+    },
+    {
+      "id": "s-b-035",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He rākau kākāriki tēnā",
+      "en": [
+        "That is a green tree",
+        "That is a green tree there"
+      ],
+      "tiles": [
+        "he",
+        "rākau",
+        "kākāriki",
+        "tēnā"
+      ],
+      "decoys": [
+        "tēnei"
+      ]
+    }
+  ]
+}

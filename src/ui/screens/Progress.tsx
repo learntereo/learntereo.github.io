@@ -4,7 +4,7 @@ import { getHistory, type RoundRow } from '../../data/roundRepo';
 import { allItems } from '../../content/content';
 import { displayStreak, toLocalDateString } from '../../game/streak';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, MODE_LABEL, formatDate } from '../labels';
+import { LEVEL_LABEL, ROUND_MODE_LABEL, formatDate } from '../labels';
 import styles from './Progress.module.css';
 
 export function Progress() {
@@ -65,7 +65,7 @@ export function Progress() {
               <li key={round.id} className={`${ui.card} ${styles.item}`}>
                 <div>
                   <strong>
-                    {LEVEL_LABEL[round.level]} &middot; {MODE_LABEL[round.mode]}
+                    {LEVEL_LABEL[round.level]} &middot; {ROUND_MODE_LABEL[round.mode]}
                   </strong>
                   <div className={ui.muted}>{formatDate(round.completed_at)}</div>
                 </div>

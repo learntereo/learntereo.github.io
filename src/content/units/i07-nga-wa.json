@@ -1,0 +1,309 @@
+{
+  "unit": {
+    "id": "i07-nga-wa",
+    "level": "intermediate",
+    "order": 7,
+    "title": "Past and future",
+    "titleMi": "Ngā Wā",
+    "emoji": "⏳",
+    "itemIds": [
+      "w-i-079",
+      "w-i-080",
+      "w-i-081",
+      "w-i-082",
+      "w-i-083",
+      "w-i-084",
+      "w-i-085",
+      "w-i-086",
+      "w-i-087",
+      "w-i-088",
+      "s-i-001",
+      "s-i-002",
+      "s-i-008",
+      "s-i-010",
+      "s-i-014",
+      "s-i-015",
+      "s-i-020"
+    ],
+    "grammar": "i07-nga-wa"
+  },
+  "items": [
+    {
+      "id": "w-i-079",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ināianei",
+      "en": [
+        "now"
+      ],
+      "image": {
+        "emoji": "⏱️"
+      }
+    },
+    {
+      "id": "w-i-080",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ākuanei",
+      "en": [
+        "soon",
+        "shortly"
+      ]
+    },
+    {
+      "id": "w-i-081",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "wā",
+      "en": [
+        "time"
+      ]
+    },
+    {
+      "id": "w-i-082",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "mua",
+      "en": [
+        "before",
+        "in front"
+      ]
+    },
+    {
+      "id": "w-i-083",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "muri",
+      "en": [
+        "after",
+        "behind"
+      ]
+    },
+    {
+      "id": "w-i-084",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "anō",
+      "en": [
+        "again"
+      ]
+    },
+    {
+      "id": "w-i-085",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ia rā",
+      "en": [
+        "every day",
+        "each day"
+      ]
+    },
+    {
+      "id": "w-i-086",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ia wiki",
+      "en": [
+        "every week",
+        "each week"
+      ]
+    },
+    {
+      "id": "w-i-087",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tēnei wiki",
+      "en": [
+        "this week"
+      ]
+    },
+    {
+      "id": "w-i-088",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "tonu",
+      "en": [
+        "still",
+        "continuing"
+      ]
+    },
+    {
+      "id": "s-i-001",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "I haere ahau ki te toa inanahi",
+      "en": [
+        "I went to the shop yesterday",
+        "I went to the store yesterday"
+      ],
+      "tiles": [
+        "i",
+        "haere",
+        "ahau",
+        "ki",
+        "te",
+        "toa",
+        "inanahi"
+      ],
+      "altOrders": [
+        [
+          "inanahi",
+          "i",
+          "haere",
+          "ahau",
+          "ki",
+          "te",
+          "toa"
+        ]
+      ],
+      "decoys": [
+        "ka",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-002",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ka haere ahau ki te kura āpōpō",
+      "en": [
+        "I will go to school tomorrow",
+        "I will go to the school tomorrow"
+      ],
+      "tiles": [
+        "ka",
+        "haere",
+        "ahau",
+        "ki",
+        "te",
+        "kura",
+        "āpōpō"
+      ],
+      "altOrders": [
+        [
+          "āpōpō",
+          "ka",
+          "haere",
+          "ahau",
+          "ki",
+          "te",
+          "kura"
+        ]
+      ],
+      "decoys": [
+        "i",
+        "e"
+      ]
+    },
+    {
+      "id": "s-i-008",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "I te kura ahau inanahi",
+      "en": [
+        "I was at school yesterday",
+        "I was at the school yesterday"
+      ],
+      "tiles": [
+        "i",
+        "te",
+        "kura",
+        "ahau",
+        "inanahi"
+      ],
+      "decoys": [
+        "ka",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-010",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ka kai tātou i te parāoa",
+      "en": [
+        "We will eat the bread",
+        "We will eat bread"
+      ],
+      "tiles": [
+        "ka",
+        "kai",
+        "tātou",
+        "i",
+        "te",
+        "parāoa"
+      ],
+      "decoys": [
+        "kei",
+        "mātou"
+      ]
+    },
+    {
+      "id": "s-i-014",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "I kai ahau i te āporo",
+      "en": [
+        "I ate the apple",
+        "I ate an apple"
+      ],
+      "tiles": [
+        "i",
+        "kai",
+        "ahau",
+        "i",
+        "te",
+        "āporo"
+      ],
+      "decoys": [
+        "ka",
+        "e"
+      ]
+    },
+    {
+      "id": "s-i-015",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Ka titiro ia ki te whetū",
+      "en": [
+        "He will look at the star",
+        "She will look at the star",
+        "They will look at the star"
+      ],
+      "tiles": [
+        "ka",
+        "titiro",
+        "ia",
+        "ki",
+        "te",
+        "whetū"
+      ],
+      "decoys": [
+        "i",
+        "kei"
+      ]
+    },
+    {
+      "id": "s-i-020",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "I oma te kurī ki te awa",
+      "en": [
+        "The dog ran to the river"
+      ],
+      "tiles": [
+        "i",
+        "oma",
+        "te",
+        "kurī",
+        "ki",
+        "te",
+        "awa"
+      ],
+      "decoys": [
+        "ka",
+        "kei"
+      ]
+    }
+  ]
+}

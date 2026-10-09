@@ -26,7 +26,7 @@ import { xpForRound } from '../../game/xp';
 import { itemsById } from '../../content/content';
 import { showToast } from '../../lib/toastBus';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, MODE_LABEL, isLevel, isMode } from '../labels';
+import { LEVEL_LABEL, MODE_LABEL, ROUND_MODE_LABEL, isLevel, isMode } from '../labels';
 import { BoardGame } from '../modes/BoardGame';
 import { Order } from '../modes/Order';
 import { Translate } from '../modes/Translate';
@@ -240,7 +240,7 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
         <section className={ui.card} aria-labelledby="conflict-title">
           <h1 id="conflict-title">Round in progress</h1>
           <p>
-            You have an unfinished {LEVEL_LABEL[existing.level]} {MODE_LABEL[existing.mode]} round (question{' '}
+            You have an unfinished {LEVEL_LABEL[existing.level]} {ROUND_MODE_LABEL[existing.mode]} round (question{' '}
             {Math.min(existingIndex + 1, existing.total)} of {existing.total}). Resume it, or start a new round and
             leave the old one behind?
           </p>

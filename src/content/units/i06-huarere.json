@@ -1,0 +1,276 @@
+{
+  "unit": {
+    "id": "i06-huarere",
+    "level": "intermediate",
+    "order": 6,
+    "title": "Weather",
+    "titleMi": "Te Huarere",
+    "emoji": "🌦️",
+    "itemIds": [
+      "w-i-068",
+      "w-i-069",
+      "w-i-070",
+      "w-i-071",
+      "w-i-072",
+      "w-i-073",
+      "w-i-074",
+      "w-i-075",
+      "w-i-076",
+      "w-i-077",
+      "w-i-078",
+      "s-i-012",
+      "s-i-043",
+      "s-i-044",
+      "s-i-045",
+      "s-i-046",
+      "s-i-047"
+    ],
+    "grammar": "i06-huarere"
+  },
+  "items": [
+    {
+      "id": "w-i-068",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "huarere",
+      "en": [
+        "weather"
+      ],
+      "image": {
+        "emoji": "🌦️"
+      }
+    },
+    {
+      "id": "w-i-069",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hau",
+      "en": [
+        "wind"
+      ],
+      "image": {
+        "emoji": "💨"
+      }
+    },
+    {
+      "id": "w-i-070",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "hukarere",
+      "en": [
+        "snow"
+      ],
+      "image": {
+        "emoji": "❄️"
+      }
+    },
+    {
+      "id": "w-i-071",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "kapua",
+      "en": [
+        "cloud"
+      ],
+      "image": {
+        "emoji": "☁️"
+      }
+    },
+    {
+      "id": "w-i-072",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "rangi",
+      "en": [
+        "sky",
+        "heavens"
+      ]
+    },
+    {
+      "id": "w-i-073",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "whenua",
+      "en": [
+        "land",
+        "earth",
+        "ground"
+      ],
+      "image": {
+        "emoji": "🌏"
+      }
+    },
+    {
+      "id": "w-i-074",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "ngaru",
+      "en": [
+        "wave"
+      ],
+      "image": {
+        "emoji": "🌊"
+      }
+    },
+    {
+      "id": "w-i-075",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "mahana",
+      "en": [
+        "warm"
+      ]
+    },
+    {
+      "id": "w-i-076",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "wera",
+      "en": [
+        "hot"
+      ],
+      "image": {
+        "emoji": "🥵"
+      }
+    },
+    {
+      "id": "w-i-077",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "marino",
+      "en": [
+        "calm",
+        "still"
+      ]
+    },
+    {
+      "id": "w-i-078",
+      "kind": "word",
+      "level": "intermediate",
+      "mi": "maroke",
+      "en": [
+        "dry"
+      ]
+    },
+    {
+      "id": "s-i-012",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E ua ana",
+      "en": [
+        "It is raining"
+      ],
+      "tiles": [
+        "e",
+        "ua",
+        "ana"
+      ],
+      "decoys": [
+        "kei",
+        "te"
+      ]
+    },
+    {
+      "id": "s-i-043",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "E hukarere ana",
+      "en": [
+        "It is snowing"
+      ],
+      "tiles": [
+        "e",
+        "hukarere",
+        "ana"
+      ],
+      "decoys": [
+        "kei",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-044",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te wera te rā",
+      "en": [
+        "The sun is hot",
+        "It is a hot day",
+        "The day is hot"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "wera",
+        "te",
+        "rā"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-045",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te mahana te wai",
+      "en": [
+        "The water is warm"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "mahana",
+        "te",
+        "wai"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    },
+    {
+      "id": "s-i-046",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "He nui te hau",
+      "en": [
+        "The wind is strong",
+        "The wind is big",
+        "There is a lot of wind"
+      ],
+      "tiles": [
+        "he",
+        "nui",
+        "te",
+        "hau"
+      ],
+      "decoys": [
+        "kei",
+        "i"
+      ]
+    },
+    {
+      "id": "s-i-047",
+      "kind": "sentence",
+      "level": "intermediate",
+      "mi": "Kei te marino te moana",
+      "en": [
+        "The sea is calm",
+        "The ocean is calm"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "marino",
+        "te",
+        "moana"
+      ],
+      "decoys": [
+        "i",
+        "ka"
+      ]
+    }
+  ]
+}

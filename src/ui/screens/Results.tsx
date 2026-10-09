@@ -4,7 +4,7 @@ import { getRound, type RoundRow } from '../../data/roundRepo';
 import type { RoundSummary } from '../../game/types';
 import { KoruFlourish } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, MODE_LABEL } from '../labels';
+import { LEVEL_LABEL, ROUND_MODE_LABEL } from '../labels';
 import styles from './Results.module.css';
 
 function summaryOf(round: RoundRow): RoundSummary {
@@ -80,7 +80,7 @@ export function Results() {
 
       <section className={`${ui.card} ${styles.score}`} aria-labelledby="results-title">
         <p className={ui.muted}>
-          {LEVEL_LABEL[round.level]} &middot; {MODE_LABEL[round.mode]}
+          {LEVEL_LABEL[round.level]} &middot; {ROUND_MODE_LABEL[round.mode]}
         </p>
         <h1 id="results-title">
           <span lang="mi">Ka pai!</span>

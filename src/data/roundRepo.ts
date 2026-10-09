@@ -1,4 +1,4 @@
-import type { Level, Mode, RoundState } from '../game/types';
+import type { Level, RoundMode, RoundState } from '../game/types';
 import { requireClient } from './profileRepo';
 import { withRetry } from './retry';
 
@@ -8,7 +8,7 @@ export interface RoundRow {
   id: string;
   user_id: string;
   level: Level;
-  mode: Mode;
+  mode: RoundMode;
   status: RoundStatus;
   state: unknown;
   score: number | null;
@@ -44,7 +44,7 @@ export function getRound(id: string): Promise<RoundRow | null> {
   });
 }
 
-export async function startRound(userId: string, level: Level, mode: Mode, state: RoundState): Promise<RoundRow> {
+export async function startRound(userId: string, level: Level, mode: RoundMode, state: RoundState): Promise<RoundRow> {
   return withRetry(async () => {
     const { data, error } = await requireClient()
       .from('rounds')

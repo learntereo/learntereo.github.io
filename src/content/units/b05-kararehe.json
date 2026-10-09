@@ -1,0 +1,290 @@
+{
+  "unit": {
+    "id": "b05-kararehe",
+    "level": "beginner",
+    "order": 5,
+    "title": "Animals",
+    "titleMi": "Ngā Kararehe",
+    "emoji": "🐾",
+    "itemIds": [
+      "w-b-001",
+      "w-b-002",
+      "w-b-003",
+      "w-b-004",
+      "w-b-005",
+      "w-b-006",
+      "w-b-007",
+      "w-b-008",
+      "w-b-079",
+      "w-b-080",
+      "w-b-081",
+      "w-b-082",
+      "w-b-083",
+      "s-b-003",
+      "s-b-004",
+      "s-b-036",
+      "s-b-037",
+      "s-b-038",
+      "s-b-039"
+    ],
+    "grammar": "b05-kararehe"
+  },
+  "items": [
+    {
+      "id": "w-b-001",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kurī",
+      "en": [
+        "dog"
+      ],
+      "image": {
+        "emoji": "🐕"
+      }
+    },
+    {
+      "id": "w-b-002",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ngeru",
+      "en": [
+        "cat"
+      ],
+      "image": {
+        "emoji": "🐈"
+      }
+    },
+    {
+      "id": "w-b-003",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "manu",
+      "en": [
+        "bird"
+      ],
+      "image": {
+        "emoji": "🐦"
+      }
+    },
+    {
+      "id": "w-b-004",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "ika",
+      "en": [
+        "fish"
+      ],
+      "image": {
+        "emoji": "🐟"
+      }
+    },
+    {
+      "id": "w-b-005",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "poaka",
+      "en": [
+        "pig"
+      ],
+      "image": {
+        "emoji": "🐖"
+      }
+    },
+    {
+      "id": "w-b-006",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kau",
+      "en": [
+        "cow"
+      ],
+      "image": {
+        "emoji": "🐄"
+      }
+    },
+    {
+      "id": "w-b-007",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "hōiho",
+      "en": [
+        "horse"
+      ],
+      "image": {
+        "emoji": "🐎"
+      }
+    },
+    {
+      "id": "w-b-008",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "heihei",
+      "en": [
+        "chicken"
+      ],
+      "image": {
+        "emoji": "🐔"
+      }
+    },
+    {
+      "id": "w-b-079",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kararehe",
+      "en": [
+        "animal"
+      ],
+      "image": {
+        "emoji": "🐾"
+      }
+    },
+    {
+      "id": "w-b-080",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "hipi",
+      "en": [
+        "sheep"
+      ],
+      "image": {
+        "emoji": "🐑"
+      }
+    },
+    {
+      "id": "w-b-081",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "kiwi",
+      "en": [
+        "kiwi"
+      ]
+    },
+    {
+      "id": "w-b-082",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "tūī",
+      "en": [
+        "tui",
+        "tūī"
+      ]
+    },
+    {
+      "id": "w-b-083",
+      "kind": "word",
+      "level": "beginner",
+      "mi": "pūkeko",
+      "en": [
+        "pukeko",
+        "pūkeko"
+      ]
+    },
+    {
+      "id": "s-b-003",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He kurī tēnā",
+      "en": [
+        "That is a dog",
+        "That is a dog there"
+      ],
+      "tiles": [
+        "he",
+        "kurī",
+        "tēnā"
+      ],
+      "decoys": [
+        "tēnei"
+      ]
+    },
+    {
+      "id": "s-b-004",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He ngeru tēnei",
+      "en": [
+        "This is a cat"
+      ],
+      "tiles": [
+        "he",
+        "ngeru",
+        "tēnei"
+      ],
+      "decoys": [
+        "tēnā"
+      ]
+    },
+    {
+      "id": "s-b-036",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He kiwi tērā",
+      "en": [
+        "That is a kiwi"
+      ],
+      "tiles": [
+        "he",
+        "kiwi",
+        "tērā"
+      ],
+      "decoys": [
+        "tēnei"
+      ]
+    },
+    {
+      "id": "s-b-037",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "He hipi tēnei",
+      "en": [
+        "This is a sheep"
+      ],
+      "tiles": [
+        "he",
+        "hipi",
+        "tēnei"
+      ],
+      "decoys": [
+        "tēnā"
+      ]
+    },
+    {
+      "id": "s-b-038",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te kai te kurī",
+      "en": [
+        "The dog is eating"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "kai",
+        "te",
+        "kurī"
+      ],
+      "decoys": [
+        "ngā"
+      ]
+    },
+    {
+      "id": "s-b-039",
+      "kind": "sentence",
+      "level": "beginner",
+      "mi": "Kei te kai ngā kurī",
+      "en": [
+        "The dogs are eating"
+      ],
+      "tiles": [
+        "kei",
+        "te",
+        "kai",
+        "ngā",
+        "kurī"
+      ],
+      "decoys": [
+        "e"
+      ]
+    }
+  ]
+}

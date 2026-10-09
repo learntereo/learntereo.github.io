@@ -6,7 +6,7 @@ import { levelProgress } from '../../game/unlock';
 import type { Level } from '../../game/types';
 import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
-import { LEVEL_LABEL, MODE_LABEL, isLevel, isMode } from '../labels';
+import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel, isMode } from '../labels';
 import styles from './Home.module.css';
 
 function LevelCard({ level, locked }: { level: Level; locked: boolean }) {
@@ -83,7 +83,7 @@ export function Home() {
         <section className={`${ui.card} ${styles.resume}`} aria-labelledby="resume-title">
           <h2 id="resume-title">Resume round</h2>
           <p className={ui.muted}>
-            {LEVEL_LABEL[activeRound.level]} &middot; {MODE_LABEL[activeRound.mode]} &middot; question{' '}
+            {LEVEL_LABEL[activeRound.level]} &middot; {ROUND_MODE_LABEL[activeRound.mode]} &middot; question{' '}
             {Math.min(resumeIndex + 1, activeRound.total)} of {activeRound.total}
           </p>
           <Link className={ui.button} to={`/play/${activeRound.level}/${activeRound.mode}?resume=1`}>

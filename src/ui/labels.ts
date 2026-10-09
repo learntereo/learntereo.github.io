@@ -1,8 +1,9 @@
-import type { Level, Mode } from '../game/types';
+import type { Level, Mode, RoundMode } from '../game/types';
 
 export const LEVEL_LABEL: Record<Level, string> = {
   beginner: 'Beginner',
   intermediate: 'Intermediate',
+  advanced: 'Advanced',
 };
 
 export const MODE_LABEL: Record<Mode, string> = {
@@ -11,6 +12,14 @@ export const MODE_LABEL: Record<Mode, string> = {
   order: 'Order',
   picture: 'Picture',
   mixed: 'Mixed',
+};
+
+/** Labels for every stored round, including path rounds. */
+export const ROUND_MODE_LABEL: Record<RoundMode, string> = {
+  ...MODE_LABEL,
+  unit_practice: 'Unit practice',
+  unit_check: 'Unit check',
+  review: 'Review',
 };
 
 export const MODE_DESCRIPTION: Record<Mode, string> = {
@@ -22,7 +31,7 @@ export const MODE_DESCRIPTION: Record<Mode, string> = {
 };
 
 export function isLevel(value: string | undefined): value is Level {
-  return value === 'beginner' || value === 'intermediate';
+  return value === 'beginner' || value === 'intermediate' || value === 'advanced';
 }
 
 export function isMode(value: string | undefined): value is Mode {
