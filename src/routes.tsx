@@ -1,6 +1,8 @@
+import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router';
 import { RequireAuth } from './auth/RequireAuth';
 import { AppShell } from './ui/components/AppShell';
+import ui from './ui/components/ui.module.css';
 import { Account } from './ui/screens/Account';
 import { Home } from './ui/screens/Home';
 import { Landing } from './ui/screens/Landing';
@@ -13,6 +15,20 @@ import { ReviewScreen, RoundScreen, UnitRoundScreen } from './ui/screens/RoundSc
 import { ResetPassword } from './ui/screens/ResetPassword';
 import { Results } from './ui/screens/Results';
 import { UnitScreen } from './ui/screens/UnitScreen';
+
+// Reference screens are only needed now and then, so they load on demand.
+const Reference = lazy(() => import('./ui/screens/Reference').then((m) => ({ default: m.Reference })));
+const Grammar = lazy(() => import('./ui/screens/Grammar').then((m) => ({ default: m.Grammar })));
+const Pronunciation = lazy(() => import('./ui/screens/Pronunciation').then((m) => ({ default: m.Pronunciation })));
+const Glossary = lazy(() => import('./ui/screens/Glossary').then((m) => ({ default: m.Glossary })));
+
+function Loading() {
+  return (
+    <main className={ui.page}>
+      <p role="status">Loading...</p>
+    </main>
+  );
+}
 
 export function AppRoutes() {
   return (
@@ -33,6 +49,38 @@ export function AppRoutes() {
           <Route path="/play/:level" element={<ModePicker />} />
           <Route path="/play/:level/:mode" element={<RoundScreen />} />
           <Route path="/results/:roundId" element={<Results />} />
+          <Route
+            path="/reference"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Reference />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/grammar"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Grammar />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/pronunciation"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Pronunciation />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/glossary"
+            element={
+              <Suspense fallback={<Loading />}>
+                <Glossary />
+              </Suspense>
+            }
+          />
           <Route path="/progress" element={<Progress />} />
           <Route path="/account" element={<Account />} />
         </Route>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router';
 import { useAuth } from '../../auth/AuthContext';
-import { allItems, getItem, getUnit, itemsById, units } from '../../content/content';
+import { allItems, getItem, getUnit, isKnownItem, itemsById, units } from '../../content/content';
 import { useAppData } from '../../data/AppDataContext';
 import { updateProfile } from '../../data/profileRepo';
 import { mergeAttempts, recordAttempts } from '../../data/progressRepo';
@@ -134,7 +134,7 @@ function Round({ spec }: { spec: RoundSpec }) {
     if (spec.kind === 'practice') return generateUnitPractice(spec.unit, units, allItems, learned, rng);
     if (spec.kind === 'check') return generateUnitCheck(spec.unit, allItems, rng);
     if (spec.kind === 'review') {
-      const due = selectDue(progress.values(), toLocalDateString(new Date()), REVIEW_LIMIT, (id) => itemsById.has(id));
+      const due = selectDue(progress.values(), toLocalDateString(new Date()), REVIEW_LIMIT, isKnownItem);
       return generateReview(
         due.map((row) => itemsById.get(row.item_id)!),
         allItems,

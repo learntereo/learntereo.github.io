@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useAuth } from '../auth/AuthContext';
-import { itemsById, units } from '../content/content';
+import { isKnownItem, units } from '../content/content';
 import { backfillDueDates, countDue } from '../game/srs';
 import { toLocalDateString } from '../game/streak';
 import { learnedIds } from '../game/unlock';
@@ -81,7 +81,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       unitProgress,
       statuses,
       openLevels: unlockedLevels(units, statuses),
-      dueCount: countDue(progress.values(), toLocalDateString(new Date()), (id) => itemsById.has(id)),
+      dueCount: countDue(progress.values(), toLocalDateString(new Date()), isKnownItem),
       activeRound,
       reload,
       setProfile,

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import {
   allItems,
@@ -243,6 +243,24 @@ describe('content files', () => {
     for (const unit of units) {
       const json = readFileSync(new URL(`./units/${unit.id}.json`, import.meta.url), 'utf8');
       expect(json).not.toContain(EM_DASH);
+    }
+  });
+});
+
+describe('unit index', () => {
+  it('matches the unit headers in the unit files (run npm run content:index if this fails)', () => {
+    const fromFiles = readdirSync(new URL('./units/', import.meta.url))
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => JSON.parse(readFileSync(new URL(`./units/${f}`, import.meta.url), 'utf8')).unit);
+    expect([...units].map((u) => u.id).sort()).toEqual(fromFiles.map((u: { id: string }) => u.id).sort());
+    for (const unit of units) {
+      expect(fromFiles.find((u: { id: string }) => u.id === unit.id)).toEqual(unit);
+    }
+  });
+
+  it('lists exactly the item ids of the loaded unit files', () => {
+    for (const unit of units) {
+      expect(itemsForUnit(unit).map((i) => i.id)).toEqual(unit.itemIds);
     }
   });
 });

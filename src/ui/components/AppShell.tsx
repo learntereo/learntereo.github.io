@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
+import { isLevelLoaded } from '../../content/content';
+import { useContentLevels } from '../../content/useContent';
 import { AppDataProvider } from '../../data/AppDataProvider';
 import { useAppData } from '../../data/AppDataContext';
 import { displayStreak, toLocalDateString } from '../../game/streak';
@@ -58,6 +60,17 @@ const TABS: readonly Tab[] = [
       <Icon>
         <path d="M21 12a9 9 0 1 1-3-6.7" />
         <path d="M21 4v5h-5" />
+      </Icon>
+    ),
+  },
+  {
+    to: '/reference',
+    label: 'Reference',
+    match: /^\/(reference|grammar|pronunciation|glossary)/,
+    icon: (
+      <Icon>
+        <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4Z" />
+        <path d="M9 9h6M9 13h6" />
       </Icon>
     ),
   },
@@ -140,7 +153,9 @@ function Header() {
 }
 
 function Gate() {
-  const { status, reload } = useAppData();
+  const { status, reload, openLevels } = useAppData();
+  // Only the levels the learner has reached are downloaded.
+  const content = useContentLevels(openLevels.length > 0 ? openLevels : ['beginner']);
 
   if (status === 'loading') {
     return (
@@ -159,6 +174,27 @@ function Gate() {
             Try again
           </button>
         </div>
+      </main>
+    );
+  }
+  if (content.failed) {
+    return (
+      <main className={ui.page}>
+        <div className={ui.card}>
+          <h1>Something went wrong</h1>
+          <p>We could not load your lessons. Check your connection and try again.</p>
+          <button type="button" className={ui.button} onClick={content.retry}>
+            Try again
+          </button>
+        </div>
+      </main>
+    );
+  }
+  // Once Beginner is in, a newly opened level fills in a moment later without blanking the screen.
+  if (!content.ready && !isLevelLoaded('beginner')) {
+    return (
+      <main className={ui.page}>
+        <p role="status">Loading your lessons...</p>
       </main>
     );
   }
