@@ -8,22 +8,54 @@ export const GAP_OPTIONS = 4;
  * from its own group, so the learner has to know the pattern, not just spot
  * the odd word out.
  */
+/** Possessives by person and number. A and O forms are different words; the neutral form fits either. */
+const POSSESSIVES: readonly { a: string; o: string; neutral: string }[] = [
+  { a: 'tāku', o: 'tōku', neutral: 'taku' },
+  { a: 'āku', o: 'ōku', neutral: 'aku' },
+  { a: 'tāu', o: 'tōu', neutral: 'tō' },
+  { a: 'āu', o: 'ōu', neutral: 'ō' },
+  { a: 'tāna', o: 'tōna', neutral: 'tana' },
+  { a: 'āna', o: 'ōna', neutral: 'ana' },
+];
+
 const GROUPS: readonly (readonly string[])[] = [
   ['te', 'ngā', 'he', 'ko'],
   ['kei', 'i', 'ka', 'e', 'ana'],
   ['tēnei', 'tēnā', 'tērā'],
-  ['ki', 'i', 'kei'],
+  ['ki'],
   ['ahau', 'koe', 'ia', 'mātou', 'tātou', 'rātou', 'koutou', 'kōrua'],
-  ['tōku', 'taku', 'tō', 'tōna', 'tāna', 'ōku', 'āku', 'ō', 'ā'],
+  POSSESSIVES.flatMap((p) => [p.a, p.o, p.neutral]),
 ];
 
 const PARTICLES = new Set(GROUPS.flat());
 
-/** These two both mean "that", so either would be right for the same English. */
-const SYNONYMS: readonly (readonly [string, string])[] = [['tēnā', 'tērā']];
+/**
+ * Pairs where either word would be right in the same sentence with the same
+ * English: both mean "that", both mean "we", and both mark where something is
+ * going or acted on.
+ */
+const SYNONYMS: readonly (readonly [string, string])[] = [
+  ['tēnā', 'tērā'],
+  ['mātou', 'tātou'],
+  ['ki', 'i'],
+];
+
+/**
+ * True when two words could both be correct in the same gap. The neutral
+ * possessive (taku, tō, tana and plurals) fits wherever the A or O form does,
+ * so it clashes with both. A against O (tāku and tōku) is a real choice.
+ */
+export function interchangeable(a: string, b: string): boolean {
+  if (a === b) return true;
+  if (SYNONYMS.some(([x, y]) => (a === x && b === y) || (a === y && b === x))) return true;
+  return POSSESSIVES.some((p) => {
+    const forms = [p.a, p.o, p.neutral];
+    return forms.includes(a) && forms.includes(b) && (a === p.neutral || b === p.neutral);
+  });
+}
 
 function ambiguous(answer: string, candidate: string): boolean {
-  return SYNONYMS.some(([a, b]) => (answer === a && candidate === b) || (answer === b && candidate === a));
+  return interchangeable(answer, candidate);
 }
 
 export interface Gap {

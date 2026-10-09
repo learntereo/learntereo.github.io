@@ -2,6 +2,7 @@ import { DndContext, useDraggable, useDroppable, type DragEndEvent } from '@dnd-
 import { CSS } from '@dnd-kit/utilities';
 import { useRef, useState } from 'react';
 import { getItem } from '../../content/content';
+import { capitaliseFirst } from '../../game/display';
 import type { SentenceItem } from '../../game/types';
 import ui from '../components/ui.module.css';
 import { useDragSensors } from './dnd';
@@ -12,7 +13,19 @@ import styles from './modes.module.css';
 const GAP = 'gap';
 const OPTION = 'option:';
 
-function Option({ text, disabled, shaking, onTap }: { text: string; disabled: boolean; shaking: boolean; onTap: () => void }) {
+function Option({
+  text,
+  label,
+  disabled,
+  shaking,
+  onTap,
+}: {
+  text: string;
+  label: string;
+  disabled: boolean;
+  shaking: boolean;
+  onTap: () => void;
+}) {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({ id: OPTION + text, disabled });
   return (
     <button
@@ -25,7 +38,7 @@ function Option({ text, disabled, shaking, onTap }: { text: string; disabled: bo
       {...attributes}
       {...listeners}
     >
-      <span lang="mi">{text}</span>
+      <span lang="mi">{label}</span>
     </button>
   );
 }
@@ -104,10 +117,14 @@ export function Gap({ question, onDone }: ModeProps) {
         <p className={styles.gapSentence} lang="mi">
           {sentence.tiles.map((tile, i) =>
             i === gapIndex ? (
-              <GapSlot key={i} filled={asking ? null : answer} state={asking ? 'empty' : phase} />
+              <GapSlot
+                key={i}
+                filled={asking ? null : i === 0 ? capitaliseFirst(answer) : answer}
+                state={asking ? 'empty' : phase}
+              />
             ) : (
               <span key={i} className={styles.gapWord}>
-                {tile}
+                {i === 0 ? capitaliseFirst(tile) : tile}
               </span>
             ),
           )}
@@ -115,7 +132,7 @@ export function Gap({ question, onDone }: ModeProps) {
 
         <div className={styles.gapOptions} role="group" aria-label="Choose the missing word">
           {options.map((text) => (
-            <Option key={text} text={text} disabled={!asking} shaking={shaking === text} onTap={() => attempt(text)} />
+            <Option key={text} text={text} label={gapIndex === 0 ? capitaliseFirst(text) : text} disabled={!asking} shaking={shaking === text} onTap={() => attempt(text)} />
           ))}
         </div>
       </DndContext>

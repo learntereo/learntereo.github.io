@@ -125,3 +125,36 @@ describe('Fill the gap', () => {
     expect(onDone.mock.calls[0][0]).toMatchObject({ result: 'retry' });
   });
 });
+
+describe('sentence display', () => {
+  it('capitalises the first word in Fill the gap without changing the answer', () => {
+    const sentence = getItem('s-b-004') as SentenceItem;
+    const onDone = vi.fn<(o: Outcome) => void>();
+    const q: Question = { mode: 'gap', itemIds: [sentence.id], requeued: false, gapIndex: 0, options: ['he', 'ko', 'te', 'ngā'] };
+    act(() => root.render(<Gap question={q} level="beginner" onDone={onDone} />));
+    expect(container.querySelector('p[lang="mi"]')?.textContent?.startsWith(' ')).toBe(true);
+    expect(container.querySelector('p[lang="mi"]')?.textContent).toContain('ngeru');
+    expect(button('He')).toBeDefined();
+    click(button('He'));
+    expect(container.textContent).toContain('Ka pai!');
+    expect(container.querySelector('p[lang="mi"]')?.textContent).toContain('He');
+    click(button('Continue'));
+    expect(onDone.mock.calls[0][0]).toMatchObject({ result: 'first' });
+  });
+
+  it('capitalises the first word shown in an Order reveal', async () => {
+    const { Order } = await import('./Order');
+    const sentence = getItem('s-b-004') as SentenceItem;
+    const q: Question = { mode: 'order', itemIds: [sentence.id], requeued: false, decoys: ['kurī'] };
+    act(() => root.render(<Order question={q} level="beginner" onDone={() => {}} />));
+    const tapTile = (text: string) => {
+      const bankButton = [...container.querySelectorAll('[aria-label="Word bank"] button')].find((b) => b.textContent === text)!;
+      click(bankButton);
+    };
+    tapTile('kurī');
+    expect(container.querySelector('[aria-label="Your answer"] button')?.textContent).toBe('Kurī');
+    click(button('Check'));
+    click(button('Check'));
+    expect(container.textContent).toContain('The correct order is: He ngeru tēnei');
+  });
+});

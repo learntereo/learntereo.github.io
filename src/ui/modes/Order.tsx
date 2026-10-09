@@ -11,6 +11,7 @@ import { SortableContext, arrayMove, rectSortingStrategy, useSortable } from '@d
 import { CSS } from '@dnd-kit/utilities';
 import { useState, type ReactNode } from 'react';
 import { getItem } from '../../content/content';
+import { capitaliseFirst, sentenceFromTiles } from '../../game/display';
 import { buildBank, checkOrder, type BankTile } from '../../game/orderCheck';
 import { createRng, randomSeed } from '../../game/rng';
 import type { SentenceItem } from '../../game/types';
@@ -43,11 +44,13 @@ function DropZone({ id, className, children, label }: { id: string; className: s
 
 interface TileViewProps {
   tile: BankTile;
+  /** Show the first letter in capitals (the first word of the answer). Display only. */
+  capital?: boolean;
   locked: boolean;
   onTap: () => void;
 }
 
-function RowTile({ tile, locked, onTap }: TileViewProps) {
+function RowTile({ tile, locked, onTap, capital }: TileViewProps) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: tile.id,
     disabled: locked,
@@ -63,7 +66,7 @@ function RowTile({ tile, locked, onTap }: TileViewProps) {
       {...attributes}
       {...listeners}
     >
-      <span lang="mi">{tile.text}</span>
+      <span lang="mi">{capital ? capitaliseFirst(tile.text) : tile.text}</span>
     </button>
   );
 }
@@ -140,7 +143,7 @@ export function Order({ question, onDone }: ModeProps) {
     } else {
       setWrongCount(2);
       setPhase('revealed');
-      setMessage({ kind: 'wrong', text: `The correct order is: ${sentence.tiles.join(' ')}` });
+      setMessage({ kind: 'wrong', text: `The correct order is: ${sentenceFromTiles(sentence.tiles)}` });
     }
   }
 
@@ -161,8 +164,8 @@ export function Order({ question, onDone }: ModeProps) {
       <DndContext sensors={sensors} collisionDetection={collision} onDragEnd={handleDragEnd}>
         <DropZone id={ROW} className={styles.answerRow} label="Your answer">
           <SortableContext items={rowIds} strategy={rectSortingStrategy}>
-            {rowIds.map((id) => (
-              <RowTile key={id} tile={byId.get(id)!} locked={locked} onTap={() => !locked && moveToBank(id)} />
+            {rowIds.map((id, index) => (
+              <RowTile key={id} tile={byId.get(id)!} capital={index === 0} locked={locked} onTap={() => !locked && moveToBank(id)} />
             ))}
           </SortableContext>
           {rowIds.length === 0 && <span className={styles.rowHint}>Drag or tap words here</span>}
