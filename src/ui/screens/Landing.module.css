@@ -154,3 +154,31 @@
   margin: 0 auto var(--space-2);
   color: var(--color-kokowai);
 }
+
+/* ---------- about: plain content below the sign-in card ---------- */
+.about {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.about h2,
+.about h3,
+.about p {
+  margin: 0;
+}
+
+.levels {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.unitList {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-5);
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+}

@@ -143,7 +143,22 @@ function UnitRow({ status, isNext }: { status: UnitStatus; isNext: boolean }) {
   );
 }
 
-function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<string> }) {
+function ChevronIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" className={styles.chevron}>
+      <path fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
+
+interface LevelSectionProps {
+  level: Level;
+  openIds: ReadonlySet<string>;
+  expanded: boolean;
+  onToggle: () => void;
+}
+
+function LevelSection({ level, openIds, expanded, onToggle }: LevelSectionProps) {
   const { statuses } = useAppData();
   const unlocked = unlockedTreasureIds(SLOTS, statuses);
   const levelUnits = unitsForLevel(level);
@@ -162,22 +177,27 @@ function LevelSection({ level, openIds }: { level: Level; openIds: ReadonlySet<s
 
   return (
     <section aria-labelledby={`level-${level}`} className={styles.level}>
-      <div className={styles.levelHead}>
-        <h2 id={`level-${level}`}>{LEVEL_LABEL[level]}</h2>
-        <span className={ui.muted}>
-          {complete} / {rows.length} units
-        </span>
-      </div>
-      <ol className={styles.path}>
-        {rows.flatMap((status) => {
-          const slot = treasureAfter(status.unit.id, SLOTS);
-          const row = <UnitRow key={status.unit.id} status={status} isNext={openIds.has(status.unit.id)} />;
-          return [
-            row,
-            <PathExtras key={`x-${status.unit.id}`} status={status} slot={slot} unlocked={slot ? unlocked.has(slot.treasure.id) : false} />,
-          ];
-        })}
-      </ol>
+      <h2 id={`level-${level}`} className={styles.levelHeading}>
+        <button type="button" className={styles.levelHead} aria-expanded={expanded} aria-controls={`level-panel-${level}`} onClick={onToggle}>
+          <span className={styles.levelName}>{LEVEL_LABEL[level]}</span>
+          <span className={`${ui.muted} ${styles.levelCount}`}>
+            {complete} / {rows.length} units
+          </span>
+          <ChevronIcon />
+        </button>
+      </h2>
+      {expanded && (
+        <ol className={styles.path} id={`level-panel-${level}`}>
+          {rows.flatMap((status) => {
+            const slot = treasureAfter(status.unit.id, SLOTS);
+            const row = <UnitRow key={status.unit.id} status={status} isNext={openIds.has(status.unit.id)} />;
+            return [
+              row,
+              <PathExtras key={`x-${status.unit.id}`} status={status} slot={slot} unlocked={slot ? unlocked.has(slot.treasure.id) : false} />,
+            ];
+          })}
+        </ol>
+      )}
     </section>
   );
 }
@@ -241,6 +261,8 @@ export function Home() {
     return state === 'available' || state === 'in_progress';
   });
   const openIds = new Set(openUnits.map((u) => u.id));
+  // One level open at a time; it starts on the level holding the first next-up unit.
+  const [openLevel, setOpenLevel] = useState<Level | null>(() => openUnits[0]?.level ?? null);
   const allDone = units.every((u) => statuses.get(u.id)?.state === 'complete');
 
   return (
@@ -300,7 +322,13 @@ export function Home() {
       )}
 
       {LEVELS.map((level) => (
-        <LevelSection key={level} level={level} openIds={openIds} />
+        <LevelSection
+          key={level}
+          level={level}
+          openIds={openIds}
+          expanded={openLevel === level}
+          onToggle={() => setOpenLevel(openLevel === level ? null : level)}
+        />
       ))}
 
       <section className={ui.card} aria-labelledby="free-title">

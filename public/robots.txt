@@ -1,0 +1,6 @@
+# Google only reads robots.txt at the root of a host. This site lives under a
+# path on github.io, so this file takes effect only once Ako has its own domain.
+User-agent: *
+Allow: /
+
+Sitemap: https://pattern-labs-foundation.github.io/language-learning-website/sitemap.xml
