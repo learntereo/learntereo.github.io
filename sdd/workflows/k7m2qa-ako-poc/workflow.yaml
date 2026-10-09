@@ -2,26 +2,37 @@ id: k7m2qa
 name: ako-poc
 source: interactive
 created: 2026-10-09
-current: 01-ako-poc
-phase: review
-step: reviewing
+current: 02-ako-curriculum
+phase: implement
+step: implementing
 progress:
-  total_items: 1
-  specs_completed: 1
+  total_items: 2
+  specs_completed: 2
   specs_pending: 0
-  plans_completed: 1
+  plans_completed: 2
   plans_pending: 0
   implemented: 1
-  reviewed: 0
+  reviewed: 1
 items:
   - id: 01-ako-poc
     change_id: ako-poc-1
-    title: Ako: Māori Language Learning PoC
+    title: "Ako: Māori Language Learning PoC"
     type: feature
     location: changes/2026/10/09/k7m2qa-ako-poc/01-ako-poc
     depends_on: []
     spec_status: approved
     plan_status: approved
     impl_status: complete
-    review_status: ready_for_review
+    review_status: approved
+    substep: null
+  - id: 02-ako-curriculum
+    change_id: ako-poc-2
+    title: "Ako v2: Full Learning Path"
+    type: feature
+    location: changes/2026/10/09/k7m2qa-ako-poc/02-ako-curriculum
+    depends_on: [01-ako-poc]
+    spec_status: approved
+    plan_status: approved
+    impl_status: in_progress
+    review_status: pending
     substep: null
