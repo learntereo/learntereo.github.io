@@ -10,7 +10,6 @@ import { TREASURE_COUNT, nextTreasure, rankFor, treasureAfter, treasureSlots, un
 import { TitleBreakdown } from '../components/Breakdown';
 import { TreasureIcon } from '../components/Treasure';
 import { TreasureButton } from '../components/TreasureButton';
-import { KowhaiwhaiBorder } from '../components/Kowhaiwhai';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL } from '../labels';
 import styles from './Home.module.css';
@@ -199,8 +198,6 @@ export function Home() {
           Kia ora, <span lang="mi">{displayName}</span>
         </h1>
       </div>
-
-      <KowhaiwhaiBorder height={20} />
 
       <KiwianaCard />
 
