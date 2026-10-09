@@ -39,7 +39,7 @@ export function Practice() {
             return (
               <li key={level} className={`${ui.card} ${styles.locked}`}>
                 <h2>{LEVEL_LABEL[level]}</h2>
-                <p className={ui.muted}>Locked. Finish the units before it on the Path to open this level.</p>
+                <p className={ui.muted}>Locked. Open a unit in this level on the Path to use Free practice for it.</p>
               </li>
             );
           }

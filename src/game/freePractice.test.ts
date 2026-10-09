@@ -18,19 +18,27 @@ const unit = (id: string, level: Unit['level'], order: number, ids: string[]): U
 const units = [
   unit('u1', 'beginner', 1, ['w-b-001', 'w-b-002', 's-b-001']),
   unit('u2', 'beginner', 2, ['w-b-003', 's-b-002']),
+  unit('u3', 'beginner', 3, ['w-b-004']),
+  unit('u4', 'beginner', 4, ['w-b-005']),
 ];
 const statusesFor = (learned: string[]) =>
   computeUnitStatuses(units, { unitProgress: new Map(), learned: new Set(learned), beginnerCompleted: false });
 
 describe('openItems', () => {
-  it('keeps only items from units that are not locked', () => {
-    expect(openItems(items, units, statusesFor([])).map((i) => i.id)).toEqual(['w-b-001', 'w-b-002', 's-b-001']);
+  it('keeps only items from units that are not locked (the first three are open)', () => {
+    expect(openItems(items, units, statusesFor([])).map((i) => i.id)).toEqual([
+      'w-b-001',
+      'w-b-002',
+      'w-b-003',
+      'w-b-004',
+      's-b-001',
+      's-b-002',
+    ]);
   });
 
   it('adds a unit once it opens', () => {
     const open = openItems(items, units, statusesFor(['w-b-001', 'w-b-002', 's-b-001'])).map((i) => i.id);
-    expect(open).toContain('w-b-003');
-    expect(open).toContain('s-b-002');
+    expect(open).toContain('w-b-005');
   });
 });
 
@@ -48,7 +56,7 @@ describe('availableModes', () => {
   });
 
   it('drops match and picture when the open words are few', () => {
-    const few = openItems(items, units, statusesFor([]));
+    const few = openItems(items, units.slice(0, 1), statusesFor([]));
     expect(availableModes(few, 'beginner')).toEqual(['translate', 'write', 'gap', 'order', 'mixed']);
   });
 

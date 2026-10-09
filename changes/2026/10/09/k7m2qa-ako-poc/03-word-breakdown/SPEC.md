@@ -41,6 +41,13 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 - FR3.3 Nav: the Review badge sits inline (on the icon or after the label) so every tab shares one height and baseline, on the desktop row and the mobile bottom bar. The header row (logo, XP/streak) aligns to the same container width as the nav and content.
 - FR3.4 Audit every screen at 360, 768 and 1280px for the same class of issue (missing container or padding, unstyled default controls, misalignment) and fix what you find.
 
+### FR4: Unlock window
+- FR4.1 Units are taken in course order (b01 to b08, then i01 to i08, then a01 to a06). The first 3 units that are not complete are always available. Completed units stay open.
+- FR4.2 Completing a unit (passing its check) opens the next one, so 3 are open at a time until the course runs out. The window crosses level boundaries: the old rule that every unit of the previous level must be complete is replaced by this.
+- FR4.3 Free Practice for a level is open when any unit in that level is available or complete.
+- FR4.4 The PoC migration rule is kept: a learner who finished Beginner in the PoC has every Beginner unit complete, and a unit whose items were all learned already counts as complete.
+- FR4.5 The Path lists the open units under "Next up", and copy no longer says units open one at a time.
+
 ## 3. Acceptance Criteria
 | # | Given | When | Then |
 |---|---|---|---|
@@ -52,6 +59,11 @@ Learners are told what a phrase means as a whole ("Ngā Mihi: Greetings") but ne
 | AC6 | the content tests | they run | every sentence, multi-word item and unit title has a breakdown whose tokens join to the Māori text (case and punctuation insensitive), and every `ref` exists in particles.json |
 | AC7 | Account on desktop | it renders | content is in the centred container, Sign out is styled and the delete button is not full width |
 | AC8 | the nav with Review due | it renders | the badge doesn't change the tab's height; all tabs align |
+| AC9 | a new learner | they open the Path | b01, b02 and b03 are available and everything else is locked |
+| AC10 | b01 passed | the Path renders | b01 is complete and b02, b03 and b04 are available |
+| AC11 | b01 to b03 complete | the Path renders | b04, i01 and i02 are available (the window crosses into Intermediate) |
+| AC12 | a unit later in the window is completed first | the Path renders | it stays complete, the earlier units stay open, and the window still holds 3 not-yet-complete units |
+| AC13 | a learner whose first unit in Intermediate is open | they open Free Practice | Intermediate is open even though Beginner is not finished |
 
 ## 4. Testing
 Unit tests: content breakdown coverage and token-join (AC6), particle refs, breakdown component rendering (interlinear, popover), layout snapshot-free checks where practical. No em dashes. No references to the tools that built the app.
@@ -65,3 +77,4 @@ Audio, morphology beyond word level (e.g. splitting *whakarongo* into *whaka* + 
 | W1 | What's missing? | "You need to explain individual words as well. You can't just say NGĀ MIHI is a greeting; explain what NGĀ is and what MIHI means, and combined it means a greeting." | User |
 | W2 | Layout | "The sign out screen is fucked looking" (screenshot: Account page flush left, default buttons, misaligned Review badge) | User |
 | W3 | Where breakdowns show, data shape, particles dictionary | Learn, unit title, after-answer feedback, tap-a-word popover, Little words reference | Dev team (delegated) |
+| W4 | Unlocking | "Have 3 courses available at a time, rather than one by one; each completion opens a new one" | User |
