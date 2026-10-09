@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, useLocation, useParams } from 'react-router';
 import { getRound, type RoundRow } from '../../data/roundRepo';
 import type { RoundSummary } from '../../game/types';
 import { KoruFlourish } from '../components/Kowhaiwhai';
@@ -18,10 +18,14 @@ function summaryOf(round: RoundRow): RoundSummary {
 
 export function Results() {
   const { roundId } = useParams();
-  const [round, setRound] = useState<RoundRow | null | undefined>(undefined);
+  const location = useLocation();
+  // Right after a round ends, the finished round is passed along so the page works even before the save lands.
+  const passed = (location.state as { round?: RoundRow } | null)?.round;
+  const [fetched, setRound] = useState<RoundRow | null | undefined>(undefined);
+  const round = passed && passed.id === roundId ? passed : fetched;
 
   useEffect(() => {
-    if (!roundId) return;
+    if (!roundId || (passed && passed.id === roundId)) return;
     let cancelled = false;
     getRound(roundId)
       .then((row) => {
@@ -33,6 +37,7 @@ export function Results() {
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roundId]);
 
   if (round === undefined) {

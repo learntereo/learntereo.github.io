@@ -1,0 +1,14 @@
+.image {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.medium {
+  font-size: 2rem;
+}
+
+.large {
+  font-size: 3rem;
+}
