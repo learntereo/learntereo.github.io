@@ -9,6 +9,8 @@ export interface RoundRow {
   user_id: string;
   level: Level;
   mode: RoundMode;
+  /** Set for unit practice and unit check rounds. */
+  unit_id: string | null;
   status: RoundStatus;
   state: unknown;
   score: number | null;
@@ -44,11 +46,17 @@ export function getRound(id: string): Promise<RoundRow | null> {
   });
 }
 
-export async function startRound(userId: string, level: Level, mode: RoundMode, state: RoundState): Promise<RoundRow> {
+export async function startRound(
+  userId: string,
+  level: Level,
+  mode: RoundMode,
+  state: RoundState,
+  unitId: string | null = null,
+): Promise<RoundRow> {
   return withRetry(async () => {
     const { data, error } = await requireClient()
       .from('rounds')
-      .insert({ user_id: userId, level, mode, state, total: state.originalCount })
+      .insert({ user_id: userId, level, mode, state, total: state.originalCount, unit_id: unitId })
       .select()
       .single();
     if (error) {

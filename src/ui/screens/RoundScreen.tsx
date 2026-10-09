@@ -92,6 +92,7 @@ function Round({ level, mode }: { level: Level; mode: Mode }) {
       user_id: user.id,
       level: state.level,
       mode: state.mode,
+      unit_id: state.unitId ?? null,
       status: 'completed',
       state: finalState,
       score,
