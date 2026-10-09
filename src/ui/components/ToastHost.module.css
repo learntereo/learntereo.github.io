@@ -1,0 +1,49 @@
+.host {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 420px;
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--color-pango);
+  color: var(--color-ma);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 25%);
+  font-size: 0.95rem;
+}
+
+.toast span {
+  flex: 1;
+}
+
+.error {
+  background: #7d1d17;
+}
+
+.success {
+  background: var(--color-pounamu);
+}
+
+.close {
+  min-width: 44px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.4rem;
+  cursor: pointer;
+}

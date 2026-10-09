@@ -3,6 +3,7 @@ import { AuthProvider } from './auth/AuthProvider';
 import { AppRoutes } from './routes';
 import { isSupabaseConfigured } from './data/supabaseClient';
 import { ConfigMissing } from './ui/screens/ConfigMissing';
+import { ToastHost } from './ui/components/ToastHost';
 
 export function App() {
   if (!isSupabaseConfigured) return <ConfigMissing />;
@@ -11,6 +12,7 @@ export function App() {
     <HashRouter>
       <AuthProvider>
         <AppRoutes />
+        <ToastHost />
       </AuthProvider>
     </HashRouter>
   );
