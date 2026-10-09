@@ -53,14 +53,13 @@ function staticLandingHtml(): string {
 function staticPepehaHtml(): string {
   const example = buildPepeha({
     ...EMPTY_INPUT,
-    kind: 'maori',
-    name: 'Aroha',
-    maunga: 'Taranaki',
-    water: 'Waikato',
-    waka: 'Tainui',
-    iwi: 'Ngāti Maniapoto',
-    hapu: 'Ngāti Rora',
-    marae: 'Te Kotahitanga',
+    kind: 'tauiwi',
+    name: 'Sam',
+    ancestors1: 'Scotland',
+    born: 'Christchurch',
+    grewUp: 'Dunedin',
+    maunga: 'Aoraki',
+    live: 'Wellington',
   });
   const mi = (text: string) => `<span lang="mi">${escapeHtml(text)}</span>`;
   const covers = [
@@ -69,6 +68,7 @@ function staticPepehaHtml(): string {
     `Your ${mi('waka')} (canoe)`,
     `Your ${mi('iwi')} (tribe) and ${mi('hapū')} (subtribe)`,
     `Your ${mi('marae')}`,
+    `Or, if you are tauiwi: where your ancestors are from, and where you were born, grew up and live now`,
     `Your parents and your name`,
   ];
   return [

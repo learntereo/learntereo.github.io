@@ -91,12 +91,12 @@ export function buildPepeha(input: PepehaInput): PepehaLine[] {
     add(input.grewUp, (v) => ({ mi: `I tipu ake au ki ${v.mi}`, en: `I grew up in ${v.en}` }), ALL_PLACES);
     add(
       input.maunga,
-      (v) => ({ mi: `Ko ${v.mi} te maunga e tū whakahīhī ana ki ahau`, en: `${v.en} is the mountain I feel connected to` }),
+      (v) => ({ mi: `Ko ${v.mi} te maunga`, en: `${v.en} is the mountain I feel connected to` }),
       MAUNGA,
     );
     add(
       input.water,
-      (v) => ({ mi: `Ko ${v.mi} te ${water} e rere ana i roto i ahau`, en: `${v.en} is the ${WATER_EN[water]} that flows within me` }),
+      (v) => ({ mi: `Ko ${v.mi} te ${water}`, en: `${v.en} is the ${WATER_EN[water]} I feel connected to` }),
       WATERS,
     );
     add(input.live, (v) => ({ mi: `Kei ${v.mi} au e noho ana`, en: `I live in ${v.en}` }), ALL_PLACES);

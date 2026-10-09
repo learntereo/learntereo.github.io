@@ -109,8 +109,8 @@ describe('tauiwi template', () => {
       { mi: 'Nō Ingarangi ōku tūpuna', en: 'My ancestors are from England' },
       { mi: 'I whānau mai au ki Te Whanganui-a-Tara', en: 'I was born in Wellington' },
       { mi: 'I tipu ake au ki Ōtautahi', en: 'I grew up in Christchurch' },
-      { mi: 'Ko Aoraki te maunga e tū whakahīhī ana ki ahau', en: 'Aoraki is the mountain I feel connected to' },
-      { mi: 'Ko Te Moana-nui-a-Kiwa te moana e rere ana i roto i ahau', en: 'Pacific Ocean is the sea that flows within me' },
+      { mi: 'Ko Aoraki te maunga', en: 'Aoraki is the mountain I feel connected to' },
+      { mi: 'Ko Te Moana-nui-a-Kiwa te moana', en: 'Pacific Ocean is the sea I feel connected to' },
       { mi: 'Kei Ōtepoti au e noho ana', en: 'I live in Dunedin' },
       { mi: 'Ko Tom tōku pāpā', en: 'Tom is my father' },
       { mi: 'Ko Jan tōku māmā', en: 'Jan is my mother' },
@@ -151,9 +151,9 @@ describe('tauiwi template', () => {
   });
 
   it('supports a river or lake that matters', () => {
-    expect(mi({ kind: 'tauiwi', name: 'A', water: 'Waikato', waterType: 'awa' })).toContain('Ko Waikato te awa e rere ana i roto i ahau');
-    expect(en({ kind: 'tauiwi', name: 'A', water: 'Lake Taupō', waterType: 'roto' })).toContain('Lake Taupō is the lake that flows within me');
-    expect(mi({ kind: 'tauiwi', name: 'A', water: 'Lake Taupō', waterType: 'roto' })).toContain('Ko Taupō-nui-a-Tia te roto e rere ana i roto i ahau');
+    expect(mi({ kind: 'tauiwi', name: 'A', water: 'Waikato', waterType: 'awa' })).toContain('Ko Waikato te awa');
+    expect(en({ kind: 'tauiwi', name: 'A', water: 'Lake Taupō', waterType: 'roto' })).toContain('Lake Taupō is the lake I feel connected to');
+    expect(mi({ kind: 'tauiwi', name: 'A', water: 'Lake Taupō', waterType: 'roto' })).toContain('Ko Taupō-nui-a-Tia te roto');
   });
 
   it('supports New Zealand as an ancestral place', () => {
