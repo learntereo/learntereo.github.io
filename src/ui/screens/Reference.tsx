@@ -1,4 +1,7 @@
 import { Link } from 'react-router';
+import { units } from '../../content/content';
+import { FACTS } from '../../content/facts';
+import { useAppData } from '../../data/AppDataContext';
 import ui from '../components/ui.module.css';
 import styles from './Reference.module.css';
 
@@ -11,6 +14,8 @@ const PAGES = [
 
 /** The Reference tab: grammar, pronunciation, little words and a glossary. */
 export function Reference() {
+  const { statuses } = useAppData();
+  const known = FACTS.filter((f) => statuses.get(units[f.afterUnit - 1]?.id ?? '')?.state === 'complete').length;
   return (
     <main className={ui.page}>
       <div>
@@ -24,6 +29,14 @@ export function Reference() {
             </Link>
           </li>
         ))}
+        <li>
+          <Link to="/know-rero" className={`${ui.card} ${styles.page}`}>
+            <span className={styles.title}>Know-rero</span>
+            <span className={ui.muted}>
+              {known} / {FACTS.length}
+            </span>
+          </Link>
+        </li>
         <li>
           <Link to="/practice" className={`${ui.card} ${styles.page}`}>
             <span className={styles.title}>Free practice</span>

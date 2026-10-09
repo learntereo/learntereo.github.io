@@ -1,0 +1,12 @@
+.fact {
+  border-left: 4px solid var(--color-karaka);
+}
+
+.title {
+  margin: 0 0 var(--space-1);
+  font-size: 1.05rem;
+}
+
+.text {
+  margin: 0;
+}

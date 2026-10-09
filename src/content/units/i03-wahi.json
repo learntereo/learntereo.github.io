@@ -238,7 +238,8 @@
       "level": "intermediate",
       "mi": "Kei te whare te ngeru",
       "en": [
-        "The cat is at the house"
+        "The cat is at the house",
+        "The cat is at home"
       ],
       "tiles": [
         "kei",
@@ -287,7 +288,8 @@
       "level": "intermediate",
       "mi": "Kei te haere mātou ki te tātahi",
       "en": [
-        "We are going to the beach"
+        "We are going to the beach",
+        "We are heading to the beach"
       ],
       "tiles": [
         "kei",
@@ -338,7 +340,8 @@
       "level": "intermediate",
       "mi": "Kei hea te pahi",
       "en": [
-        "Where is the bus"
+        "Where is the bus",
+        "Where's the bus"
       ],
       "tiles": [
         "kei",
@@ -381,7 +384,8 @@
       "level": "intermediate",
       "mi": "Kei te haere ahau ki te hōhipera",
       "en": [
-        "I am going to the hospital"
+        "I am going to the hospital",
+        "I'm going to the hospital"
       ],
       "tiles": [
         "kei",
@@ -483,7 +487,8 @@
       "level": "intermediate",
       "mi": "Kei te haere ngā tamariki ki te marae",
       "en": [
-        "The children are going to the marae"
+        "The children are going to the marae",
+        "The kids are going to the marae"
       ],
       "tiles": [
         "kei",

@@ -219,7 +219,8 @@
       "level": "beginner",
       "mi": "Kei te kai ahau",
       "en": [
-        "I am eating"
+        "I am eating",
+        "I am eating food"
       ],
       "tiles": [
         "kei",
@@ -427,7 +428,8 @@
       "level": "beginner",
       "mi": "He pai te parāoa",
       "en": [
-        "The bread is good"
+        "The bread is good",
+        "The bread is nice"
       ],
       "tiles": [
         "he",

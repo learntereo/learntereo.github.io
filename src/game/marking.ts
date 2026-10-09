@@ -105,6 +105,38 @@ export function numberWordsToDigits(words: readonly string[]): string[] {
   return out;
 }
 
+/** Stripped contractions that are unambiguous (`its` and `wont` are real words, so they are left alone). */
+const STRIPPED_CONTRACTIONS: Record<string, string> = {
+  thats: 'that is',
+  im: 'i am',
+  youre: 'you are',
+  theyre: 'they are',
+  dont: 'do not',
+  doesnt: 'does not',
+  isnt: 'is not',
+  cant: 'cannot',
+};
+
+/**
+ * Expand contractions ("that's" becomes "that is", "don't" becomes "do not") in lowercase text
+ * that still has its apostrophes. Possessives such as "mum's" are left as they are.
+ */
+export function expandContractions(text: string): string {
+  const word = String.fromCharCode(92) + 'b';
+  const w = (source: string) => new RegExp(source.replace(/<b>/g, word), 'g');
+  return text
+    .replace(/[‘’`]/g, "'")
+    .replace(w("<b>can't<b>"), 'cannot')
+    .replace(w("<b>won't<b>"), 'will not')
+    .replace(w("<b>let's<b>"), 'let us')
+    .replace(w("<b>([a-z]+)n't<b>"), '$1 not')
+    .replace(w("<b>i'm<b>"), 'i am')
+    .replace(w("<b>([a-z]+)'re<b>"), '$1 are')
+    .replace(w("<b>([a-z]+)'ll<b>"), '$1 will')
+    .replace(w("<b>([a-z]+)'ve<b>"), '$1 have')
+    .replace(w("<b>(that|it|he|she|there|what|where|who|here|how|when)'s<b>"), '$1 is');
+}
+
 /**
  * Lowercase, NFC, strip punctuation, collapse whitespace and drop leading
  * "a / an / the / to" so "The Dog!" and "dog" compare equal. English number words
@@ -122,15 +154,17 @@ const US_TO_NZ: Readonly<Record<string, string>> = {
 };
 
 export function normaliseAnswer(input: string): string {
-  const cleaned = input
-    .normalize('NFC')
-    .toLowerCase()
+  const cleaned = expandContractions(input.normalize('NFC').toLowerCase())
     .replace(/['‘’`"“”]/g, '')
     .replace(/[\p{P}\p{S}]/gu, ' ')
     .replace(/\s+/g, ' ')
     .trim();
   if (cleaned === '') return '';
-  const parts = numberWordsToDigits(cleaned.split(' ').map((word) => US_TO_NZ[word] ?? word));
+  const words = cleaned
+    .split(' ')
+    .flatMap((word) => (STRIPPED_CONTRACTIONS[word] ?? word).split(' '))
+    .map((word) => US_TO_NZ[word] ?? word);
+  const parts = numberWordsToDigits(words.join(' ').replace(/ can not /g, ' cannot ').replace(/^can not /, 'cannot ').split(' '));
   while (parts.length > 1 && LEADING_WORDS.has(parts[0])) parts.shift();
   return parts.join(' ');
 }

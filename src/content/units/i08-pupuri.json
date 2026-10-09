@@ -157,7 +157,8 @@
       "level": "intermediate",
       "mi": "Kei hea tō whare",
       "en": [
-        "Where is your house"
+        "Where is your house",
+        "Where's your house"
       ],
       "tiles": [
         "kei",
@@ -200,7 +201,8 @@
       "level": "intermediate",
       "mi": "Ko tōku whānau tēnei",
       "en": [
-        "This is my family"
+        "This is my family",
+        "This is my whānau"
       ],
       "tiles": [
         "ko",
@@ -290,7 +292,8 @@
       "level": "intermediate",
       "mi": "Ko tāku kurī tēnā",
       "en": [
-        "That is my dog"
+        "That is my dog",
+        "That dog is mine"
       ],
       "tiles": [
         "ko",
@@ -334,7 +337,8 @@
       "level": "intermediate",
       "mi": "Kei hea tāku pukapuka",
       "en": [
-        "Where is my book"
+        "Where is my book",
+        "Where's my book"
       ],
       "tiles": [
         "kei",

@@ -22,6 +22,7 @@ const Reference = lazy(() => import('./ui/screens/Reference').then((m) => ({ def
 const Grammar = lazy(() => import('./ui/screens/Grammar').then((m) => ({ default: m.Grammar })));
 const Pronunciation = lazy(() => import('./ui/screens/Pronunciation').then((m) => ({ default: m.Pronunciation })));
 const LittleWords = lazy(() => import('./ui/screens/LittleWords').then((m) => ({ default: m.LittleWords })));
+const KnowRero = lazy(() => import('./ui/screens/KnowRero').then((m) => ({ default: m.KnowRero })));
 const Glossary = lazy(() => import('./ui/screens/Glossary').then((m) => ({ default: m.Glossary })));
 
 function Loading() {
@@ -72,6 +73,14 @@ export function AppRoutes() {
             element={
               <Suspense fallback={<Loading />}>
                 <Pronunciation />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/know-rero"
+            element={
+              <Suspense fallback={<Loading />}>
+                <KnowRero />
               </Suspense>
             }
           />

@@ -366,7 +366,8 @@
       "level": "beginner",
       "mi": "Kei hea te kaiako",
       "en": [
-        "Where is the teacher"
+        "Where is the teacher",
+        "Where's the teacher"
       ],
       "tiles": [
         "kei",
@@ -408,7 +409,8 @@
       "level": "beginner",
       "mi": "He iti te tēpu",
       "en": [
-        "The table is small"
+        "The table is small",
+        "The table is little"
       ],
       "tiles": [
         "he",
@@ -450,7 +452,8 @@
       "level": "beginner",
       "mi": "He pukapuka tēnei",
       "en": [
-        "This is a book"
+        "This is a book",
+        "It is a book"
       ],
       "tiles": [
         "he",

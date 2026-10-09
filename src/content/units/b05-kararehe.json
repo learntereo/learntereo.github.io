@@ -201,7 +201,8 @@
       "mi": "He kurī tēnā",
       "en": [
         "That is a dog",
-        "That is a dog there"
+        "That is a dog there",
+        "It is a dog"
       ],
       "tiles": [
         "he",
@@ -238,7 +239,8 @@
       "level": "beginner",
       "mi": "He ngeru tēnei",
       "en": [
-        "This is a cat"
+        "This is a cat",
+        "It is a cat"
       ],
       "tiles": [
         "he",
@@ -275,7 +277,8 @@
       "level": "beginner",
       "mi": "He kiwi tērā",
       "en": [
-        "That is a kiwi"
+        "That is a kiwi",
+        "It is a kiwi"
       ],
       "tiles": [
         "he",
@@ -312,7 +315,8 @@
       "level": "beginner",
       "mi": "He hipi tēnei",
       "en": [
-        "This is a sheep"
+        "This is a sheep",
+        "It is a sheep"
       ],
       "tiles": [
         "he",
@@ -349,7 +353,8 @@
       "level": "beginner",
       "mi": "Kei te kai te kurī",
       "en": [
-        "The dog is eating"
+        "The dog is eating",
+        "The dog is eating food"
       ],
       "tiles": [
         "kei",
@@ -392,7 +397,8 @@
       "level": "beginner",
       "mi": "Kei te kai ngā kurī",
       "en": [
-        "The dogs are eating"
+        "The dogs are eating",
+        "The dogs are eating food"
       ],
       "tiles": [
         "kei",

@@ -201,7 +201,8 @@
       "level": "beginner",
       "mi": "He pai tēnei",
       "en": [
-        "This is good"
+        "This is good",
+        "It is good"
       ],
       "tiles": [
         "he",
@@ -238,7 +239,8 @@
       "level": "beginner",
       "mi": "He tamariki rātou",
       "en": [
-        "They are children"
+        "They are children",
+        "They are kids"
       ],
       "tiles": [
         "he",
@@ -276,7 +278,8 @@
       "mi": "He kuia tērā",
       "en": [
         "That is an elderly woman",
-        "That is an old woman"
+        "That is an old woman",
+        "That is an old lady"
       ],
       "tiles": [
         "he",
@@ -351,7 +354,8 @@
       "level": "beginner",
       "mi": "He wahine tēnei",
       "en": [
-        "This is a woman"
+        "This is a woman",
+        "This is a lady"
       ],
       "tiles": [
         "he",
@@ -388,7 +392,8 @@
       "level": "beginner",
       "mi": "He tama tēnā",
       "en": [
-        "That is a boy"
+        "That is a boy",
+        "That is a lad"
       ],
       "tiles": [
         "he",

@@ -30,6 +30,7 @@ import { newlyUnlockedTreasureIds, rankUp, treasureSlots, unlockedTreasureIds } 
 import { computeUnitStatuses, newlyUnlockedUnitIds } from '../../game/unitUnlock';
 import { xpForRound } from '../../game/xp';
 import { showToast } from '../../lib/toastBus';
+import { useScrollTopOn } from '../components/useScrollTop';
 import ui from '../components/ui.module.css';
 import { LEVEL_LABEL, ROUND_MODE_LABEL, isLevel, isMode } from '../labels';
 import { BoardGame } from '../modes/BoardGame';
@@ -369,6 +370,9 @@ function Round({ spec }: { spec: RoundSpec }) {
     /* eslint-enable react-hooks/set-state-in-effect */
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, profile]);
+
+  // Each new question starts at the top of the screen.
+  useScrollTopOn(phase.kind === 'playing' ? phase.state.index : -1);
 
   // ---- answering and finishing --------------------------------------------
 

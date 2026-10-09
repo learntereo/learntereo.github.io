@@ -412,3 +412,14 @@ describe('accepted alternatives (miAlt)', () => {
     expect(itemsById.get('w-b-030')!.miAlt).toEqual(['kotahi']);
   });
 });
+
+describe('accepted English answers', () => {
+  it('gives every sentence at least two accepted answers, with the natural translation first', () => {
+    for (const level of LEVELS) {
+      for (const s of sentencesForLevel(level)) {
+        expect(s.en.length, s.id).toBeGreaterThanOrEqual(2);
+        expect(new Set(s.en.map(strip)).size, `${s.id} has a duplicate answer`).toBe(s.en.length);
+      }
+    }
+  });
+});

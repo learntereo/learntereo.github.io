@@ -9,7 +9,10 @@ import { AppDataContext, type AppData } from '../../data/AppDataContext';
 import { computeUnitStatuses } from '../../game/unitUnlock';
 import { Glossary } from './Glossary';
 import { Grammar } from './Grammar';
+import { KnowRero } from './KnowRero';
 import { Pronunciation } from './Pronunciation';
+import { Reference } from './Reference';
+import { FACTS } from '../../content/facts';
 import { Progress } from './Progress';
 
 vi.mock('../../data/roundRepo', async (importOriginal) => ({
@@ -242,5 +245,45 @@ describe('Progress: Your Kiwiana hero', () => {
     const names = [...recent.querySelectorAll('li strong')].map((s) => s.textContent);
     expect(names).toEqual(['Pōhutukawa', 'Silver fern', 'Jandals']);
     expect(recent.textContent).toMatch(/2026/);
+  });
+});
+
+describe('Know-rero', () => {
+  const doneRow = (unitId: string): UnitProgressRow => ({
+    user_id: 'u1',
+    unit_id: unitId,
+    learned_at: '2026-10-01T00:00:00Z',
+    completed_at: '2026-10-01T00:00:00Z',
+    best_score: 11,
+    attempts: 1,
+  });
+
+  it('is linked from Reference with a count', () => {
+    show(<Reference />, data({ unitProgress: [doneRow('b01-greetings'), doneRow('b02-whanau')] }));
+    const link = container.querySelector('a[href="/know-rero"]')!;
+    expect(link.textContent).toContain('Know-rero');
+    expect(link.textContent).toContain('2 / 22');
+  });
+
+  it('shows the text of completed units with the unit title, and a padlock for the rest', () => {
+    show(<KnowRero />, data({ unitProgress: [doneRow('b01-greetings')] }));
+    expect(container.querySelector('h1')?.textContent).toBe('Know-rero');
+    expect(container.textContent).toContain(FACTS[0].text);
+    expect(container.textContent).toContain('Greetings and introductions');
+    expect(container.querySelectorAll('svg[data-locked="true"]')).toHaveLength(21);
+    expect(container.textContent).toContain('Finish Family to unlock');
+  });
+
+  it('never reveals the text of a locked fact', () => {
+    show(<KnowRero />, data({ unitProgress: [doneRow('b01-greetings')] }));
+    for (const fact of FACTS.slice(1)) expect(container.textContent).not.toContain(fact.text);
+    expect(container.querySelectorAll('li')).toHaveLength(22);
+  });
+
+  it('lists every fact in course order once everything is complete', () => {
+    show(<KnowRero />, data({ unitProgress: units.map((u) => doneRow(u.id)) }));
+    const texts = [...container.querySelectorAll('li p:last-child')].map((p) => p.textContent);
+    expect(texts).toEqual(FACTS.map((f) => f.text));
+    expect(container.textContent).toContain('22 / 22');
   });
 });

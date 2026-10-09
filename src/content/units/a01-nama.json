@@ -315,7 +315,8 @@
       "mi": "E tekau mā rima ngā tamariki",
       "en": [
         "There are fifteen children",
-        "Fifteen children"
+        "Fifteen children",
+        "There are fifteen kids"
       ],
       "tiles": [
         "e",
@@ -370,7 +371,8 @@
       "mi": "E rua tekau ngā ākonga",
       "en": [
         "There are twenty students",
-        "Twenty students"
+        "Twenty students",
+        "There are twenty pupils"
       ],
       "tiles": [
         "e",
@@ -468,7 +470,8 @@
       "mi": "E tokotoru ngā tamariki",
       "en": [
         "There are three children",
-        "Three children"
+        "Three children",
+        "There are three kids"
       ],
       "tiles": [
         "e",
@@ -551,7 +554,8 @@
       "en": [
         "There are many birds",
         "The birds are many",
-        "There are a lot of birds"
+        "There are a lot of birds",
+        "Many birds"
       ],
       "tiles": [
         "he",

@@ -371,7 +371,8 @@
       "level": "beginner",
       "mi": "Kei te pēhea koe",
       "en": [
-        "How are you"
+        "How are you",
+        "How are you feeling"
       ],
       "tiles": [
         "kei",
@@ -409,7 +410,9 @@
       "level": "beginner",
       "mi": "Kei te harikoa ahau",
       "en": [
-        "I am happy"
+        "I am happy",
+        "I am glad",
+        "I feel happy"
       ],
       "tiles": [
         "kei",
@@ -480,7 +483,8 @@
       "level": "beginner",
       "mi": "Ata mārie",
       "en": [
-        "Good morning"
+        "Good morning",
+        "Morning"
       ],
       "tiles": [
         "ata",

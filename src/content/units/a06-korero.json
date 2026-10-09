@@ -174,7 +174,8 @@
       "level": "advanced",
       "mi": "Kei te makariri ahau nā te mea kei te ua",
       "en": [
-        "I am cold because it is raining"
+        "I am cold because it is raining",
+        "I feel cold because it is raining"
       ],
       "tiles": [
         "kei",
@@ -300,7 +301,8 @@
       "mi": "Kei te ua nō reira ka noho mātou ki te whare",
       "en": [
         "It is raining so we will stay at home",
-        "It is raining so we will stay at the house"
+        "It is raining so we will stay at the house",
+        "It is raining so we will stay home"
       ],
       "tiles": [
         "kei",
@@ -439,7 +441,8 @@
       "mi": "Kei te inu ahau i te wai kei te inu hoki ia",
       "en": [
         "I am drinking water and she is too",
-        "I am drinking water and he is too"
+        "I am drinking water and he is too",
+        "I am drinking water and she is drinking too"
       ],
       "tiles": [
         "kei",

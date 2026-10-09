@@ -69,11 +69,26 @@ describe('TreasureDialog', () => {
     expect(dialog().querySelector('h2')?.textContent).toBe('Pāua');
   });
 
-  it('gives the Golden kiwi sparkles while unlocking, and none when only viewing', () => {
+  it('gives the Golden kiwi sparkles in both modes, and no other treasure', () => {
     show('golden-kiwi', 'unlock');
     expect(dialog().querySelectorAll('svg[viewBox="0 0 100 100"]')).toHaveLength(1);
     show('golden-kiwi', 'view');
+    expect(dialog().querySelectorAll('svg[viewBox="0 0 100 100"]')).toHaveLength(1);
+    show('paua', 'view');
     expect(dialog().querySelectorAll('svg[viewBox="0 0 100 100"]')).toHaveLength(0);
+  });
+
+  it('plays the lighter reveal in view mode and the full one only when unlocking', () => {
+    show('paua', 'view');
+    expect(dialog().className).toMatch(/view/);
+    expect(dialog().className).not.toMatch(/reveal/);
+    show('paua', 'unlock');
+    expect(dialog().className).toMatch(/reveal/);
+    const css = readFileSync('src/ui/components/TreasureDialog.module.css', 'utf8');
+    expect(css).toMatch(/.view .treasure {[^}]*animation:/);
+    expect(css).toMatch(/.view .story {[^}]*opacity: 0/);
+    expect(css).toContain('@keyframes viewIn');
+    expect(css).toContain('@keyframes glow');
   });
 
   it('closes with the Ka pai! button and with Escape, and focuses the button first', () => {
@@ -118,6 +133,9 @@ describe('TreasureDialog', () => {
     const css = readFileSync('src/ui/components/TreasureDialog.module.css', 'utf8');
     const block = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
     expect(block).toContain('.reveal .lock');
+    expect(block).toContain('.view .treasure');
+    expect(block).toContain('.view .story');
+    expect(block).not.toMatch(/animation: (viewIn|glow|riseIn)/);
     expect(block).toMatch(/display:\s*none/);
     expect(block).toMatch(/transform:\s*none/);
     expect(block).toContain('opacity: 1');

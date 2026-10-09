@@ -6,6 +6,7 @@ import { getRound, type RoundRow } from '../../data/roundRepo';
 import type { Item, RoundSummary, Unit } from '../../game/types';
 import { TREASURES, TREASURE_COUNT } from '../../game/treasures';
 import { passMark } from '../../game/unitRound';
+import { FactCard } from '../components/FactCard';
 import { KoruFlourish } from '../components/Kowhaiwhai';
 import { TreasureButton } from '../components/TreasureButton';
 import { TreasureDialog } from '../components/TreasureDialog';
@@ -195,6 +196,8 @@ export function Results() {
       )}
 
       {isCheck && check?.passed && check.treasureId && <TreasureUnlocked id={check.treasureId} fresh={passedRound !== undefined} newRank={check.newRank} />}
+
+      {isCheck && check?.passed && unit && <FactCard unitId={unit.id} />}
 
       <section className={`${ui.card} ${styles.score}`} aria-labelledby="results-title">
         <p className={ui.muted}>

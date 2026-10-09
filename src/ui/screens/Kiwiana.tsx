@@ -58,51 +58,38 @@ export function Kiwiana() {
           return (
             <li
               key={treasure.id}
-              className={`${ui.card} ${styles.item} ${isNext ? styles.next : ''}`}
+              className={`${ui.card} ${styles.item} ${got ? styles.itemOpen : ''} ${isNext ? styles.next : ''}`}
               aria-current={isNext ? 'step' : undefined}
             >
               {got ? (
                 <button
                   type="button"
-                  className={styles.iconButton}
+                  className={styles.cardButton}
                   aria-label={`Read about ${treasure.name}`}
                   onClick={() => setOpenId(treasure.id)}
                 >
                   <TreasureIcon id={treasure.id} size={64} />
+                  <span className={styles.text}>
+                    <span className={styles.name}>{treasure.name}</span>
+                    <span className={`${ui.muted} ${styles.caption}`}>{treasure.caption}</span>
+                  </span>
                 </button>
               ) : (
                 <TreasureIcon id={treasure.id} size={64} locked />
               )}
-              <div className={styles.text}>
-                {got ? (
-                  <>
-                    <h2 className={styles.name}>
-                      <button
-                        type="button"
-                        className={styles.nameButton}
-                        aria-label={`Read about ${treasure.name}`}
-                        onClick={() => setOpenId(treasure.id)}
-                      >
-                        {treasure.name}
-                      </button>
-                    </h2>
-                    <p className={ui.muted}>{treasure.caption}</p>
-                    <span className={ui.visuallyHidden}>Opens the story of {treasure.name}.</span>
-                  </>
-                ) : (
-                  <>
-                    <h2 className={styles.name} aria-hidden="true">
-                      {isNext ? 'Next: ???' : '???'}
-                    </h2>
-                    <p className={ui.muted} aria-hidden="true">
-                      Finish {unit.title} to unlock
-                    </p>
-                    <span className={ui.visuallyHidden}>
-                      {isNext ? 'Next treasure. ' : ''}Locked treasure. Finish {unit.title} to unlock.
-                    </span>
-                  </>
-                )}
-              </div>
+              {!got && (
+                <div className={styles.text}>
+                  <h2 className={styles.name} aria-hidden="true">
+                    {isNext ? 'Next: ???' : '???'}
+                  </h2>
+                  <p className={ui.muted} aria-hidden="true">
+                    Finish {unit.title} to unlock
+                  </p>
+                  <span className={ui.visuallyHidden}>
+                    {isNext ? 'Next treasure. ' : ''}Locked treasure. Finish {unit.title} to unlock.
+                  </span>
+                </div>
+              )}
             </li>
           );
         })}

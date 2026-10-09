@@ -225,7 +225,9 @@
       "level": "advanced",
       "mi": "He wharenui tēnei",
       "en": [
-        "This is a meeting house"
+        "This is a meeting house",
+        "It is a meeting house",
+        "This is a wharenui"
       ],
       "tiles": [
         "he",
@@ -263,7 +265,9 @@
       "level": "advanced",
       "mi": "He wharekai tērā",
       "en": [
-        "That is a dining hall"
+        "That is a dining hall",
+        "It is a dining hall",
+        "That is a wharekai"
       ],
       "tiles": [
         "he",
@@ -302,7 +306,9 @@
       "mi": "Kei te karanga te kuia",
       "en": [
         "The elderly woman is calling",
-        "The old woman is calling"
+        "The old woman is calling",
+        "The old lady is calling",
+        "The kuia is calling"
       ],
       "tiles": [
         "kei",
@@ -347,7 +353,9 @@
       "mi": "Kei te whaikōrero te kaumātua",
       "en": [
         "The elder is giving a speech",
-        "The elders are giving a speech"
+        "The elders are giving a speech",
+        "The elder is making a speech",
+        "The elder is giving a formal speech"
       ],
       "tiles": [
         "kei",
@@ -392,7 +400,8 @@
       "mi": "Ka hongi ngā manuhiri",
       "en": [
         "The visitors will hongi",
-        "The visitors will press noses"
+        "The visitors will press noses",
+        "The guests will hongi"
       ],
       "tiles": [
         "ka",
@@ -479,7 +488,8 @@
       "level": "advanced",
       "mi": "Kei te haere ngā manuhiri ki te marae",
       "en": [
-        "The visitors are going to the marae"
+        "The visitors are going to the marae",
+        "The guests are going to the marae"
       ],
       "tiles": [
         "kei",

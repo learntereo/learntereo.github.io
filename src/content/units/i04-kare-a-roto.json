@@ -188,7 +188,8 @@
       "level": "intermediate",
       "mi": "Kei te makariri te wai",
       "en": [
-        "The water is cold"
+        "The water is cold",
+        "The water feels cold"
       ],
       "tiles": [
         "kei",
@@ -232,7 +233,8 @@
       "level": "intermediate",
       "mi": "Kei te hiakai ngā tamariki",
       "en": [
-        "The children are hungry"
+        "The children are hungry",
+        "The kids are hungry"
       ],
       "tiles": [
         "kei",
@@ -323,7 +325,8 @@
       "mi": "Kei te mataku te kurī",
       "en": [
         "The dog is scared",
-        "The dog is afraid"
+        "The dog is afraid",
+        "The dog is frightened"
       ],
       "tiles": [
         "kei",
@@ -413,7 +416,8 @@
       "level": "intermediate",
       "mi": "Kei te hiainu ahau",
       "en": [
-        "I am thirsty"
+        "I am thirsty",
+        "I'm thirsty"
       ],
       "tiles": [
         "kei",

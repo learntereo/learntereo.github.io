@@ -216,7 +216,8 @@
       "level": "intermediate",
       "mi": "E kai ana te kurī",
       "en": [
-        "The dog is eating"
+        "The dog is eating",
+        "The dog is eating food"
       ],
       "tiles": [
         "e",
@@ -265,7 +266,8 @@
       "level": "intermediate",
       "mi": "E moe ana te pēpi",
       "en": [
-        "The baby is sleeping"
+        "The baby is sleeping",
+        "The baby is asleep"
       ],
       "tiles": [
         "e",
@@ -421,7 +423,8 @@
       "level": "intermediate",
       "mi": "E waiata ana ngā tamariki",
       "en": [
-        "The children are singing"
+        "The children are singing",
+        "The kids are singing"
       ],
       "tiles": [
         "e",
@@ -470,7 +473,8 @@
       "level": "intermediate",
       "mi": "E tākaro ana ngā tamariki",
       "en": [
-        "The children are playing"
+        "The children are playing",
+        "The kids are playing"
       ],
       "tiles": [
         "e",
@@ -519,7 +523,8 @@
       "level": "intermediate",
       "mi": "E whakarongo ana ngā ākonga",
       "en": [
-        "The students are listening"
+        "The students are listening",
+        "The pupils are listening"
       ],
       "tiles": [
         "e",

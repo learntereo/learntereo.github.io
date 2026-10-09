@@ -168,6 +168,31 @@ describe('Results: new kiwiana', () => {
   });
 });
 
+describe('Results: Know-rero', () => {
+  it('shows the unit fact after passing the Kiwiz', () => {
+    renderResults(round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true } }), ['b01-greetings']);
+    expect(container.textContent).toContain('Know-rero');
+    expect(container.textContent).toContain('double-hulled waka');
+  });
+
+  it('shows it below the kiwiana unlock card when both appear', () => {
+    renderResults(
+      round({}, { unitCheck: { unitId: 'b01-greetings', passed: true, firstCompletion: true, treasureId: 'paua' } }),
+      ['b01-greetings'],
+    );
+    const text = container.textContent ?? '';
+    expect(text.indexOf('New kiwiana')).toBeGreaterThan(-1);
+    expect(text.indexOf('Know-rero')).toBeGreaterThan(text.indexOf('New kiwiana'));
+  });
+
+  it('shows no fact after a failed Kiwiz or a practice round', () => {
+    renderResults(round({ score: 5 }, { unitCheck: { unitId: 'b01-greetings', passed: false, firstCompletion: false } }), []);
+    expect(container.textContent).not.toContain('Know-rero');
+    renderResults(round({ mode: 'unit_practice' }, {}), []);
+    expect(container.textContent).not.toContain('Know-rero');
+  });
+});
+
 describe('Results: unlock dialog', () => {
   it('opens the unlock dialog with the name and story when a Kiwiz pass unlocks a treasure', () => {
     renderResults(
