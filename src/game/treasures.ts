@@ -58,7 +58,7 @@ export const TREASURES: readonly Treasure[] = [
       "The tuatara is a reptile that lives only in New Zealand. It looks like a lizard but belongs to a very old group that goes back to the age of the dinosaurs, so it is often called a living fossil. It is a taonga species, treasured by Māori, and its name is often explained as \"peaks on the back\".",
     afterUnit: 14 },
   { id: 'kereru', name: 'Kererū', caption: 'Kererū: the large native wood pigeon with a white chest and noisy wings', story:
-      "The kereru is a large native wood pigeon with a green-bronze back and a white chest. It swallows big native fruits whole and spreads their seeds far and wide, which helps native forest grow. Ngahere means forest, a word from Places and travel.",
+      "The kererū is a large native wood pigeon with a green-bronze back and a white chest. It swallows big native fruits whole and spreads their seeds far and wide, which helps native forest grow. Ngahere means forest, a word from Places and travel.",
     afterUnit: 15 },
   { id: 'piwakawaka', name: 'Pīwakawaka', caption: 'Pīwakawaka (fantail): a tiny bird that flits about with its tail spread like a fan', story:
       "The pīwakawaka, or fantail, is a small friendly bird that flits about and fans out its tail. It often follows people through the bush to catch the insects they disturb. In a well-known story, Māui's quest to defeat death ended when a pīwakawaka's laughter woke Hine-nui-te-pō.",
